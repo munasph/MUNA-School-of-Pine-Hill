@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent }      from './pages/home/home.component';
-import { AboutComponent }     from './pages/about/about.component';
-import { AcademicComponent }  from './pages/academic/academic.component';
-import { AdmissionComponent } from './pages/admission/admission.component';
-import { ContactComponent }   from './pages/contact/contact.component';
-import { GalleryComponent }   from './pages/gallery/gallery.component';
-import { PrivacyComponent }   from './pages/privacy/privacy.component';
-import { TermsComponent }     from './pages/terms/terms.component';
-import { NotFoundComponent }  from './pages/not-found/not-found.component';
+import { HomeComponent }      from './components/home/home.component';
+import { AboutComponent }     from './components/about/about.component';
+import { AcademicComponent }  from './components/academic/academic.component';
+import { AdmissionComponent } from './components/admission/admission.component';
+import { ContactComponent }   from './components/contact/contact.component';
+import { GalleryComponent }   from './components/gallery/gallery.component';
+import { PrivacyComponent }   from './components/privacy/privacy.component';
+import { TermsComponent }     from './components/terms/terms.component';
+import { NotFoundComponent }  from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '',          component: HomeComponent,      pathMatch: 'full' },

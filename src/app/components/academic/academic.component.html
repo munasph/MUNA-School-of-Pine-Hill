@@ -1,0 +1,117 @@
+<div>
+
+  <!-- Hero -->
+  <section class="academic-hero">
+    <div aria-hidden="true" class="academic-hero__bg-dots"></div>
+
+    <div class="max-w-7xl mx-auto px-4 relative" style="z-index:1;">
+      <div appReveal class="text-center">
+        <span class="academic-hero__tag">{{ t.academic.hero.tag }}</span>
+
+        <h1 class="font-serif font-bold academic-hero__title">
+          Shaping Futures Through Education
+        </h1>
+
+        <p class="academic-hero__subtitle">
+          Comprehensive education from early childhood through higher secondary — designed
+          to prepare every student for success.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <span *ngFor="let label of ['Accredited', 'Grade 9–12', 'Multiple Streams']"
+                class="academic-hero__chip">
+            {{ label }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic Programmes -->
+  <section class="academic-section py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="academic-section__header">
+        <span class="tag-pill">Our Programmes</span>
+        <h2 class="font-serif font-bold section-title">Our Programmes</h2>
+        <p class="section-subtitle">
+          Comprehensive education from early childhood to higher secondary levels.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div *ngFor="let course of courses; let i = index"
+             appReveal [revealDelay]="i * 100"
+             class="course-card hover:-translate-y-1 transition-transform duration-300">
+          <div class="course-card__icon">
+            <lucide-icon [img]="course.icon" size="22"></lucide-icon>
+          </div>
+
+          <span class="course-card__levels">{{ course.levels }}</span>
+
+          <h3 class="font-bold course-card__title">{{ course.title }}</h3>
+          <p class="course-card__desc">{{ course.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Higher Secondary Streams -->
+  <section class="academic-section--tint py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <div appReveal>
+          <span class="tag-pill">{{ t.academic.programmes.tag }}</span>
+          <h2 class="font-serif font-bold stream-intro__title">
+            {{ t.academic.programmes.title }}
+          </h2>
+          <p class="stream-intro__paragraph">
+            Multiple streams crafted to align with national curriculum standards while
+            nurturing each student's individual strengths and career goals.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div *ngFor="let s of higherSecondary; let i = index"
+               appReveal [revealDelay]="i * 100"
+               class="stream-card hover:-translate-y-1 transition-transform duration-300">
+            <div class="stream-card__icon">
+              <lucide-icon [img]="s.icon" size="19"></lucide-icon>
+            </div>
+            <div>
+              <h4 class="stream-card__title">{{ s.title }}</h4>
+              <p class="stream-card__desc">{{ s.desc }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="academic-section py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="academic-section__header">
+        <span class="tag-pill">{{ t.academic.achievements.tag }}</span>
+        <h2 class="font-serif font-bold section-title">
+          {{ t.academic.achievements.title }}
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div *ngFor="let a of achievements; let i = index"
+             appReveal [revealDelay]="i * 100"
+             class="achievement-card hover:-translate-y-1 transition-transform duration-300">
+          <div aria-hidden="true" class="achievement-card__ghost">
+            <lucide-icon [img]="a.icon" size="80"></lucide-icon>
+          </div>
+
+          <span class="achievement-card__year">{{ a.year }}</span>
+
+          <h3 class="achievement-card__title">{{ a.title }}</h3>
+          <p class="achievement-card__desc">{{ a.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

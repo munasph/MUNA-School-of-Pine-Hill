@@ -1,0 +1,270 @@
+<div>
+  <!-- ─── HERO: Parallax + Liquid morphism ─────────────────────────────────── -->
+  <section class="hero lg:h-screen">
+
+    <!-- Parallax background -->
+    <div class="hero__bg-wrap" [ngStyle]="parallaxStyle()">
+      <img src="/assets/images/webp/imageherofinal.webp"
+           alt="" aria-hidden="true" class="hero__bg-img" />
+    </div>
+
+    <!-- Gradient overlays -->
+    <div class="hero__overlay hero__overlay--shade"></div>
+    <div class="hero__overlay hero__overlay--top"></div>
+    <div class="hero__overlay hero__overlay--dots"></div>
+
+    <!-- Content grid -->
+    <div class="relative z-10 flex items-start lg:absolute lg:inset-0 lg:items-center
+                px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-0 lg:pb-0">
+      <div class="max-w-7xl mx-auto w-full">
+        <div class="lg:w-1/2">
+          <div appReveal revealDirection="left">
+
+            <div class="hero__badge">EST. {{ schoolInfo.foundedYear }}</div>
+
+            <h1 class="hero__headline">
+              {{ t.hero.headline1 }}<br />
+              {{ t.hero.headline2 }}
+            </h1>
+
+            <p class="hero__subtext">{{ t.hero.subtext }}</p>
+
+            <div class="hero__cta-row">
+              <a routerLink="/admission" class="hero__cta">
+                {{ t.hero.ctaPrimary }} →
+              </a>
+            </div>
+
+            <div class="hero__trust-row">
+              <div class="hero__trust hero__trust--green">
+                <lucide-icon [img]="clipboard" size="15"
+                             [style.color]="'var(--accent)'" [style.flexShrink]="0"></lucide-icon>
+                <div>
+                  <div class="hero__trust-title" [style.color]="'var(--accent)'">
+                    Pre Registration
+                  </div>
+                  <div class="hero__trust-desc">Now Open</div>
+                </div>
+              </div>
+              <div class="hero__trust hero__trust--gold">
+                <lucide-icon [img]="award" size="15"
+                             style="color:#F59E0B;flex-shrink:0;"></lucide-icon>
+                <div>
+                  <div class="hero__trust-title hero__trust-title--gold">Excellence Proven</div>
+                  <div class="hero__trust-desc">Outstanding pass rate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating stat cards (bottom right, desktop only) -->
+    <div class="hero__stats-stack hidden lg:flex flex-col">
+      <div *ngFor="let stat of stats.slice(0, 3); let i = index"
+           appReveal [revealDelay]="i * 200"
+           class="hero__stat-card">
+        <div class="hero__stat-row">
+          <div class="hero__stat-icon">
+            <lucide-icon [img]="stat.icon" size="18" style="color:#00D97E;"></lucide-icon>
+          </div>
+          <div>
+            <div class="hero__stat-value">{{ stat.value }}</div>
+            <div class="hero__stat-label">{{ stat.label }}</div>
+            <div *ngIf="stat.desc" class="hero__stat-desc">{{ stat.desc }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll-indicator hidden sm:block"
+         [style.opacity]="scrollY > 100 ? 0 : 0.5">
+      <div class="hero__scroll-label">SCROLL TO EXPLORE</div>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+           stroke="rgba(255,255,255,0.5)" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── STATS ────────────────────────────────────────────────────────────── -->
+  <section class="stats">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="stats__header">
+        <div class="section-pill">Our Impact</div>
+        <h2 class="section-title">
+          Numbers That Define <span class="section-title__accent">Our Legacy</span>
+        </h2>
+        <p class="section-subtitle">
+          Trusted by hundreds of families. Quality education with proven results.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div *ngFor="let stat of stats" class="stat-card">
+          <div class="stat-card__icon">
+            <lucide-icon [img]="stat.icon" size="22" style="color:#00864B;"></lucide-icon>
+          </div>
+          <div [appCountUp]="stat.value" class="stat-card__value">{{ stat.value }}</div>
+          <div class="stat-card__label">{{ stat.label }}</div>
+          <div class="stat-card__desc">{{ stat.desc }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRINCIPAL'S MESSAGE ──────────────────────────────────────────────── -->
+  <section class="principal">
+
+    <!-- Animated background layers -->
+    <div class="principal__bg-dots"></div>
+    <div class="principal__orb principal__orb--a"></div>
+    <div class="principal__orb principal__orb--b"></div>
+    <div class="principal__orb principal__orb--c"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative" style="z-index:1;">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- LEFT: Image + accents -->
+        <div appReveal revealDirection="left" class="relative">
+          <div class="principal__image-shadow"></div>
+          <div class="principal__image-frame">
+            <img src="/assets/images/webp/principal.webp"
+                 loading="lazy"
+                 alt="Students on campus"
+                 class="principal__image" />
+            <div class="principal__quote-overlay">
+              <p class="principal__quote">"{{ t.leadership.quote }}"</p>
+            </div>
+          </div>
+
+          <div appReveal [revealDelay]="400" class="principal__year-badge">
+            <div class="principal__year-tag">Established</div>
+            <div class="principal__year-num">{{ schoolInfo.foundedYear }}</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Content -->
+        <div appReveal revealDirection="right" [revealDelay]="100">
+          <div class="principal__section-tag">{{ t.leadership.sectionTag }}</div>
+          <h2 class="principal__section-title">{{ t.leadership.sectionTitle }}</h2>
+
+          <div class="principal__paragraphs">
+            <p *ngFor="let para of principalMessage.paragraphs" class="principal__paragraph">
+              {{ para }}
+            </p>
+          </div>
+
+          <div class="principal__divider"></div>
+
+          <div class="principal__signature">
+            <div class="principal__avatar">
+              <img src="/assets/images/webp/principal-avatar.webp" loading="lazy"
+                   [alt]="t.leadership.name" />
+            </div>
+            <div>
+              <div class="principal__name">{{ t.leadership.name }}</div>
+              <div class="principal__role">{{ t.leadership.role }}</div>
+              <div class="principal__school">{{ schoolInfo.name }}</div>
+              <div class="principal__socials">
+                <a *ngFor="let s of principalSocials"
+                   [href]="s.href" [attr.aria-label]="s.label"
+                   class="principal__social">
+                  <lucide-icon [img]="s.icon" size="13"></lucide-icon>
+                </a>
+              </div>
+            </div>
+            <div class="principal__signature-fade"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXCELLENCE / WHY CHOOSE US ───────────────────────────────────────── -->
+  <section aria-labelledby="excellence-heading" class="excellence">
+
+    <div *ngFor="let f of floatingIcons; let i = index"
+         class="excellence__bg-icon"
+         [style.left]="f.left" [style.top]="f.top"
+         [style.color]="'#ffffff'" [style.opacity]="0.12"
+         [style.animation]="f.anim + ' ' + f.dur + ' ease-in-out infinite ' + f.delay">
+      <lucide-icon [img]="f.icon" [size]="f.size" strokeWidth="1.2"></lucide-icon>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 relative" style="z-index:1;">
+
+      <div appReveal class="text-center mb-14">
+        <div class="excellence__pill">{{ t.excellence.sectionTag }}</div>
+        <h2 id="excellence-heading" class="excellence__title">
+          {{ t.excellence.sectionTitle }}
+        </h2>
+        <p class="excellence__subtitle">
+          Results-driven education built for tomorrow's leaders.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div *ngFor="let f of features; let i = index"
+             appReveal [revealDelay]="i * 120"
+             class="feature-card hover:-translate-y-2 transition-transform duration-300">
+          <div class="feature-card__highlight"></div>
+
+          <div class="feature-card__icon">
+            <lucide-icon [img]="f.icon" size="26" strokeWidth="1.8"></lucide-icon>
+          </div>
+
+          <div *ngIf="f.stat" class="feature-card__stat">{{ f.stat }}</div>
+
+          <h3 class="feature-card__title">{{ t.excellence.cards[i].title }}</h3>
+          <p class="feature-card__desc">{{ t.excellence.cards[i].desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA WITH IMAGE COLLAGE BG ────────────────────────────────────────── -->
+  <section class="cta">
+
+    <div class="cta__collage">
+      <div *ngFor="let c of collage" class="cta__cell">
+        <img [src]="c.src" alt="" aria-hidden="true"
+             class="cta__cell-img"
+             [style.objectPosition]="c.pos"
+             [style.animation]="c.anim + ' ' + c.dur + ' ease-in-out infinite ' + c.delay" />
+        <div class="cta__cell-overlay"></div>
+      </div>
+    </div>
+
+    <div class="cta__inner max-w-5xl mx-auto px-4 sm:px-8">
+      <div appReveal class="cta__card">
+        <div class="cta__pill">Admissions Open</div>
+
+        <h2 class="cta__title">{{ t.cta.title }}</h2>
+
+        <p class="cta__subtitle">{{ t.cta.subtitle }}</p>
+
+        <div class="cta__divider"></div>
+
+        <div class="cta__buttons">
+          <a routerLink="/admission" style="text-decoration:none;">
+            <div class="cta__btn cta__btn--primary hover:-translate-y-1 hover:scale-105 transition-all duration-300">
+              {{ t.cta.primary }} <lucide-icon [img]="arrowRight" size="17"></lucide-icon>
+            </div>
+          </a>
+          <a routerLink="/about" style="text-decoration:none;">
+            <div class="cta__btn cta__btn--secondary hover:-translate-y-1 hover:scale-105 transition-all duration-300">
+              {{ t.cta.secondary }}
+            </div>
+          </a>
+        </div>
+
+        <p class="cta__footnote">
+          {{ schoolInfo.name }} · Est. {{ schoolInfo.foundedYear }}
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

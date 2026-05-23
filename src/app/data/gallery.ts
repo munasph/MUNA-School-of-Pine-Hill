@@ -18,6 +18,6 @@ export const allImages: GalleryImage[] = [
 export const galleryCategories = ['All', 'Campus', 'Events', 'Sports', 'Academics', 'Cultural'] as const;
 
 export const videoHighlights = [
-  { title: 'Campus Tour 2025' },
-  { title: 'Annual Day Highlights 2025' },
+  { title: 'Campus Tour 2025',           seed: 'video-thumb-1' },
+  { title: 'Annual Day Highlights 2025', seed: 'video-thumb-2' },
 ];

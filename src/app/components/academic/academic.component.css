@@ -1,0 +1,166 @@
+/* ============================================================
+ * Academic page (view-encapsulated)
+ * ============================================================ */
+:host { background: #FFFFFF; display: block; }
+
+/* ---------- Hero ---------- */
+.academic-hero {
+  padding-top: 120px; padding-bottom: 80px;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #00864B 0%, #047857 100%);
+}
+.academic-hero__bg-dots {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.academic-hero__tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  border-radius: 999px;
+  font-size: 12px; font-weight: 700; letter-spacing: .08em;
+  padding: 5px 18px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+}
+.academic-hero__title {
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  max-width: 640px;
+  margin-left: auto; margin-right: auto;
+}
+.academic-hero__subtitle {
+  color: rgba(255,255,255,0.82);
+  font-size: 16px; line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+.academic-hero__chip {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.30);
+  border-radius: 999px;
+  font-size: 13px; font-weight: 600;
+  padding: 7px 20px;
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Section commons ---------- */
+.academic-section          { background: #FFFFFF; }
+.academic-section--tint    { background: #F0FDF4; }
+.academic-section__header  { text-align: center; margin-bottom: 56px; }
+
+.tag-pill {
+  display: inline-block;
+  background: #F0FDF4; color: #00864B;
+  border: 1.5px solid #BBF7D0;
+  border-radius: 999px;
+  font-size: 12px; font-weight: 700; letter-spacing: .06em;
+  padding: 4px 14px;
+  margin-bottom: 16px;
+}
+.section-title {
+  color: #0F172A;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  color: #475569;
+  font-size: 15px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ---------- Programme cards ---------- */
+.course-card {
+  background: #fff;
+  border: 1.5px solid #BBF7D0;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,134,75,0.10);
+  padding: 32px;
+}
+.course-card__icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: #F0FDF4; color: #00864B;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.course-card__levels {
+  display: inline-block;
+  background: #F0FDF4; color: #00864B;
+  border: 1.5px solid #BBF7D0;
+  border-radius: 999px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 12px;
+}
+.course-card__title { color: #0F172A; font-size: 18px; margin-bottom: 10px; }
+.course-card__desc  { color: #475569; font-size: 14px; line-height: 1.65; }
+
+/* ---------- Higher-secondary streams ---------- */
+.stream-intro__title {
+  color: #0F172A;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.stream-intro__paragraph {
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.stream-card {
+  background: #fff;
+  border: 1.5px solid #BBF7D0;
+  border-left: 4px solid #00864B;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,134,75,0.07);
+  padding: 20px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.stream-card__icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: #F0FDF4; color: #00864B;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.stream-card__title { color: #0F172A; font-weight: 700; font-size: 15px; margin-bottom: 5px; }
+.stream-card__desc  { color: #475569; font-size: 13px; line-height: 1.6; }
+
+/* ---------- Achievements ---------- */
+.achievement-card {
+  background: #fff;
+  border: 1.5px solid #BBF7D0;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,134,75,0.10);
+  padding: 28px;
+  position: relative; overflow: hidden;
+}
+.achievement-card__ghost {
+  position: absolute; top: 0; right: 0;
+  padding: 16px;
+  color: #00864B; opacity: 0.06;
+  pointer-events: none;
+}
+.achievement-card__year {
+  display: inline-block;
+  background: #F0FDF4; color: #00864B;
+  border: 1.5px solid #BBF7D0;
+  border-radius: 999px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 10px;
+  margin-bottom: 16px;
+}
+.achievement-card__title {
+  color: #0F172A; font-weight: 700; font-size: 14px;
+  line-height: 1.4; margin-bottom: 10px;
+}
+.achievement-card__desc { color: #475569; font-size: 13px; line-height: 1.65; }

@@ -3,7 +3,7 @@
  *
  * TODO ⟶ Replace every value below with your own school's information.
  * These placeholders are used across the Navbar, Footer, SEO meta, JSON-LD,
- * Contact page, Privacy / Terms pages, and AnnouncementBar.
+ * Contact page, Privacy / Terms pages.
  */
 export const SCHOOL_INFO = {
   name:             'Your School Name',

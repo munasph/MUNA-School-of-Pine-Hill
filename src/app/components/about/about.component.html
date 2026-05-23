@@ -1,0 +1,122 @@
+<div>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div aria-hidden="true" class="about-hero__bg-dots"></div>
+
+    <div class="max-w-7xl mx-auto px-4 relative" style="z-index:1;">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Image w/ year badge -->
+        <div appReveal revealDirection="left" class="relative">
+          <div class="about-hero__photo-frame">
+            <img [src]="heroData.photo" [alt]="heroData.photoAlt"
+                 referrerpolicy="no-referrer"
+                 class="w-full h-full object-cover" />
+          </div>
+
+          <div class="about-hero__year-badge hidden lg:block">
+            <div class="about-hero__year-num">{{ schoolInfo.foundedYear }}</div>
+            <div class="about-hero__year-label">Year Established</div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div appReveal revealDirection="right" [revealDelay]="100">
+          <div class="about-hero__tag-pill">{{ t.about.hero.tag }}</div>
+
+          <h1 class="about-hero__headline">{{ heroData.headline }}</h1>
+
+          <p *ngFor="let p of heroData.paragraphs" class="about-hero__paragraph">
+            {{ p }}
+          </p>
+
+          <div class="about-hero__tags">
+            <div *ngFor="let tag of heroData.tags" class="about-hero__tag">
+              <lucide-icon [img]="check" size="13"></lucide-icon>
+              {{ tag }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision / Mission / Values -->
+  <section class="section-light">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="text-center" style="margin-bottom:56px;">
+        <div class="section-pill">{{ t.about.vision.tag }}</div>
+        <h2 class="section-title">{{ t.about.vision.title }}</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div *ngFor="let v of visionItems; let i = index"
+             appReveal [revealDelay]="i * 100"
+             class="vision-card hover:-translate-y-1 transition-transform duration-300">
+          <div class="vision-card__icon">
+            <lucide-icon [img]="v.icon" size="22"></lucide-icon>
+          </div>
+          <h3 class="vision-card__title">{{ v.title }}</h3>
+          <p class="vision-card__desc">{{ v.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Faculty -->
+  <section class="section-tint">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="text-center" style="margin-bottom:56px;">
+        <div class="section-pill">{{ t.about.team.tag }}</div>
+        <h2 class="section-title">{{ t.about.team.title }}</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div *ngFor="let f of keyFaculty; let i = index"
+             appReveal [revealDelay]="i * 100"
+             class="faculty-card hover:-translate-y-1 transition-transform duration-300">
+          <div class="faculty-card__photo">
+            <img [src]="f.photo" [alt]="f.name" referrerpolicy="no-referrer"
+                 class="w-full h-full object-cover" />
+          </div>
+          <div class="faculty-card__body">
+            <h3 class="faculty-card__name">{{ f.name }}</h3>
+            <p class="faculty-card__role">{{ f.role }}</p>
+            <p class="faculty-card__expertise">{{ f.expertise }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Faculty Carousel -->
+  <section class="section-light">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="text-center" style="margin-bottom:56px;">
+        <div class="section-pill">Teaching Excellence</div>
+        <h2 class="section-title">Teaching Faculty</h2>
+      </div>
+
+      <div class="carousel-shell">
+        <div #carousel class="carousel-track no-scrollbar">
+          <div *ngFor="let f of teachingFacultyPhotos" class="carousel-item">
+            <div class="carousel-avatar">
+              <img [src]="f.src" [alt]="f.alt" class="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+
+        <button type="button" aria-label="Scroll left" (click)="scrollCarousel(-1)"
+                class="carousel-btn carousel-btn--left">
+          <lucide-icon [img]="chevronLeft" size="20"></lucide-icon>
+        </button>
+
+        <button type="button" aria-label="Scroll right" (click)="scrollCarousel(1)"
+                class="carousel-btn carousel-btn--right">
+          <lucide-icon [img]="chevronRight" size="20"></lucide-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

@@ -7,19 +7,18 @@ import { LucideAngularModule } from 'lucide-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HomeComponent }      from './pages/home/home.component';
-import { AboutComponent }     from './pages/about/about.component';
-import { AcademicComponent }  from './pages/academic/academic.component';
-import { AdmissionComponent } from './pages/admission/admission.component';
-import { ContactComponent }   from './pages/contact/contact.component';
-import { GalleryComponent }   from './pages/gallery/gallery.component';
-import { PrivacyComponent }   from './pages/privacy/privacy.component';
-import { TermsComponent }     from './pages/terms/terms.component';
-import { NotFoundComponent }  from './pages/not-found/not-found.component';
+import { HomeComponent }      from './components/home/home.component';
+import { AboutComponent }     from './components/about/about.component';
+import { AcademicComponent }  from './components/academic/academic.component';
+import { AdmissionComponent } from './components/admission/admission.component';
+import { ContactComponent }   from './components/contact/contact.component';
+import { GalleryComponent }   from './components/gallery/gallery.component';
+import { PrivacyComponent }   from './components/privacy/privacy.component';
+import { TermsComponent }     from './components/terms/terms.component';
+import { NotFoundComponent }  from './components/not-found/not-found.component';
 
-import { NavbarComponent }            from './components/layout/navbar/navbar.component';
-import { FooterComponent }            from './components/layout/footer/footer.component';
-import { AnnouncementBarComponent }   from './components/layout/announcement-bar/announcement-bar.component';
+import { NavbarComponent }            from './components/navbar/navbar.component';
+import { FooterComponent }            from './components/footer/footer.component';
 
 import { SectionLabelComponent }      from './components/ui/section-label/section-label.component';
 import { GlassButtonComponent }       from './components/ui/glass-button/glass-button.component';
@@ -52,7 +51,6 @@ import { ParallaxScrollDirective }    from './directives/parallax-scroll.directi
 
     NavbarComponent,
     FooterComponent,
-    AnnouncementBarComponent,
 
     SectionLabelComponent,
     GlassButtonComponent,
