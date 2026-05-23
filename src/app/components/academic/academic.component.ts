@@ -3,9 +3,8 @@ import { Subscription } from 'rxjs';
 
 import type { Course, HigherSecondaryStream, Achievement } from '../../models/academic.model';
 import { AcademicService } from '../../services/academic.service';
-import { TranslationService } from '../../services/translation.service';
+import { ACADEMIC_COPY } from './academic.data';
 import { SeoService } from '../../services/seo.service';
-import type { Translations } from '../../translations/en';
 
 @Component({
   selector: 'app-academic-page',
@@ -17,19 +16,15 @@ export class AcademicComponent implements OnInit, OnDestroy {
   higherSecondary: HigherSecondaryStream[] = [];
   achievements:    Achievement[]           = [];
 
-  t!: Translations;
+  readonly t = ACADEMIC_COPY;
   private subs = new Subscription();
 
   constructor(
     private readonly academicService: AcademicService,
-    private readonly translation: TranslationService,
     private readonly seo: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.subs.add(
       this.academicService.getContent().subscribe((c) => {
         this.courses         = c.courses;

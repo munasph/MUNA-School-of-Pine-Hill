@@ -2,22 +2,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { Menu, X, LucideIconData } from 'lucide-angular';
-import { TranslationService } from '../../services/translation.service';
-import { SCHOOL_INFO } from '../../data/site';
-import type { Translations } from '../../translations/en';
-
-interface NavLink {
-  path: string;
-  key: keyof Translations['nav'];
-}
-
-const NAV_LINKS: NavLink[] = [
-  { path: '/',         key: 'home' },
-  { path: '/about',    key: 'about' },
-  { path: '/academic', key: 'academic' },
-  { path: '/gallery',  key: 'gallery' },
-  { path: '/contact',  key: 'contact' },
-];
+import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
 
 const LIGHT_SURFACE_ROUTES = ['/admission', '/privacy', '/terms'];
 
@@ -29,25 +14,19 @@ const LIGHT_SURFACE_ROUTES = ['/admission', '/privacy', '/terms'];
 export class NavbarComponent implements OnInit, OnDestroy {
   readonly navLinks   = NAV_LINKS;
   readonly schoolInfo = SCHOOL_INFO;
+  readonly t          = NAV_COPY;
   readonly menuIcon:  LucideIconData = Menu;
   readonly closeIcon: LucideIconData = X;
 
-  t!: Translations;
   currentPath = '/';
   scrolled    = false;
   isOpen      = false;
 
   private subs = new Subscription();
 
-  constructor(
-    private readonly router: Router,
-    private readonly translation: TranslationService,
-  ) {}
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.currentPath = this.router.url.split('?')[0].split('#')[0] || '/';
     this.subs.add(
       this.router.events
@@ -81,12 +60,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   toggle(): void {
     this.isOpen = !this.isOpen;
   }
-
-  navLinkLabel(key: keyof Translations['nav']): string {
-    return this.t.nav[key];
-  }
-
-  /* Style helpers — keep the React inline-style fidelity --------------- */
 
   pillBackground(): string {
     if (this.scrolled)      return 'rgba(255,255,255,0.72)';

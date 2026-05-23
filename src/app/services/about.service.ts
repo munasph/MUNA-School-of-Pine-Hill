@@ -6,8 +6,8 @@ import type {
   AboutContent, AboutHero, VisionItem,
   FacultyMember, TeachingFacultyPhoto,
 } from '../models/about.model';
-import { ABOUT_HERO, visionItems } from '../data/about';
-import { keyFaculty, teachingFacultyPhotos } from '../data/faculty';
+import { ABOUT_HERO, visionItems } from '../components/about/about.data';
+import { keyFaculty, teachingFacultyPhotos } from '../components/about/faculty.data';
 
 @Injectable({ providedIn: 'root' })
 export class AboutService {

@@ -10,10 +10,9 @@ import {
 
 import type { Stat, Feature, PrincipalMessage } from '../../models/home.model';
 import { HomeService } from '../../services/home.service';
-import { SCHOOL_INFO } from '../../data/site';
-import { TranslationService } from '../../services/translation.service';
+import { SCHOOL_INFO } from '../footer/site.data';
+import { HOME_COPY } from './home.data';
 import { SeoService } from '../../services/seo.service';
-import type { Translations } from '../../translations/en';
 
 interface FloatingEduIcon {
   icon:  LucideIconData;
@@ -77,21 +76,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     { icon: Linkedin as LucideIconData, href: 'https://linkedin.com/school/yourschool', label: 'LinkedIn' },
   ];
 
-  t!: Translations;
+  readonly t = HOME_COPY;
   scrollY = 0;
 
   private subs = new Subscription();
 
   constructor(
     private readonly homeService: HomeService,
-    private readonly translation: TranslationService,
     private readonly seo: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.subs.add(
       this.homeService.getContent().subscribe((c) => {
         this.stats             = c.stats;

@@ -53,3 +53,28 @@ export const ANNOUNCEMENT = {
   cta:      'Apply Now',
   href:     '/admission',
 };
+
+/** Nav link labels used by the Navbar. */
+export const NAV_LINKS = [
+  { path: '/',         label: 'Home' },
+  { path: '/about',    label: 'About Us' },
+  { path: '/academic',  label: 'Academic' },
+  { path: '/gallery',  label: 'Gallery' },
+  { path: '/contact',  label: 'Contact' },
+] as const;
+
+export const NAV_COPY = {
+  nav: { admission: 'Admission Open' },
+};
+
+/** UI copy for the Footer template. */
+export const FOOTER_COPY = {
+  footer: {
+    tagline:    'Quality education for character, knowledge, and wisdom.',
+    quickLinks: 'Quick Links',
+    programmes: 'Programmes',
+    contact:    'Contact Us',
+    rights:     'All rights reserved.',
+    admission:  'Admission',
+  },
+};

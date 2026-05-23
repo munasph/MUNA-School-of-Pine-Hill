@@ -6,9 +6,8 @@ import type {
   GalleryImage, GalleryCategory, VideoHighlight,
 } from '../../models/gallery.model';
 import { GalleryService } from '../../services/gallery.service';
-import { TranslationService } from '../../services/translation.service';
+import { GALLERY_COPY } from './gallery.data';
 import { SeoService } from '../../services/seo.service';
-import type { Translations } from '../../translations/en';
 
 type Category = GalleryCategory;
 
@@ -28,19 +27,15 @@ export class GalleryComponent implements OnInit, OnDestroy {
   activeFilter: Category = 'All';
   selectedIndex: number | null = null;
 
-  t!: Translations;
+  readonly t = GALLERY_COPY;
   private subs = new Subscription();
 
   constructor(
     private readonly galleryService: GalleryService,
-    private readonly translation: TranslationService,
     private readonly seo: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.subs.add(
       this.galleryService.getContent().subscribe((c) => {
         this.allImages         = c.images;

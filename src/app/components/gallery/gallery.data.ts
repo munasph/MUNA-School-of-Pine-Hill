@@ -1,4 +1,4 @@
-import type { GalleryImage } from '../lib/types';
+import type { GalleryImage } from '../../lib/types';
 
 export const allImages: GalleryImage[] = [
   { id:  1, src: 'https://picsum.photos/seed/gal-campus-1/900/600',   label: 'Main Building',         category: 'Campus'    },
@@ -21,3 +21,12 @@ export const videoHighlights = [
   { title: 'Campus Tour 2025',           seed: 'video-thumb-1' },
   { title: 'Annual Day Highlights 2025', seed: 'video-thumb-2' },
 ];
+
+/** UI copy for the Gallery page template. */
+export const GALLERY_COPY = {
+  gallery: {
+    hero:   { tag: 'Gallery', title: 'School Life', subtitle: 'Moments that define life at Your School Name.' },
+    all:    'All',
+    events: 'Events',
+  },
+};

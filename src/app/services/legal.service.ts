@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import type { LegalDocument, LegalKind } from '../models/legal.model';
-import { SCHOOL_INFO } from '../data/site';
+import { SCHOOL_INFO } from '../components/footer/site.data';
 
 /**
  * Privacy + Terms content provider.

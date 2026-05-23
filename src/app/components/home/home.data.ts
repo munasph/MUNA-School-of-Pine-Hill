@@ -2,7 +2,7 @@ import {
   GraduationCap, Users, CheckCircle,
   BookOpen, Globe, Trophy,
 } from 'lucide-angular';
-import type { StatItem, Feature, Testimonial, GalleryImage, NewsItem } from '../lib/types';
+import type { StatItem, Feature, Testimonial, GalleryImage, NewsItem } from '../../lib/types';
 
 /**
  * Home-page content blocks.
@@ -99,3 +99,35 @@ export const homeGalleryImages: GalleryImage[] = [
   { id: 5, src: 'https://picsum.photos/seed/classroom/600/600',     label: 'Classrooms' },
   { id: 6, src: 'https://picsum.photos/seed/annualday/1200/600',    label: 'Annual Day', span: 'col-span-2' },
 ];
+
+/** UI copy for the Home page template. */
+export const HOME_COPY = {
+  hero: {
+    headline1:  'Empowering',
+    headline2:  'Minds',
+    subtext:    'Shaping the future through quality education at every level — kindergarten through senior secondary.',
+    ctaPrimary: 'Explore Academic',
+  },
+  leadership: {
+    sectionTag:   'Leadership',
+    sectionTitle: 'Guided by Vision',
+    name:         'Principal\'s Name',
+    role:         'Principal',
+    quote:        'A short quote that captures your school\'s teaching philosophy.',
+  },
+  excellence: {
+    sectionTag:   'Why Choose Us',
+    sectionTitle: 'Academic Excellence',
+    cards: [
+      { title: 'Expert Faculty',    desc: 'Describe your faculty\'s qualifications and the mentorship students receive.' },
+      { title: 'Modern Curriculum', desc: 'Describe your curriculum, learning tools, and the skills students leave with.' },
+      { title: 'Student Growth',    desc: 'Describe how co-curricular activities and pastoral care shape every student.' },
+    ],
+  },
+  cta: {
+    title:    'Ready to join the Your School Name family?',
+    subtitle: 'Applications are open. Take the first step toward a brighter future.',
+    primary:  'Apply Now',
+    secondary: 'Learn More',
+  },
+};

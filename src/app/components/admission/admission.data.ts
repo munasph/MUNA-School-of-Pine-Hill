@@ -19,3 +19,10 @@ export const ADMISSION_SUCCESS = {
   title:   'Application Received!',
   message: 'Thank you for applying. Our admissions team will review your application and contact you within 24 hours.',
 };
+
+/** UI copy for the Admission page template. */
+export const ADMISSION_COPY = {
+  admission: {
+    hero: { tag: 'Admissions', title: 'Join Your School Name', subtitle: 'Start your journey toward academic excellence.' },
+  },
+};

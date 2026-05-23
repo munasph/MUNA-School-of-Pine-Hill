@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
-import { SCHOOL_INFO } from '../data/site';
+import { SCHOOL_INFO } from '../components/footer/site.data';
 
 export interface SeoConfig {
   title: string;

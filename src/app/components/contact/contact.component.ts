@@ -8,10 +8,9 @@ import {
 
 import type { ContactInfo, ContactMessage } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
-import { SCHOOL_INFO } from '../../data/site';
-import { TranslationService } from '../../services/translation.service';
+import { SCHOOL_INFO } from '../footer/site.data';
+import { CONTACT_COPY, type ContactInfoKey } from './contact.data';
 import { SeoService } from '../../services/seo.service';
-import type { Translations } from '../../translations/en';
 
 @Component({
   selector: 'app-contact-page',
@@ -23,9 +22,11 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   contactInfo!: ContactInfo;
 
+  readonly t = CONTACT_COPY;
+
   readonly contactItems: Array<{
     icon: LucideIconData;
-    key:  keyof Translations['contact']['info'];
+    key:  ContactInfoKey;
     detail: string;
   }> = [
     { icon: MapPin,   key: 'address', detail: SCHOOL_INFO.address },
@@ -39,7 +40,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   submitted  = false;
   submitting = false;
-  t!: Translations;
   mapUrl!: SafeResourceUrl;
 
   private subs = new Subscription();
@@ -47,15 +47,11 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(
     private readonly fb: FormBuilder,
     private readonly contactService: ContactService,
-    private readonly translation: TranslationService,
     private readonly sanitizer: DomSanitizer,
     private readonly seo: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.subs.add(
       this.contactService.getInfo().subscribe((info) => {
         this.contactInfo = info;

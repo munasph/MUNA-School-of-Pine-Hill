@@ -6,7 +6,7 @@ import type {
   ClassOption, AdmissionApplication,
   AdmissionSuccessMessage, AdmissionSubmitResponse,
 } from '../models/admission.model';
-import { classOptions, ADMISSION_SUCCESS } from '../data/admission';
+import { classOptions, ADMISSION_SUCCESS } from '../components/admission/admission.data';
 
 @Injectable({ providedIn: 'root' })
 export class AdmissionService {

@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import type {
   AcademicContent, Course, HigherSecondaryStream, Achievement,
 } from '../models/academic.model';
-import { courses, higherSecondary, achievements } from '../data/academic';
+import { courses, higherSecondary, achievements } from '../components/academic/academic.data';
 
 @Injectable({ providedIn: 'root' })
 export class AcademicService {

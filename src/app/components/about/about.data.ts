@@ -1,5 +1,5 @@
 import { Globe, CheckCircle, Star } from 'lucide-angular';
-import type { VisionItem } from '../lib/types';
+import type { VisionItem } from '../../lib/types';
 
 /**
  * About-page hero block.
@@ -35,3 +35,12 @@ export const visionItems: VisionItem[] = [
     desc:  'A short list of the principles that guide your campus culture and pedagogy.',
   },
 ];
+
+/** UI copy for the About page template. */
+export const ABOUT_COPY = {
+  about: {
+    hero:   { tag: 'About Us',         title: 'Our Story',          subtitle: 'Three decades of shaping young minds in our community.' },
+    vision: { tag: 'Vision & Mission', title: 'What Drives Us' },
+    team:   { tag: 'Leadership Team',  title: 'Meet Our Faculty' },
+  },
+};

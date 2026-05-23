@@ -7,9 +7,8 @@ import type {
   ClassOption, AdmissionApplication, AdmissionSuccessMessage,
 } from '../../models/admission.model';
 import { AdmissionService } from '../../services/admission.service';
-import { TranslationService } from '../../services/translation.service';
+import { ADMISSION_COPY } from './admission.data';
 import { SeoService } from '../../services/seo.service';
-import type { Translations } from '../../translations/en';
 
 const CLASS_11 = ['class-11-science', 'class-11-management', 'class-11-hm'];
 
@@ -21,27 +20,23 @@ const CLASS_11 = ['class-11-science', 'class-11-management', 'class-11-hm'];
 export class AdmissionComponent implements OnInit, OnDestroy {
   admissionSuccess: AdmissionSuccessMessage = { title: '', message: '' };
   readonly checkCircle: LucideIconData = CheckCircle;
+  readonly t = ADMISSION_COPY;
 
   classOptions: ClassOption[] = [];
 
   form!: FormGroup;
   submitted = false;
   submitting = false;
-  t!: Translations;
 
   private subs = new Subscription();
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly admissionService: AdmissionService,
-    private readonly translation: TranslationService,
     private readonly seo: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.subs.add(
       this.admissionService.getClassOptions().subscribe((opts) => (this.classOptions = opts)),
     );

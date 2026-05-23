@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SeoService } from '../../services/seo.service';
 import { LegalService } from '../../services/legal.service';
-import { SCHOOL_INFO } from '../../data/site';
+import { SCHOOL_INFO } from '../footer/site.data';
 
 @Component({
   selector: 'app-terms-page',

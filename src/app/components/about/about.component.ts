@@ -6,10 +6,9 @@ import type {
   AboutHero, VisionItem, FacultyMember, TeachingFacultyPhoto,
 } from '../../models/about.model';
 import { AboutService } from '../../services/about.service';
-import { SCHOOL_INFO } from '../../data/site';
-import { TranslationService } from '../../services/translation.service';
+import { SCHOOL_INFO } from '../footer/site.data';
+import { ABOUT_COPY } from './about.data';
 import { SeoService } from '../../services/seo.service';
-import type { Translations } from '../../translations/en';
 
 @Component({
   selector: 'app-about-page',
@@ -29,19 +28,15 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('carousel') carousel?: ElementRef<HTMLDivElement>;
 
-  t!: Translations;
+  readonly t = ABOUT_COPY;
   private subs = new Subscription();
 
   constructor(
     private readonly aboutService: AboutService,
-    private readonly translation: TranslationService,
     private readonly seo: SeoService,
   ) {}
 
   ngOnInit(): void {
-    this.t = this.translation.t;
-    this.subs.add(this.translation.t$.subscribe((v) => (this.t = v)));
-
     this.subs.add(
       this.aboutService.getContent().subscribe((c) => {
         this.heroData              = c.hero;

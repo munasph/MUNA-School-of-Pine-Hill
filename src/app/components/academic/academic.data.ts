@@ -2,7 +2,7 @@ import {
   GraduationCap, BookOpen, Microscope, Briefcase, Plane,
   Trophy, Award, Star, Medal,
 } from 'lucide-angular';
-import type { Course, Achievement, HigherSecondaryStream } from '../lib/types';
+import type { Course, Achievement, HigherSecondaryStream } from '../../lib/types';
 
 /**
  * Academic-page card data.
@@ -28,3 +28,12 @@ export const achievements: Achievement[] = [
   { year: 'YYYY', title: 'Achievement Title Three', desc: 'A one-sentence summary of the academic result or honour.',             icon: Star   },
   { year: 'YYYY', title: 'Achievement Title Four',  desc: 'A one-sentence summary of a sporting or extra-curricular triumph.',    icon: Medal  },
 ];
+
+/** UI copy for the Academic page template. */
+export const ACADEMIC_COPY = {
+  academic: {
+    hero:         { tag: 'Academic', title: 'Our Programmes', subtitle: 'A complete path from kindergarten to graduation.' },
+    programmes:   { tag: 'Streams',  title: 'Choose Your Path' },
+    achievements: { tag: 'Results',  title: 'Our Track Record' },
+  },
+};

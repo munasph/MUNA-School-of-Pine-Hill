@@ -9,7 +9,7 @@ import type {
 import {
   HERO, PRINCIPAL_MESSAGE, stats, features,
   newsItems, testimonials, CTA_SECTION,
-} from '../data/home';
+} from '../components/home/home.data';
 
 /**
  * Home-page data access.

@@ -1,4 +1,4 @@
-import type { FacultyMember } from '../lib/types';
+import type { FacultyMember } from '../../lib/types';
 
 /**
  * Faculty data feeding the About page (key faculty grid + carousel).

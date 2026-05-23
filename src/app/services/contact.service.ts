@@ -5,7 +5,7 @@ import { Observable, delay, of } from 'rxjs';
 import type {
   ContactInfo, ContactMessage, ContactSubmitResponse,
 } from '../models/contact.model';
-import { SCHOOL_INFO } from '../data/site';
+import { SCHOOL_INFO } from '../components/footer/site.data';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {

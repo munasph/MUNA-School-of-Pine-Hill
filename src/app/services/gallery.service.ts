@@ -7,7 +7,7 @@ import type {
 } from '../models/gallery.model';
 import {
   allImages, galleryCategories, videoHighlights,
-} from '../data/gallery';
+} from '../components/gallery/gallery.data';
 
 @Injectable({ providedIn: 'root' })
 export class GalleryService {
