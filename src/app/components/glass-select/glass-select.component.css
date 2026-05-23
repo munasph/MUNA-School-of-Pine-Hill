@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+
+.glass-select__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.glass-select__field {
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  appearance: none;
+  cursor: pointer;
+  color: var(--text-primary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.glass-select__field--error {
+  border-color: #f87171;
+}
+
+.glass-select__option {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+}
+
+.glass-select__error {
+  color: #f87171;
+  font-size: 0.75rem;
+}

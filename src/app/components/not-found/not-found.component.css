@@ -1,0 +1,16 @@
+.not-found {
+  min-height: 80vh;
+}
+
+.not-found__code {
+  color: var(--text-primary);
+  opacity: 0.06;
+}
+
+.not-found__title {
+  color: var(--text-primary);
+}
+
+.not-found__message {
+  color: var(--text-muted);
+}

@@ -1,0 +1,19 @@
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.section-label__line {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  background-color: var(--accent);
+  opacity: 0.5;
+}

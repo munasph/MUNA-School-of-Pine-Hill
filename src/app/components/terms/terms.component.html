@@ -1,31 +1,31 @@
-<div class="min-h-screen bg-white pt-32 pb-16">
+<div class="legal-page">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-bold text-gray-900 mb-8">Terms of Service</h1>
+    <h1 class="text-3xl font-bold mb-8 legal-page__title">Terms of Service</h1>
 
     <div class="prose max-w-none">
-      <p class="text-gray-600 mb-4">Last updated: {{ today }}</p>
+      <p class="mb-4 legal-page__updated">Last updated: {{ today }}</p>
 
-      <h2 class="text-xl font-semibold mt-8 mb-4">Acceptance of Terms</h2>
-      <p class="text-gray-700">
+      <h2 class="text-xl font-semibold mt-8 mb-4 legal-page__heading">Acceptance of Terms</h2>
+      <p class="legal-page__body">
         By accessing and using the {{ schoolInfo.name }} website, you accept and agree to
         be bound by these Terms of Service.
       </p>
 
-      <h2 class="text-xl font-semibold mt-8 mb-4">Intellectual Property</h2>
-      <p class="text-gray-700">
+      <h2 class="text-xl font-semibold mt-8 mb-4 legal-page__heading">Intellectual Property</h2>
+      <p class="legal-page__body">
         All content on this website, including text, graphics, logos, and images, is the
         property of {{ schoolInfo.name }} and is protected by applicable copyright laws.
       </p>
 
-      <h2 class="text-xl font-semibold mt-8 mb-4">Limitation of Liability</h2>
-      <p class="text-gray-700">
+      <h2 class="text-xl font-semibold mt-8 mb-4 legal-page__heading">Limitation of Liability</h2>
+      <p class="legal-page__body">
         {{ schoolInfo.name }} shall not be liable for any indirect, incidental, or
         consequential damages arising from your use of the website.
       </p>
     </div>
 
     <div class="mt-12">
-      <a routerLink="/" class="text-green-600 hover:underline">&larr; Back to Home</a>
+      <a routerLink="/" class="legal-page__link">&larr; Back to Home</a>
     </div>
   </div>
 </div>

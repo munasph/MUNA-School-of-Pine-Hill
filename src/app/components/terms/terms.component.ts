@@ -7,6 +7,7 @@ import { SCHOOL_INFO } from '../../data/site';
 @Component({
   selector: 'app-terms-page',
   templateUrl: './terms.component.html',
+  styleUrls: ['./terms.component.css'],
 })
 export class TermsComponent implements OnInit, OnDestroy {
   readonly schoolInfo = SCHOOL_INFO;

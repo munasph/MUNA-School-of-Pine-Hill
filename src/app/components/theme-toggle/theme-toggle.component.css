@@ -1,0 +1,27 @@
+.theme-toggle {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(249, 115, 22, 0.1));
+  border: 1.5px solid rgba(79, 70, 229, 0.25);
+  color: #4F46E5;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle__icon--moon {
+  color: #4F46E5;
+}
+
+.theme-toggle__icon--sun {
+  color: #F97316;
+}

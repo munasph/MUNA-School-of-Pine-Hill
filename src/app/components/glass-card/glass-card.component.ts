@@ -4,15 +4,8 @@ export type GlassCardIntensity = 'light' | 'mid' | 'strong';
 
 @Component({
   selector: 'app-glass-card',
-  template: `
-    <div appReveal
-         class="rounded-2xl border backdrop-blur-xl relative"
-         [class]="intensityClasses + ' ' + hoverClasses + ' ' + extraClass"
-         [style.box-shadow]="intensity === 'strong' ? '0 8px 32px var(--shadow-glass)' : null">
-      <ng-content></ng-content>
-    </div>
-  `,
-  styles: [`:host { display: block; }`],
+  templateUrl: './glass-card.component.html',
+  styleUrls: ['./glass-card.component.css'],
 })
 export class GlassCardComponent {
   @Input() intensity: GlassCardIntensity = 'mid';

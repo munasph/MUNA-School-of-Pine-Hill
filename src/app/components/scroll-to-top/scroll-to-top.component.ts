@@ -9,7 +9,8 @@ import { Subscription, filter } from 'rxjs';
  */
 @Component({
   selector: 'app-scroll-to-top',
-  template: '',
+  templateUrl: './scroll-to-top.component.html',
+  styleUrls: ['./scroll-to-top.component.css'],
 })
 export class ScrollToTopComponent implements OnInit, OnDestroy {
   private sub?: Subscription;

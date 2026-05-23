@@ -16,6 +16,7 @@ import type { Translations } from '../../translations/en';
 @Component({
   selector: 'app-contact-page',
   templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit, OnDestroy {
   readonly schoolInfo = SCHOOL_INFO;

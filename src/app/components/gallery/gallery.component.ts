@@ -15,6 +15,7 @@ type Category = GalleryCategory;
 @Component({
   selector: 'app-gallery-page',
   templateUrl: './gallery.component.html',
+  styleUrls: ['./gallery.component.css'],
 })
 export class GalleryComponent implements OnInit, OnDestroy {
   allImages:         GalleryImage[]            = [];

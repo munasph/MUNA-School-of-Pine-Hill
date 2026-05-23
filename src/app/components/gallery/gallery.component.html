@@ -1,83 +1,57 @@
-<div style="background-color:#fff;">
-
+<div>
   <!-- Hero -->
-  <section style="padding-top:120px;padding-bottom:64px;position:relative;overflow:hidden;
-                  background:linear-gradient(135deg,#00864B 0%,#047857 100%);">
-    <div aria-hidden="true"
-         style="position:absolute;inset:0;
-                background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1px,transparent 1px);
-                background-size:24px 24px;pointer-events:none;"></div>
+  <section class="gallery-hero">
+    <div aria-hidden="true" class="gallery-hero__dots"></div>
 
     <div class="max-w-7xl mx-auto px-4 relative">
-      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-5"
-            style="background:rgba(255,255,255,0.15);color:#fff;border-radius:999px;
-                   padding:6px 16px;border:1px solid rgba(255,255,255,0.25);">
-        {{ t.gallery.hero.tag }}
-      </span>
+      <span class="gallery-hero__tag">{{ t.gallery.hero.tag }}</span>
 
-      <h1 class="font-serif font-bold mb-4"
-          style="font-size:clamp(2.5rem,6vw,3.75rem);color:#fff;line-height:1.1;">
+      <h1 class="font-serif font-bold mb-4 gallery-hero__title">
         {{ t.gallery.hero.title }}
       </h1>
 
-      <p style="color:rgba(255,255,255,0.80);max-width:36rem;font-size:1rem;line-height:1.6;">
-        {{ t.gallery.hero.subtitle }}
-      </p>
+      <p class="gallery-hero__subtitle">{{ t.gallery.hero.subtitle }}</p>
 
-      <p style="margin-top:20px;font-size:.8rem;font-weight:600;
-                color:rgba(255,255,255,0.60);letter-spacing:.02em;">
+      <p class="gallery-hero__meta">
         {{ allImages.length }} photos across {{ galleryCategories.length - 1 }} categories
       </p>
     </div>
   </section>
 
   <!-- Filter Bar -->
-  <div style="padding:16px 16px 0;">
-    <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto"
-         style="background:rgba(255,255,255,0.94);backdrop-filter:blur(20px);
-                -webkit-backdrop-filter:blur(20px);border:1px solid #BBF7D0;
-                border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,0.06);
-                padding:12px 16px;">
-      <lucide-icon [img]="filterIcon" size="15" class="shrink-0" style="color:#00864B;"></lucide-icon>
+  <div class="gallery-filter-wrap">
+    <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto gallery-filter">
+      <lucide-icon [img]="filterIcon" size="15" class="shrink-0 gallery-filter__icon"></lucide-icon>
 
       <button *ngFor="let cat of galleryCategories"
               type="button"
               (click)="setFilter(cat)"
-              class="shrink-0 transition-all duration-200"
-              [style.padding]="'6px 16px'"
-              [style.borderRadius]="'999px'"
-              [style.fontSize]="'0.75rem'"
-              [style.fontWeight]="700"
-              [style.cursor]="'pointer'"
-              [style.border]="activeFilter === cat ? 'none' : '1px solid #BBF7D0'"
-              [style.backgroundColor]="activeFilter === cat ? '#00864B' : '#F0FDF4'"
-              [style.color]="activeFilter === cat ? '#FFFFFF' : '#475569'">
+              class="gallery-filter__btn"
+              [class.gallery-filter__btn--active]="activeFilter === cat">
         {{ categoryLabel(cat) }}
       </button>
 
-      <span class="ml-auto shrink-0 text-xs font-semibold" style="color:#00864B;">
+      <span class="ml-auto shrink-0 text-xs font-semibold gallery-filter__count">
         {{ filtered.length }} photos
       </span>
     </div>
   </div>
 
   <!-- Photo Grid -->
-  <section class="py-16" style="background-color:#fff;">
+  <section class="py-16 gallery-grid-section">
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <div *ngFor="let img of filtered; let i = index; trackBy: trackImage"
              appReveal
              [revealDelay]="i * 40"
-             class="group relative overflow-hidden cursor-pointer aspect-[4/3]"
-             style="border-radius:16px;background-color:#F0FDF4;"
+             class="group relative overflow-hidden cursor-pointer aspect-[4/3] gallery-card"
              (click)="open(i)">
           <img [src]="img.src" [alt]="img.label"
                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                referrerpolicy="no-referrer" />
-          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4"
-               style="background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 60%);">
-            <span class="font-bold text-sm" style="color:#fff;">{{ img.label }}</span>
-            <span class="text-[10px] uppercase tracking-widest font-bold mt-0.5" style="color:#BBF7D0;">
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 gallery-card__overlay">
+            <span class="font-bold text-sm gallery-card__label">{{ img.label }}</span>
+            <span class="text-[10px] uppercase tracking-widest font-bold mt-0.5 gallery-card__category">
               {{ img.category }}
             </span>
           </div>
@@ -87,39 +61,30 @@
   </section>
 
   <!-- Video Highlights -->
-  <section class="py-20" style="background-color:#F0FDF4;">
+  <section class="py-20 gallery-videos">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-12">
-        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-4"
-              style="color:#00864B;">
-          <span style="width:20px;height:1px;background-color:#00864B;opacity:.5;display:inline-block;"></span>
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-4 gallery-videos__tag">
+          <span class="gallery-videos__tag-line"></span>
           Watch &amp; Explore
-          <span style="width:20px;height:1px;background-color:#00864B;opacity:.5;display:inline-block;"></span>
+          <span class="gallery-videos__tag-line"></span>
         </span>
-        <h2 class="font-serif font-bold"
-            style="font-size:clamp(1.75rem,4vw,2.25rem);color:#0F172A;">
-          School Highlights
-        </h2>
+        <h2 class="font-serif font-bold gallery-videos__title">School Highlights</h2>
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <div *ngFor="let v of videoHighlights"
              class="group cursor-pointer transition-transform duration-300 hover:-translate-y-1">
-          <div class="aspect-video overflow-hidden relative"
-               style="border-radius:16px;background-color:#fff;border:1px solid #BBF7D0;
-                      box-shadow:0 2px 12px rgba(0,134,75,0.08);">
+          <div class="aspect-video overflow-hidden relative gallery-video">
             <img [src]="videoThumb(v.seed)" [alt]="v.title"
                  class="w-full h-full object-cover" referrerpolicy="no-referrer" />
-            <div class="absolute inset-0 flex items-center justify-center"
-                 style="background-color:rgba(0,0,0,0.20);">
-              <div class="w-14 h-14 rounded-full flex items-center justify-center shadow-xl
-                          transition-transform duration-200 group-hover:scale-110"
-                   style="background-color:#00864B;">
-                <lucide-icon [img]="playIcon" size="22" style="color:#fff;margin-left:3px;"></lucide-icon>
+            <div class="absolute inset-0 flex items-center justify-center gallery-video__overlay">
+              <div class="w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-transform duration-200 group-hover:scale-110 gallery-video__play">
+                <lucide-icon [img]="playIcon" size="22" class="gallery-video__play-icon"></lucide-icon>
               </div>
             </div>
           </div>
-          <h4 class="font-bold mt-3 text-sm" style="color:#0F172A;">{{ v.title }}</h4>
+          <h4 class="font-bold mt-3 text-sm gallery-video__title">{{ v.title }}</h4>
         </div>
       </div>
     </div>

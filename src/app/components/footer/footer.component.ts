@@ -12,6 +12,7 @@ import type { Translations } from '../../translations/en';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit, OnDestroy {
   readonly schoolInfo  = SCHOOL_INFO;

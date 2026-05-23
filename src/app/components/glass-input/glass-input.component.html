@@ -1,0 +1,19 @@
+<div class="glass-input space-y-1.5">
+  <label *ngIf="label" [for]="inputId" class="glass-input__label">
+    {{ label }}
+  </label>
+  <input
+    [id]="inputId"
+    [type]="type"
+    [placeholder]="placeholder"
+    [required]="required"
+    [attr.min]="min"
+    [attr.max]="max"
+    [attr.step]="step"
+    [value]="value"
+    (input)="onInput(($any($event.target)).value)"
+    (blur)="onTouched()"
+    class="glass-input__field"
+    [class.glass-input__field--error]="!!error" />
+  <p *ngIf="error" class="glass-input__error">{{ error }}</p>
+</div>

@@ -7,6 +7,7 @@ import { SCHOOL_INFO } from '../../data/site';
 @Component({
   selector: 'app-privacy-page',
   templateUrl: './privacy.component.html',
+  styleUrls: ['./privacy.component.css'],
 })
 export class PrivacyComponent implements OnInit, OnDestroy {
   readonly schoolInfo = SCHOOL_INFO;

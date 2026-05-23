@@ -24,6 +24,7 @@ const LIGHT_SURFACE_ROUTES = ['/admission', '/privacy', '/terms'];
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   readonly navLinks   = NAV_LINKS;

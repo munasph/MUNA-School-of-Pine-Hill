@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.glass-input__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.glass-input__field {
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.glass-input__field:focus {
+  outline: none;
+  ring: 2px;
+}
+
+.glass-input__field::placeholder {
+  color: var(--text-muted);
+}
+
+.glass-input__field--error {
+  border-color: #f87171;
+}
+
+.glass-input__error {
+  color: #f87171;
+  font-size: 0.75rem;
+}

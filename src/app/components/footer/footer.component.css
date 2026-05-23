@@ -1,0 +1,45 @@
+.site-footer {
+  background-color: var(--footer-bg);
+  border-top: 1px solid var(--footer-border);
+}
+
+.footer__tagline {
+  color: var(--text-secondary);
+}
+
+.footer__heading {
+  color: var(--text-primary);
+}
+
+.footer__text {
+  color: var(--text-secondary);
+}
+
+.footer__muted {
+  color: var(--text-muted);
+}
+
+.footer__accent {
+  color: var(--accent);
+}
+
+.footer__accent-soft {
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+.footer__accent-muted {
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+.footer-social {
+  background-color: var(--glass-bg);
+  border-color: var(--glass-border);
+  color: var(--text-secondary);
+}
+
+.footer__bar {
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+}

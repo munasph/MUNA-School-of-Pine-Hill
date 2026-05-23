@@ -11,19 +11,8 @@ export type GlassButtonSize    = 'sm' | 'md' | 'lg';
  */
 @Component({
   selector: 'app-glass-button',
-  template: `
-    <button
-      [type]="type"
-      [disabled]="disabled"
-      [ngClass]="classes">
-      <ng-content></ng-content>
-    </button>
-  `,
-  styles: [`
-    /* Block so Tailwind's space-y-* gaps and parent w-full sizing
-       work the same way they do on the React motion.button. */
-    :host { display: block; }
-  `],
+  templateUrl: './glass-button.component.html',
+  styleUrls: ['./glass-button.component.css'],
 })
 export class GlassButtonComponent {
   @Input() variant:  GlassButtonVariant = 'primary';

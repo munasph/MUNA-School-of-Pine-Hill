@@ -1,13 +1,11 @@
-<nav class="fixed top-0 left-0 right-0 w-full z-50"
-     style="background: transparent; border: none; box-shadow: none;">
+<nav class="navbar-shell fixed top-0 left-0 right-0 w-full z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div [ngClass]="lightSurface
             ? 'mx-auto flex w-full md:w-fit items-center justify-between md:justify-start gap-6 md:gap-8'
             : 'flex justify-between items-center gap-6'"
+         class="navbar-inner"
          [style.marginTop]="lightSurface ? '12px' : '0'"
-         [style.padding]="lightSurface ? '12px 0' : '16px 0'"
-         style="background: transparent; border: none; border-radius: 0; box-shadow: none;
-                backdrop-filter: none; -webkit-backdrop-filter: none;">
+         [style.padding]="lightSurface ? '12px 0' : '16px 0'">
 
       <!-- LEFT: Logo -->
       <a routerLink="/" class="logo-link flex items-center gap-3 flex-shrink-0
@@ -18,11 +16,9 @@
                [alt]="schoolInfo.name"
                class="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
         </picture>
-        <div class="hidden sm:flex flex-col justify-center gap-0"
+        <div class="hidden sm:flex flex-col justify-center gap-0 navbar-brand-text"
              [style.maxWidth]="scrolled ? '0' : '200px'"
-             [style.opacity]="scrolled ? 0 : 1"
-             style="overflow: hidden; white-space: nowrap;
-                    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);">
+             [style.opacity]="scrolled ? 0 : 1">
           <span class="font-bold text-sm leading-snug" [style.color]="brandTitleColor()">
             {{ schoolInfo.shortName }}
           </span>
@@ -33,22 +29,17 @@
       </a>
 
       <!-- CENTER: Liquid Glass Pill -->
-      <div class="hidden md:flex items-center gap-1"
+      <div class="hidden md:flex items-center gap-1 navbar-pill"
            [style.background]="pillBackground()"
            [style.border]="pillBorder()"
-           [style.boxShadow]="pillShadow()"
-           style="backdrop-filter: blur(24px) saturate(1.8);
-                  -webkit-backdrop-filter: blur(24px) saturate(1.8);
-                  border-radius: 999px; padding: 6px 10px;
-                  transition: all 0.45s cubic-bezier(0.22,1,0.36,1);">
+           [style.boxShadow]="pillShadow()">
         <a *ngFor="let link of navLinks"
            [routerLink]="link.path"
            class="liquid-nav-link"
            [style.color]="linkColor(isActive(link.path))">
           <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
                       transition-all duration-300 relative cursor-pointer hover:scale-[1.05] active:scale-[0.98]"
-               [style.background]="linkBackground(isActive(link.path))"
-               style="color: inherit;">
+               [style.background]="linkBackground(isActive(link.path))">
             {{ navLinkLabel(link.key) }}
           </div>
         </a>
@@ -56,23 +47,17 @@
 
       <!-- RIGHT: Actions -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Auth Liquid-Glass Pill (mirrors the centre nav pill) -->
-        <div class="hidden md:flex items-center gap-1"
+        <div class="hidden md:flex items-center gap-1 navbar-pill"
              [style.background]="pillBackground()"
              [style.border]="pillBorder()"
-             [style.boxShadow]="pillShadow()"
-             style="backdrop-filter: blur(24px) saturate(1.8);
-                    -webkit-backdrop-filter: blur(24px) saturate(1.8);
-                    border-radius: 999px; padding: 6px 10px;
-                    transition: all 0.45s cubic-bezier(0.22,1,0.36,1);">
+             [style.boxShadow]="pillShadow()">
           <button type="button"
                   class="liquid-nav-link"
                   [style.color]="linkColor(false)">
             <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
                         transition-all duration-300 relative cursor-pointer
                         hover:scale-[1.05] active:scale-[0.98]"
-                 [style.background]="linkBackground(false)"
-                 style="color: inherit;">
+                 [style.background]="linkBackground(false)">
               Log in
             </div>
           </button>
@@ -82,16 +67,14 @@
             <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
                         transition-all duration-300 relative cursor-pointer
                         hover:scale-[1.05] active:scale-[0.98]"
-                 [style.background]="linkBackground(false)"
-                 style="color: inherit;">
+                 [style.background]="linkBackground(false)">
               Sign up
             </div>
           </button>
         </div>
 
         <a routerLink="/admission"
-           class="btn-admission hidden sm:block px-6 py-2.5 rounded-full font-semibold text-sm cursor-pointer text-white"
-           style="outline: none;">
+           class="btn-admission hidden sm:block px-6 py-2.5 rounded-full font-semibold text-sm cursor-pointer text-white">
           {{ t.nav.admission }}
         </a>
 
@@ -112,46 +95,35 @@
 
   <!-- Mobile Menu Overlay -->
   <div *ngIf="isOpen"
-       class="md:hidden overflow-hidden"
-       [style.backgroundColor]="lightSurface ? 'rgba(255,255,255,0.98)' : 'var(--glass-bg-strong)'"
-       [style.borderTop]="lightSurface ? '1px solid rgba(148,163,184,0.18)' : '1px solid var(--glass-border)'"
-       style="backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);">
+       class="md:hidden overflow-hidden navbar-mobile"
+       [ngClass]="lightSurface ? 'navbar-mobile--light' : 'navbar-mobile--dark'">
     <div class="px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-2">
       <a *ngFor="let link of navLinks"
          [routerLink]="link.path"
          (click)="isOpen = false"
          class="px-4 py-3 rounded-lg font-semibold text-base transition-all duration-200 cursor-pointer"
-         [style.color]="isActive(link.path) ? 'white' : 'var(--text-secondary)'"
-         [style.backgroundColor]="isActive(link.path) ? 'var(--accent)' : 'transparent'">
+         [ngClass]="isActive(link.path) ? 'navbar-mobile__link--active' : 'navbar-mobile__link--inactive'">
         {{ navLinkLabel(link.key) }}
       </a>
 
-      <div class="my-2 h-px" [style.backgroundColor]="'var(--glass-border)'"></div>
+      <div class="my-2 h-px navbar-mobile__divider"></div>
 
       <div class="grid grid-cols-2 gap-2">
         <button type="button"
                 (click)="isOpen = false"
-                class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer
-                       border-2 transition-colors"
-                [style.borderColor]="'var(--glass-border-strong)'"
-                [style.color]="'var(--text-primary)'">
+                class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer border-2 transition-colors navbar-mobile__login">
           Log in
         </button>
         <button type="button"
                 (click)="isOpen = false"
-                class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer
-                       border-2 transition-colors"
-                [style.borderColor]="'#00864B'"
-                [style.color]="'#00864B'">
+                class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer border-2 transition-colors navbar-mobile__signup">
           Sign up
         </button>
       </div>
 
       <a routerLink="/admission"
          (click)="isOpen = false"
-         class="mt-1 px-4 py-3 rounded-lg text-center font-bold shadow-lg cursor-pointer"
-         [style.backgroundColor]="'var(--accent)'"
-         [style.color]="'white'">
+         class="mt-1 px-4 py-3 rounded-lg text-center font-bold shadow-lg cursor-pointer navbar-mobile__admission">
         Admission
       </a>
     </div>

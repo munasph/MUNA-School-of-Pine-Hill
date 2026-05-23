@@ -1,0 +1,35 @@
+.gradient-bg__base {
+  background-color: var(--bg-deep);
+}
+
+.gradient-bg__orb {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.gradient-bg__orb--1 {
+  top: 0%;
+  left: 25%;
+  width: 800px;
+  height: 800px;
+  opacity: 0.6;
+  background-color: var(--orb-1-color);
+}
+
+.gradient-bg__orb--2 {
+  bottom: 25%;
+  right: 25%;
+  width: 600px;
+  height: 600px;
+  opacity: 0.5;
+  background-color: var(--orb-2-color);
+}
+
+.gradient-bg__orb--3 {
+  top: 50%;
+  right: 0%;
+  width: 500px;
+  height: 500px;
+  opacity: 0.4;
+  background-color: var(--orb-3-color);
+}

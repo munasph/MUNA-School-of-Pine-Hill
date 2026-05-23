@@ -20,16 +20,16 @@ import { NotFoundComponent }  from './components/not-found/not-found.component';
 import { NavbarComponent }            from './components/navbar/navbar.component';
 import { FooterComponent }            from './components/footer/footer.component';
 
-import { SectionLabelComponent }      from './components/ui/section-label/section-label.component';
-import { GlassButtonComponent }       from './components/ui/glass-button/glass-button.component';
-import { GlassCardComponent }         from './components/ui/glass-card/glass-card.component';
-import { GlassInputComponent }        from './components/ui/glass-input/glass-input.component';
-import { GlassSelectComponent }       from './components/ui/glass-select/glass-select.component';
-import { GradientBackgroundComponent } from './components/ui/gradient-background/gradient-background.component';
-import { BackToTopComponent }         from './components/ui/back-to-top/back-to-top.component';
-import { ScrollToTopComponent }       from './components/ui/scroll-to-top/scroll-to-top.component';
-import { ThemeToggleComponent }       from './components/ui/theme-toggle/theme-toggle.component';
-import { LightboxComponent }          from './components/ui/lightbox/lightbox.component';
+import { SectionLabelComponent }       from './components/section-label/section-label.component';
+import { GlassButtonComponent }        from './components/glass-button/glass-button.component';
+import { GlassCardComponent }          from './components/glass-card/glass-card.component';
+import { GlassInputComponent }         from './components/glass-input/glass-input.component';
+import { GlassSelectComponent }        from './components/glass-select/glass-select.component';
+import { GradientBackgroundComponent } from './components/gradient-background/gradient-background.component';
+import { BackToTopComponent }          from './components/back-to-top/back-to-top.component';
+import { ScrollToTopComponent }        from './components/scroll-to-top/scroll-to-top.component';
+import { ThemeToggleComponent }        from './components/theme-toggle/theme-toggle.component';
+import { LightboxComponent }           from './components/lightbox/lightbox.component';
 
 import { RevealOnScrollDirective }    from './directives/reveal-on-scroll.directive';
 import { CountUpDirective }           from './directives/count-up.directive';

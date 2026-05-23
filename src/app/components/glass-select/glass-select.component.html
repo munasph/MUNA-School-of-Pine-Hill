@@ -1,0 +1,18 @@
+<div class="glass-select space-y-1.5">
+  <label *ngIf="label" [for]="selectId" class="glass-select__label">
+    {{ label }}
+  </label>
+  <select
+    [id]="selectId"
+    [required]="required"
+    [value]="value"
+    (change)="onSelect(($any($event.target)).value)"
+    (blur)="onTouched()"
+    class="glass-select__field"
+    [class.glass-select__field--error]="!!error">
+    <option *ngFor="let o of options" [value]="o.value" class="glass-select__option">
+      {{ o.label }}
+    </option>
+  </select>
+  <p *ngIf="error" class="glass-select__error">{{ error }}</p>
+</div>
