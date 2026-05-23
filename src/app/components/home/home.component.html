@@ -41,17 +41,17 @@
                              [style.color]="'var(--accent)'" [style.flexShrink]="0"></lucide-icon>
                 <div>
                   <div class="hero__trust-title" [style.color]="'var(--accent)'">
-                    Pre Registration
+                    {{ t.hero.trust1Title }}
                   </div>
-                  <div class="hero__trust-desc">Now Open</div>
+                  <div class="hero__trust-desc">{{ t.hero.trust1Desc }}</div>
                 </div>
               </div>
               <div class="hero__trust hero__trust--gold">
                 <lucide-icon [img]="award" size="15"
                              style="color:#F59E0B;flex-shrink:0;"></lucide-icon>
                 <div>
-                  <div class="hero__trust-title hero__trust-title--gold">Excellence Proven</div>
-                  <div class="hero__trust-desc">Outstanding pass rate</div>
+                  <div class="hero__trust-title hero__trust-title--gold">{{ t.hero.trust2Title }}</div>
+                  <div class="hero__trust-desc">{{ t.hero.trust2Desc }}</div>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@
     </div>
   </section>
 
-  <!-- ─── PRINCIPAL'S MESSAGE ──────────────────────────────────────────────── -->
+  <!-- ─── LEADERSHIP MESSAGE ─────────────────────────────────────────────────── -->
   <section class="principal">
 
     <!-- Animated background layers -->
@@ -133,7 +133,7 @@
           <div class="principal__image-frame">
             <img src="/assets/images/webp/principal.webp"
                  loading="lazy"
-                 alt="Students on campus"
+                 alt="School community"
                  class="principal__image" />
             <div class="principal__quote-overlay">
               <p class="principal__quote">"{{ t.leadership.quote }}"</p>
@@ -155,28 +155,6 @@
             <p *ngFor="let para of principalMessage.paragraphs" class="principal__paragraph">
               {{ para }}
             </p>
-          </div>
-
-          <div class="principal__divider"></div>
-
-          <div class="principal__signature">
-            <div class="principal__avatar">
-              <img src="/assets/images/webp/principal-avatar.webp" loading="lazy"
-                   [alt]="t.leadership.name" />
-            </div>
-            <div>
-              <div class="principal__name">{{ t.leadership.name }}</div>
-              <div class="principal__role">{{ t.leadership.role }}</div>
-              <div class="principal__school">{{ schoolInfo.name }}</div>
-              <div class="principal__socials">
-                <a *ngFor="let s of principalSocials"
-                   [href]="s.href" [attr.aria-label]="s.label"
-                   class="principal__social">
-                  <lucide-icon [img]="s.icon" size="13"></lucide-icon>
-                </a>
-              </div>
-            </div>
-            <div class="principal__signature-fade"></div>
           </div>
         </div>
       </div>
@@ -202,7 +180,7 @@
           {{ t.excellence.sectionTitle }}
         </h2>
         <p class="excellence__subtitle">
-          Results-driven education built for tomorrow's leaders.
+          {{ t.excellence.subtitle }}
         </p>
       </div>
 
@@ -240,7 +218,7 @@
 
     <div class="cta__inner max-w-5xl mx-auto px-4 sm:px-8">
       <div appReveal class="cta__card">
-        <div class="cta__pill">Admissions Open</div>
+        <div class="cta__pill">{{ t.cta.pill }}</div>
 
         <h2 class="cta__title">{{ t.cta.title }}</h2>
 

@@ -35,7 +35,7 @@ export class AcademicComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Academic Programmes',
-      description: 'Explore our academic programmes from Kindergarten through senior secondary.',
+      description: 'Academic programmes placeholder. Add your curriculum details when ready.',
       path:        '/academic',
     });
   }

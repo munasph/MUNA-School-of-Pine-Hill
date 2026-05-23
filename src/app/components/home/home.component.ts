@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
-  ArrowRight, ClipboardList, Award, Facebook, Mail, Linkedin,
+  ArrowRight, ClipboardList, Award,
   BookOpen, GraduationCap, Trophy, Globe, Pencil, Star, Atom, Ruler,
   LucideIconData,
 } from 'lucide-angular';
@@ -46,9 +46,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   readonly arrowRight:   LucideIconData = ArrowRight;
   readonly clipboard:    LucideIconData = ClipboardList;
   readonly award:        LucideIconData = Award;
-  readonly facebook:     LucideIconData = Facebook;
-  readonly mail:         LucideIconData = Mail;
-  readonly linkedin:     LucideIconData = Linkedin;
 
   readonly floatingIcons: FloatingEduIcon[] = [
     { icon: BookOpen,      left: '3%',  top: '8%',  size: 80, anim: 'eduFloatA', dur: '11s', delay: '0s'   },
@@ -68,12 +65,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     { src: '/assets/images/webp/college4.webp', pos: 'center 20%',    anim: 'collageZoomAlt', dur: '15s', delay: '3s'   },
     { src: '/assets/images/webp/college5.webp', pos: 'center center', anim: 'collageZoom',    dur: '13s', delay: '0.5s' },
     { src: '/assets/images/webp/college6.webp', pos: 'center top',    anim: 'collageZoomAlt', dur: '17s', delay: '1.5s' },
-  ];
-
-  readonly principalSocials = [
-    { icon: Facebook as LucideIconData, href: 'https://facebook.com/yourschool',      label: 'Facebook' },
-    { icon: Mail     as LucideIconData, href: 'mailto:principal@yourschool.example',  label: 'Email' },
-    { icon: Linkedin as LucideIconData, href: 'https://linkedin.com/school/yourschool', label: 'LinkedIn' },
   ];
 
   readonly t = HOME_COPY;
@@ -97,7 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       SCHOOL_INFO.name,
-      description: 'Quality K-12 education from kindergarten through senior secondary. Enrol now.',
+      description: 'School website placeholder. Add your description when ready.',
       path:        '/',
     });
   }

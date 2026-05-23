@@ -1,21 +1,16 @@
 import type { FacultyMember } from '../../lib/types';
 
-/**
- * Faculty data feeding the About page (key faculty grid + carousel).
- * TODO ⟶ Replace these placeholders with your real faculty members
- *        and host their photos under /assets/images/faculty/.
- */
 export const keyFaculty: FacultyMember[] = [
-  { name: 'Faculty Member 1', role: 'Department Head',  expertise: 'Subject specialism',  photo: 'https://picsum.photos/seed/faculty1/400/400' },
-  { name: 'Faculty Member 2', role: 'Senior Lecturer',  expertise: 'Subject specialism',  photo: 'https://picsum.photos/seed/faculty2/400/400' },
-  { name: 'Faculty Member 3', role: 'Department Lead',  expertise: 'Subject specialism',  photo: 'https://picsum.photos/seed/faculty3/400/400' },
-  { name: 'Faculty Member 4', role: 'Department Head',  expertise: 'Subject specialism',  photo: 'https://picsum.photos/seed/faculty4/400/400' },
+  { name: 'Team Member One',   role: 'Role placeholder', expertise: 'Expertise placeholder', photo: 'https://picsum.photos/seed/team-1/400/400' },
+  { name: 'Team Member Two',   role: 'Role placeholder', expertise: 'Expertise placeholder', photo: 'https://picsum.photos/seed/team-2/400/400' },
+  { name: 'Team Member Three', role: 'Role placeholder', expertise: 'Expertise placeholder', photo: 'https://picsum.photos/seed/team-3/400/400' },
+  { name: 'Team Member Four',  role: 'Role placeholder', expertise: 'Expertise placeholder', photo: 'https://picsum.photos/seed/team-4/400/400' },
 ];
 
 export const teachingFacultyCount = 8;
 
 export const teachingFacultyPhotos = Array.from({ length: teachingFacultyCount }, (_, i) => ({
   id:  i + 1,
-  src: `https://picsum.photos/seed/faculty-${i + 1}/400/400`,
-  alt: 'Teaching faculty member',
+  src: `https://picsum.photos/seed/team-carousel-${i + 1}/400/400`,
+  alt: 'Team member placeholder',
 }));

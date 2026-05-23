@@ -37,7 +37,7 @@ export class AdmissionService {
     void payload;
     return of<AdmissionSubmitResponse>({
       success:       true,
-      applicationId: `MUNA-${Date.now()}`,
+      applicationId: `APP-${Date.now()}`,
       message:       'Application received.',
     }).pipe(delay(600));
   }

@@ -46,7 +46,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Gallery',
-      description: 'Browse photos and videos from events, classrooms, and campus life.',
+      description: 'Gallery placeholder. Add your photos and videos when ready.',
       path:        '/gallery',
     });
   }

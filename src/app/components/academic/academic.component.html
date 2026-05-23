@@ -9,16 +9,15 @@
         <span class="academic-hero__tag">{{ t.academic.hero.tag }}</span>
 
         <h1 class="font-serif font-bold academic-hero__title">
-          Shaping Futures Through Education
+          {{ t.academic.hero.title }}
         </h1>
 
         <p class="academic-hero__subtitle">
-          Comprehensive education from early childhood through higher secondary — designed
-          to prepare every student for success.
+          {{ t.academic.hero.subtitle }}
         </p>
 
         <div class="flex flex-wrap justify-center gap-3">
-          <span *ngFor="let label of ['Accredited', 'Grade 9–12', 'Multiple Streams']"
+          <span *ngFor="let label of t.academic.hero.chips"
                 class="academic-hero__chip">
             {{ label }}
           </span>
@@ -31,10 +30,10 @@
   <section class="academic-section py-24">
     <div class="max-w-7xl mx-auto px-4">
       <div appReveal class="academic-section__header">
-        <span class="tag-pill">Our Programmes</span>
-        <h2 class="font-serif font-bold section-title">Our Programmes</h2>
+        <span class="tag-pill">{{ t.academic.programmes.tag }}</span>
+        <h2 class="font-serif font-bold section-title">{{ t.academic.programmes.title }}</h2>
         <p class="section-subtitle">
-          Comprehensive education from early childhood to higher secondary levels.
+          {{ t.academic.programmes.subtitle }}
         </p>
       </div>
 
@@ -66,8 +65,7 @@
             {{ t.academic.programmes.title }}
           </h2>
           <p class="stream-intro__paragraph">
-            Multiple streams crafted to align with national curriculum standards while
-            nurturing each student's individual strengths and career goals.
+            {{ t.academic.streams.intro }}
           </p>
         </div>
 

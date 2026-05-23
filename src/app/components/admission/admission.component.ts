@@ -10,8 +10,6 @@ import { AdmissionService } from '../../services/admission.service';
 import { ADMISSION_COPY } from './admission.data';
 import { SeoService } from '../../services/seo.service';
 
-const CLASS_11 = ['class-11-science', 'class-11-management', 'class-11-hm'];
-
 @Component({
   selector: 'app-admission-page',
   templateUrl: './admission.component.html',
@@ -46,7 +44,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Admission',
-      description: 'Apply for admission. Open for Kindergarten to Grade 12 across all academic streams.',
+      description: 'Apply for admission. Form placeholder — connect to your backend when ready.',
       path:        '/admission',
     });
 
@@ -55,35 +53,13 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       dob:             ['', [Validators.required]],
       classApplying:   ['', [Validators.required]],
       gender:          ['', [Validators.required]],
-      seeGpa:          [''],
-      previousSchool:  [''],
       parentName:      ['', [Validators.required]],
       parentPhone:     ['', [Validators.required]],
     });
-
-    this.subs.add(
-      this.form.get('classApplying')!.valueChanges.subscribe((v: string) => {
-        const seeGpa         = this.form.get('seeGpa')!;
-        const previousSchool = this.form.get('previousSchool')!;
-        if (CLASS_11.includes(v)) {
-          seeGpa.setValidators([Validators.required, Validators.min(0), Validators.max(4)]);
-          previousSchool.setValidators([Validators.required]);
-        } else {
-          seeGpa.clearValidators();
-          previousSchool.clearValidators();
-        }
-        seeGpa.updateValueAndValidity();
-        previousSchool.updateValueAndValidity();
-      }),
-    );
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
-  }
-
-  get class11Selected(): boolean {
-    return CLASS_11.includes(this.form?.get('classApplying')?.value);
   }
 
   submit(): void {

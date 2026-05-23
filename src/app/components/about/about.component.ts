@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.seo.update({
       title:       'About Us',
-      description: 'Learn about our school — our history, vision, mission, faculty, and commitment to quality education.',
+      description: 'About page placeholder. Add your school history and mission when ready.',
       path:        '/about',
     });
   }

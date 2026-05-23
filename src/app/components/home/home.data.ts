@@ -4,130 +4,122 @@ import {
 } from 'lucide-angular';
 import type { StatItem, Feature, Testimonial, GalleryImage, NewsItem } from '../../lib/types';
 
-/**
- * Home-page content blocks.
- *
- * TODO ⟶ Replace headlines, copy, and stat values with your school's content.
- * The structure (hero badge → headline → subtext → CTA → trust badges →
- * stats → principal block → excellence cards → CTA collage) is preserved.
- */
-
 export const HERO = {
-  tagline:      'Tagline goes here',
-  /** Headline rendered on two lines on desktop. */
-  headline1:    'Empowering',
-  headline2:    'Minds',
-  description:  'A premier institution dedicated to nurturing well-rounded students through quality education.',
-  ctaPrimary:   'Admission Open',
-  ctaSecondary: 'Learn More',
-  preBadge:     'Pre-registration for the next academic year is now open. →',
+  tagline:      'Tagline placeholder',
+  headline1:    'Headline',
+  headline2:    'Goes Here',
+  description:  'A short description of your school and what you offer to students and families.',
+  ctaPrimary:   'Primary Action',
+  ctaSecondary: 'Secondary Action',
+  preBadge:     'Optional badge text',
   excellence: {
-    label: 'Excellence Proven',
-    desc:  'Outstanding academic results recognised across the region.',
+    label: 'Highlight Label',
+    desc:  'Short supporting detail.',
   },
-  annotations: ['Affiliated', 'Grade K–12'],
+  annotations: ['Tag One', 'Tag Two'],
 };
 
-/** Two-paragraph block shown beside the principal's photo on the home page. */
 export const PRINCIPAL_MESSAGE = {
-  title: 'Message from the Principal',
+  title: 'Leadership Message',
   paragraphs: [
-    'Welcome to Your School Name. Replace this paragraph with a short introduction from your principal — its purpose is to set the tone for the rest of the site and connect with prospective families.',
-    'Use a second paragraph to highlight what makes your institution distinct — your accreditation, your locale, the values that guide your campus, and the kind of citizen your students grow into.',
+    'This section is reserved for a welcome message from school leadership. Add your introduction here when ready.',
+    'Use a second paragraph to describe your mission, values, and what makes your institution unique.',
   ],
-  quote: 'A short, memorable quote that captures your school\'s philosophy.',
-  signedBy: 'The Principal',
+  quote: 'An inspirational quote about education can be placed here.',
 };
 
 export const stats: StatItem[] = [
-  { label: 'Years of Excellence', value: '00+',    icon: BookOpen,      desc: 'Established placeholder year' },
-  { label: 'Qualified Teachers',  value: '00+',    icon: GraduationCap, desc: 'Expert faculty' },
-  { label: 'Students Enrolled',   value: '0,000+', icon: Users,         desc: 'Active learners' },
-  { label: 'Pass Rate',           value: '00%',    icon: CheckCircle,   desc: 'Board exam results' },
+  { label: 'Stat Label One',   value: '00+', icon: BookOpen,      desc: 'Short description' },
+  { label: 'Stat Label Two',   value: '00+', icon: GraduationCap, desc: 'Short description' },
+  { label: 'Stat Label Three', value: '000+', icon: Users,        desc: 'Short description' },
+  { label: 'Stat Label Four',  value: '00%', icon: CheckCircle,   desc: 'Short description' },
 ];
 
 export const features: Feature[] = [
   {
     icon:  Trophy,
-    title: 'Academic Excellence',
-    stat:  'Top results',
-    desc:  'A short, focused description of your academic strengths and the outcomes your students achieve.',
+    title: 'Feature Title One',
+    stat:  'Optional stat',
+    desc:  'Brief description of this feature or benefit.',
   },
   {
     icon:  GraduationCap,
-    title: 'Dedicated Faculty',
-    stat:  'Expert teachers',
-    desc:  'Describe your faculty\'s qualifications and the personalised mentorship students receive.',
+    title: 'Feature Title Two',
+    stat:  'Optional stat',
+    desc:  'Brief description of this feature or benefit.',
   },
   {
     icon:  Globe,
-    title: 'Future-Ready Campus',
-    stat:  'Modern facilities',
-    desc:  'Describe your campus facilities — labs, library, technology, and the skills you build in students.',
+    title: 'Feature Title Three',
+    stat:  'Optional stat',
+    desc:  'Brief description of this feature or benefit.',
   },
 ];
 
 export const AI_TUTOR = {
-  title:       'Optional Feature Block',
-  description: 'Use this slot for a flagship feature, programme, or technology that sets you apart.',
-  feature:     'Highlight subtext',
+  title:       'Optional Section Title',
+  description: 'Use this area for a highlighted programme, feature, or call-out.',
+  feature:     'Supporting detail',
 };
 
 export const newsItems: NewsItem[] = [
-  { title: 'Headline one',   date: 'Month DD, YYYY', excerpt: 'Short summary of a recent achievement or update.' },
-  { title: 'Headline two',   date: 'Month DD, YYYY', excerpt: 'Short summary of a recent achievement or update.' },
-  { title: 'Headline three', date: 'Month DD, YYYY', excerpt: 'Short summary of a recent achievement or update.' },
+  { title: 'News headline one',   date: 'Month DD, YYYY', excerpt: 'Short news summary.' },
+  { title: 'News headline two',   date: 'Month DD, YYYY', excerpt: 'Short news summary.' },
+  { title: 'News headline three', date: 'Month DD, YYYY', excerpt: 'Short news summary.' },
 ];
 
 export const testimonials: Testimonial[] = [
-  { name: 'Student / Alum Name', role: 'Alumni, Class of YYYY', quote: 'A brief, sincere quote from a graduate.' },
-  { name: 'Parent Name',         role: 'Parent',                quote: 'A brief, sincere quote from a parent.' },
-  { name: 'Current Student',     role: 'Current Student',       quote: 'A brief, sincere quote from a current student.' },
+  { name: 'Name placeholder', role: 'Role placeholder', quote: 'Testimonial quote placeholder.' },
+  { name: 'Name placeholder', role: 'Role placeholder', quote: 'Testimonial quote placeholder.' },
+  { name: 'Name placeholder', role: 'Role placeholder', quote: 'Testimonial quote placeholder.' },
 ];
 
 export const CTA_SECTION = {
-  title:       'Ready to join the Your School Name family?',
-  description: 'Applications are open. Take the first step toward a brighter future.',
-  button:      'Apply Now',
+  title:       'Call to action headline',
+  description: 'Supporting text encouraging visitors to take the next step.',
+  button:      'Action Button',
 };
 
 export const homeGalleryImages: GalleryImage[] = [
-  { id: 1, src: '/assets/images/hero.jpg',                          label: 'Main Campus',  span: 'col-span-2 row-span-2' },
-  { id: 2, src: 'https://picsum.photos/seed/library/600/600',       label: 'Library' },
-  { id: 3, src: 'https://picsum.photos/seed/scilab/600/600',        label: 'Science Lab' },
-  { id: 4, src: 'https://picsum.photos/seed/sports/600/600',        label: 'Sports Ground' },
-  { id: 5, src: 'https://picsum.photos/seed/classroom/600/600',     label: 'Classrooms' },
-  { id: 6, src: 'https://picsum.photos/seed/annualday/1200/600',    label: 'Annual Day', span: 'col-span-2' },
+  { id: 1, src: '/assets/images/hero.jpg',                    label: 'Image one',  span: 'col-span-2 row-span-2' },
+  { id: 2, src: 'https://picsum.photos/seed/gallery-1/600/600', label: 'Image two' },
+  { id: 3, src: 'https://picsum.photos/seed/gallery-2/600/600', label: 'Image three' },
+  { id: 4, src: 'https://picsum.photos/seed/gallery-3/600/600', label: 'Image four' },
+  { id: 5, src: 'https://picsum.photos/seed/gallery-4/600/600', label: 'Image five' },
+  { id: 6, src: 'https://picsum.photos/seed/gallery-5/1200/600', label: 'Image six', span: 'col-span-2' },
 ];
 
-/** UI copy for the Home page template. */
 export const HOME_COPY = {
   hero: {
-    headline1:  'Empowering',
-    headline2:  'Minds',
-    subtext:    'Shaping the future through quality education at every level — kindergarten through senior secondary.',
-    ctaPrimary: 'Explore Academic',
+    headline1:  'Headline',
+    headline2:  'Goes Here',
+    subtext:    'A short description of your school and what you offer to students and families.',
+    ctaPrimary: 'Primary Action',
+    trust1Title: 'Trust badge one',
+    trust1Desc:  'Supporting detail',
+    trust2Title: 'Trust badge two',
+    trust2Desc:  'Supporting detail',
   },
   leadership: {
     sectionTag:   'Leadership',
-    sectionTitle: 'Guided by Vision',
-    name:         'Principal\'s Name',
-    role:         'Principal',
-    quote:        'A short quote that captures your school\'s teaching philosophy.',
+    sectionTitle: 'Leadership Message',
+    quote:        'An inspirational quote about education can be placed here.',
   },
   excellence: {
-    sectionTag:   'Why Choose Us',
-    sectionTitle: 'Academic Excellence',
+    sectionTag:   'Section Tag',
+    sectionTitle: 'Section Title',
+    subtitle:     'Section subtitle placeholder.',
     cards: [
-      { title: 'Expert Faculty',    desc: 'Describe your faculty\'s qualifications and the mentorship students receive.' },
-      { title: 'Modern Curriculum', desc: 'Describe your curriculum, learning tools, and the skills students leave with.' },
-      { title: 'Student Growth',    desc: 'Describe how co-curricular activities and pastoral care shape every student.' },
+      { title: 'Card Title One',   desc: 'Card description placeholder.' },
+      { title: 'Card Title Two',   desc: 'Card description placeholder.' },
+      { title: 'Card Title Three', desc: 'Card description placeholder.' },
     ],
   },
   cta: {
-    title:    'Ready to join the Your School Name family?',
-    subtitle: 'Applications are open. Take the first step toward a brighter future.',
-    primary:  'Apply Now',
-    secondary: 'Learn More',
+    pill:      'Call to action',
+    title:     'Call to action headline',
+    subtitle:  'Supporting text encouraging visitors to take the next step.',
+    primary:   'Primary Button',
+    secondary: 'Secondary Button',
   },
 };

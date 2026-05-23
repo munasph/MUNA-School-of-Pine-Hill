@@ -1,79 +1,70 @@
 /**
- * Site-wide branding constants.
- *
- * TODO ⟶ Replace every value below with your own school's information.
- * These placeholders are used across the Navbar, Footer, SEO meta, JSON-LD,
- * Contact page, Privacy / Terms pages.
+ * Site-wide branding placeholders.
+ * Replace these values when you are ready to publish real school details.
  */
 export const SCHOOL_INFO = {
-  name:             'Your School Name',
-  shortName:        'Your School',
-  foundedYear:      '2000',
-  foundedDate:      '1st January 2000',
-  address:          '123 Main Street, Your City, Your Region, Country',
-  phone:            '+1 555-0100',
-  phoneHref:        'tel:+15550100',
-  email:            'info@yourschool.example',
-  emailHref:        'mailto:info@yourschool.example',
-  officeHours:      'Mon – Fri: 9:00 AM – 5:00 PM',
+  name:             'School Name',
+  shortName:        'School',
+  foundedYear:      '0000',
+  foundedDate:      'Month DD, YYYY',
+  address:          'Street Address, City, State, Country',
+  phone:            'Phone Number',
+  phoneHref:        'tel:+10000000000',
+  email:            'email@example.com',
+  emailHref:        'mailto:email@example.com',
+  officeHours:      'Office Hours Placeholder',
   copyrightYear:    new Date().getFullYear().toString(),
-  /** Used to build the embedded Google Maps iframe on the Contact page. */
-  mapQuery:         'Your School Name, Your City',
-  /** Used for canonical / OG URLs in the SEO service. */
-  baseUrl:          'https://yourschool.example',
+  mapQuery:         'School Name, City',
+  baseUrl:          'https://example.com',
 };
 
 export const SOCIAL_LINKS = [
-  { name: 'Facebook',  href: 'https://facebook.com/yourschool' },
-  { name: 'YouTube',   href: 'https://youtube.com/@yourschool' },
-  { name: 'Instagram', href: 'https://instagram.com/yourschool' },
+  { name: 'Facebook',  href: 'https://example.com' },
+  { name: 'YouTube',   href: 'https://example.com' },
+  { name: 'Instagram', href: 'https://example.com' },
 ];
 
 export const QUICK_LINKS = [
-  { label: 'About Us',          path: '/about'     },
-  { label: 'Academic Programs', path: '/academic'  },
-  { label: 'Gallery',           path: '/gallery'   },
-  { label: 'Admission',         path: '/admission' },
-  { label: 'Contact Us',        path: '/contact'   },
+  { label: 'About',     path: '/about'     },
+  { label: 'Academic',  path: '/academic'  },
+  { label: 'Gallery',   path: '/gallery'   },
+  { label: 'Admission', path: '/admission' },
+  { label: 'Contact',   path: '/contact'   },
 ];
 
 export const PROGRAMS_LIST = [
-  'Kindergarten',
-  'Primary (1–5)',
-  'Secondary (6–10)',
-  'Stream One (11–12)',
-  'Stream Two (11–12)',
-  'Stream Three (11–12)',
+  'Programme One',
+  'Programme Two',
+  'Programme Three',
+  'Programme Four',
 ];
 
 export const ANNOUNCEMENT = {
   emoji:    '🎓',
-  title:    'Pre-Registration Open',
-  subtitle: 'Next Academic Year',
-  cta:      'Apply Now',
+  title:    'Announcement Title',
+  subtitle: 'Short subtitle',
+  cta:      'Learn More',
   href:     '/admission',
 };
 
-/** Nav link labels used by the Navbar. */
 export const NAV_LINKS = [
   { path: '/',         label: 'Home' },
-  { path: '/about',    label: 'About Us' },
-  { path: '/academic',  label: 'Academic' },
+  { path: '/about',    label: 'About' },
+  { path: '/academic', label: 'Academic' },
   { path: '/gallery',  label: 'Gallery' },
   { path: '/contact',  label: 'Contact' },
 ] as const;
 
 export const NAV_COPY = {
-  nav: { admission: 'Admission Open' },
+  nav: { admission: 'Admission' },
 };
 
-/** UI copy for the Footer template. */
 export const FOOTER_COPY = {
   footer: {
-    tagline:    'Quality education for character, knowledge, and wisdom.',
+    tagline:    'A short tagline about your school can go here.',
     quickLinks: 'Quick Links',
     programmes: 'Programmes',
-    contact:    'Contact Us',
+    contact:    'Contact',
     rights:     'All rights reserved.',
     admission:  'Admission',
   },

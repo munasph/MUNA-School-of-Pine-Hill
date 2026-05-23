@@ -16,7 +16,6 @@ export interface PrincipalMessage {
   title:      string;
   paragraphs: string[];
   quote:      string;
-  signedBy:   string;
 }
 
 export interface Stat {

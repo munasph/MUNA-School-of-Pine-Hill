@@ -1,46 +1,41 @@
 import { Globe, CheckCircle, Star } from 'lucide-angular';
 import type { VisionItem } from '../../lib/types';
 
-/**
- * About-page hero block.
- * TODO ⟶ Replace photo, paragraphs and tag pills with your school's story.
- */
 export const ABOUT_HERO = {
-  sectionLabel: 'Our Story',
-  headline:     'Shaping lives, building futures',
+  sectionLabel: 'About',
+  headline:     'About headline placeholder',
   photo:        'https://picsum.photos/seed/about-school/800/800',
-  photoAlt:     'Photograph of your school\'s campus',
+  photoAlt:     'Placeholder campus image',
   paragraphs: [
-    'A two-paragraph introduction works best here. Use the first paragraph to set the scene: where you are, who you serve, and what you stand for.',
-    'Use the second paragraph to talk about accreditation, the range of programmes you offer, and the academic streams that lead students through to graduation.',
+    'First paragraph placeholder. Introduce your institution, community, and purpose.',
+    'Second paragraph placeholder. Describe programmes, values, or history.',
   ],
-  tags: ['Accredited', 'Approved Curriculum', 'Established YYYY'],
+  tags: ['Tag One', 'Tag Two', 'Tag Three'],
 };
 
-/** Three cards under the hero on the About page. */
 export const visionItems: VisionItem[] = [
   {
-    title: 'Our Vision',
+    title: 'Vision',
     icon:  Globe,
-    desc:  'A one-sentence statement of the long-term future your school is working toward.',
+    desc:  'Vision statement placeholder.',
   },
   {
-    title: 'Our Mission',
+    title: 'Mission',
     icon:  CheckCircle,
-    desc:  'A one-sentence statement of how you serve students every day to reach that vision.',
+    desc:  'Mission statement placeholder.',
   },
   {
-    title: 'Our Values',
+    title: 'Values',
     icon:  Star,
-    desc:  'A short list of the principles that guide your campus culture and pedagogy.',
+    desc:  'Values statement placeholder.',
   },
 ];
 
-/** UI copy for the About page template. */
 export const ABOUT_COPY = {
   about: {
-    hero:   { tag: 'About Us',         title: 'Our Story',          subtitle: 'Three decades of shaping young minds in our community.' },
-    vision: { tag: 'Vision & Mission', title: 'What Drives Us' },
-    team:   { tag: 'Leadership Team',  title: 'Meet Our Faculty' },
+    hero:   { tag: 'About',          title: 'About Us',           subtitle: 'Short about section subtitle.' },
+    vision: { tag: 'Vision & Mission', title: 'What We Stand For' },
+    team:   { tag: 'Team',           title: 'Our Team' },
+    faculty: { tag: 'Faculty', tagline: 'Faculty Section', title: 'Our Faculty' },
   },
 };
