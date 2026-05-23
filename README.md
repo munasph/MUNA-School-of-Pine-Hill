@@ -1,72 +1,58 @@
-# Angular 17 example project: CRUD with Rest API
+# MUNA School of Pine Hill — Website
 
-Build an Angular 17 CRUD example App to consume Rest APIs, display, modify & search data.
+Official Angular 17 website for **MUNA School of Pine Hill**, an Islamic
+school located at 400 Erial Rd, Pine Hill, NJ 08021. The site combines
+informational pages with a dynamic **Announcements & Events** portal that
+the school administration can manage end-to-end.
 
-Tutorial Application in that:
-- Each Tutorial has id, title, description, published status.
-- We can create, retrieve, update, delete Tutorials.
-- There is a Search bar for finding Tutorials by title.
+> Domain contact: [admin@munasph.org](mailto:admin@munasph.org)
 
-![angular-17-crud-example](angular-17-crud-example.png)
+## Features
 
-Run `ng serve --port 8081` for a dev server. Navigate to `http://localhost:8081/`. The app will automatically reload if you change any of the source files.
+- **Announcements portal** — full CRUD (create / list / view / edit / delete)
+  for school announcements and events. Each announcement has:
+  `id`, `title`, `content`, `eventDate`, `isUrgent`.
+- **Modern, branded UI** — Tailwind CSS with an Islamic-school-appropriate
+  palette of emerald greens, clean whites, and gold accents.
+- **Informational page scaffolding** — placeholder routes for `/about`,
+  `/academics`, `/admissions`, and `/contact` that will be built out next.
+- **Responsive shell** — accessible Navbar (with mobile drawer) and Footer
+  on every page, including school address and contact email.
 
-For instruction, please visit:
-> [Angular 17 CRUD example with Rest API](https://www.bezkoder.com/angular-17-crud-example/)
+## Architecture
 
-More Practice:
-> [Angular 17 Pagination example](https://www.bezkoder.com/angular-17-pagination-ngx/)
+```
+src/app/
+├── app.component.{ts,html,css}      // Global shell: Navbar + Router + Footer
+├── app-routing.module.ts            // Routes for announcements + info pages
+├── app.module.ts                    // NgModule wiring
+├── models/
+│   └── announcement.model.ts        // { id, title, content, eventDate, isUrgent }
+├── services/
+│   └── announcement.service.ts      // CRUD against /api/announcements
+└── components/
+    ├── announcements-list/          // /announcements
+    ├── announcement-details/        // /announcements/:id  (and inline view)
+    ├── add-announcement/            // /add
+    └── placeholder-page/            // /about, /academics, /admissions, /contact
+```
 
-> [Angular 17 JWT Authentication & Authorization example](https://www.bezkoder.com/angular-17-jwt-auth/)
+The announcement service points to `http://localhost:8080/api/announcements`
+by default; adjust the `baseUrl` constant in
+`src/app/services/announcement.service.ts` for your deployed back end.
 
-> [Angular 17 File upload example with Progress bar](https://www.bezkoder.com/angular-17-file-upload/)
+## Getting started
 
-> [Angular 17 Form Validation example](https://www.bezkoder.com/angular-17-form-validation/)
+```bash
+npm install
+npm start
+```
 
-Fullstack with Node:
+Then navigate to `http://localhost:4200/` (or `ng serve --port 8081` to match
+the original dev port).
 
-> [Angular 17 + Node Express + MySQL example](https://www.bezkoder.com/angular-17-node-js-express-mysql/)
+## Tech stack
 
-> [Angular 17 + Node Express + PostgreSQL example](https://www.bezkoder.com/angular-17-node-js-express-postgresql/)
-
-> [Angular 17 + Node Express + MongoDB example](https://www.bezkoder.com/angular-17-node-js-express-mongodb/)
-
-> [Angular 17 + Node Express: File upload example](https://www.bezkoder.com/angular-17-node-express-file-upload/)
-
-Fullstack with Spring Boot:
-
-> [Angular 17 + Spring Boot example](https://www.bezkoder.com/spring-boot-angular-17-crud/)
-
-> [Angular 17 + Spring Boot + MySQL example](https://www.bezkoder.com/spring-boot-angular-17-mysql/)
-
-> [Angular 17 + Spring Boot + PostgreSQL example](https://www.bezkoder.com/spring-boot-angular-17-postgresql/)
-
-> [Angular 17 + Spring Boot + MongoDB example](https://www.bezkoder.com/spring-boot-angular-17-mongodb/)
-
-> [Angular 17 + Spring Boot: File upload example](https://www.bezkoder.com/angular-17-spring-boot-file-upload/)
-
-Fullstack with Django:
-> [Angular + Django example](https://www.bezkoder.com/django-angular-13-crud-rest-framework/)
-
-> [Angular + Django + MySQL](https://www.bezkoder.com/django-angular-mysql/)
-
-> [Angular + Django + PostgreSQL](https://www.bezkoder.com/django-angular-postgresql/)
-
-> [Angular + Django + MongoDB](https://www.bezkoder.com/django-angular-mongodb/)
-
-Security:
-> [Angular 17 + Spring Boot: JWT Authentication and Authorization example](https://www.bezkoder.com/angular-17-spring-boot-jwt-auth/)
-
-> [Angular 17 + Node.js Express: JWT Authentication and Authorization example](https://www.bezkoder.com/node-js-angular-17-jwt-auth/)
-
-Serverless with Firebase:
-> [Angular 17 Firebase CRUD with Realtime DataBase](https://www.bezkoder.com/angular-17-firebase-crud/)
-
-> [Angular 17 Firestore CRUD example](https://www.bezkoder.com/angular-17-firestore-crud/)
-
-> [Angular 17 Firebase Storage: File Upload/Display/Delete example](https://www.bezkoder.com/angular-17-firebase-storage/)
-
-Integration (run back-end & front-end on same server/port)
-> [How to integrate Angular with Node Restful Services](https://bezkoder.com/integrate-angular-12-node-js/)
-
-> [How to Integrate Angular with Spring Boot Rest API](https://bezkoder.com/integrate-angular-12-spring-boot/)
+- Angular 17 (with the new control-flow syntax: `@if`, `@for`, `@empty`)
+- Tailwind CSS 3 with a custom `muna` (emerald) and `gold` color palette
+- TypeScript 5.2

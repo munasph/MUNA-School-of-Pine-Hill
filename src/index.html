@@ -1,13 +1,68 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Angular17Crud</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <base href="/" />
+
+    <!-- TODO: replace title / meta / JSON-LD with your school's branding -->
+    <title>Your School Name</title>
+
+    <meta name="description" content="Your school's elevator-pitch description. K–12 quality education." />
+    <meta name="keywords"    content="your school, your city, K-12, secondary school, academic excellence" />
+    <meta name="robots"      content="index, follow" />
+    <link rel="canonical" href="https://yourschool.example/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://yourschool.example/" />
+    <meta property="og:title"       content="Your School Name" />
+    <meta property="og:description" content="Your school's elevator-pitch description." />
+    <meta property="og:image"       content="https://yourschool.example/logo-full.png" />
+    <meta property="og:locale"      content="en_US" />
+    <meta property="og:site_name"   content="Your School Name" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Your School Name" />
+    <meta name="twitter:description" content="Your school's elevator-pitch description." />
+    <meta name="twitter:image"       content="https://yourschool.example/logo-full.png" />
+
+    <meta name="theme-color" content="#00864B" />
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD: EducationalOrganization structured data
+         TODO: fill in your school's address, contact, courses. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Your School Name",
+      "url": "https://yourschool.example",
+      "logo": "https://yourschool.example/logo-full.png",
+      "description": "Your school's elevator-pitch description.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Main Street",
+        "addressLocality": "Your City",
+        "addressRegion": "Your Region",
+        "postalCode": "00000",
+        "addressCountry": "XX"
+      },
+      "telephone": "+1-555-0100",
+      "email": "info@yourschool.example"
+    }
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
 </html>

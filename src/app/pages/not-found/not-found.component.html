@@ -1,0 +1,16 @@
+<div class="min-h-[80vh] flex items-center justify-center px-4 text-center">
+  <div>
+    <div class="text-8xl font-serif font-bold mb-4"
+         [style.color]="'var(--text-primary)'" [style.opacity]="0.06">
+      404
+    </div>
+    <h2 class="text-3xl font-serif font-bold mb-3"
+        [style.color]="'var(--text-primary)'">Page Not Found</h2>
+    <p class="text-sm mb-8" [style.color]="'var(--text-muted)'">
+      The page you're looking for doesn't exist.
+    </p>
+    <a routerLink="/">
+      <app-glass-button variant="secondary">&larr; Back to Home</app-glass-button>
+    </a>
+  </div>
+</div>

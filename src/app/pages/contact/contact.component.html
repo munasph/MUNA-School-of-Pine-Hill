@@ -1,0 +1,154 @@
+<div>
+  <!-- Hero -->
+  <section style="padding-top:120px;padding-bottom:64px;position:relative;overflow:hidden;
+                  background:linear-gradient(135deg,#00864B 0%,#047857 100%);">
+    <div *ngFor="let dot of [
+            { size:300, top:'-80px',   right:'-60px', opacity:.08 },
+            { size:180, bottom:'-40px',left:'5%',    opacity:.10 },
+            { size:100, top:'30%',     right:'18%',  opacity:.07 }
+          ]"
+         [style.position]="'absolute'"
+         [style.width.px]="dot.size"
+         [style.height.px]="dot.size"
+         [style.borderRadius]="'50%'"
+         [style.background]="'#A7F3D0'"
+         [style.opacity]="dot.opacity"
+         [style.top]="dot.top || null"
+         [style.bottom]="dot.bottom || null"
+         [style.left]="dot.left || null"
+         [style.right]="dot.right || null"
+         [style.pointerEvents]="'none'"></div>
+
+    <div class="max-w-7xl mx-auto px-4 text-center" style="position:relative;z-index:1;">
+      <div appReveal>
+        <span style="display:inline-block;background:rgba(255,255,255,0.15);color:#fff;
+                     border:1px solid rgba(255,255,255,0.3);border-radius:999px;
+                     padding:6px 18px;font-size:13px;font-weight:600;letter-spacing:.04em;
+                     margin-bottom:20px;">
+          {{ t.contact.hero.tag }}
+        </span>
+        <h1 style="color:#fff;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;
+                   font-family:serif;line-height:1.15;margin-bottom:16px;">
+          {{ t.contact.hero.title }}
+        </h1>
+        <p style="color:rgba(255,255,255,0.85);font-size:16px;max-width:520px;margin:0 auto;line-height:1.7;">
+          {{ t.contact.hero.subtitle }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section style="background:#fff;padding-top:96px;padding-bottom:96px;">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16">
+
+      <!-- LEFT: Contact Info -->
+      <div>
+        <h2 style="font-size:1.75rem;font-weight:700;color:#0F172A;margin-bottom:32px;">Reach Us</h2>
+
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div *ngFor="let item of contactItems; let i = index"
+               appReveal [revealDelay]="i * 80"
+               style="background:#fff;border:1.5px solid #BBF7D0;border-radius:16px;
+                      padding:20px 24px;display:flex;align-items:flex-start;gap:16px;
+                      cursor:default;transition:box-shadow .2s ease, transform .2s ease;">
+            <div style="width:44px;height:44px;min-width:44px;border-radius:10px;
+                        background:#F0FDF4;color:#00864B;display:flex;
+                        align-items:center;justify-content:center;">
+              <lucide-icon [img]="item.icon" size="20"></lucide-icon>
+            </div>
+            <div>
+              <h4 style="font-weight:700;color:#0F172A;margin-bottom:4px;font-size:15px;">
+                {{ t.contact.info[item.key] }}
+              </h4>
+              <p style="color:#475569;font-size:14px;line-height:1.6;">{{ item.detail }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div appReveal
+           style="background:#fff;border:1.5px solid #BBF7D0;border-radius:24px;padding:40px;">
+
+        <div *ngIf="submitted"
+             style="margin-bottom:20px;padding:14px 18px;border-radius:12px;
+                    display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;
+                    background:#F0FDF4;color:#00864B;border:1.5px solid #BBF7D0;">
+          <lucide-icon [img]="checkCircle" size="18" style="flex-shrink:0;"></lucide-icon>
+          Your message has been sent successfully!
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+            <div>
+              <label for="contact-name" style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:#0F172A;">
+                {{ t.contact.form.name }}
+              </label>
+              <input id="contact-name" type="text" formControlName="name"
+                     [placeholder]="t.contact.form.name"
+                     [style.border]="errorFor('name') ? '1.5px solid #EF4444' : '1.5px solid #BBF7D0'"
+                     style="width:100%;padding:12px 16px;border-radius:12px;font-size:14px;
+                            color:#0F172A;background:#FAFFFE;outline:none;box-sizing:border-box;" />
+              <span *ngIf="errorFor('name')" style="color:#EF4444;font-size:12px;">{{ errorFor('name') }}</span>
+            </div>
+
+            <div>
+              <label for="contact-email" style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:#0F172A;">
+                {{ t.contact.form.email }}
+              </label>
+              <input id="contact-email" type="email" formControlName="email"
+                     [placeholder]="t.contact.form.email"
+                     [style.border]="errorFor('email') ? '1.5px solid #EF4444' : '1.5px solid #BBF7D0'"
+                     style="width:100%;padding:12px 16px;border-radius:12px;font-size:14px;
+                            color:#0F172A;background:#FAFFFE;outline:none;box-sizing:border-box;" />
+              <span *ngIf="errorFor('email')" style="color:#EF4444;font-size:12px;">{{ errorFor('email') }}</span>
+            </div>
+          </div>
+
+          <div style="margin-bottom:20px;">
+            <label for="contact-subject" style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:#0F172A;">
+              Subject
+            </label>
+            <input id="contact-subject" type="text" formControlName="subject"
+                   placeholder="Inquiry about Admission"
+                   [style.border]="errorFor('subject') ? '1.5px solid #EF4444' : '1.5px solid #BBF7D0'"
+                   style="width:100%;padding:12px 16px;border-radius:12px;font-size:14px;
+                          color:#0F172A;background:#FAFFFE;outline:none;box-sizing:border-box;" />
+            <span *ngIf="errorFor('subject')" style="color:#EF4444;font-size:12px;">{{ errorFor('subject') }}</span>
+          </div>
+
+          <div style="margin-bottom:28px;">
+            <label for="contact-message" style="display:block;margin-bottom:6px;font-size:13px;font-weight:600;color:#0F172A;">
+              {{ t.contact.form.message }}
+            </label>
+            <textarea id="contact-message" rows="5" formControlName="message"
+                      [placeholder]="t.contact.form.message"
+                      [style.border]="errorFor('message') ? '1.5px solid #EF4444' : '1.5px solid #BBF7D0'"
+                      style="width:100%;padding:12px 16px;border-radius:12px;font-size:14px;
+                             color:#0F172A;background:#FAFFFE;outline:none;box-sizing:border-box;resize:vertical;"></textarea>
+            <span *ngIf="errorFor('message')" style="color:#EF4444;font-size:12px;">{{ errorFor('message') }}</span>
+          </div>
+
+          <button type="submit"
+                  style="width:100%;padding:14px;background:#00864B;color:#fff;border:none;
+                         border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;
+                         letter-spacing:.01em;transition:opacity .2s ease;"
+                  onmouseenter="this.style.opacity='0.88'"
+                  onmouseleave="this.style.opacity='1'">
+            {{ t.contact.form.submit }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section style="height:440px;width:100%;">
+    <iframe [src]="mapUrl"
+            width="100%" height="100%" style="border:0;"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            [title]="schoolInfo.name + ' Location'"></iframe>
+  </section>
+</div>

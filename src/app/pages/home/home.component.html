@@ -1,0 +1,445 @@
+<div>
+  <!-- ─── HERO: Parallax + Liquid morphism ─────────────────────────────────── -->
+  <section class="lg:h-screen"
+           style="min-height:100svh;position:relative;overflow:hidden;background:#060A14;">
+
+    <!-- Parallax background -->
+    <div [ngStyle]="parallaxStyle()"
+         style="position:absolute;inset:-60px;z-index:1;">
+      <img src="/assets/images/webp/imageherofinal.webp"
+           alt="" aria-hidden="true"
+           style="width:100%;height:calc(100% + 120px);object-fit:cover;object-position:center 35%;" />
+    </div>
+
+    <!-- Gradient overlays -->
+    <div style="position:absolute;inset:0;z-index:2;
+                background:linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 30%, transparent 60%);"></div>
+    <div style="position:absolute;inset:0;z-index:3;pointer-events:none;
+                background:linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 30%);"></div>
+    <div style="position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0.3;
+                background-image:radial-gradient(circle, rgba(0,217,126,0.1) 1px, transparent 1px);
+                background-size:32px 32px;"></div>
+
+    <!-- Content grid -->
+    <div class="relative z-10 flex items-start lg:absolute lg:inset-0 lg:items-center
+                px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-0 lg:pb-0">
+      <div class="max-w-7xl mx-auto w-full">
+        <div class="lg:w-1/2">
+          <div appReveal revealDirection="left">
+
+            <div style="display:inline-block;margin-bottom:20px;padding:6px 16px;
+                        border-radius:50px;background:rgba(0,217,126,0.15);
+                        border:1px solid rgba(0,217,126,0.3);color:#00D97E;font-size:11px;
+                        font-weight:700;letter-spacing:2px;text-transform:uppercase;">
+              EST. {{ schoolInfo.foundedYear }}
+            </div>
+
+            <h1 style="font-size:clamp(36px,5vw,64px);font-weight:900;color:#fff;
+                       line-height:1.1;letter-spacing:-1px;margin-bottom:20px;">
+              {{ t.hero.headline1 }}<br />
+              {{ t.hero.headline2 }}
+            </h1>
+
+            <p style="color:rgba(255,255,255,0.8);font-size:15px;line-height:1.7;
+                      margin-bottom:32px;max-width:450px;">
+              {{ t.hero.subtext }}
+            </p>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a routerLink="/admission"
+                 style="padding:14px 32px;border-radius:50px;
+                        background:linear-gradient(135deg,#00864B 0%,#00C070 100%);
+                        color:#fff;font-weight:700;font-size:14px;display:inline-flex;
+                        align-items:center;gap:8px;text-decoration:none;">
+                {{ t.hero.ctaPrimary }} →
+              </a>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;">
+              <div style="background:rgba(0,217,126,0.08);border:1px solid rgba(0,217,126,0.28);
+                          border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
+                <lucide-icon [img]="clipboard" size="15"
+                             [style.color]="'var(--accent)'" [style.flexShrink]="0"></lucide-icon>
+                <div>
+                  <div [style.color]="'var(--accent)'" style="font-size:11px;font-weight:700;line-height:1.2;">
+                    Pre Registration
+                  </div>
+                  <div style="color:rgba(255,255,255,0.55);font-size:10px;margin-top:2px;">
+                    Now Open
+                  </div>
+                </div>
+              </div>
+              <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.22);
+                          border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
+                <lucide-icon [img]="award" size="15" style="color:#F59E0B;flex-shrink:0;"></lucide-icon>
+                <div>
+                  <div style="color:#F59E0B;font-size:11px;font-weight:700;line-height:1.2;">
+                    Excellence Proven
+                  </div>
+                  <div style="color:rgba(255,255,255,0.55);font-size:10px;margin-top:2px;">
+                    Outstanding pass rate
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating stat cards (bottom right, desktop only) -->
+    <div class="hidden lg:flex flex-col"
+         style="position:absolute;bottom:100px;right:5%;z-index:20;gap:12px;max-width:260px;">
+      <div *ngFor="let stat of stats.slice(0, 3); let i = index"
+           appReveal [revealDelay]="i * 200"
+           style="background:rgba(255,255,255,0.10);
+                  backdrop-filter:blur(24px) saturate(1.8);
+                  -webkit-backdrop-filter:blur(24px) saturate(1.8);
+                  border:1px solid rgba(255,255,255,0.25);border-radius:16px;
+                  padding:18px 20px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:44px;height:44px;border-radius:12px;
+                      background:linear-gradient(135deg, rgba(0,217,126,0.2), rgba(0,192,112,0.3));
+                      border:1px solid rgba(0,217,126,0.4);display:flex;
+                      align-items:center;justify-content:center;flex-shrink:0;">
+            <lucide-icon [img]="stat.icon" size="18" style="color:#00D97E;"></lucide-icon>
+          </div>
+          <div>
+            <div style="font-size:28px;font-weight:900;color:#00D97E;line-height:1;
+                        font-variant-numeric:tabular-nums;">
+              {{ stat.value }}
+            </div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.8);font-weight:600;margin-top:3px;">
+              {{ stat.label }}
+            </div>
+            <div *ngIf="stat.desc"
+                 style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:4px;">
+              {{ stat.desc }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hidden sm:block"
+         [style.opacity]="scrollY > 100 ? 0 : 0.5"
+         style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+                z-index:20;text-align:center;
+                animation: scrollIndicator 2s ease-in-out infinite;
+                transition:opacity .3s ease;">
+      <div style="color:rgba(255,255,255,0.5);font-size:10px;letter-spacing:3px;margin-bottom:8px;">
+        SCROLL TO EXPLORE
+      </div>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+           stroke="rgba(255,255,255,0.5)" stroke-width="2">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ─── STATS ────────────────────────────────────────────────────────────── -->
+  <section style="background:#fff;padding:100px 0;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div style="text-align:center;margin-bottom:60px;">
+        <div style="display:inline-block;padding:6px 20px;border-radius:50px;
+                    background:#F0FDF4;border:1.5px solid #BBF7D0;color:#00864B;
+                    font-size:11px;font-weight:700;letter-spacing:3px;
+                    text-transform:uppercase;margin-bottom:20px;">
+          Our Impact
+        </div>
+        <h2 style="font-size:clamp(28px,4vw,48px);font-weight:800;color:#0F172A;
+                   letter-spacing:-0.5px;line-height:1.2;margin-bottom:16px;">
+          Numbers That Define <span style="color:#00864B;">Our Legacy</span>
+        </h2>
+        <p style="font-size:16px;color:#475569;line-height:1.7;max-width:600px;margin:0 auto;">
+          Trusted by hundreds of families. Quality education with proven results.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div *ngFor="let stat of stats"
+             style="background:#fff;border:1.5px solid #BBF7D0;border-radius:20px;
+                    padding:28px 22px;box-shadow:0 4px 16px rgba(0,134,75,0.07);
+                    text-align:center;">
+          <div style="width:52px;height:52px;border-radius:14px;background:#F0FDF4;
+                      border:1.5px solid #BBF7D0;display:flex;align-items:center;
+                      justify-content:center;margin:0 auto 18px;">
+            <lucide-icon [img]="stat.icon" size="22" style="color:#00864B;"></lucide-icon>
+          </div>
+          <div [appCountUp]="stat.value"
+               style="font-size:clamp(38px,4vw,52px);font-weight:900;color:#00864B;
+                      line-height:1;letter-spacing:-2px;margin-bottom:8px;
+                      font-variant-numeric:tabular-nums;">
+            {{ stat.value }}
+          </div>
+          <div style="font-size:14px;font-weight:700;color:#1E293B;margin-bottom:4px;">
+            {{ stat.label }}
+          </div>
+          <div style="font-size:11px;font-weight:500;color:#64748B;">
+            {{ stat.desc }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRINCIPAL'S MESSAGE ──────────────────────────────────────────────── -->
+  <section style="background:#fff;padding:88px 0;position:relative;overflow:hidden;">
+
+    <!-- Animated background layers -->
+    <div style="position:absolute;inset:0;z-index:0;pointer-events:none;
+                background-image:radial-gradient(circle, rgba(0,134,75,0.10) 1px, transparent 1px);
+                background-size:28px 28px;animation: driftDots 6s linear infinite;"></div>
+    <div style="position:absolute;top:-60px;left:-60px;width:380px;height:380px;
+                border-radius:50%;z-index:0;pointer-events:none;
+                background:radial-gradient(circle, rgba(0,168,95,0.10) 0%, transparent 70%);
+                animation: floatOrb 14s ease-in-out infinite;"></div>
+    <div style="position:absolute;bottom:-80px;right:-40px;width:320px;height:320px;
+                border-radius:50%;z-index:0;pointer-events:none;
+                background:radial-gradient(circle, rgba(0,134,75,0.09) 0%, transparent 70%);
+                animation: floatOrbB 18s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:40%;right:25%;width:180px;height:180px;
+                border-radius:50%;z-index:0;pointer-events:none;
+                background:radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 70%);
+                animation: floatOrb 10s ease-in-out infinite reverse;"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-8" style="position:relative;z-index:1;">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- LEFT: Image + accents -->
+        <div appReveal revealDirection="left" style="position:relative;">
+          <div style="position:absolute;top:24px;left:-24px;width:100%;height:100%;
+                      background:#F0FDF4;border:2px solid #BBF7D0;border-radius:24px;"></div>
+          <div style="position:relative;border-radius:20px;overflow:hidden;
+                      border:2px solid #BBF7D0;box-shadow:0 8px 32px rgba(0,134,75,0.10);
+                      aspect-ratio:4/5;">
+            <img src="/assets/images/webp/principal.webp"
+                 loading="lazy"
+                 alt="Students on campus"
+                 style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+            <div style="position:absolute;bottom:0;left:0;right:0;padding:32px 24px 24px;
+                        background:linear-gradient(to top, rgba(0,86,47,0.88) 0%, transparent 100%);">
+              <p style="color:#fff;font-size:15px;font-weight:600;font-style:italic;
+                        line-height:1.5;border-left:3px solid #4ADE80;padding-left:14px;">
+                "{{ t.leadership.quote }}"
+              </p>
+            </div>
+          </div>
+
+          <div appReveal [revealDelay]="400"
+               style="position:absolute;top:-16px;right:-16px;background:#00864B;
+                      border-radius:16px;padding:10px 18px;
+                      box-shadow:0 4px 16px rgba(0,134,75,0.30);z-index:10;">
+            <div style="color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;
+                        text-transform:uppercase;opacity:.8;">Established</div>
+            <div style="color:#fff;font-size:20px;font-weight:900;line-height:1;">
+              {{ schoolInfo.foundedYear }}
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Content -->
+        <div appReveal revealDirection="right" [revealDelay]="100">
+          <div style="display:inline-block;padding:5px 16px;border-radius:50px;
+                      background:#F0FDF4;border:1.5px solid #BBF7D0;color:#00864B;
+                      font-size:11px;font-weight:700;letter-spacing:3px;
+                      text-transform:uppercase;margin-bottom:20px;">
+            {{ t.leadership.sectionTag }}
+          </div>
+
+          <h2 style="font-size:clamp(28px,3.5vw,44px);font-weight:800;color:#0F172A;
+                     letter-spacing:-0.5px;line-height:1.2;margin-bottom:28px;">
+            {{ t.leadership.sectionTitle }}
+          </h2>
+
+          <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
+            <p *ngFor="let para of principalMessage.paragraphs"
+               style="color:#475569;font-size:15px;line-height:1.8;">
+              {{ para }}
+            </p>
+          </div>
+
+          <div style="height:1px;background:#E2E8F0;margin-bottom:28px;"></div>
+
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div style="width:64px;height:64px;border-radius:50%;overflow:hidden;
+                        flex-shrink:0;border:3px solid #BBF7D0;
+                        box-shadow:0 4px 14px rgba(0,134,75,0.20);">
+              <img src="/assets/images/webp/principal-avatar.webp" loading="lazy"
+                   [alt]="t.leadership.name"
+                   style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+            </div>
+            <div>
+              <div style="font-weight:700;color:#0F172A;font-size:15px;">
+                {{ t.leadership.name }}
+              </div>
+              <div style="font-size:12px;color:#00864B;font-weight:600;margin-top:2px;">
+                {{ t.leadership.role }}
+              </div>
+              <div style="font-size:11px;color:#64748B;margin-top:2px;">
+                {{ schoolInfo.name }}
+              </div>
+              <div style="display:flex;gap:10px;margin-top:8px;">
+                <a *ngFor="let s of principalSocials"
+                   [href]="s.href" [attr.aria-label]="s.label"
+                   style="width:28px;height:28px;border-radius:50%;background:#F0FDF4;
+                          border:1px solid #BBF7D0;display:flex;align-items:center;
+                          justify-content:center;color:#00864B;transition:all .2s;">
+                  <lucide-icon [img]="s.icon" size="13"></lucide-icon>
+                </a>
+              </div>
+            </div>
+            <div style="flex:1;height:2px;
+                        background:linear-gradient(to right, #BBF7D0, transparent);
+                        margin-left:8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXCELLENCE / WHY CHOOSE US ───────────────────────────────────────── -->
+  <section aria-labelledby="excellence-heading"
+           style="position:relative;overflow:hidden;padding:96px 0;
+                  background:linear-gradient(135deg, #059669 0%, #00864B 60%, #047857 100%);">
+
+    <div *ngFor="let f of floatingIcons; let i = index"
+         [style.left]="f.left" [style.top]="f.top"
+         [style.color]="'#ffffff'" [style.opacity]="0.12"
+         [style.animation]="f.anim + ' ' + f.dur + ' ease-in-out infinite ' + f.delay"
+         style="position:absolute;pointer-events:none;z-index:0;">
+      <lucide-icon [img]="f.icon" [size]="f.size" strokeWidth="1.2"></lucide-icon>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-8" style="position:relative;z-index:1;">
+
+      <div appReveal class="text-center mb-14">
+        <div style="display:inline-block;padding:6px 18px;border-radius:999px;
+                    background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);
+                    color:#fff;font-weight:700;font-size:11px;letter-spacing:3px;
+                    text-transform:uppercase;margin-bottom:20px;">
+          {{ t.excellence.sectionTag }}
+        </div>
+        <h2 id="excellence-heading"
+            style="font-size:clamp(30px,4vw,48px);font-weight:800;color:#fff;
+                   letter-spacing:-0.5px;line-height:1.2;margin-bottom:16px;">
+          {{ t.excellence.sectionTitle }}
+        </h2>
+        <p style="max-width:560px;margin:0 auto;color:rgba(255,255,255,0.80);
+                  font-size:16px;line-height:1.7;">
+          Results-driven education built for tomorrow's leaders.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div *ngFor="let f of features; let i = index"
+             appReveal [revealDelay]="i * 120"
+             class="hover:-translate-y-2 transition-transform duration-300"
+             style="background:#fff;border:2.5px solid rgba(255,255,255,0.6);
+                    border-radius:24px;padding:36px 32px;
+                    box-shadow:0 6px 0 rgba(0,0,0,0.12),0 16px 40px rgba(0,0,0,0.18);
+                    position:relative;overflow:hidden;cursor:default;">
+          <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;
+                      border-radius:50%;pointer-events:none;
+                      background:radial-gradient(circle, rgba(0,134,75,0.06) 0%, transparent 70%);"></div>
+
+          <div style="width:60px;height:60px;border-radius:18px;background:#F0FDF4;
+                      border:2px solid #BBF7D0;display:flex;align-items:center;
+                      justify-content:center;margin-bottom:20px;box-shadow:0 3px 0 #BBF7D0;
+                      color:#00864B;">
+            <lucide-icon [img]="f.icon" size="26" strokeWidth="1.8"></lucide-icon>
+          </div>
+
+          <div *ngIf="f.stat"
+               style="display:inline-block;background:#F0FDF4;border:1px solid #BBF7D0;
+                      border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;
+                      color:#00864B;letter-spacing:0.5px;margin-bottom:12px;">
+            {{ f.stat }}
+          </div>
+
+          <h3 style="font-weight:800;font-size:18px;color:#0F172A;
+                     margin-bottom:10px;line-height:1.3;">
+            {{ t.excellence.cards[i].title }}
+          </h3>
+          <p style="color:#475569;font-size:14px;line-height:1.75;">
+            {{ t.excellence.cards[i].desc }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA WITH IMAGE COLLAGE BG ────────────────────────────────────────── -->
+  <section style="position:relative;overflow:hidden;min-height:520px;
+                  display:flex;align-items:center;">
+
+    <div style="position:absolute;inset:0;display:grid;
+                grid-template-columns: 1.2fr 0.9fr 1.1fr;
+                grid-template-rows: 1fr 1fr;gap:3px;overflow:hidden;">
+      <div *ngFor="let c of collage"
+           style="overflow:hidden;position:relative;">
+        <img [src]="c.src" alt="" aria-hidden="true"
+             [style.objectPosition]="c.pos"
+             [style.animation]="c.anim + ' ' + c.dur + ' ease-in-out infinite ' + c.delay"
+             style="width:100%;height:100%;object-fit:cover;display:block;transform-origin:center center;" />
+        <div style="position:absolute;inset:0;background:rgba(8,12,24,0.42);"></div>
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 w-full"
+         style="position:relative;z-index:1;padding:80px 24px;">
+      <div appReveal
+           style="background:rgba(255,255,255,0.06);
+                  backdrop-filter:blur(20px) saturate(1.8) brightness(1.1);
+                  -webkit-backdrop-filter:blur(20px) saturate(1.8) brightness(1.1);
+                  border:1.5px solid rgba(255,255,255,0.18);border-radius:32px;
+                  padding:64px 72px;text-align:center;
+                  box-shadow:0 24px 80px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.14);">
+        <div style="display:inline-block;margin-bottom:24px;padding:6px 20px;
+                    border-radius:999px;background:rgba(255,255,255,0.15);
+                    border:1px solid rgba(255,255,255,0.30);color:#fff;
+                    font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;">
+          Admissions Open
+        </div>
+
+        <h2 style="font-size:clamp(28px,4vw,50px);font-weight:800;color:#fff;
+                   letter-spacing:-0.5px;line-height:1.15;margin-bottom:18px;">
+          {{ t.cta.title }}
+        </h2>
+
+        <p style="max-width:500px;margin:0 auto 36px;color:rgba(255,255,255,0.78);
+                  font-size:16px;line-height:1.75;">
+          {{ t.cta.subtitle }}
+        </p>
+
+        <div style="width:48px;height:2px;margin:0 auto 36px;
+                    background:linear-gradient(to right, transparent, rgba(255,255,255,0.45), transparent);"></div>
+
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a routerLink="/admission" style="text-decoration:none;">
+            <div class="hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+                 style="display:inline-flex;align-items:center;gap:8px;padding:14px 36px;
+                        border-radius:999px;background:#fff;color:#00864B;font-weight:700;
+                        font-size:15px;box-shadow:0 4px 24px rgba(0,0,0,0.25);cursor:pointer;">
+              {{ t.cta.primary }} <lucide-icon [img]="arrowRight" size="17"></lucide-icon>
+            </div>
+          </a>
+          <a routerLink="/about" style="text-decoration:none;">
+            <div class="hover:-translate-y-1 hover:scale-105 transition-all duration-300"
+                 style="display:inline-flex;align-items:center;gap:8px;padding:14px 36px;
+                        border-radius:999px;background:rgba(255,255,255,0.12);
+                        border:1.5px solid rgba(255,255,255,0.45);color:#fff;
+                        font-weight:700;font-size:15px;cursor:pointer;">
+              {{ t.cta.secondary }}
+            </div>
+          </a>
+        </div>
+
+        <p style="margin-top:32px;color:rgba(255,255,255,0.45);font-size:12px;letter-spacing:.8px;">
+          {{ schoolInfo.name }} · Est. {{ schoolInfo.foundedYear }}
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

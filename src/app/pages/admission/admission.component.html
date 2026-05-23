@@ -1,0 +1,111 @@
+<ng-container *ngIf="submitted; else applicationForm">
+  <div class="min-h-[80vh] flex items-center justify-center px-4">
+    <app-glass-card intensity="strong" extraClass="text-center max-w-md p-12">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg"
+           [style.backgroundColor]="'var(--accent)'">
+        <lucide-icon [img]="checkCircle" size="32" class="text-white"></lucide-icon>
+      </div>
+      <h2 class="text-3xl font-serif font-bold mb-3" [style.color]="'var(--text-primary)'">
+        {{ admissionSuccess.title }}
+      </h2>
+      <p class="text-sm mb-8 leading-relaxed" [style.color]="'var(--text-secondary)'">
+        {{ admissionSuccess.message }}
+      </p>
+      <a routerLink="/">
+        <app-glass-button variant="secondary">&larr; Return to Home</app-glass-button>
+      </a>
+    </app-glass-card>
+  </div>
+</ng-container>
+
+<ng-template #applicationForm>
+  <div>
+    <section class="py-24">
+      <div class="max-w-3xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <app-section-label>{{ t.admission.hero.tag }}</app-section-label>
+          <h1 class="text-4xl lg:text-5xl font-serif font-bold mb-3"
+              [style.color]="'var(--text-primary)'">{{ t.admission.hero.title }}</h1>
+          <p class="text-sm" [style.color]="'var(--text-muted)'">{{ t.admission.hero.subtitle }}</p>
+        </div>
+
+        <app-glass-card intensity="mid" extraClass="p-8 lg:p-12">
+          <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-10" novalidate>
+
+            <!-- Student Information -->
+            <fieldset class="space-y-5">
+              <legend class="text-sm font-bold uppercase tracking-widest pb-3 w-full"
+                      [style.color]="'var(--text-secondary)'"
+                      [style.borderBottom]="'1px solid var(--glass-border)'">
+                Student Information
+              </legend>
+
+              <div class="grid md:grid-cols-2 gap-5">
+                <app-glass-input label="Full Name" type="text" placeholder="Student's Full Name"
+                                 [required]="true" formControlName="fullName"></app-glass-input>
+                <app-glass-input label="Date of Birth" type="date"
+                                 [required]="true" formControlName="dob"></app-glass-input>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-5">
+                <app-glass-select label="Applying for Class"
+                                  [options]="classOptions"
+                                  [required]="true"
+                                  formControlName="classApplying"></app-glass-select>
+
+                <div class="space-y-1.5">
+                  <label class="text-xs font-bold uppercase tracking-widest" [style.color]="'var(--text-muted)'">
+                    Gender
+                  </label>
+                  <div class="flex gap-6 p-3.5 rounded-xl"
+                       [style.backgroundColor]="'var(--glass-bg)'"
+                       [style.border]="'1px solid var(--glass-border)'">
+                    <label *ngFor="let g of ['Male', 'Female', 'Other']"
+                           class="flex items-center gap-2 text-sm cursor-pointer"
+                           [style.color]="'var(--text-secondary)'">
+                      <input type="radio" formControlName="gender" [value]="g"
+                             [style.accentColor]="'var(--accent)'" />
+                      {{ g }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="class11Selected" class="space-y-5 pt-2">
+                <div style="height: 1px;" [style.background]="'var(--glass-border)'"></div>
+                <div class="grid md:grid-cols-2 gap-5">
+                  <app-glass-input label="SEE GPA" type="number"
+                                   min="0" max="4" step="0.01"
+                                   placeholder="e.g. 3.85"
+                                   [required]="true" formControlName="seeGpa"></app-glass-input>
+                  <app-glass-input label="Previous SEE Passed School" type="text"
+                                   placeholder="Name of school"
+                                   [required]="true" formControlName="previousSchool"></app-glass-input>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Parent / Guardian Information -->
+            <fieldset class="space-y-5">
+              <legend class="text-sm font-bold uppercase tracking-widest pb-3 w-full"
+                      [style.color]="'var(--text-secondary)'"
+                      [style.borderBottom]="'1px solid var(--glass-border)'">
+                Parent / Guardian Information
+              </legend>
+              <div class="grid md:grid-cols-2 gap-5">
+                <app-glass-input label="Parent / Guardian Name" type="text" placeholder="Full Name"
+                                 [required]="true" formControlName="parentName"></app-glass-input>
+                <app-glass-input label="Contact Number" type="tel" placeholder="+977 98XXXXXXXX"
+                                 [required]="true" formControlName="parentPhone"></app-glass-input>
+              </div>
+            </fieldset>
+
+            <app-glass-button variant="accent" size="lg" type="submit" extraClass="w-full">
+              Submit Application
+            </app-glass-button>
+          </form>
+        </app-glass-card>
+      </div>
+    </section>
+  </div>
+</ng-template>
