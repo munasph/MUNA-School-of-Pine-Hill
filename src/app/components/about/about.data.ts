@@ -1,5 +1,5 @@
 import { Globe, CheckCircle, Star } from 'lucide-angular';
-import type { VisionItem } from '../../lib/types';
+import type { VisionItem } from '../../models/about.model';
 
 export const ABOUT_HERO = {
   sectionLabel: 'About',

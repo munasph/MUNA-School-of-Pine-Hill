@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { ChevronLeft, ChevronRight, X, LucideIconData } from 'lucide-angular';
-import type { GalleryImage } from '../../lib/types';
+import type { GalleryImage } from '../../models/gallery.model';
 
 @Component({
   selector: 'app-lightbox',

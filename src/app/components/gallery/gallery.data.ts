@@ -1,5 +1,4 @@
-import type { GalleryImage } from '../../lib/types';
-import type { GalleryCategory } from '../../models/gallery.model';
+import type { GalleryImage, GalleryCategory } from '../../models/gallery.model';
 
 export const allImages: GalleryImage[] = [
   { id:  1, src: 'https://picsum.photos/seed/gal-1/900/600',  label: 'Photo label one',   category: 'Campus'    },

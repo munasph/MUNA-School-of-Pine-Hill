@@ -31,9 +31,8 @@ import { ScrollToTopComponent }        from './components/scroll-to-top/scroll-t
 import { ThemeToggleComponent }        from './components/theme-toggle/theme-toggle.component';
 import { LightboxComponent }           from './components/lightbox/lightbox.component';
 
-import { RevealOnScrollDirective }    from './directives/reveal-on-scroll.directive';
-import { CountUpDirective }           from './directives/count-up.directive';
-import { ParallaxScrollDirective }    from './directives/parallax-scroll.directive';
+import { RevealOnScrollDirective } from './directives/reveal-on-scroll.directive';
+import { CountUpDirective }        from './directives/count-up.directive';
 
 @NgModule({
   declarations: [
@@ -65,7 +64,6 @@ import { ParallaxScrollDirective }    from './directives/parallax-scroll.directi
 
     RevealOnScrollDirective,
     CountUpDirective,
-    ParallaxScrollDirective,
   ],
   imports: [
     BrowserModule,

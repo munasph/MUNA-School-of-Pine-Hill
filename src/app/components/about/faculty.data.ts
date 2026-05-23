@@ -1,4 +1,4 @@
-import type { FacultyMember } from '../../lib/types';
+import type { FacultyMember } from '../../models/about.model';
 
 export const keyFaculty: FacultyMember[] = [
   { name: 'Team Member One',   role: 'Role placeholder', expertise: 'Expertise placeholder', photo: 'https://picsum.photos/seed/team-1/400/400' },

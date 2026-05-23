@@ -2,7 +2,8 @@ import {
   GraduationCap, Users, CheckCircle,
   BookOpen, Globe, Trophy,
 } from 'lucide-angular';
-import type { StatItem, Feature, Testimonial, GalleryImage, NewsItem } from '../../lib/types';
+import type { Stat, Feature, Testimonial, NewsItem } from '../../models/home.model';
+import type { GalleryImage } from '../../models/gallery.model';
 
 export const HERO = {
   tagline:      'Tagline placeholder',
@@ -28,7 +29,7 @@ export const PRINCIPAL_MESSAGE = {
   quote: 'An inspirational quote about education can be placed here.',
 };
 
-export const stats: StatItem[] = [
+export const stats: Stat[] = [
   { label: 'Stat Label One',   value: '00+', icon: BookOpen,      desc: 'Short description' },
   { label: 'Stat Label Two',   value: '00+', icon: GraduationCap, desc: 'Short description' },
   { label: 'Stat Label Three', value: '000+', icon: Users,        desc: 'Short description' },

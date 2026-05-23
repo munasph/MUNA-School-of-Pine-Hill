@@ -2,7 +2,7 @@ import {
   GraduationCap, BookOpen, Microscope, Briefcase, Plane,
   Trophy, Award, Star, Medal,
 } from 'lucide-angular';
-import type { Course, Achievement, HigherSecondaryStream } from '../../lib/types';
+import type { Course, Achievement, HigherSecondaryStream } from '../../models/academic.model';
 
 export const courses: Course[] = [
   { title: 'Programme One', levels: 'Level placeholder', desc: 'Programme description placeholder.', icon: BookOpen },
