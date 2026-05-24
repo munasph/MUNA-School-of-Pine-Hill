@@ -44,14 +44,9 @@
   background-color: var(--glass-border);
 }
 
-.navbar-mobile__login {
+.navbar-mobile__auth-link {
   border-color: var(--glass-border-strong);
   color: var(--text-primary);
-}
-
-.navbar-mobile__signup {
-  border-color: #00864B;
-  color: #00864B;
 }
 
 .navbar-mobile__admission {

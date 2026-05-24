@@ -9,6 +9,8 @@ import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
+import { LoginComponent }     from './components/login/login.component';
+import { SignupComponent }    from './components/signup/signup.component';
 import { NotFoundComponent }  from './components/not-found/not-found.component';
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'admission', component: AdmissionComponent },
   { path: 'contact',   component: ContactComponent   },
   { path: 'gallery',   component: GalleryComponent   },
+  { path: 'login',     component: LoginComponent     },
+  { path: 'signup',    component: SignupComponent    },
   { path: 'privacy',   component: PrivacyComponent   },
   { path: 'terms',     component: TermsComponent     },
   { path: '**',        component: NotFoundComponent  },

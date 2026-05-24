@@ -1,0 +1,62 @@
+<ng-container *ngIf="submitted; else signupForm">
+  <div class="min-h-[80vh] flex items-center justify-center px-4">
+    <app-glass-card intensity="strong" extraClass="text-center max-w-md p-12">
+      <div class="success-icon">
+        <lucide-icon [img]="checkCircle" size="32" class="text-white"></lucide-icon>
+      </div>
+      <h2 class="text-3xl font-serif success-title">{{ t.signup.success.title }}</h2>
+      <p class="success-message leading-relaxed">{{ successMessage || t.signup.success.message }}</p>
+      <a routerLink="/login">
+        <app-glass-button variant="accent" extraClass="mt-2">Go to Log In</app-glass-button>
+      </a>
+    </app-glass-card>
+  </div>
+</ng-container>
+
+<ng-template #signupForm>
+  <div>
+    <section class="py-24">
+      <div class="max-w-md mx-auto px-4">
+        <div class="text-center mb-12">
+          <app-section-label>{{ t.signup.hero.tag }}</app-section-label>
+          <h1 class="text-4xl lg:text-5xl font-serif form-title">{{ t.signup.hero.title }}</h1>
+          <p class="form-subtitle">{{ t.signup.hero.subtitle }}</p>
+        </div>
+
+        <app-glass-card intensity="mid" extraClass="p-8 lg:p-10">
+          <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6" novalidate>
+            <app-glass-input [label]="t.signup.form.fullName" type="text"
+                             placeholder="Full name"
+                             [required]="true" formControlName="fullName"
+                             [error]="errorFor('fullName') ?? undefined"></app-glass-input>
+
+            <app-glass-input [label]="t.signup.form.email" type="email"
+                             placeholder="you@example.com"
+                             [required]="true" formControlName="email"
+                             [error]="errorFor('email') ?? undefined"></app-glass-input>
+
+            <app-glass-input [label]="t.signup.form.password" type="password"
+                             placeholder="At least 8 characters"
+                             [required]="true" formControlName="password"
+                             [error]="errorFor('password') ?? undefined"></app-glass-input>
+
+            <app-glass-input [label]="t.signup.form.confirmPassword" type="password"
+                             placeholder="Re-enter your password"
+                             [required]="true" formControlName="confirmPassword"
+                             [error]="errorFor('confirmPassword') ?? undefined"></app-glass-input>
+
+            <app-glass-button variant="accent" size="lg" type="submit"
+                              extraClass="w-full" [disabled]="submitting">
+              {{ t.signup.form.submit }}
+            </app-glass-button>
+          </form>
+
+          <p class="auth-switch">
+            {{ t.signup.form.hasAccount }}
+            <a routerLink="/login" class="auth-switch__link">{{ t.signup.form.login }}</a>
+          </p>
+        </app-glass-card>
+      </div>
+    </section>
+  </div>
+</ng-template>

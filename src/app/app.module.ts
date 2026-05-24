@@ -15,6 +15,8 @@ import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
+import { LoginComponent }     from './components/login/login.component';
+import { SignupComponent }    from './components/signup/signup.component';
 import { NotFoundComponent }  from './components/not-found/not-found.component';
 
 import { NavbarComponent }            from './components/navbar/navbar.component';
@@ -46,6 +48,8 @@ import { CountUpDirective }        from './directives/count-up.directive';
     GalleryComponent,
     PrivacyComponent,
     TermsComponent,
+    LoginComponent,
+    SignupComponent,
     NotFoundComponent,
 
     NavbarComponent,

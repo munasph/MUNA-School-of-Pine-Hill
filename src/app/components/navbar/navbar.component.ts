@@ -4,7 +4,13 @@ import { Subscription, filter } from 'rxjs';
 import { Menu, X, LucideIconData } from 'lucide-angular';
 import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
 
-const LIGHT_SURFACE_ROUTES = ['/admission', '/privacy', '/terms'];
+const LIGHT_SURFACE_ROUTES = ['/admission', '/login', '/signup', '/privacy', '/terms'];
+
+/** Auth pill links shown in the right-side navbar group. */
+const AUTH_NAV_LINKS = [
+  { path: '/login',  label: 'Log in'  },
+  { path: '/signup', label: 'Sign up' },
+] as const;
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +19,7 @@ const LIGHT_SURFACE_ROUTES = ['/admission', '/privacy', '/terms'];
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   readonly navLinks   = NAV_LINKS;
+  readonly authLinks  = AUTH_NAV_LINKS;
   readonly schoolInfo = SCHOOL_INFO;
   readonly t          = NAV_COPY;
   readonly menuIcon:  LucideIconData = Menu;

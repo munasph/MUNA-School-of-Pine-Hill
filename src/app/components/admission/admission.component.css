@@ -69,6 +69,14 @@
 }
 .radio-option input { accent-color: var(--accent); }
 
+.field-error {
+  color: #f87171;
+  font-size: .75rem;
+}
+.radio-group--error {
+  border-color: #f87171;
+}
+
 /* ---------- Class-11 conditional block ---------- */
 .class-11-divider {
   height: 1px;

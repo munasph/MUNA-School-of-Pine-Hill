@@ -36,25 +36,30 @@
 
               <div class="grid md:grid-cols-2 gap-5">
                 <app-glass-input label="Full Name" type="text" placeholder="Student's Full Name"
-                                 [required]="true" formControlName="fullName"></app-glass-input>
+                                 [required]="true" formControlName="fullName"
+                                 [error]="errorFor('fullName') ?? undefined"></app-glass-input>
                 <app-glass-input label="Date of Birth" type="date"
-                                 [required]="true" formControlName="dob"></app-glass-input>
+                                 [required]="true" formControlName="dob"
+                                 [error]="errorFor('dob') ?? undefined"></app-glass-input>
               </div>
 
               <div class="grid md:grid-cols-2 gap-5">
                 <app-glass-select label="Applying for Class"
                                   [options]="classOptions"
                                   [required]="true"
-                                  formControlName="classApplying"></app-glass-select>
+                                  formControlName="classApplying"
+                                  [error]="errorFor('classApplying') ?? undefined"></app-glass-select>
 
                 <div class="space-y-1.5">
                   <label class="radio-label">Gender</label>
-                  <div class="radio-group">
+                  <div class="radio-group"
+                       [class.radio-group--error]="!!errorFor('gender')">
                     <label *ngFor="let g of ['Male', 'Female', 'Other']" class="radio-option">
                       <input type="radio" formControlName="gender" [value]="g" />
                       {{ g }}
                     </label>
                   </div>
+                  <span *ngIf="errorFor('gender')" class="field-error">{{ errorFor('gender') }}</span>
                 </div>
               </div>
 
@@ -65,9 +70,11 @@
               <legend class="fieldset-legend">Parent / Guardian Information</legend>
               <div class="grid md:grid-cols-2 gap-5">
                 <app-glass-input label="Parent / Guardian Name" type="text" placeholder="Full Name"
-                                 [required]="true" formControlName="parentName"></app-glass-input>
+                                 [required]="true" formControlName="parentName"
+                                 [error]="errorFor('parentName') ?? undefined"></app-glass-input>
                 <app-glass-input label="Contact Number" type="tel" placeholder="Phone number"
-                                 [required]="true" formControlName="parentPhone"></app-glass-input>
+                                 [required]="true" formControlName="parentPhone"
+                                 [error]="errorFor('parentPhone') ?? undefined"></app-glass-input>
               </div>
             </fieldset>
 

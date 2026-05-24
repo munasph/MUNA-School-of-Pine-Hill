@@ -9,6 +9,10 @@ import type {
 import { AdmissionService } from '../../services/admission.service';
 import { ADMISSION_COPY } from './admission.data';
 import { SeoService } from '../../services/seo.service';
+import { fieldError } from '../../utils/form-validation';
+
+type AdmissionField =
+  | 'fullName' | 'dob' | 'classApplying' | 'gender' | 'parentName' | 'parentPhone';
 
 @Component({
   selector: 'app-admission-page',
@@ -49,17 +53,36 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     });
 
     this.form = this.fb.group({
-      fullName:        ['', [Validators.required]],
-      dob:             ['', [Validators.required]],
-      classApplying:   ['', [Validators.required]],
-      gender:          ['', [Validators.required]],
-      parentName:      ['', [Validators.required]],
-      parentPhone:     ['', [Validators.required]],
+      fullName:      ['', [Validators.required]],
+      dob:           ['', [Validators.required]],
+      classApplying: ['', [Validators.required]],
+      gender:        ['', [Validators.required]],
+      parentName:    ['', [Validators.required]],
+      parentPhone:   ['', [Validators.required, Validators.minLength(7)]],
     });
   }
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+  }
+
+  errorFor(field: AdmissionField): string | null {
+    const labels: Record<AdmissionField, string> = {
+      fullName:      'Full name',
+      dob:           'Date of birth',
+      classApplying: 'Class',
+      gender:        'Gender',
+      parentName:    'Parent / guardian name',
+      parentPhone:   'Contact number',
+    };
+
+    if (field === 'parentPhone') {
+      return fieldError(this.form.get(field), labels[field], {
+        minlength: 'Enter a valid phone number',
+      });
+    }
+
+    return fieldError(this.form.get(field), labels[field]);
   }
 
   submit(): void {

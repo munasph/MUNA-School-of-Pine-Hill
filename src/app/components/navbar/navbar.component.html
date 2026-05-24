@@ -51,26 +51,17 @@
              [style.background]="pillBackground()"
              [style.border]="pillBorder()"
              [style.boxShadow]="pillShadow()">
-          <button type="button"
-                  class="liquid-nav-link"
-                  [style.color]="linkColor(false)">
+          <a *ngFor="let link of authLinks"
+             [routerLink]="link.path"
+             class="liquid-nav-link"
+             [style.color]="linkColor(isActive(link.path))">
             <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
                         transition-all duration-300 relative cursor-pointer
                         hover:scale-[1.05] active:scale-[0.98]"
-                 [style.background]="linkBackground(false)">
-              Log in
+                 [style.background]="linkBackground(isActive(link.path))">
+              {{ link.label }}
             </div>
-          </button>
-          <button type="button"
-                  class="liquid-nav-link"
-                  [style.color]="linkColor(false)">
-            <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
-                        transition-all duration-300 relative cursor-pointer
-                        hover:scale-[1.05] active:scale-[0.98]"
-                 [style.background]="linkBackground(false)">
-              Sign up
-            </div>
-          </button>
+          </a>
         </div>
 
         <a routerLink="/admission"
@@ -109,16 +100,13 @@
       <div class="my-2 h-px navbar-mobile__divider"></div>
 
       <div class="grid grid-cols-2 gap-2">
-        <button type="button"
-                (click)="isOpen = false"
-                class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer border-2 transition-colors navbar-mobile__login">
-          Log in
-        </button>
-        <button type="button"
-                (click)="isOpen = false"
-                class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer border-2 transition-colors navbar-mobile__signup">
-          Sign up
-        </button>
+        <a *ngFor="let link of authLinks"
+           [routerLink]="link.path"
+           (click)="isOpen = false"
+           class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer border-2 transition-colors"
+           [ngClass]="isActive(link.path) ? 'navbar-mobile__link--active' : 'navbar-mobile__auth-link'">
+          {{ link.label }}
+        </a>
       </div>
 
       <a routerLink="/admission"
