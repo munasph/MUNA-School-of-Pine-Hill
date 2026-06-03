@@ -1,0 +1,119 @@
+<div class="admin-page">
+  <a routerLink="/admin/announcements" class="admin-back-link">
+    <lucide-icon [img]="arrowLeft" size="16"></lucide-icon>
+    Back to announcements
+  </a>
+
+  <div *ngIf="loading" class="admin-table__loading">Loading announcement…</div>
+
+  <ng-container *ngIf="!loading && announcement">
+    <header class="admin-page__header">
+      <div>
+        <p class="admin-page__eyebrow">Announcement review</p>
+        <h2 class="admin-page__title">
+          <span *ngIf="announcement.emoji" class="announcement-emoji">{{ announcement.emoji }}</span>
+          {{ announcement.title }}
+        </h2>
+        <p class="admin-page__subtitle">
+          <span class="admin-badge"
+                [class.admin-badge--active]="announcement.active"
+                [class.admin-badge--inactive]="!announcement.active">
+            {{ announcement.active ? 'Active on site' : 'Hidden from site' }}
+          </span>
+        </p>
+      </div>
+
+      <div class="admin-page__actions" *ngIf="!editing">
+        <button type="button" class="admin-btn admin-btn--ghost" (click)="startEditing()">
+          <lucide-icon [img]="pencilIcon" size="16"></lucide-icon>
+          Edit
+        </button>
+        <button type="button" class="admin-btn admin-btn--danger" (click)="deleteAnnouncement()">
+          <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+          Delete
+        </button>
+      </div>
+    </header>
+
+    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+    <p *ngIf="successMessage" class="admin-alert admin-alert--success">{{ successMessage }}</p>
+
+    <ng-container *ngIf="!editing; else editForm">
+      <div class="admin-detail-grid">
+        <section class="admin-detail-card admin-detail-card--full">
+          <h3 class="admin-detail-card__title">Content</h3>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Title</span>
+            <span class="admin-detail-field__value">{{ announcement.title }}</span>
+          </div>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Subtitle</span>
+            <span class="admin-detail-field__value">{{ announcement.subtitle || '—' }}</span>
+          </div>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Button label</span>
+            <span class="admin-detail-field__value">{{ announcement.cta || '—' }}</span>
+          </div>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Link</span>
+            <span class="admin-detail-field__value">{{ announcement.href || '—' }}</span>
+          </div>
+        </section>
+
+        <section class="admin-detail-card">
+          <h3 class="admin-detail-card__title">Metadata</h3>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Created</span>
+            <span class="admin-detail-field__value">{{ formatDate(announcement.createdAt) }}</span>
+          </div>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Last updated</span>
+            <span class="admin-detail-field__value">{{ formatDate(announcement.updatedAt) }}</span>
+          </div>
+        </section>
+      </div>
+    </ng-container>
+
+    <ng-template #editForm>
+      <section class="admin-detail-card admin-detail-card--full">
+        <h3 class="admin-detail-card__title">Edit announcement</h3>
+        <form [formGroup]="form" (ngSubmit)="saveChanges()" class="admin-form">
+          <label class="admin-field">
+            <span class="admin-field__label">Emoji</span>
+            <input class="admin-field__input" type="text" formControlName="emoji" maxlength="4" />
+          </label>
+          <label class="admin-field">
+            <span class="admin-field__label">Title *</span>
+            <input class="admin-field__input" type="text" formControlName="title" />
+          </label>
+          <label class="admin-field">
+            <span class="admin-field__label">Subtitle</span>
+            <input class="admin-field__input" type="text" formControlName="subtitle" />
+          </label>
+          <label class="admin-field">
+            <span class="admin-field__label">Button label (CTA)</span>
+            <input class="admin-field__input" type="text" formControlName="cta" />
+          </label>
+          <label class="admin-field">
+            <span class="admin-field__label">Link (href)</span>
+            <input class="admin-field__input" type="text" formControlName="href" />
+          </label>
+          <label class="admin-field admin-field--checkbox">
+            <input type="checkbox" formControlName="active" />
+            <span class="admin-field__label">Show on public site</span>
+          </label>
+          <div class="admin-page__actions">
+            <button type="submit" class="admin-btn admin-btn--accent" [disabled]="saving">
+              {{ saving ? 'Saving…' : 'Save changes' }}
+            </button>
+            <button type="button" class="admin-btn admin-btn--ghost" (click)="cancelEditing()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </section>
+    </ng-template>
+  </ng-container>
+
+  <p *ngIf="!loading && error && !announcement" class="admin-alert admin-alert--error">{{ error }}</p>
+</div>

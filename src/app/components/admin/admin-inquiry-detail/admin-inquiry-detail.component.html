@@ -1,0 +1,70 @@
+<div class="admin-page">
+  <a routerLink="/admin/inquiries" class="admin-back-link">
+    <lucide-icon [img]="arrowLeft" size="16"></lucide-icon>
+    Back to inbox
+  </a>
+
+  <div *ngIf="loading" class="admin-table__loading">Loading inquiry…</div>
+
+  <ng-container *ngIf="!loading && inquiry">
+    <header class="admin-page__header">
+      <div>
+        <p class="admin-page__eyebrow">Inquiry review</p>
+        <h2 class="admin-page__title">{{ inquiry.subject }}</h2>
+        <p class="admin-page__subtitle admin-table__mono">{{ inquiry.messageId }}</p>
+      </div>
+
+      <div class="admin-page__actions">
+        <button type="button" class="admin-btn admin-btn--danger" (click)="deleteInquiry()">
+          <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+          Delete
+        </button>
+      </div>
+    </header>
+
+    <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+    <p *ngIf="successMessage" class="admin-alert admin-alert--success">{{ successMessage }}</p>
+
+    <div class="admin-detail-grid">
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Sender</h3>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Name</span>
+          <span class="admin-detail-field__value">{{ inquiry.name }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Email</span>
+          <span class="admin-detail-field__value">
+            <a [href]="'mailto:' + inquiry.email">{{ inquiry.email }}</a>
+          </span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Submitted</span>
+          <span class="admin-detail-field__value">{{ formatDate(inquiry.submittedAt) }}</span>
+        </div>
+      </section>
+
+      <section class="admin-detail-card admin-detail-card--full">
+        <h3 class="admin-detail-card__title">Message</h3>
+        <p class="admin-inquiry-message">{{ inquiry.message }}</p>
+
+        <form [formGroup]="statusForm" (ngSubmit)="saveStatus()" class="admin-form" style="margin-top: 1rem;">
+          <label class="admin-field">
+            <span class="admin-field__label">Status</span>
+            <select class="admin-field__input" formControlName="status">
+              <option *ngFor="let status of statuses" [ngValue]="status">
+                {{ statusLabels[status] }}
+              </option>
+            </select>
+          </label>
+          <button type="submit" class="admin-btn admin-btn--accent" [disabled]="saving">
+            {{ saving ? 'Saving…' : 'Save status' }}
+          </button>
+        </form>
+      </section>
+    </div>
+  </ng-container>
+
+  <p *ngIf="!loading && error && !inquiry" class="admin-alert admin-alert--error">{{ error }}</p>
+</div>

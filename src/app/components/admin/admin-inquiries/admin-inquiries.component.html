@@ -1,0 +1,84 @@
+<div class="admin-page">
+  <header class="admin-page__header">
+    <div>
+      <p class="admin-page__eyebrow">Contact</p>
+      <h2 class="admin-page__title">Inquiry inbox</h2>
+      <p class="admin-page__subtitle">Messages submitted through the public contact form.</p>
+    </div>
+
+    <div class="admin-page__actions">
+      <label class="admin-filter">
+        <span>Status</span>
+        <select [value]="statusFilter" (change)="onFilterChange($any($event.target).value)">
+          <option value="">All</option>
+          <option *ngFor="let status of statuses" [value]="status">
+            {{ statusLabels[status] }}
+          </option>
+        </select>
+      </label>
+
+      <button type="button" class="admin-btn admin-btn--ghost" (click)="loadAll()" [disabled]="loading">
+        <lucide-icon [img]="refreshIcon" size="16"></lucide-icon>
+        Refresh
+      </button>
+    </div>
+  </header>
+
+  <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+  <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+
+  <div class="admin-table-wrap">
+    <div *ngIf="loading" class="admin-table__loading">Loading inquiries…</div>
+
+    <table *ngIf="!loading && !error" class="admin-table">
+      <thead>
+        <tr>
+          <th>Message ID</th>
+          <th>From</th>
+          <th>Email</th>
+          <th>Subject</th>
+          <th>Status</th>
+          <th>Submitted</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="inquiries.length === 0">
+          <td colspan="7" class="admin-table__empty">No inquiries found.</td>
+        </tr>
+        <tr *ngFor="let inquiry of inquiries"
+            class="admin-table__row--clickable"
+            (click)="openInquiry(inquiry.id)">
+          <td class="admin-table__mono">{{ inquiry.messageId }}</td>
+          <td>{{ inquiry.name }}</td>
+          <td>{{ inquiry.email }}</td>
+          <td>{{ inquiry.subject }}</td>
+          <td (click)="$event.stopPropagation()">
+            <select class="admin-status-select"
+                    [ngModel]="inquiry.status"
+                    (ngModelChange)="onStatusChange(inquiry, $event)">
+              <option *ngFor="let status of statuses" [ngValue]="status">
+                {{ statusLabels[status] }}
+              </option>
+            </select>
+          </td>
+          <td>{{ formatDate(inquiry.submittedAt) }}</td>
+          <td (click)="$event.stopPropagation()">
+            <button type="button"
+                    class="admin-icon-btn"
+                    title="View inquiry"
+                    (click)="openInquiry(inquiry.id)">
+              <lucide-icon [img]="eyeIcon" size="16"></lucide-icon>
+            </button>
+            <button type="button"
+                    class="admin-icon-btn"
+                    title="Delete inquiry"
+                    (click)="deleteInquiry(inquiry, $event)">
+              <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -28,7 +28,21 @@
         </div>
 
         <app-glass-card intensity="mid" extraClass="p-8 lg:p-12">
-          <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-10" novalidate>
+          <div *ngIf="settingsLoading" class="text-center form-subtitle">Loading…</div>
+
+          <div *ngIf="!settingsLoading && !admissionsOpen" class="text-center space-y-4">
+            <h2 class="text-2xl font-serif form-title">Applications currently closed</h2>
+            <p class="form-subtitle">
+              We are not accepting new admission applications at this time.
+              Please check back later or contact the school office for more information.
+            </p>
+            <a routerLink="/contact">
+              <app-glass-button variant="secondary">Contact us</app-glass-button>
+            </a>
+          </div>
+
+          <form *ngIf="!settingsLoading && admissionsOpen"
+                [formGroup]="form" (ngSubmit)="submit()" class="space-y-10" novalidate>
 
             <!-- Student Information -->
             <fieldset class="space-y-5">
@@ -78,8 +92,10 @@
               </div>
             </fieldset>
 
-            <app-glass-button variant="accent" size="lg" type="submit" extraClass="w-full">
-              Submit Application
+            <p *ngIf="submitError" class="field-error text-center mb-4">{{ submitError }}</p>
+
+            <app-glass-button variant="accent" size="lg" type="submit" extraClass="w-full" [disabled]="submitting">
+              {{ submitting ? 'Submitting…' : 'Submit Application' }}
             </app-glass-button>
           </form>
         </app-glass-card>

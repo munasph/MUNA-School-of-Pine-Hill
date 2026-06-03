@@ -50,6 +50,10 @@
       <!-- RIGHT: Contact Form -->
       <div appReveal class="contact-form-panel">
 
+        <div *ngIf="submitError" class="contact-field__error contact-field__error--banner">
+          {{ submitError }}
+        </div>
+
         <div *ngIf="submitted" class="contact-success">
           <lucide-icon [img]="checkCircle" size="18"></lucide-icon>
           Your message has been sent successfully!
@@ -94,8 +98,8 @@
             <span *ngIf="errorFor('message')" class="contact-field__error">{{ errorFor('message') }}</span>
           </div>
 
-          <button type="submit" class="contact-submit">
-            {{ t.contact.form.submit }}
+          <button type="submit" class="contact-submit" [disabled]="submitting">
+            {{ submitting ? 'Sending…' : t.contact.form.submit }}
           </button>
         </form>
       </div>

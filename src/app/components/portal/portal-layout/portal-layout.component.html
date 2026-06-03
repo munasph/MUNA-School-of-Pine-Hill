@@ -1,0 +1,45 @@
+<div class="portal-shell">
+  <aside class="portal-sidebar">
+    <div class="portal-sidebar__brand">
+      <p class="portal-sidebar__eyebrow">Family portal</p>
+      <h1 class="portal-sidebar__title">My school</h1>
+      <p class="portal-sidebar__user">{{ session?.fullName }}</p>
+      <p class="portal-sidebar__role">{{ session?.role === 'STUDENT' ? 'Student' : 'Parent' }}</p>
+    </div>
+
+    <nav class="portal-sidebar__nav">
+      <a routerLink="/portal"
+         routerLinkActive="portal-sidebar__link--active"
+         [routerLinkActiveOptions]="{ exact: true }"
+         class="portal-sidebar__link">
+        <lucide-icon [img]="dashboard" size="18"></lucide-icon>
+        Dashboard
+      </a>
+      <span class="portal-sidebar__link portal-sidebar__link--disabled" title="Coming soon">
+        <lucide-icon [img]="grades" size="18"></lucide-icon>
+        Grades
+        <span class="portal-sidebar__badge">Soon</span>
+      </span>
+      <span class="portal-sidebar__link portal-sidebar__link--disabled" title="Coming soon">
+        <lucide-icon [img]="messages" size="18"></lucide-icon>
+        Messages
+        <span class="portal-sidebar__badge">Soon</span>
+      </span>
+    </nav>
+
+    <div class="portal-sidebar__footer">
+      <a routerLink="/" class="portal-sidebar__website">
+        <lucide-icon [img]="externalLink" size="18"></lucide-icon>
+        View website
+      </a>
+      <button type="button" class="portal-sidebar__logout" (click)="logout()">
+        <lucide-icon [img]="logOut" size="18"></lucide-icon>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+  <div class="portal-main">
+    <router-outlet></router-outlet>
+  </div>
+</div>

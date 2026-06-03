@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CheckCircle, LucideIconData } from 'lucide-angular';
@@ -7,6 +8,7 @@ import type {
   ClassOption, AdmissionApplication, AdmissionSuccessMessage,
 } from '../../models/admission.model';
 import { AdmissionService } from '../../services/admission.service';
+import { SiteSettingsService } from '../../services/site-settings.service';
 import { ADMISSION_COPY } from './admission.data';
 import { SeoService } from '../../services/seo.service';
 import { fieldError } from '../../utils/form-validation';
@@ -25,16 +27,20 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   readonly t = ADMISSION_COPY;
 
   classOptions: ClassOption[] = [];
+  admissionsOpen = true;
+  settingsLoading = true;
 
   form!: FormGroup;
   submitted = false;
   submitting = false;
+  submitError: string | null = null;
 
   private subs = new Subscription();
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly admissionService: AdmissionService,
+    private readonly siteSettingsService: SiteSettingsService,
     private readonly seo: SeoService,
   ) {}
 
@@ -44,6 +50,18 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     );
     this.subs.add(
       this.admissionService.getSuccessMessage().subscribe((m) => (this.admissionSuccess = m)),
+    );
+    this.subs.add(
+      this.siteSettingsService.getSettings().subscribe({
+        next: (settings) => {
+          this.admissionsOpen = settings.admissionsOpen;
+          this.settingsLoading = false;
+        },
+        error: () => {
+          this.admissionsOpen = true;
+          this.settingsLoading = false;
+        },
+      }),
     );
 
     this.seo.update({
@@ -86,12 +104,15 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   }
 
   submit(): void {
+    if (!this.admissionsOpen) return;
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
     this.submitting = true;
+    this.submitError = null;
     const payload = this.form.value as AdmissionApplication;
 
     this.subs.add(
@@ -100,8 +121,9 @@ export class AdmissionComponent implements OnInit, OnDestroy {
           this.submitted = true;
           this.submitting = false;
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
           this.submitting = false;
+          this.submitError = err.error?.message ?? 'Could not submit application. Please try again.';
         },
       }),
     );

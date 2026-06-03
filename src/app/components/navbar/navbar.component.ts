@@ -3,14 +3,11 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { Menu, X, LucideIconData } from 'lucide-angular';
 import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
+import { AuthService } from '../../services/auth.service';
+import { PortalAuthService } from '../../services/portal-auth.service';
 
-const LIGHT_SURFACE_ROUTES = ['/admission', '/login', '/signup', '/privacy', '/terms'];
-
-/** Auth pill links shown in the right-side navbar group. */
-const AUTH_NAV_LINKS = [
-  { path: '/login',  label: 'Log in'  },
-  { path: '/signup', label: 'Sign up' },
-] as const;
+const LIGHT_SURFACE_ROUTES = ['/admission', '/login', '/signup', '/portal/login', '/portal/signup', '/privacy', '/terms'];
+const ADMIN_HOME = '/admin';
 
 @Component({
   selector: 'app-navbar',
@@ -19,8 +16,8 @@ const AUTH_NAV_LINKS = [
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   readonly navLinks   = NAV_LINKS;
-  readonly authLinks  = AUTH_NAV_LINKS;
   readonly schoolInfo = SCHOOL_INFO;
+  authNavLinks: { path: string; label: string }[] = [];
   readonly t          = NAV_COPY;
   readonly menuIcon:  LucideIconData = Menu;
   readonly closeIcon: LucideIconData = X;
@@ -31,18 +28,44 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   private subs = new Subscription();
 
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly auth: AuthService,
+    private readonly portalAuth: PortalAuthService,
+  ) {}
 
   ngOnInit(): void {
     this.currentPath = this.router.url.split('?')[0].split('#')[0] || '/';
+    this.updateAuthNavLinks();
+    this.subs.add(this.auth.session$.subscribe(() => this.updateAuthNavLinks()));
+    this.subs.add(this.portalAuth.session$.subscribe(() => this.updateAuthNavLinks()));
     this.subs.add(
       this.router.events
         .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
         .subscribe((e) => {
           this.currentPath = (e.urlAfterRedirects || e.url).split('?')[0].split('#')[0] || '/';
           this.isOpen = false;
+          this.updateAuthNavLinks();
         }),
     );
+  }
+
+  private updateAuthNavLinks(): void {
+    const links: { path: string; label: string }[] = [];
+
+    if (this.portalAuth.isAuthenticated()) {
+      links.push({ path: '/portal', label: 'My portal' });
+    } else {
+      links.push({ path: '/portal/login', label: 'Family portal' });
+    }
+
+    if (this.auth.isAuthenticated() && this.auth.isAdmin()) {
+      links.push({ path: ADMIN_HOME, label: 'Admin' });
+    } else {
+      links.push({ path: '/login', label: 'Staff login' });
+    }
+
+    this.authNavLinks = links;
   }
 
   ngOnDestroy(): void {

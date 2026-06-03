@@ -1,0 +1,93 @@
+<div class="admin-page">
+  <a routerLink="/admin/admissions" class="admin-back-link">
+    <lucide-icon [img]="arrowLeft" size="16"></lucide-icon>
+    Back to applications
+  </a>
+
+  <div *ngIf="loading" class="admin-table__loading">Loading application…</div>
+
+  <ng-container *ngIf="!loading && application">
+    <header class="admin-page__header">
+      <div>
+        <p class="admin-page__eyebrow">Application review</p>
+        <h2 class="admin-page__title">{{ application.fullName }}</h2>
+        <p class="admin-page__subtitle admin-table__mono">{{ application.applicationId }}</p>
+      </div>
+
+      <div class="admin-page__actions">
+        <button type="button" class="admin-btn admin-btn--danger" (click)="deleteApplication()">
+          <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+          Delete
+        </button>
+      </div>
+    </header>
+
+    <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+    <p *ngIf="successMessage" class="admin-alert admin-alert--success">{{ successMessage }}</p>
+
+    <div class="admin-detail-grid">
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Student information</h3>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Full name</span>
+          <span class="admin-detail-field__value">{{ application.fullName }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Date of birth</span>
+          <span class="admin-detail-field__value">{{ application.dob }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Class applying for</span>
+          <span class="admin-detail-field__value">{{ application.classApplying }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Gender</span>
+          <span class="admin-detail-field__value">{{ application.gender }}</span>
+        </div>
+      </section>
+
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Parent / guardian</h3>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Name</span>
+          <span class="admin-detail-field__value">{{ application.parentName }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Phone</span>
+          <span class="admin-detail-field__value">{{ application.parentPhone }}</span>
+        </div>
+      </section>
+
+      <section class="admin-detail-card admin-detail-card--full">
+        <h3 class="admin-detail-card__title">Submission details</h3>
+        <div class="admin-detail-grid">
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Current status</span>
+            <span class="admin-detail-field__value">{{ statusLabels[application.status] }}</span>
+          </div>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Submitted</span>
+            <span class="admin-detail-field__value">{{ formatDate(application.submittedAt) }}</span>
+          </div>
+        </div>
+
+        <form [formGroup]="statusForm" (ngSubmit)="saveStatus()" class="admin-form" style="margin-top: 1rem;">
+          <label class="admin-field">
+            <span class="admin-field__label">Update status</span>
+            <select class="admin-field__input" formControlName="status">
+              <option *ngFor="let status of statuses" [ngValue]="status">
+                {{ statusLabels[status] }}
+              </option>
+            </select>
+          </label>
+          <button type="submit" class="admin-btn admin-btn--accent" [disabled]="saving">
+            {{ saving ? 'Saving…' : 'Save status' }}
+          </button>
+        </form>
+      </section>
+    </div>
+  </ng-container>
+
+  <p *ngIf="!loading && error && !application" class="admin-alert admin-alert--error">{{ error }}</p>
+</div>

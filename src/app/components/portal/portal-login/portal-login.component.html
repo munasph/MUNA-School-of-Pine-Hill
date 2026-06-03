@@ -1,0 +1,42 @@
+<div>
+  <section class="py-24">
+    <div class="max-w-md mx-auto px-4">
+      <div class="text-center mb-12">
+        <app-section-label>{{ t.hero.tag }}</app-section-label>
+        <h1 class="text-4xl lg:text-5xl font-serif form-title">{{ t.hero.title }}</h1>
+        <p class="form-subtitle">{{ t.hero.subtitle }}</p>
+      </div>
+
+      <app-glass-card intensity="mid" extraClass="p-8 lg:p-10">
+        <p class="portal-preview-banner">Preview — any email and password (8+ chars) will sign you in.</p>
+
+        <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6" novalidate>
+          <app-glass-input [label]="t.form.email" type="email"
+                           placeholder="parent@example.com"
+                           [required]="true" formControlName="email"
+                           [error]="errorFor('email') ?? undefined"></app-glass-input>
+
+          <app-glass-input [label]="t.form.password" type="password"
+                           placeholder="Enter your password"
+                           [required]="true" formControlName="password"
+                           [error]="errorFor('password') ?? undefined"></app-glass-input>
+
+          <app-glass-button variant="accent" size="lg" type="submit"
+                            extraClass="w-full" [disabled]="submitting">
+            {{ submitting ? 'Signing in…' : t.form.submit }}
+          </app-glass-button>
+        </form>
+
+        <p class="auth-switch">
+          {{ t.form.noAccount }}
+          <a routerLink="/portal/signup" class="auth-switch__link">{{ t.form.signup }}</a>
+        </p>
+
+        <p class="auth-switch auth-switch--staff">
+          {{ t.form.staffPrompt }}
+          <a routerLink="/login" class="auth-switch__link">{{ t.form.staffLink }}</a>
+        </p>
+      </app-glass-card>
+    </div>
+  </section>
+</div>

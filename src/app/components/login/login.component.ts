@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CheckCircle, LucideIconData } from 'lucide-angular';
 
 import type { LoginCredentials } from '../../models/auth.model';
 import { AuthService } from '../../services/auth.service';
@@ -15,13 +16,11 @@ import { LOGIN_COPY } from './login.data';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  readonly checkCircle: LucideIconData = CheckCircle;
   readonly t = LOGIN_COPY;
 
   form!: FormGroup;
-  submitted = false;
   submitting = false;
-  successMessage = '';
+  submitError: string | null = null;
 
   private subs = new Subscription();
 
@@ -29,12 +28,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
     private readonly seo: SeoService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/admin/admissions']);
+      return;
+    }
+
     this.seo.update({
       title:       'Log In',
-      description: 'Sign in to your account.',
+      description: 'Sign in to the school admin area.',
       path:        '/login',
     });
 
@@ -60,17 +66,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     this.submitting = true;
+    this.submitError = null;
     const payload = this.form.value as LoginCredentials;
 
     this.subs.add(
       this.authService.login(payload).subscribe({
-        next: (res) => {
-          this.submitted = true;
-          this.successMessage = res.message;
+        next: () => {
           this.submitting = false;
+          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/admin/admissions';
+          this.router.navigateByUrl(returnUrl);
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
           this.submitting = false;
+          this.submitError = err.error?.message ?? 'Invalid email or password.';
         },
       }),
     );

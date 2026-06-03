@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -40,6 +41,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   submitted  = false;
   submitting = false;
+  submitError: string | null = null;
   mapUrl!: SafeResourceUrl;
 
   private subs = new Subscription();
@@ -98,6 +100,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     }
 
     this.submitting = true;
+    this.submitError = null;
     const payload = this.form.value as ContactMessage;
 
     this.subs.add(
@@ -108,8 +111,9 @@ export class ContactComponent implements OnInit, OnDestroy {
           this.form.reset({ name: '', email: '', subject: '', message: '' });
           setTimeout(() => (this.submitted = false), 5000);
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
           this.submitting = false;
+          this.submitError = err.error?.message ?? 'Could not send message. Please try again.';
         },
       }),
     );

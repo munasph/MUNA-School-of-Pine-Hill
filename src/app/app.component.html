@@ -3,12 +3,15 @@
 <app-gradient-background></app-gradient-background>
 <app-scroll-to-top></app-scroll-to-top>
 
-<app-navbar></app-navbar>
+<ng-container *ngIf="showPublicShell$ | async">
+  <app-navbar></app-navbar>
+</ng-container>
 
 <main id="main" class="relative">
   <router-outlet></router-outlet>
 </main>
 
-<app-footer></app-footer>
-
-<app-back-to-top></app-back-to-top>
+<ng-container *ngIf="showPublicShell$ | async">
+  <app-footer></app-footer>
+  <app-back-to-top></app-back-to-top>
+</ng-container>

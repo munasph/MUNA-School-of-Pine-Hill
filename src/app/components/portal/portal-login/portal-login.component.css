@@ -1,0 +1,17 @@
+.portal-preview-banner {
+  margin: 0 0 1.25rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  text-align: center;
+  background: rgba(0, 134, 75, 0.1);
+  border: 1px dashed rgba(0, 134, 75, 0.35);
+  color: var(--text-secondary);
+}
+
+.auth-switch--staff {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--glass-border);
+}

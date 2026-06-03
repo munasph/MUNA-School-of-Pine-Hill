@@ -1,0 +1,114 @@
+<div class="admin-page">
+  <header class="admin-page__header">
+    <div>
+      <p class="admin-page__eyebrow">Admissions</p>
+      <h2 class="admin-page__title">Application submissions</h2>
+      <p class="admin-page__subtitle">Click a row to review the full application.</p>
+    </div>
+
+    <div class="admin-page__actions">
+      <label class="admin-filter">
+        <span>Status</span>
+        <select [value]="statusFilter" (change)="onFilterChange($any($event.target).value)">
+          <option value="">All</option>
+          <option *ngFor="let status of statuses" [value]="status">
+            {{ statusLabels[status] }}
+          </option>
+        </select>
+      </label>
+
+      <button type="button" class="admin-btn admin-btn--ghost" (click)="loadAll()" [disabled]="loading">
+        <lucide-icon [img]="refreshIcon" size="16"></lucide-icon>
+        Refresh
+      </button>
+
+      <button type="button" class="admin-btn admin-btn--accent" (click)="exportCsv()" [disabled]="exporting">
+        <lucide-icon [img]="downloadIcon" size="16"></lucide-icon>
+        {{ exporting ? 'Exporting…' : 'Export CSV' }}
+      </button>
+    </div>
+  </header>
+
+  <section *ngIf="stats" class="admin-stats">
+    <article class="admin-stat">
+      <p class="admin-stat__label">Total applications</p>
+      <p class="admin-stat__value">{{ stats.totalApplications }}</p>
+    </article>
+    <article class="admin-stat">
+      <p class="admin-stat__label">Pending review</p>
+      <p class="admin-stat__value">{{ stats.pendingApplications }}</p>
+    </article>
+    <article class="admin-stat">
+      <p class="admin-stat__label">Active announcements</p>
+      <p class="admin-stat__value">{{ stats.activeAnnouncements }}</p>
+    </article>
+    <article class="admin-stat">
+      <p class="admin-stat__label">New inquiries</p>
+      <p class="admin-stat__value">{{ stats.newContactMessages }}</p>
+    </article>
+  </section>
+
+  <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+  <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+
+  <div class="admin-table-wrap">
+    <div *ngIf="loading" class="admin-table__loading">Loading applications…</div>
+
+    <table *ngIf="!loading" class="admin-table">
+      <thead>
+        <tr>
+          <th>Application ID</th>
+          <th>Student</th>
+          <th>DOB</th>
+          <th>Class</th>
+          <th>Gender</th>
+          <th>Parent</th>
+          <th>Phone</th>
+          <th>Status</th>
+          <th>Submitted</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="applications.length === 0">
+          <td colspan="10" class="admin-table__empty">No applications found.</td>
+        </tr>
+        <tr *ngFor="let app of applications"
+            class="admin-table__row--clickable"
+            (click)="openApplication(app.id)">
+          <td class="admin-table__mono">{{ app.applicationId }}</td>
+          <td>{{ app.fullName }}</td>
+          <td>{{ app.dob }}</td>
+          <td>{{ app.classApplying }}</td>
+          <td>{{ app.gender }}</td>
+          <td>{{ app.parentName }}</td>
+          <td>{{ app.parentPhone }}</td>
+          <td (click)="$event.stopPropagation()">
+            <select class="admin-status-select"
+                    [ngModel]="app.status"
+                    (ngModelChange)="onStatusChange(app, $event)">
+              <option *ngFor="let status of statuses" [ngValue]="status">
+                {{ statusLabels[status] }}
+              </option>
+            </select>
+          </td>
+          <td>{{ formatDate(app.submittedAt) }}</td>
+          <td (click)="$event.stopPropagation()">
+            <button type="button"
+                    class="admin-icon-btn"
+                    title="Review application"
+                    (click)="openApplication(app.id)">
+              <lucide-icon [img]="eyeIcon" size="16"></lucide-icon>
+            </button>
+            <button type="button"
+                    class="admin-icon-btn"
+                    title="Delete application"
+                    (click)="deleteApplication(app, $event)">
+              <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

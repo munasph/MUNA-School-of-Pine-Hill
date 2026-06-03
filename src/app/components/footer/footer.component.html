@@ -81,7 +81,9 @@
 
     <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-3 text-xs footer__bar">
       <p>&copy; {{ schoolInfo.copyrightYear }} {{ schoolInfo.name }}. {{ t.footer.rights }}</p>
-      <div class="flex gap-6">
+      <div class="flex flex-wrap justify-center md:justify-end gap-6">
+        <a [routerLink]="familyLink.path" class="hover:underline">{{ familyLink.label }}</a>
+        <a [routerLink]="staffLink.path" class="hover:underline">{{ staffLink.label }}</a>
         <a routerLink="/privacy" class="hover:underline">Privacy Policy</a>
         <a routerLink="/terms"   class="hover:underline">Terms of Service</a>
       </div>

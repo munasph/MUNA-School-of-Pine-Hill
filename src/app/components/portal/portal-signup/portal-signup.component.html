@@ -1,0 +1,75 @@
+<ng-container *ngIf="submitted; else signupForm">
+  <div class="min-h-[80vh] flex items-center justify-center px-4">
+    <app-glass-card intensity="strong" extraClass="text-center max-w-md p-12">
+      <div class="success-icon">
+        <lucide-icon [img]="checkCircle" size="32" class="text-white"></lucide-icon>
+      </div>
+      <h2 class="text-3xl font-serif success-title">{{ t.success.title }}</h2>
+      <p class="success-message leading-relaxed">{{ t.success.message }}</p>
+    </app-glass-card>
+  </div>
+</ng-container>
+
+<ng-template #signupForm>
+  <div>
+    <section class="py-24">
+      <div class="max-w-md mx-auto px-4">
+        <div class="text-center mb-12">
+          <app-section-label>{{ t.hero.tag }}</app-section-label>
+          <h1 class="text-4xl lg:text-5xl font-serif form-title">{{ t.hero.title }}</h1>
+          <p class="form-subtitle">{{ t.hero.subtitle }}</p>
+        </div>
+
+        <app-glass-card intensity="mid" extraClass="p-8 lg:p-10">
+          <p class="portal-preview-banner">Preview — no email is sent; account is stored in this browser only.</p>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6" novalidate>
+            <app-glass-input [label]="t.form.fullName" type="text"
+                             placeholder="Full name"
+                             [required]="true" formControlName="fullName"
+                             [error]="errorFor('fullName') ?? undefined"></app-glass-input>
+
+            <app-glass-input [label]="t.form.email" type="email"
+                             placeholder="you@example.com"
+                             [required]="true" formControlName="email"
+                             [error]="errorFor('email') ?? undefined"></app-glass-input>
+
+            <div class="space-y-1.5">
+              <label class="radio-label">{{ t.form.role }}</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input type="radio" formControlName="role" value="PARENT" />
+                  {{ t.form.roleParent }}
+                </label>
+                <label class="radio-option">
+                  <input type="radio" formControlName="role" value="STUDENT" />
+                  {{ t.form.roleStudent }}
+                </label>
+              </div>
+            </div>
+
+            <app-glass-input [label]="t.form.password" type="password"
+                             placeholder="At least 8 characters"
+                             [required]="true" formControlName="password"
+                             [error]="errorFor('password') ?? undefined"></app-glass-input>
+
+            <app-glass-input [label]="t.form.confirmPassword" type="password"
+                             placeholder="Repeat password"
+                             [required]="true" formControlName="confirmPassword"
+                             [error]="errorFor('confirmPassword') ?? undefined"></app-glass-input>
+
+            <app-glass-button variant="accent" size="lg" type="submit"
+                              extraClass="w-full" [disabled]="submitting">
+              {{ submitting ? 'Creating…' : t.form.submit }}
+            </app-glass-button>
+          </form>
+
+          <p class="auth-switch">
+            {{ t.form.hasAccount }}
+            <a routerLink="/portal/login" class="auth-switch__link">{{ t.form.login }}</a>
+          </p>
+        </app-glass-card>
+      </div>
+    </section>
+  </div>
+</ng-template>

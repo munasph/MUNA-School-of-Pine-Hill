@@ -1,0 +1,6 @@
+.admin-inquiry-message {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: var(--text-primary);
+}

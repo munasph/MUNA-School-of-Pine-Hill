@@ -1,0 +1,85 @@
+<div class="admin-page" *ngIf="config">
+  <a routerLink="/admin/hub" class="admin-back-link">
+    <lucide-icon [img]="arrowLeft" size="16"></lucide-icon>
+    Back to all modules
+  </a>
+
+  <header class="admin-page__header">
+    <div>
+      <p class="admin-page__eyebrow">Admin</p>
+      <h2 class="admin-page__title">{{ config.label }}</h2>
+      <p class="admin-page__subtitle">{{ config.description }}</p>
+      <p class="admin-cms-api-hint">API: <code>{{ config.apiPath }}</code></p>
+    </div>
+
+    <div class="admin-page__actions" *ngIf="config.route !== 'audit-logs'">
+      <button type="button" class="admin-btn admin-btn--ghost" (click)="loadList()" [disabled]="loading">
+        <lucide-icon [img]="refreshIcon" size="16"></lucide-icon>
+        Refresh
+      </button>
+      <button *ngIf="config.route !== 'notifications' && config.route !== 'analytics'"
+              type="button" class="admin-btn admin-btn--accent" (click)="openCreate()">
+        <lucide-icon [img]="plusIcon" size="16"></lucide-icon>
+        New
+      </button>
+    </div>
+  </header>
+
+  <p *ngIf="config.scaffoldOnly" class="admin-alert">
+    Scaffold only — wire the public site when you are ready to use this module.
+  </p>
+
+  <ng-container *ngIf="config.route === 'notifications'">
+    <p class="admin-page__subtitle">Use Settings-style form in a future pass; API: GET/PUT /api/admin/notifications</p>
+  </ng-container>
+
+  <ng-container *ngIf="config.route === 'analytics'">
+    <p class="admin-page__subtitle">Use Settings-style form in a future pass; API: GET/PUT /api/admin/analytics</p>
+  </ng-container>
+
+  <section *ngIf="showEditor" class="admin-detail-card admin-cms-editor">
+    <h3 class="admin-detail-card__title">{{ editingId == null ? 'Create' : 'Edit' }} record</h3>
+    <textarea class="admin-field__textarea admin-cms-json" [(ngModel)]="editorJson" rows="16"></textarea>
+    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+    <div class="admin-cms-editor__actions">
+      <button type="button" class="admin-btn admin-btn--ghost" (click)="cancelEditor()">Cancel</button>
+      <button type="button" class="admin-btn admin-btn--accent" (click)="saveEditor()" [disabled]="saving">
+        {{ saving ? 'Saving…' : 'Save' }}
+      </button>
+    </div>
+  </section>
+
+  <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+  <p *ngIf="actionError && !showEditor" class="admin-alert admin-alert--error">{{ actionError }}</p>
+
+  <div class="admin-table-wrap" *ngIf="config.route !== 'notifications' && config.route !== 'analytics'">
+    <div *ngIf="loading" class="admin-table__loading">Loading…</div>
+
+    <table *ngIf="!loading && !error" class="admin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th *ngIf="config.statusField">Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="items.length === 0">
+          <td [attr.colspan]="config.statusField ? 4 : 3" class="admin-table__empty">No records yet.</td>
+        </tr>
+        <tr *ngFor="let item of items">
+          <td class="admin-table__mono">{{ item['id'] }}</td>
+          <td>{{ displayTitle(item) }}</td>
+          <td *ngIf="config.statusField">{{ item[config.statusField] }}</td>
+          <td>
+            <button *ngIf="config.route !== 'audit-logs'" type="button" class="admin-icon-btn" (click)="openEdit(item)">Edit</button>
+            <button *ngIf="config.route !== 'audit-logs'" type="button" class="admin-icon-btn" (click)="deleteItem(item)">
+              <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

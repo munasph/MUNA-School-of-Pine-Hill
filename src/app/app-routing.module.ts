@@ -10,8 +10,24 @@ import { GalleryComponent }   from './components/gallery/gallery.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
-import { SignupComponent }    from './components/signup/signup.component';
 import { NotFoundComponent }  from './components/not-found/not-found.component';
+import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
+import { AdminAdmissionsComponent } from './components/admin/admin-admissions/admin-admissions.component';
+import { AdminAdmissionDetailComponent } from './components/admin/admin-admission-detail/admin-admission-detail.component';
+import { AdminAnnouncementsComponent } from './components/admin/admin-announcements/admin-announcements.component';
+import { AdminAnnouncementFormComponent } from './components/admin/admin-announcement-form/admin-announcement-form.component';
+import { AdminAnnouncementDetailComponent } from './components/admin/admin-announcement-detail/admin-announcement-detail.component';
+import { AdminInquiriesComponent } from './components/admin/admin-inquiries/admin-inquiries.component';
+import { AdminInquiryDetailComponent } from './components/admin/admin-inquiry-detail/admin-inquiry-detail.component';
+import { AdminSettingsComponent } from './components/admin/admin-settings/admin-settings.component';
+import { AdminHubComponent } from './components/admin/admin-hub/admin-hub.component';
+import { AdminCmsResourceComponent } from './components/admin/admin-cms-resource/admin-cms-resource.component';
+import { PortalLayoutComponent } from './components/portal/portal-layout/portal-layout.component';
+import { PortalLoginComponent } from './components/portal/portal-login/portal-login.component';
+import { PortalSignupComponent } from './components/portal/portal-signup/portal-signup.component';
+import { PortalDashboardComponent } from './components/portal/portal-dashboard/portal-dashboard.component';
+import { authGuard } from './guards/auth.guard';
+import { portalAuthGuard } from './guards/portal-auth.guard';
 
 const routes: Routes = [
   { path: '',          component: HomeComponent,      pathMatch: 'full' },
@@ -21,9 +37,38 @@ const routes: Routes = [
   { path: 'contact',   component: ContactComponent   },
   { path: 'gallery',   component: GalleryComponent   },
   { path: 'login',     component: LoginComponent     },
-  { path: 'signup',    component: SignupComponent    },
+  { path: 'signup',    redirectTo: 'portal/signup', pathMatch: 'full' },
+  { path: 'portal/login',  component: PortalLoginComponent },
+  { path: 'portal/signup', component: PortalSignupComponent },
+  {
+    path: 'portal',
+    component: PortalLayoutComponent,
+    canActivate: [portalAuthGuard],
+    children: [
+      { path: '', component: PortalDashboardComponent },
+    ],
+  },
   { path: 'privacy',   component: PrivacyComponent   },
   { path: 'terms',     component: TermsComponent     },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: '', redirectTo: 'admissions', pathMatch: 'full' },
+      { path: 'admissions', component: AdminAdmissionsComponent },
+      { path: 'admissions/:id', component: AdminAdmissionDetailComponent },
+      { path: 'announcements', component: AdminAnnouncementsComponent },
+      { path: 'announcements/new', component: AdminAnnouncementFormComponent },
+      { path: 'announcements/:id', component: AdminAnnouncementDetailComponent },
+      { path: 'inquiries', component: AdminInquiriesComponent },
+      { path: 'inquiries/:id', component: AdminInquiryDetailComponent },
+      { path: 'settings', component: AdminSettingsComponent },
+      { path: 'hub', component: AdminHubComponent },
+      { path: 'modules/:resource', component: AdminCmsResourceComponent },
+      { path: 'cms/:resource', redirectTo: 'modules/:resource', pathMatch: 'full' },
+    ],
+  },
   { path: '**',        component: NotFoundComponent  },
 ];
 

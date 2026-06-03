@@ -1,0 +1,24 @@
+<div class="portal-page">
+  <header class="portal-page__header">
+    <div>
+      <p class="portal-page__eyebrow">Dashboard</p>
+      <h2 class="portal-page__title">{{ t.welcome }}, {{ session?.fullName }}</h2>
+      <p class="portal-page__subtitle" *ngIf="session?.studentName">
+        {{ t.student }} <strong>{{ session?.studentName }}</strong>
+      </p>
+    </div>
+  </header>
+
+  <p class="portal-preview-strip">
+    <lucide-icon [img]="lockIcon" size="16"></lucide-icon>
+    {{ t.preview }}
+  </p>
+
+  <div class="portal-card-grid">
+    <article *ngFor="let card of cards" class="portal-card portal-card--soon">
+      <h3 class="portal-card__title">{{ card.title }}</h3>
+      <p class="portal-card__desc">{{ card.desc }}</p>
+      <span class="portal-card__badge">Coming soon</span>
+    </article>
+  </div>
+</div>

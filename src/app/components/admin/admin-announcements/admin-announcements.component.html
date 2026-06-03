@@ -1,0 +1,70 @@
+<div class="admin-page">
+  <header class="admin-page__header">
+    <div>
+      <p class="admin-page__eyebrow">Announcements</p>
+      <h2 class="admin-page__title">Site announcements</h2>
+      <p class="admin-page__subtitle">Create and manage the announcement bar shown on the public site.</p>
+    </div>
+
+    <div class="admin-page__actions">
+      <button type="button" class="admin-btn admin-btn--ghost" (click)="loadAll()" [disabled]="loading">
+        <lucide-icon [img]="refreshIcon" size="16"></lucide-icon>
+        Refresh
+      </button>
+
+      <a routerLink="/admin/announcements/new" class="admin-btn admin-btn--accent">
+        <lucide-icon [img]="plusIcon" size="16"></lucide-icon>
+        New announcement
+      </a>
+    </div>
+  </header>
+
+  <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+  <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+
+  <div class="admin-table-wrap">
+    <div *ngIf="loading" class="admin-table__loading">Loading announcements…</div>
+
+    <table *ngIf="!loading" class="admin-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Subtitle</th>
+          <th>Status</th>
+          <th>Updated</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="announcements.length === 0">
+          <td colspan="5" class="admin-table__empty">No announcements yet. Create one to get started.</td>
+        </tr>
+        <tr *ngFor="let item of announcements"
+            class="admin-table__row--clickable"
+            (click)="openAnnouncement(item.id)">
+          <td>
+            <span *ngIf="item.emoji" class="announcement-emoji">{{ item.emoji }}</span>
+            {{ item.title }}
+          </td>
+          <td>{{ item.subtitle || '—' }}</td>
+          <td>
+            <span class="admin-badge"
+                  [class.admin-badge--active]="item.active"
+                  [class.admin-badge--inactive]="!item.active">
+              {{ item.active ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>{{ formatDate(item.updatedAt) }}</td>
+          <td>
+            <button type="button"
+                    class="admin-icon-btn"
+                    title="Delete announcement"
+                    (click)="deleteAnnouncement(item, $event)">
+              <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

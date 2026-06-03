@@ -1,0 +1,61 @@
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar__brand">
+      <p class="admin-sidebar__eyebrow">School Admin</p>
+      <h1 class="admin-sidebar__title">Admin</h1>
+      <p class="admin-sidebar__email">{{ adminEmail }}</p>
+    </div>
+
+    <nav class="admin-sidebar__nav">
+      <a routerLink="/admin/hub"
+         routerLinkActive="admin-sidebar__link--active"
+         class="admin-sidebar__link">
+        <lucide-icon [img]="hub" size="18"></lucide-icon>
+        All modules
+      </a>
+      <a routerLink="/admin/admissions"
+         routerLinkActive="admin-sidebar__link--active"
+         [routerLinkActiveOptions]="{ exact: false }"
+         class="admin-sidebar__link">
+        <lucide-icon [img]="clipboardList" size="18"></lucide-icon>
+        Admissions
+      </a>
+      <a routerLink="/admin/announcements"
+         routerLinkActive="admin-sidebar__link--active"
+         [routerLinkActiveOptions]="{ exact: false }"
+         class="admin-sidebar__link">
+        <lucide-icon [img]="megaphone" size="18"></lucide-icon>
+        Announcements
+      </a>
+      <a routerLink="/admin/inquiries"
+         routerLinkActive="admin-sidebar__link--active"
+         [routerLinkActiveOptions]="{ exact: false }"
+         class="admin-sidebar__link">
+        <lucide-icon [img]="mail" size="18"></lucide-icon>
+        Inquiries
+      </a>
+      <a routerLink="/admin/settings"
+         routerLinkActive="admin-sidebar__link--active"
+         class="admin-sidebar__link">
+        <lucide-icon [img]="settings" size="18"></lucide-icon>
+        Settings
+      </a>
+    </nav>
+
+    <div class="admin-sidebar__footer">
+      <a routerLink="/" class="admin-sidebar__website">
+        <lucide-icon [img]="externalLink" size="18"></lucide-icon>
+        View website
+      </a>
+
+      <button type="button" class="admin-sidebar__logout" (click)="logout()">
+        <lucide-icon [img]="logOut" size="18"></lucide-icon>
+        Log out
+      </button>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <router-outlet></router-outlet>
+  </div>
+</div>

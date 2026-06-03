@@ -51,7 +51,7 @@
              [style.background]="pillBackground()"
              [style.border]="pillBorder()"
              [style.boxShadow]="pillShadow()">
-          <a *ngFor="let link of authLinks"
+          <a *ngFor="let link of authNavLinks"
              [routerLink]="link.path"
              class="liquid-nav-link"
              [style.color]="linkColor(isActive(link.path))">
@@ -99,8 +99,8 @@
 
       <div class="my-2 h-px navbar-mobile__divider"></div>
 
-      <div class="grid grid-cols-2 gap-2">
-        <a *ngFor="let link of authLinks"
+      <div class="flex flex-col gap-2">
+        <a *ngFor="let link of authNavLinks"
            [routerLink]="link.path"
            (click)="isOpen = false"
            class="px-4 py-3 rounded-lg text-center font-semibold cursor-pointer border-2 transition-colors"

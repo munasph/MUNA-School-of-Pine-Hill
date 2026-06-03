@@ -1,0 +1,33 @@
+<div class="admin-page">
+  <header class="admin-page__header">
+    <div>
+      <p class="admin-page__eyebrow">Admin</p>
+      <h2 class="admin-page__title">All modules</h2>
+      <p class="admin-page__subtitle">
+        Scaffold modules are wired to the API. Use what you need; remove unused modules later.
+      </p>
+    </div>
+  </header>
+
+  <section class="admin-hub-section">
+    <h3 class="admin-hub-section__title">Core (in use)</h3>
+    <div class="admin-hub-grid">
+      <a *ngFor="let link of coreLinks" [routerLink]="link.path" class="admin-hub-card">
+        <span class="admin-hub-card__label">{{ link.label }}</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="admin-hub-section">
+    <h3 class="admin-hub-section__title">Scaffold modules</h3>
+    <div class="admin-hub-grid">
+      <a *ngFor="let mod of modules"
+         [routerLink]="['/admin/modules', mod.route]"
+         class="admin-hub-card"
+         [class.admin-hub-card--scaffold]="mod.scaffoldOnly">
+        <span class="admin-hub-card__label">{{ mod.label }}</span>
+        <span class="admin-hub-card__desc">{{ mod.description }}</span>
+      </a>
+    </div>
+  </section>
+</div>

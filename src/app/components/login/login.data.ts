@@ -1,16 +1,16 @@
 export const LOGIN_COPY = {
   login: {
     hero: {
-      tag:      'Account',
-      title:    'Log In',
-      subtitle: 'Sign in to your account to continue.',
+      tag:      'Staff',
+      title:    'Staff sign in',
+      subtitle: 'School employees only — manage the website and applications.',
     },
     form: {
       email:    'Email Address',
       password: 'Password',
-      submit:   'Log In',
-      noAccount: 'Don\'t have an account?',
-      signup:   'Sign up',
+      submit:   'Sign in',
+      familyPrompt: 'Parent or student?',
+      familyLink:   'Family portal',
     },
     success: {
       title:   'Welcome Back',

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LucideAngularModule } from 'lucide-angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,8 +16,22 @@ import { GalleryComponent }   from './components/gallery/gallery.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
-import { SignupComponent }    from './components/signup/signup.component';
 import { NotFoundComponent }  from './components/not-found/not-found.component';
+import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
+import { AdminAdmissionsComponent } from './components/admin/admin-admissions/admin-admissions.component';
+import { AdminAdmissionDetailComponent } from './components/admin/admin-admission-detail/admin-admission-detail.component';
+import { AdminAnnouncementsComponent } from './components/admin/admin-announcements/admin-announcements.component';
+import { AdminAnnouncementFormComponent } from './components/admin/admin-announcement-form/admin-announcement-form.component';
+import { AdminAnnouncementDetailComponent } from './components/admin/admin-announcement-detail/admin-announcement-detail.component';
+import { AdminInquiriesComponent } from './components/admin/admin-inquiries/admin-inquiries.component';
+import { AdminInquiryDetailComponent } from './components/admin/admin-inquiry-detail/admin-inquiry-detail.component';
+import { AdminSettingsComponent } from './components/admin/admin-settings/admin-settings.component';
+import { AdminHubComponent } from './components/admin/admin-hub/admin-hub.component';
+import { AdminCmsResourceComponent } from './components/admin/admin-cms-resource/admin-cms-resource.component';
+import { PortalLayoutComponent } from './components/portal/portal-layout/portal-layout.component';
+import { PortalLoginComponent } from './components/portal/portal-login/portal-login.component';
+import { PortalSignupComponent } from './components/portal/portal-signup/portal-signup.component';
+import { PortalDashboardComponent } from './components/portal/portal-dashboard/portal-dashboard.component';
 
 import { NavbarComponent }            from './components/navbar/navbar.component';
 import { FooterComponent }            from './components/footer/footer.component';
@@ -35,6 +49,7 @@ import { LightboxComponent }           from './components/lightbox/lightbox.comp
 
 import { RevealOnScrollDirective } from './directives/reveal-on-scroll.directive';
 import { CountUpDirective }        from './directives/count-up.directive';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -49,8 +64,22 @@ import { CountUpDirective }        from './directives/count-up.directive';
     PrivacyComponent,
     TermsComponent,
     LoginComponent,
-    SignupComponent,
     NotFoundComponent,
+    AdminLayoutComponent,
+    AdminAdmissionsComponent,
+    AdminAdmissionDetailComponent,
+    AdminAnnouncementsComponent,
+    AdminAnnouncementFormComponent,
+    AdminAnnouncementDetailComponent,
+    AdminInquiriesComponent,
+    AdminInquiryDetailComponent,
+    AdminSettingsComponent,
+    AdminHubComponent,
+    AdminCmsResourceComponent,
+    PortalLayoutComponent,
+    PortalLoginComponent,
+    PortalSignupComponent,
+    PortalDashboardComponent,
 
     NavbarComponent,
     FooterComponent,
@@ -77,7 +106,9 @@ import { CountUpDirective }        from './directives/count-up.directive';
     HttpClientModule,
     LucideAngularModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

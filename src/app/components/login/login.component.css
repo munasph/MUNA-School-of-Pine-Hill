@@ -39,3 +39,9 @@
 .auth-switch__link:hover {
   text-decoration: underline;
 }
+
+.auth-switch--staff {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--glass-border);
+}

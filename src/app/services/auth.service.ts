@@ -1,40 +1,73 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, delay, of } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-import type { AuthResponse, LoginCredentials, SignupPayload } from '../models/auth.model';
+import type { AuthResponse, AuthSession, LoginCredentials, SignupPayload } from '../models/auth.model';
+
+const STORAGE_KEY = 'school_admin_session';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly endpoint = '/api/auth';
+  private readonly sessionSubject = new BehaviorSubject<AuthSession | null>(this.loadSession());
+
+  readonly session$ = this.sessionSubject.asObservable();
 
   constructor(private readonly http: HttpClient) {}
 
-  /**
-   * Authenticate a user.
-   *
-   * Swap to `return this.http.post<AuthResponse>(\`${this.endpoint}/login\`, credentials);`
-   * when Spring Boot is ready.
-   */
   login(credentials: LoginCredentials): Observable<AuthResponse> {
-    void credentials;
-    return of<AuthResponse>({
-      success: true,
-      message: 'Login successful. Connect to your backend to enable real authentication.',
-    }).pipe(delay(600));
+    return this.http.post<AuthResponse>(`${this.endpoint}/login`, credentials).pipe(
+      tap((res) => {
+        if (res.success && res.token && res.email) {
+          this.setSession({
+            token: res.token,
+            email: res.email,
+            roles: res.roles ?? ['ADMIN'],
+          });
+        }
+      }),
+    );
   }
 
-  /**
-   * Register a new user.
-   *
-   * Swap to `return this.http.post<AuthResponse>(\`${this.endpoint}/signup\`, payload);`
-   * when Spring Boot is ready.
-   */
   signup(payload: SignupPayload): Observable<AuthResponse> {
-    void payload;
-    return of<AuthResponse>({
-      success: true,
-      message: 'Account created. Connect to your backend to enable real registration.',
-    }).pipe(delay(600));
+    return this.http.post<AuthResponse>(`${this.endpoint}/signup`, payload);
+  }
+
+  logout(): void {
+    sessionStorage.removeItem(STORAGE_KEY);
+    this.sessionSubject.next(null);
+  }
+
+  getSession(): AuthSession | null {
+    return this.sessionSubject.value;
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getSession()?.token;
+  }
+
+  isAdmin(): boolean {
+    return this.getSession()?.roles.includes('ADMIN') ?? false;
+  }
+
+  getToken(): string | null {
+    return this.getSession()?.token ?? null;
+  }
+
+  private setSession(session: AuthSession): void {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    this.sessionSubject.next(session);
+  }
+
+  private loadSession(): AuthSession | null {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+
+    try {
+      return JSON.parse(raw) as AuthSession;
+    } catch {
+      sessionStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
   }
 }

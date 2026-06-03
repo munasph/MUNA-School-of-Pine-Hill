@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
+import { PortalAuthService } from '../../services/portal-auth.service';
 import {
   MapPin, Phone, Mail, Calendar,
   Facebook, Youtube, Instagram, ChevronRight,
@@ -13,11 +16,45 @@ import {
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit, OnDestroy {
   readonly schoolInfo = SCHOOL_INFO;
   readonly quickLinks = QUICK_LINKS;
   readonly programs   = PROGRAMS_LIST;
   readonly t          = FOOTER_COPY;
+
+  familyLink = { path: '/portal/login', label: 'Family portal' };
+  staffLink = { path: '/login', label: 'Staff login' };
+
+  private subs = new Subscription();
+
+  constructor(
+    private readonly auth: AuthService,
+    private readonly portalAuth: PortalAuthService,
+  ) {}
+
+  ngOnInit(): void {
+    this.updateAuthLinks();
+    this.subs.add(this.auth.session$.subscribe(() => this.updateAuthLinks()));
+    this.subs.add(this.portalAuth.session$.subscribe(() => this.updateAuthLinks()));
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
+  private updateAuthLinks(): void {
+    if (this.portalAuth.isAuthenticated()) {
+      this.familyLink = { path: '/portal', label: 'My portal' };
+    } else {
+      this.familyLink = { path: '/portal/login', label: 'Family portal' };
+    }
+
+    if (this.auth.isAuthenticated() && this.auth.isAdmin()) {
+      this.staffLink = { path: '/admin', label: 'Admin dashboard' };
+    } else {
+      this.staffLink = { path: '/login', label: 'Staff login' };
+    }
+  }
 
   readonly mapPin:       LucideIconData = MapPin;
   readonly phone:        LucideIconData = Phone;

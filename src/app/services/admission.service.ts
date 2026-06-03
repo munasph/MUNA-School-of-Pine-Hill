@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, delay, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import type {
   ClassOption, AdmissionApplication,
@@ -24,21 +24,7 @@ export class AdmissionService {
     return of(ADMISSION_SUCCESS);
   }
 
-  /**
-   * Submit a new admission application.
-   *
-   * Currently a 600 ms-delayed stub that always succeeds. To wire a real backend,
-   * replace the body with:
-   *
-   *   return this.http.post<AdmissionSubmitResponse>(this.endpoint, payload);
-   */
   submitApplication(payload: AdmissionApplication): Observable<AdmissionSubmitResponse> {
-    // Touch payload so the eventual real call doesn't get flagged as unused.
-    void payload;
-    return of<AdmissionSubmitResponse>({
-      success:       true,
-      applicationId: `APP-${Date.now()}`,
-      message:       'Application received.',
-    }).pipe(delay(600));
+    return this.http.post<AdmissionSubmitResponse>(this.endpoint, payload);
   }
 }

@@ -1,0 +1,83 @@
+<div class="admin-page">
+  <header class="admin-page__header">
+    <div>
+      <p class="admin-page__eyebrow">Configuration</p>
+      <h2 class="admin-page__title">Site settings</h2>
+      <p class="admin-page__subtitle">School contact details and admission availability.</p>
+    </div>
+  </header>
+
+  <div *ngIf="loading" class="admin-table__loading">Loading settings…</div>
+
+  <ng-container *ngIf="!loading">
+    <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
+    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
+    <p *ngIf="successMessage" class="admin-alert admin-alert--success">{{ successMessage }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="admin-form admin-settings-form">
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">School identity</h3>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Full name</span>
+          <input class="admin-field__input" type="text" formControlName="name" />
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Short name</span>
+          <input class="admin-field__input" type="text" formControlName="shortName" />
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Founded year</span>
+          <input class="admin-field__input" type="text" formControlName="foundedYear" />
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Website URL</span>
+          <input class="admin-field__input" type="url" formControlName="baseUrl" />
+        </label>
+      </section>
+
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Contact details</h3>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Address</span>
+          <textarea class="admin-field__textarea" rows="3" formControlName="address"></textarea>
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Phone</span>
+          <input class="admin-field__input" type="text" formControlName="phone" />
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Email</span>
+          <input class="admin-field__input" type="email" formControlName="email" />
+        </label>
+
+        <label class="admin-field">
+          <span class="admin-field__label">Office hours</span>
+          <input class="admin-field__input" type="text" formControlName="officeHours" />
+        </label>
+      </section>
+
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Admissions</h3>
+
+        <label class="admin-toggle">
+          <input type="checkbox" formControlName="admissionsOpen" />
+          <span>Accept new admission applications</span>
+        </label>
+        <p class="admin-settings-hint">
+          When disabled, the public admission form is hidden and submissions are rejected by the API.
+        </p>
+      </section>
+
+      <button type="submit" class="admin-btn admin-btn--accent" [disabled]="saving">
+        {{ saving ? 'Saving…' : 'Save settings' }}
+      </button>
+    </form>
+  </ng-container>
+</div>

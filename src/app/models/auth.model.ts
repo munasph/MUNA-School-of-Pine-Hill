@@ -14,4 +14,12 @@ export interface AuthResponse {
   success: boolean;
   message: string;
   token?:  string;
+  email?:  string;
+  roles?:  string[];
+}
+
+export interface AuthSession {
+  token: string;
+  email: string;
+  roles: string[];
 }
