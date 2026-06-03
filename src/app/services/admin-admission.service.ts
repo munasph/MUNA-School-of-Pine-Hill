@@ -5,15 +5,16 @@ import { Observable } from 'rxjs';
 import type {
   AdminAdmissionRecord, AdminDashboardStats, ApplicationStatus,
 } from '../models/admin.model';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class AdminAdmissionService {
-  private readonly endpoint = '/api/admin/admissions';
+  private readonly endpoint = apiUrl('/api/admin/admissions');
 
   constructor(private readonly http: HttpClient) {}
 
   getDashboardStats(): Observable<AdminDashboardStats> {
-    return this.http.get<AdminDashboardStats>('/api/admin/dashboard');
+    return this.http.get<AdminDashboardStats>(apiUrl('/api/admin/dashboard'));
   }
 
   listApplications(status?: ApplicationStatus | ''): Observable<AdminAdmissionRecord[]> {

@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import type { SiteSettings } from '../models/site-settings.model';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class SiteSettingsService {
-  private readonly endpoint = '/api/site-settings';
+  private readonly endpoint = apiUrl('/api/site-settings');
 
   constructor(private readonly http: HttpClient) {}
 

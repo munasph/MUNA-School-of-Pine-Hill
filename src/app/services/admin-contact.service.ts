@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 import type {
   AdminContactInquiry, ContactInquiryStatus,
 } from '../models/admin.model';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class AdminContactService {
-  private readonly endpoint = '/api/admin/contacts';
+  private readonly endpoint = apiUrl('/api/admin/contacts');
 
   constructor(private readonly http: HttpClient) {}
 

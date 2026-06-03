@@ -7,10 +7,11 @@ import type {
   AdmissionSuccessMessage, AdmissionSubmitResponse,
 } from '../models/admission.model';
 import { classOptions, ADMISSION_SUCCESS } from '../components/admission/admission.data';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class AdmissionService {
-  private readonly endpoint = '/api/admission';
+  private readonly endpoint = apiUrl('/api/admission');
 
   constructor(private readonly http: HttpClient) {}
 

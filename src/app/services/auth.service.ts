@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import type { AuthResponse, AuthSession, LoginCredentials, SignupPayload } from '../models/auth.model';
+import { apiUrl } from '../utils/api-url';
 
 const STORAGE_KEY = 'school_admin_session';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly endpoint = '/api/auth';
+  private readonly endpoint = apiUrl('/api/auth');
   private readonly sessionSubject = new BehaviorSubject<AuthSession | null>(this.loadSession());
 
   readonly session$ = this.sessionSubject.asObservable();

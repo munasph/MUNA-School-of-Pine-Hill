@@ -7,52 +7,53 @@ import type {
   AnalyticsSettings, AuditLogRecord, CmsModuleInfo, CmsRecord,
   NotificationSettings,
 } from '../models/cms-features.model';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class AdminCmsApiService {
   constructor(private readonly http: HttpClient) {}
 
   listModules(): Observable<CmsModuleInfo[]> {
-    return this.http.get<CmsModuleInfo[]>('/api/admin/modules');
+    return this.http.get<CmsModuleInfo[]>(apiUrl('/api/admin/modules'));
   }
 
   list<T extends CmsRecord>(config: CmsAdminModuleConfig): Observable<T[]> {
-    return this.http.get<T[]>(config.apiPath);
+    return this.http.get<T[]>(apiUrl(config.apiPath));
   }
 
   get<T extends CmsRecord>(config: CmsAdminModuleConfig, id: number): Observable<T> {
-    return this.http.get<T>(`${config.apiPath}/${id}`);
+    return this.http.get<T>(apiUrl(`${config.apiPath}/${id}`));
   }
 
   create<T extends CmsRecord>(config: CmsAdminModuleConfig, payload: CmsRecord): Observable<T> {
-    return this.http.post<T>(config.apiPath, payload);
+    return this.http.post<T>(apiUrl(config.apiPath), payload);
   }
 
   update<T extends CmsRecord>(config: CmsAdminModuleConfig, id: number, payload: CmsRecord): Observable<T> {
-    return this.http.put<T>(`${config.apiPath}/${id}`, payload);
+    return this.http.put<T>(apiUrl(`${config.apiPath}/${id}`), payload);
   }
 
   delete(config: CmsAdminModuleConfig, id: number): Observable<void> {
-    return this.http.delete<void>(`${config.apiPath}/${id}`);
+    return this.http.delete<void>(apiUrl(`${config.apiPath}/${id}`));
   }
 
   getNotifications(): Observable<NotificationSettings> {
-    return this.http.get<NotificationSettings>('/api/admin/notifications');
+    return this.http.get<NotificationSettings>(apiUrl('/api/admin/notifications'));
   }
 
   updateNotifications(payload: NotificationSettings): Observable<NotificationSettings> {
-    return this.http.put<NotificationSettings>('/api/admin/notifications', payload);
+    return this.http.put<NotificationSettings>(apiUrl('/api/admin/notifications'), payload);
   }
 
   getAnalytics(): Observable<AnalyticsSettings> {
-    return this.http.get<AnalyticsSettings>('/api/admin/analytics');
+    return this.http.get<AnalyticsSettings>(apiUrl('/api/admin/analytics'));
   }
 
   updateAnalytics(payload: AnalyticsSettings): Observable<AnalyticsSettings> {
-    return this.http.put<AnalyticsSettings>('/api/admin/analytics', payload);
+    return this.http.put<AnalyticsSettings>(apiUrl('/api/admin/analytics'), payload);
   }
 
   listAuditLogs(): Observable<AuditLogRecord[]> {
-    return this.http.get<AuditLogRecord[]>('/api/admin/audit-logs');
+    return this.http.get<AuditLogRecord[]>(apiUrl('/api/admin/audit-logs'));
   }
 }

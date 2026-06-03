@@ -5,10 +5,11 @@ import { Observable } from 'rxjs';
 import type {
   AdminAnnouncementRecord, AnnouncementPayload,
 } from '../models/admin.model';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class AdminAnnouncementService {
-  private readonly endpoint = '/api/admin/announcements';
+  private readonly endpoint = apiUrl('/api/admin/announcements');
 
   constructor(private readonly http: HttpClient) {}
 

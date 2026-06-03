@@ -6,10 +6,11 @@ import type {
   ContactInfo, ContactMessage, ContactSubmitResponse,
 } from '../models/contact.model';
 import { SCHOOL_INFO } from '../components/footer/site.data';
+import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
-  private readonly endpoint = '/api/contact';
+  private readonly endpoint = apiUrl('/api/contact');
 
   constructor(private readonly http: HttpClient) {}
 
