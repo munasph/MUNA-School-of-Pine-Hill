@@ -1,6 +1,6 @@
 <ng-container *ngIf="submitted; else applicationForm">
   <div class="admission-success">
-    <app-glass-card intensity="strong" extraClass="admission-success__card text-center">
+    <app-glass-card intensity="strong" extraClass="w-full max-w-md mx-auto p-6 sm:p-10 text-center">
       <div class="success-icon">
         <lucide-icon [img]="checkCircle" size="32" class="text-white"></lucide-icon>
       </div>
@@ -27,7 +27,7 @@
           <p class="form-subtitle">{{ t.admission.hero.subtitle }}</p>
         </div>
 
-        <app-glass-card intensity="mid" extraClass="admission-form-card">
+        <app-glass-card intensity="mid" extraClass="p-5 sm:p-8 lg:p-12">
           <div *ngIf="settingsLoading" class="text-center form-subtitle">Loading…</div>
 
           <div *ngIf="!settingsLoading && !admissionsOpen" class="text-center space-y-4">
