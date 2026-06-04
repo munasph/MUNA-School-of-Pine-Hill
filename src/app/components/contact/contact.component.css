@@ -1,10 +1,12 @@
 :host {
   display: block;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 .contact-hero {
-  padding-top: 120px;
-  padding-bottom: 64px;
+  padding-top: max(120px, calc(5rem + env(safe-area-inset-top, 0px)));
+  padding-bottom: 48px;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #00864B 0%, #047857 100%);
@@ -54,7 +56,13 @@
 
 .contact-main {
   background: #fff;
-  padding: 96px 0;
+  padding: 48px 0;
+}
+
+@media (min-width: 768px) {
+  .contact-main {
+    padding: 96px 0;
+  }
 }
 
 .contact-main__heading {
@@ -111,7 +119,13 @@
   background: #fff;
   border: 1.5px solid #BBF7D0;
   border-radius: 24px;
-  padding: 40px;
+  padding: 24px 20px;
+}
+
+@media (min-width: 640px) {
+  .contact-form-panel {
+    padding: 40px;
+  }
 }
 
 .contact-success {
@@ -134,9 +148,15 @@
 
 .contact-form__row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
   margin-bottom: 20px;
+}
+
+@media (min-width: 640px) {
+  .contact-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .contact-field {
@@ -199,8 +219,9 @@
 }
 
 .contact-map {
-  height: 440px;
+  height: min(440px, 55vh);
   width: 100%;
+  max-width: 100%;
 }
 
 .contact-map iframe {

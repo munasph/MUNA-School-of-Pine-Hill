@@ -1,3 +1,7 @@
+.gradient-bg {
+  overflow: hidden;
+}
+
 .gradient-bg__base {
   background-color: var(--bg-deep);
 }

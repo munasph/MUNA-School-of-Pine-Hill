@@ -161,12 +161,25 @@
 .reveal.is-visible    { opacity: 1; transform: translate(0,0); }
 
 /* ─── Base ────────────────────────────────────────────────────────────────── */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  max-width: 100%;
+}
 
 body {
   background-color: var(--bg-deep);
   color: var(--text-primary);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  overflow-x: clip;
+  max-width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+app-root {
+  display: block;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 ::selection {
@@ -389,3 +402,15 @@ body, .navbar-transition {
   transition: transform .2s ease;
 }
 .skip-link:focus { transform: translateY(0); }
+
+/* ─── Mobile: prevent iOS zoom on form focus (needs ≥16px inputs) ───────── */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea,
+  .glass-input__field,
+  .glass-select__field,
+  .contact-field__input {
+    font-size: 16px !important;
+  }
+}

@@ -109,6 +109,7 @@ export class ContactComponent implements OnInit, OnDestroy {
           this.submitted = true;
           this.submitting = false;
           this.form.reset({ name: '', email: '', subject: '', message: '' });
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
           setTimeout(() => (this.submitted = false), 5000);
         },
         error: (err: HttpErrorResponse) => {

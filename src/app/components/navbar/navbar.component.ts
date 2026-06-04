@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
         .subscribe((e) => {
           this.currentPath = (e.urlAfterRedirects || e.url).split('?')[0].split('#')[0] || '/';
-          this.isOpen = false;
+          this.setMenuOpen(false);
           this.updateAuthNavLinks();
         }),
     );
@@ -69,6 +69,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.setMenuOpen(false);
     this.subs.unsubscribe();
   }
 
@@ -88,7 +89,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggle(): void {
-    this.isOpen = !this.isOpen;
+    this.setMenuOpen(!this.isOpen);
+  }
+
+  closeMenu(): void {
+    this.setMenuOpen(false);
+  }
+
+  private setMenuOpen(open: boolean): void {
+    this.isOpen = open;
+    document.body.style.overflow = open ? 'hidden' : '';
   }
 
   pillBackground(): string {

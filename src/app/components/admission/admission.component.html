@@ -1,13 +1,13 @@
 <ng-container *ngIf="submitted; else applicationForm">
-  <div class="min-h-[80vh] flex items-center justify-center px-4">
-    <app-glass-card intensity="strong" extraClass="text-center max-w-md p-12">
+  <div class="admission-success">
+    <app-glass-card intensity="strong" extraClass="admission-success__card text-center">
       <div class="success-icon">
         <lucide-icon [img]="checkCircle" size="32" class="text-white"></lucide-icon>
       </div>
-      <h2 class="text-3xl font-serif success-title">
+      <h2 class="success-title">
         {{ admissionSuccess.title }}
       </h2>
-      <p class="success-message leading-relaxed">
+      <p class="success-message">
         {{ admissionSuccess.message }}
       </p>
       <a routerLink="/">
@@ -18,16 +18,16 @@
 </ng-container>
 
 <ng-template #applicationForm>
-  <div>
-    <section class="py-24">
-      <div class="max-w-3xl mx-auto px-4">
-        <div class="text-center mb-12">
+  <div class="admission-page">
+    <section class="admission-section">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-8 sm:mb-12">
           <app-section-label>{{ t.admission.hero.tag }}</app-section-label>
-          <h1 class="text-4xl lg:text-5xl font-serif form-title">{{ t.admission.hero.title }}</h1>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif form-title">{{ t.admission.hero.title }}</h1>
           <p class="form-subtitle">{{ t.admission.hero.subtitle }}</p>
         </div>
 
-        <app-glass-card intensity="mid" extraClass="p-8 lg:p-12">
+        <app-glass-card intensity="mid" extraClass="admission-form-card">
           <div *ngIf="settingsLoading" class="text-center form-subtitle">Loading…</div>
 
           <div *ngIf="!settingsLoading && !admissionsOpen" class="text-center space-y-4">
@@ -42,7 +42,7 @@
           </div>
 
           <form *ngIf="!settingsLoading && admissionsOpen"
-                [formGroup]="form" (ngSubmit)="submit()" class="space-y-10" novalidate>
+                [formGroup]="form" (ngSubmit)="submit()" class="space-y-8 sm:space-y-10" novalidate>
 
             <!-- Student Information -->
             <fieldset class="space-y-5">

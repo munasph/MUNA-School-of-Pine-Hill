@@ -1,3 +1,11 @@
 :host {
   display: block;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+main {
+  overflow-x: clip;
+  max-width: 100%;
+  min-width: 0;
 }

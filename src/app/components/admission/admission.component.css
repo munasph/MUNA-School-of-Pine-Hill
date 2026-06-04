@@ -1,8 +1,63 @@
-/* ============================================================
- * Admission page (view-encapsulated)
- * Themed colours come from global CSS variables (var(--accent),
- * var(--text-primary), etc.), so light/dark mode still flows through.
- * ============================================================ */
+:host {
+  display: block;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+/* ---------- Page layout (room for fixed navbar) ---------- */
+.admission-page,
+.admission-success {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.admission-section {
+  padding: 5.5rem 0 3rem;
+}
+
+@media (min-width: 640px) {
+  .admission-section {
+    padding: 6.5rem 0 4rem;
+  }
+}
+
+.admission-form-card {
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .admission-form-card {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .admission-form-card {
+    padding: 3rem;
+  }
+}
+
+.admission-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: min(80vh, 100%);
+  padding: 5.5rem 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.admission-success__card {
+  width: 100%;
+  max-width: 28rem;
+  padding: 1.5rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .admission-success__card {
+    padding: 2.5rem;
+  }
+}
 
 /* ---------- Success state ---------- */
 .success-icon {
@@ -14,14 +69,16 @@
 }
 .success-title {
   color: var(--text-primary);
-  font-size: 1.875rem; line-height: 2.25rem;
+  font-size: clamp(1.5rem, 5vw, 1.875rem);
+  line-height: 1.25;
   font-weight: 700;
   margin-bottom: 0.75rem;
 }
 .success-message {
   color: var(--text-secondary);
-  font-size: .875rem; line-height: 1.625;
-  margin-bottom: 2rem;
+  font-size: 0.9375rem;
+  line-height: 1.625;
+  margin-bottom: 1.5rem;
 }
 
 /* ---------- Form header ---------- */
@@ -32,15 +89,16 @@
 }
 .form-subtitle {
   color: var(--text-muted);
-  font-size: .875rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
 /* ---------- Fieldsets ---------- */
 .fieldset-legend {
   color: var(--text-secondary);
-  font-size: .875rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   padding-bottom: 0.75rem;
   width: 100%;
@@ -50,35 +108,42 @@
 /* ---------- Custom radio group ---------- */
 .radio-label {
   color: var(--text-muted);
-  font-size: .75rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .radio-group {
-  display: flex; gap: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
   padding: 0.875rem;
   border-radius: 0.75rem;
   background-color: var(--glass-bg);
   border: 1px solid var(--glass-border);
 }
+@media (max-width: 639px) {
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 .radio-option {
   display: flex; align-items: center; gap: 0.5rem;
-  font-size: .875rem; cursor: pointer;
+  font-size: 0.9375rem; cursor: pointer;
   color: var(--text-secondary);
+  min-height: 2.75rem;
 }
-.radio-option input { accent-color: var(--accent); }
+.radio-option input {
+  accent-color: var(--accent);
+  width: 1.125rem;
+  height: 1.125rem;
+}
 
 .field-error {
   color: #f87171;
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 .radio-group--error {
   border-color: #f87171;
-}
-
-/* ---------- Class-11 conditional block ---------- */
-.class-11-divider {
-  height: 1px;
-  background: var(--glass-border);
 }
