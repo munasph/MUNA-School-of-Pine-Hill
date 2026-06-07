@@ -7,6 +7,7 @@ import { AcademicComponent }  from './components/academic/academic.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
+import { FaqComponent }       from './components/faq/faq.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'admission', component: AdmissionComponent },
   { path: 'contact',   component: ContactComponent   },
   { path: 'gallery',   component: GalleryComponent   },
+  { path: 'faq',       component: FaqComponent       },
   { path: 'login',     component: LoginComponent     },
   { path: 'signup',    redirectTo: 'portal/signup', pathMatch: 'full' },
   { path: 'portal/login',  component: PortalLoginComponent },

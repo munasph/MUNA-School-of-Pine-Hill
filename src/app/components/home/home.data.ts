@@ -92,14 +92,14 @@ export const homeGalleryImages: GalleryImage[] = [
 
 export const HOME_COPY = {
   hero: {
-    headline1:  'Headline',
-    headline2:  'Goes Here',
-    subtext:    'A short description of your school and what you offer to students and families.',
+    headline1:  'MUNA School',
+    headline2:  'of Pine Hill',
+    subtext:    'A nurturing community dedicated to academic excellence and strong character. We are just getting started — welcome to our school.',
     ctaPrimary: 'Primary Action',
-    trust1Title: 'Trust badge one',
-    trust1Desc:  'Supporting detail',
-    trust2Title: 'Trust badge two',
-    trust2Desc:  'Supporting detail',
+    trust1Title: 'Student Handbook',
+    trust1Desc:  'Coming soon',
+    trust2Title: 'FAQ',
+    trust2Desc:  'Common questions',
   },
   leadership: {
     sectionTag:   'Leadership',

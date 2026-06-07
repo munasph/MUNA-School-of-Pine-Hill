@@ -1,0 +1,22 @@
+<div class="legal-page">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold mb-8 legal-page__title">Frequently Asked Questions</h1>
+
+    <div class="prose max-w-none">
+      <div *ngFor="let faq of faqs" class="mb-8">
+        <h2 class="text-xl font-semibold mb-2 legal-page__heading">{{ faq.question }}</h2>
+        <p class="legal-page__body">{{ faq.answer }}</p>
+      </div>
+
+      <h2 class="text-xl font-semibold mt-8 mb-4 legal-page__heading">Still have a question?</h2>
+      <p class="legal-page__body">
+        Reach out and we are happy to help —
+        <a [href]="schoolInfo.emailHref" class="legal-page__link">{{ schoolInfo.email }}</a>
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <a routerLink="/" class="legal-page__link">&larr; Back to Home</a>
+    </div>
+  </div>
+</div>

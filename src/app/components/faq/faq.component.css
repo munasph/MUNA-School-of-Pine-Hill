@@ -1,0 +1,26 @@
+.legal-page {
+  min-height: 100vh;
+  background: #fff;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
+}
+
+.legal-page__title {
+  color: #111827;
+}
+
+.legal-page__heading {
+  color: #111827;
+}
+
+.legal-page__body {
+  color: #374151;
+}
+
+.legal-page__link {
+  color: #16a34a;
+}
+
+.legal-page__link:hover {
+  text-decoration: underline;
+}

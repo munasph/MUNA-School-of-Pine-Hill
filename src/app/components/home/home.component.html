@@ -4,7 +4,7 @@
 
     <!-- Parallax background -->
     <div class="hero__bg-wrap" [ngStyle]="parallaxStyle()">
-      <img src="/assets/images/webp/imageherofinal.webp"
+      <img src="/assets/images/webp/home-hero.webp"
            alt="" aria-hidden="true" class="hero__bg-img" />
     </div>
 
@@ -46,14 +46,14 @@
                   <div class="hero__trust-desc">{{ t.hero.trust1Desc }}</div>
                 </div>
               </div>
-              <div class="hero__trust hero__trust--gold">
+              <a routerLink="/faq" class="hero__trust hero__trust--gold" style="text-decoration:none;cursor:pointer;">
                 <lucide-icon [img]="award" size="15"
                              style="color:#F59E0B;flex-shrink:0;"></lucide-icon>
                 <div>
                   <div class="hero__trust-title hero__trust-title--gold">{{ t.hero.trust2Title }}</div>
                   <div class="hero__trust-desc">{{ t.hero.trust2Desc }}</div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
