@@ -1,0 +1,75 @@
+<div class="tuition-page">
+
+  <!-- Hero + Intro -->
+  <section class="tuition-section tuition-section--hero">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 sm:mb-12">
+        <app-section-label>{{ t.hero.tag }}</app-section-label>
+        <h1 class="tuition-title">{{ t.hero.title }}</h1>
+        <p class="tuition-subtitle">{{ t.hero.subtitle }}</p>
+      </div>
+
+      <div class="tuition-prose">
+        <p *ngFor="let p of t.intro.paragraphs" class="tuition-prose__p">{{ p }}</p>
+        <p class="tuition-prose__p">
+          {{ t.intro.scholarships.lead }}
+          <a [href]="t.intro.scholarships.programs[0].href"
+             class="tuition-link"
+             target="_blank"
+             rel="noopener noreferrer">{{ t.intro.scholarships.programs[0].label }}</a>
+          and the
+          <a [href]="t.intro.scholarships.programs[1].href"
+             class="tuition-link"
+             target="_blank"
+             rel="noopener noreferrer">{{ t.intro.scholarships.programs[1].label }}</a>,
+          {{ t.intro.scholarships.tail }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="tuition-section tuition-section--tint">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="tuition-section__title">What Your Investment Includes</h2>
+      <ul class="tuition-includes">
+        <li *ngFor="let item of t.intro.includes">{{ item }}</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Cost breakdown -->
+  <section class="tuition-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="tuition-section__title">{{ t.breakdown.title }}</h2>
+
+      <div class="tuition-breakdown">
+        <div *ngFor="let row of t.breakdown.rows"
+             class="tuition-breakdown__row"
+             [class.tuition-breakdown__row--highlight]="row.highlight">
+          <span class="tuition-breakdown__label">
+            <a *ngIf="row.href"
+               [href]="row.href"
+               class="tuition-link"
+               target="_blank"
+               rel="noopener noreferrer">{{ row.label }}</a>
+            <ng-container *ngIf="!row.href">{{ row.label }}</ng-container>
+          </span>
+          <span class="tuition-breakdown__amount">{{ row.amount }}</span>
+        </div>
+      </div>
+
+      <p class="tuition-prose__p tuition-prose__note tuition-breakdown__note">
+        {{ t.breakdown.multiChildNote }}
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
+    <p class="tuition-prose__p">
+      Questions about tuition or financial assistance?
+      <a [href]="schoolInfo.emailHref" class="tuition-link">{{ schoolInfo.email }}</a>
+      or call <a [href]="schoolInfo.phoneHref" class="tuition-link">{{ schoolInfo.phone }}</a>.
+    </p>
+  </div>
+</div>

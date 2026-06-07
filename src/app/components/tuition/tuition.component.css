@@ -1,0 +1,161 @@
+:host {
+  display: block;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.tuition-page {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.tuition-section {
+  padding: 3rem 0;
+}
+
+@media (min-width: 640px) {
+  .tuition-section {
+    padding: 4rem 0;
+  }
+}
+
+.tuition-section--hero {
+  padding-top: 5.5rem;
+}
+
+@media (min-width: 640px) {
+  .tuition-section--hero {
+    padding-top: 6.5rem;
+  }
+}
+
+.tuition-section--tint {
+  background: rgba(0, 134, 75, 0.04);
+}
+
+.tuition-title {
+  color: var(--text-primary);
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: clamp(1.875rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.tuition-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.tuition-section__title {
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.tuition-prose__p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.tuition-prose__note {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.tuition-includes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .tuition-includes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tuition-includes li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.tuition-includes li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00864B;
+  font-weight: 700;
+}
+
+.tuition-breakdown {
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  overflow: hidden;
+}
+
+.tuition-breakdown__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.tuition-breakdown__row:last-child {
+  border-bottom: none;
+}
+
+.tuition-breakdown__row--highlight {
+  background: rgba(0, 134, 75, 0.1);
+}
+
+.tuition-breakdown__label {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  flex: 1 1 12rem;
+}
+
+.tuition-breakdown__row--highlight .tuition-breakdown__label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.tuition-breakdown__amount {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tuition-breakdown__row--highlight .tuition-breakdown__amount {
+  color: #00864B;
+  font-size: 1.25rem;
+}
+
+.tuition-breakdown__note {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
+.tuition-link {
+  color: #00864B;
+  text-decoration: none;
+}
+
+.tuition-link:hover {
+  text-decoration: underline;
+}

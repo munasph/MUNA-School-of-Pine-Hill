@@ -3,19 +3,19 @@
  * Replace these values when you are ready to publish real school details.
  */
 export const SCHOOL_INFO = {
-  name:             'School Name',
-  shortName:        'School',
-  foundedYear:      '0000',
-  foundedDate:      'Month DD, YYYY',
-  address:          'Street Address, City, State, Country',
-  phone:            'Phone Number',
-  phoneHref:        'tel:+10000000000',
-  email:            'email@example.com',
-  emailHref:        'mailto:email@example.com',
+  name:             'MUNA School of Pine Hill',
+  shortName:        'MSPH',
+  foundedYear:      '2026',
+  foundedDate:      '2026',
+  address:          '400 Erial Rd, Pine Hill, NJ 08021',
+  phone:            '856-484-6949',
+  phoneHref:        'tel:+18564846949',
+  email:            'info@munasph.org',
+  emailHref:        'mailto:info@munasph.org',
   officeHours:      'Office Hours Placeholder',
   copyrightYear:    new Date().getFullYear().toString(),
-  mapQuery:         'School Name, City',
-  baseUrl:          'https://example.com',
+  mapQuery:         '400 Erial Rd, Pine Hill, NJ 08021',
+  baseUrl:          'https://munasph.org',
 };
 
 export const SOCIAL_LINKS = [
@@ -25,11 +25,10 @@ export const SOCIAL_LINKS = [
 ];
 
 export const QUICK_LINKS = [
-  { label: 'About',     path: '/about'     },
-  { label: 'Academic',  path: '/academic'  },
-  { label: 'Gallery',   path: '/gallery'   },
-  { label: 'Admission', path: '/admission' },
-  { label: 'Contact',   path: '/contact'   },
+  { label: 'About',     path: '/about'            },
+  { label: 'Admission', path: '/admission/policy' },
+  { label: 'Tuition',   path: '/tuition'          },
+  { label: 'Contact',   path: '/contact'          },
 ];
 
 export const PROGRAMS_LIST = [
@@ -48,15 +47,15 @@ export const ANNOUNCEMENT = {
 };
 
 export const NAV_LINKS = [
-  { path: '/',         label: 'Home' },
-  { path: '/about',    label: 'About' },
-  { path: '/academic', label: 'Academic' },
-  { path: '/gallery',  label: 'Gallery' },
-  { path: '/contact',  label: 'Contact' },
+  { path: '/',                  label: 'Home' },
+  { path: '/about',             label: 'About' },
+  { path: '/admission/policy',  label: 'Admission' },
+  { path: '/tuition',           label: 'Tuition' },
+  { path: '/contact',            label: 'Contact' },
 ] as const;
 
 export const NAV_COPY = {
-  nav: { admission: 'Admission' },
+  nav: { admission: 'Registration' },
 };
 
 export const FOOTER_COPY = {

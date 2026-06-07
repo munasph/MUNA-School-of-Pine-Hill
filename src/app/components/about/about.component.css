@@ -146,3 +146,25 @@
 }
 .carousel-btn--left  { left: 8px; }
 .carousel-btn--right { right: 8px; }
+
+.about-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 32px;
+  text-align: center;
+}
+.about-contact__item {
+  font-size: 1.05rem;
+  color: #334155;
+}
+a.about-contact__item {
+  color: #00864B;
+  text-decoration: none;
+  transition: color .2s;
+}
+a.about-contact__item:hover {
+  color: #00643a;
+  text-decoration: underline;
+}

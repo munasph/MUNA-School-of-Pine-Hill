@@ -90,8 +90,8 @@
     </div>
   </section>
 
-  <!-- Faculty Carousel -->
-  <section class="section-light">
+  <!-- Faculty Carousel (hidden until teachingFacultyPhotos has entries) -->
+  <section *ngIf="teachingFacultyPhotos.length" class="section-light">
     <div class="max-w-7xl mx-auto px-4">
       <div appReveal class="text-center" style="margin-bottom:56px;">
         <div class="section-pill">{{ t.about.faculty.tagline }}</div>
@@ -116,6 +116,22 @@
                 class="carousel-btn carousel-btn--right">
           <lucide-icon [img]="chevronRight" size="20"></lucide-icon>
         </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section-tint">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="text-center" style="margin-bottom:40px;">
+        <div class="section-pill">Contact</div>
+        <h2 class="section-title">Contact Us</h2>
+      </div>
+
+      <div appReveal class="about-contact">
+        <a [href]="schoolInfo.emailHref" class="about-contact__item">{{ schoolInfo.email }}</a>
+        <a [href]="schoolInfo.phoneHref" class="about-contact__item">{{ schoolInfo.phone }}</a>
+        <span class="about-contact__item">{{ schoolInfo.address }}</span>
       </div>
     </div>
   </section>

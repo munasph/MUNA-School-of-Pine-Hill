@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import type {
   ClassOption, AdmissionApplication,
   AdmissionSuccessMessage, AdmissionSubmitResponse,
+  AdmissionDocumentUpload,
 } from '../models/admission.model';
 import { classOptions, ADMISSION_SUCCESS } from '../components/admission/admission.data';
 import { apiUrl } from '../utils/api-url';
@@ -27,5 +28,23 @@ export class AdmissionService {
 
   submitApplication(payload: AdmissionApplication): Observable<AdmissionSubmitResponse> {
     return this.http.post<AdmissionSubmitResponse>(this.endpoint, payload);
+  }
+
+  submitApplicationWithDocuments(
+    payload: AdmissionApplication,
+    documents: AdmissionDocumentUpload[],
+  ): Observable<AdmissionSubmitResponse> {
+    const formData = new FormData();
+    formData.append(
+      'application',
+      new Blob([JSON.stringify(payload)], { type: 'application/json' }),
+    );
+
+    for (const doc of documents) {
+      formData.append('files', doc.file, doc.file.name);
+      formData.append('docTypes', doc.docType);
+    }
+
+    return this.http.post<AdmissionSubmitResponse>(`${this.endpoint}/with-documents`, formData);
   }
 }

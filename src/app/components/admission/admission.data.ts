@@ -1,21 +1,21 @@
 export const classOptions = [
-  { value: 'grade-1', label: 'Grade / Class Option 1' },
-  { value: 'grade-2', label: 'Grade / Class Option 2' },
-  { value: 'grade-3', label: 'Grade / Class Option 3' },
-  { value: 'grade-4', label: 'Grade / Class Option 4' },
+  { value: 'pre-k', label: 'Pre-K' },
+  { value: 'kg',    label: 'Kindergarten (KG)' },
+  { value: '1st',   label: '1st Grade' },
+  { value: '2nd',   label: '2nd Grade' },
 ];
 
 export const ADMISSION_SUCCESS = {
-  title:   'Application Received',
-  message: 'Thank you. Your submission has been received. We will contact you soon.',
+  title:   'Registration Received',
+  message: 'Thank you. Your registration and required documents have been received. Our Admissions Team will contact you when a spot becomes available.',
 };
 
 export const ADMISSION_COPY = {
   admission: {
     hero: {
-      tag:      'Admission',
-      title:    'Apply for Admission',
-      subtitle: 'Admission page subtitle placeholder.',
+      tag:      'Registration',
+      title:    'Registration',
+      subtitle: 'Complete the form below to express interest in enrollment.',
     },
   },
 };

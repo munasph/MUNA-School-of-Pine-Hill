@@ -1,0 +1,93 @@
+<div class="admission-policy-page">
+
+  <!-- Hero + Policy -->
+  <section class="policy-section policy-section--hero">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10 sm:mb-12">
+        <app-section-label>{{ t.hero.tag }}</app-section-label>
+        <h1 class="policy-title">{{ t.hero.title }}</h1>
+        <p class="policy-subtitle">{{ t.hero.subtitle }}</p>
+      </div>
+
+      <div class="policy-prose">
+        <p *ngFor="let p of t.policy.paragraphs" class="policy-prose__p">{{ p }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admission Criteria -->
+  <section class="policy-section policy-section--tint">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="policy-section__title">{{ t.criteria.title }}</h2>
+      <p class="policy-prose__p">{{ t.criteria.intro }}</p>
+      <p class="policy-prose__p">{{ t.criteria.note }}</p>
+
+      <div class="policy-table-wrap">
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Admission Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of t.criteria.ageTable">
+              <td>{{ row.grade }}</td>
+              <td>{{ row.age }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration / How to Apply -->
+  <section class="policy-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="policy-section__title">{{ t.registration.title }}</h2>
+      <h3 class="policy-section__subtitle">{{ t.registration.howTitle }}</h3>
+      <p class="policy-prose__p">{{ t.registration.intro }}</p>
+
+      <div class="policy-track">
+        <h4 class="policy-track__title">{{ t.registration.earlyChildhood.title }}</h4>
+        <ol class="policy-steps">
+          <li *ngFor="let step of t.registration.earlyChildhood.steps">{{ step }}</li>
+        </ol>
+      </div>
+
+      <div class="policy-track">
+        <h4 class="policy-track__title">{{ t.registration.elementary.title }}</h4>
+        <ol class="policy-steps">
+          <li *ngFor="let step of t.registration.elementary.steps">{{ step }}</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Online Registration + Documents + Returning -->
+  <section class="policy-section policy-section--tint">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="policy-section__title">{{ t.onlineRegistration.title }}</h2>
+      <p class="policy-prose__p">{{ t.onlineRegistration.description }}</p>
+
+      <div class="policy-actions">
+        <a routerLink="/admission">
+          <app-glass-button variant="accent">{{ t.onlineRegistration.formLinkLabel }}</app-glass-button>
+        </a>
+      </div>
+
+      <h3 class="policy-section__subtitle">{{ t.onlineRegistration.documentsTitle }}</h3>
+      <ul class="policy-docs">
+        <li *ngFor="let doc of t.onlineRegistration.documents">{{ doc }}</li>
+      </ul>
+
+      <h3 class="policy-section__subtitle">{{ t.returningStudents.title }}</h3>
+      <p class="policy-prose__p">{{ t.returningStudents.body }}</p>
+      <p class="policy-prose__p policy-prose__note">{{ t.returningStudents.note }}</p>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
+    <a routerLink="/admission" class="policy-back">&larr; Back to Registration Form</a>
+  </div>
+</div>

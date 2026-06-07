@@ -31,9 +31,9 @@
           <div *ngIf="settingsLoading" class="text-center form-subtitle">Loading…</div>
 
           <div *ngIf="!settingsLoading && !admissionsOpen" class="text-center space-y-4">
-            <h2 class="text-2xl font-serif form-title">Applications currently closed</h2>
+            <h2 class="text-2xl font-serif form-title">Registration currently closed</h2>
             <p class="form-subtitle">
-              We are not accepting new admission applications at this time.
+              We are not accepting new registrations at this time.
               Please check back later or contact the school office for more information.
             </p>
             <a routerLink="/contact">
@@ -49,53 +49,127 @@
               <legend class="fieldset-legend">Student Information</legend>
 
               <div class="grid md:grid-cols-2 gap-5">
-                <app-glass-input label="Full Name" type="text" placeholder="Student's Full Name"
-                                 [required]="true" formControlName="fullName"
-                                 [error]="errorFor('fullName') ?? undefined"></app-glass-input>
-                <app-glass-input label="Date of Birth" type="date"
-                                 [required]="true" formControlName="dob"
-                                 [error]="errorFor('dob') ?? undefined"></app-glass-input>
+                <app-glass-input label="First Name" type="text" placeholder="First name"
+                                 [required]="true" formControlName="firstName"
+                                 [error]="errorFor('firstName') ?? undefined"></app-glass-input>
+                <app-glass-input label="Last Name" type="text" placeholder="Last name"
+                                 [required]="true" formControlName="lastName"
+                                 [error]="errorFor('lastName') ?? undefined"></app-glass-input>
               </div>
 
-              <div class="grid md:grid-cols-2 gap-5">
-                <app-glass-select label="Applying for Class"
-                                  [options]="classOptions"
-                                  [required]="true"
-                                  formControlName="classApplying"
-                                  [error]="errorFor('classApplying') ?? undefined"></app-glass-select>
-
-                <div class="space-y-1.5">
+              <div class="grid md:grid-cols-2 gap-5 admission-gender-dob-row">
+                <div class="admission-gender-dob-row__field">
                   <label class="radio-label">Gender</label>
-                  <div class="radio-group"
+                  <div class="radio-group radio-group--compact"
                        [class.radio-group--error]="!!errorFor('gender')">
-                    <label *ngFor="let g of ['Male', 'Female', 'Other']" class="radio-option">
+                    <label *ngFor="let g of ['Male', 'Female']" class="radio-option">
                       <input type="radio" formControlName="gender" [value]="g" />
                       {{ g }}
                     </label>
                   </div>
                   <span *ngIf="errorFor('gender')" class="field-error">{{ errorFor('gender') }}</span>
                 </div>
+                <div class="admission-gender-dob-row__field">
+                  <app-glass-input label="Date of Birth" type="date"
+                                   [required]="true" formControlName="dob"
+                                   [error]="errorFor('dob') ?? undefined"></app-glass-input>
+                </div>
               </div>
 
+              <app-glass-input label="Street Address" type="text" placeholder="Street number and name"
+                               [required]="true" formControlName="streetAddress"
+                               [error]="errorFor('streetAddress') ?? undefined"></app-glass-input>
+
+              <div class="grid md:grid-cols-3 gap-5">
+                <app-glass-input label="City" type="text" placeholder="City"
+                                 [required]="true" formControlName="city"
+                                 [error]="errorFor('city') ?? undefined"></app-glass-input>
+                <app-glass-input label="State" type="text" placeholder="State"
+                                 [required]="true" formControlName="state"
+                                 [error]="errorFor('state') ?? undefined"></app-glass-input>
+                <app-glass-input label="ZIP Code" type="text" placeholder="ZIP"
+                                 [required]="true" formControlName="zip"
+                                 [error]="errorFor('zip') ?? undefined"></app-glass-input>
+              </div>
+
+              <app-glass-select label="Grade"
+                                [options]="classOptions"
+                                [required]="true"
+                                formControlName="classApplying"
+                                [error]="errorFor('classApplying') ?? undefined"></app-glass-select>
             </fieldset>
 
-            <!-- Parent / Guardian Information -->
+            <!-- Parent / Guardian 1 -->
             <fieldset class="space-y-5">
-              <legend class="fieldset-legend">Parent / Guardian Information</legend>
+              <legend class="fieldset-legend">Parent / Guardian 1</legend>
               <div class="grid md:grid-cols-2 gap-5">
-                <app-glass-input label="Parent / Guardian Name" type="text" placeholder="Full Name"
-                                 [required]="true" formControlName="parentName"
-                                 [error]="errorFor('parentName') ?? undefined"></app-glass-input>
-                <app-glass-input label="Contact Number" type="tel" placeholder="Phone number"
-                                 [required]="true" formControlName="parentPhone"
-                                 [error]="errorFor('parentPhone') ?? undefined"></app-glass-input>
+                <app-glass-input label="Name" type="text" placeholder="Full name"
+                                 [required]="true" formControlName="parent1Name"
+                                 [error]="errorFor('parent1Name') ?? undefined"></app-glass-input>
+                <app-glass-input label="Phone" type="tel" placeholder="Phone number"
+                                 [required]="true" formControlName="parent1Phone"
+                                 [error]="errorFor('parent1Phone') ?? undefined"></app-glass-input>
               </div>
+              <app-glass-input label="Email Address" type="email" placeholder="email@example.com"
+                               [required]="true" formControlName="parent1Email"
+                               [error]="errorFor('parent1Email') ?? undefined"></app-glass-input>
             </fieldset>
+
+            <!-- Parent / Guardian 2 -->
+            <fieldset class="space-y-5">
+              <legend class="fieldset-legend">Parent / Guardian 2 (optional)</legend>
+              <div class="grid md:grid-cols-2 gap-5">
+                <app-glass-input label="Name" type="text" placeholder="Full name"
+                                 formControlName="parent2Name"
+                                 [error]="errorFor('parent2Name') ?? undefined"></app-glass-input>
+                <app-glass-input label="Phone" type="tel" placeholder="Phone number"
+                                 formControlName="parent2Phone"
+                                 [error]="errorFor('parent2Phone') ?? undefined"></app-glass-input>
+              </div>
+              <app-glass-input label="Email Address" type="email" placeholder="email@example.com"
+                               formControlName="parent2Email"
+                               [error]="errorFor('parent2Email') ?? undefined"></app-glass-input>
+            </fieldset>
+
+            <!-- Required Documents -->
+            <ng-container *ngFor="let group of documentGroups">
+              <fieldset class="space-y-5" [attr.id]="group.id === 'required' ? 'required-documents' : null">
+                <legend class="fieldset-legend">{{ group.title }}</legend>
+                <p *ngIf="group.note" class="document-group-note">{{ group.note }}</p>
+                <p *ngIf="group.id === 'required'" class="document-group-note">
+                  Accepted formats: PDF, DOC, DOCX, JPG, or PNG. Maximum {{ documentMaxMb }} MB per file.
+                </p>
+
+                <div *ngFor="let doc of documentsForGroup(group.id)" class="document-upload">
+                  <label class="document-upload__label" [for]="'doc-' + doc.type">
+                    {{ doc.label }}
+                    <span *ngIf="doc.required" class="document-upload__required">*</span>
+                  </label>
+                  <p *ngIf="doc.hint" class="document-upload__hint">{{ doc.hint }}</p>
+
+                  <div class="document-upload__control"
+                       [class.document-upload__control--error]="!!documentErrorFor(doc.type)">
+                    <input [id]="'doc-' + doc.type"
+                           type="file"
+                           class="document-upload__input"
+                           [accept]="documentAccept"
+                           (change)="onDocumentSelected(doc.type, $event)" />
+                    <span class="document-upload__filename">
+                      {{ selectedDocumentName(doc.type) || 'Choose a file…' }}
+                    </span>
+                  </div>
+
+                  <span *ngIf="documentErrorFor(doc.type)" class="field-error">
+                    {{ documentErrorFor(doc.type) }}
+                  </span>
+                </div>
+              </fieldset>
+            </ng-container>
 
             <p *ngIf="submitError" class="field-error text-center mb-4">{{ submitError }}</p>
 
             <app-glass-button variant="accent" size="lg" type="submit" extraClass="w-full" [disabled]="submitting">
-              {{ submitting ? 'Submitting…' : 'Submit Application' }}
+              {{ submitting ? 'Submitting…' : 'Submit Registration' }}
             </app-glass-button>
           </form>
         </app-glass-card>

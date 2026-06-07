@@ -118,3 +118,88 @@
 .radio-group--error {
   border-color: #f87171;
 }
+
+.admission-gender-dob-row {
+  align-items: stretch;
+}
+
+.admission-gender-dob-row__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.admission-gender-dob-row__field app-glass-input {
+  display: block;
+  height: 100%;
+}
+
+.radio-group--compact {
+  flex: 1;
+  min-height: 3rem;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.radio-group--compact .radio-option {
+  min-height: auto;
+}
+
+/* ---------- Document uploads ---------- */
+.document-group-note {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.document-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.document-upload__label {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.document-upload__required {
+  color: #f87171;
+}
+
+.document-upload__hint {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.document-upload__control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.document-upload__control--error {
+  border-color: #f87171;
+}
+
+.document-upload__input {
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.document-upload__filename {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

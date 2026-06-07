@@ -6,7 +6,7 @@ import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
 import { AuthService } from '../../services/auth.service';
 import { PortalAuthService } from '../../services/portal-auth.service';
 
-const LIGHT_SURFACE_ROUTES = ['/admission', '/login', '/signup', '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq'];
+const LIGHT_SURFACE_ROUTES = ['/admission', '/admission/policy', '/tuition', '/login', '/signup', '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq'];
 const ADMIN_HOME = '/admin';
 
 @Component({

@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent }      from './components/home/home.component';
 import { AboutComponent }     from './components/about/about.component';
-import { AcademicComponent }  from './components/academic/academic.component';
 import { AdmissionComponent } from './components/admission/admission.component';
+import { AdmissionPolicyComponent } from './components/admission/admission-policy.component';
 import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
 import { FaqComponent }       from './components/faq/faq.component';
+import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
@@ -33,10 +34,12 @@ import { portalAuthGuard } from './guards/portal-auth.guard';
 const routes: Routes = [
   { path: '',          component: HomeComponent,      pathMatch: 'full' },
   { path: 'about',     component: AboutComponent     },
-  { path: 'academic',  component: AcademicComponent  },
-  { path: 'admission', component: AdmissionComponent },
+  { path: 'academic',  redirectTo: '/admission', pathMatch: 'full' },
+  { path: 'admission',         component: AdmissionComponent       },
+  { path: 'admission/policy',  component: AdmissionPolicyComponent },
+  { path: 'tuition',           component: TuitionComponent       },
   { path: 'contact',   component: ContactComponent   },
-  { path: 'gallery',   component: GalleryComponent   },
+  { path: 'gallery',   redirectTo: '/', pathMatch: 'full' },
   { path: 'faq',       component: FaqComponent       },
   { path: 'login',     component: LoginComponent     },
   { path: 'signup',    redirectTo: 'portal/signup', pathMatch: 'full' },

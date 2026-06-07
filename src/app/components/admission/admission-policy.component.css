@@ -1,0 +1,163 @@
+:host {
+  display: block;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.admission-policy-page {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.policy-section {
+  padding: 3rem 0;
+}
+
+@media (min-width: 640px) {
+  .policy-section {
+    padding: 4rem 0;
+  }
+}
+
+.policy-section--hero {
+  padding-top: 5.5rem;
+}
+
+@media (min-width: 640px) {
+  .policy-section--hero {
+    padding-top: 6.5rem;
+  }
+}
+
+.policy-section--tint {
+  background: rgba(0, 134, 75, 0.04);
+}
+
+.policy-title {
+  color: var(--text-primary);
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: clamp(1.875rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.policy-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.policy-section__title {
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.policy-section__subtitle {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.policy-prose__p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.policy-prose__note {
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.policy-table-wrap {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+}
+
+.policy-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.policy-table th,
+.policy-table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.policy-table th {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: rgba(0, 134, 75, 0.08);
+}
+
+.policy-table td {
+  color: var(--text-secondary);
+}
+
+.policy-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.policy-track {
+  margin-top: 2rem;
+}
+
+.policy-track__title {
+  color: #00864B;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.policy-steps {
+  list-style: decimal;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.policy-steps li {
+  margin-bottom: 0.75rem;
+}
+
+.policy-steps li:last-child {
+  margin-bottom: 0;
+}
+
+.policy-docs {
+  list-style: disc;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.policy-docs li {
+  margin-bottom: 0.5rem;
+}
+
+.policy-actions {
+  margin: 1.5rem 0 2rem;
+}
+
+.policy-back {
+  color: #00864B;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.policy-back:hover {
+  text-decoration: underline;
+}
