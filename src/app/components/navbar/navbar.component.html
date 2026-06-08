@@ -11,18 +11,8 @@
           <source srcset="/assets/logo-full.webp" type="image/webp" />
           <img src="/assets/logo-full.png"
                [alt]="schoolInfo.name"
-               class="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300" />
+               class="navbar-logo group-hover:scale-105 transition-transform duration-300" />
         </picture>
-        <div class="hidden sm:flex flex-col justify-center gap-0 navbar-brand-text"
-             [style.maxWidth]="scrolled ? '0' : '200px'"
-             [style.opacity]="scrolled ? 0 : 1">
-          <span class="font-bold text-sm leading-snug" [style.color]="brandTitleColor()">
-            {{ schoolInfo.shortName }}
-          </span>
-          <span class="font-semibold text-xs leading-snug" [style.color]="brandSubtitleColor()">
-            {{ schoolInfo.name }}
-          </span>
-        </div>
       </a>
 
       <!-- CENTER: Liquid Glass Pill -->

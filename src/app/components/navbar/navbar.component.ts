@@ -163,11 +163,4 @@ export class NavbarComponent implements OnInit, OnDestroy {
       ? 'var(--text-secondary)'
       : 'rgba(255,255,255,0.88)';
   }
-
-  brandTitleColor(): string {
-    return this.lightNavChrome ? '#0F172A' : '#ffffff';
-  }
-  brandSubtitleColor(): string {
-    return this.lightNavChrome ? 'rgba(15,23,42,0.68)' : 'rgba(255,255,255,0.85)';
-  }
 }
