@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       SCHOOL_INFO.name,
-      description: 'School website placeholder. Add your description when ready.',
+      description: 'A faith-centered K–12 Islamic school in South Jersey offering quality education rooted in Islamic values and academic excellence.',
       path:        '/',
     });
   }

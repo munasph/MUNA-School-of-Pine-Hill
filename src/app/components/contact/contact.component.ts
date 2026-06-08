@@ -64,7 +64,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Contact Us',
-      description: `Contact ${SCHOOL_INFO.name}. Placeholder contact details — update when ready.`,
+      description: `Contact ${SCHOOL_INFO.name}. Reach our admissions team by phone, email, or visit us in Pine Hill, NJ.`,
       path:        '/contact',
     });
 

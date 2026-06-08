@@ -1,6 +1,5 @@
 /**
- * Site-wide branding placeholders.
- * Replace these values when you are ready to publish real school details.
+ * Site-wide branding and contact details.
  */
 export const SCHOOL_INFO = {
   name:             'MUNA School of Pine Hill',
@@ -60,7 +59,7 @@ export const NAV_COPY = {
 
 export const FOOTER_COPY = {
   footer: {
-    tagline:    'A short tagline about your school can go here.',
+    tagline:    'Faith-centered K–12 education in South Jersey.',
     quickLinks: 'Quick Links',
     programmes: 'Programmes',
     contact:    'Contact',

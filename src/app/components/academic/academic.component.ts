@@ -35,7 +35,7 @@ export class AcademicComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Academic Programmes',
-      description: 'Academic programmes placeholder. Add your curriculum details when ready.',
+      description: 'Academic programmes at MUNA School of Pine Hill — faith-centered K–12 education in South Jersey.',
       path:        '/academic',
     });
   }

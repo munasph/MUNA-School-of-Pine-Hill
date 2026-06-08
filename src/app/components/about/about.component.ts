@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.seo.update({
       title:       'About Us',
-      description: 'About page placeholder. Add your school history and mission when ready.',
+      description: 'Learn about MUNA School of Pine Hill — our history, mission, and commitment to faith-centered K–12 education in South Jersey.',
       path:        '/about',
     });
   }
