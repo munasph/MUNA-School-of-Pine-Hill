@@ -1,4 +1,5 @@
-<nav class="navbar-shell fixed top-0 left-0 right-0 w-full z-50">
+<nav class="navbar-shell fixed top-0 left-0 right-0 w-full z-50"
+     [class.navbar-shell--light]="lightNavChrome">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center gap-6 navbar-inner"
          style="margin-top: 0; padding: 16px 0">
@@ -82,7 +83,8 @@
 
   <!-- Mobile Menu Overlay -->
   <div *ngIf="isOpen"
-       class="md:hidden overflow-hidden navbar-mobile navbar-mobile--dark">
+       class="md:hidden overflow-hidden navbar-mobile"
+       [ngClass]="lightNavChrome ? 'navbar-mobile--light' : 'navbar-mobile--dark'">
     <div class="px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-2">
       <a *ngFor="let link of navLinks"
          [routerLink]="link.path"
