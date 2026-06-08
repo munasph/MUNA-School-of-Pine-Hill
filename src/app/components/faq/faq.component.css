@@ -1,20 +1,20 @@
 .legal-page {
   min-height: 100vh;
-  background: #fff;
+  background: var(--bg-base);
   padding-top: 8rem;
   padding-bottom: 4rem;
 }
 
 .legal-page__title {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .legal-page__heading {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .legal-page__body {
-  color: #374151;
+  color: var(--text-secondary);
 }
 
 .legal-page__link {

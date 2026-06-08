@@ -6,7 +6,7 @@ export type Theme = 'dark' | 'light';
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private readonly _theme$ = new BehaviorSubject<Theme>('light');
+  private readonly _theme$ = new BehaviorSubject<Theme>('dark');
   readonly theme$ = this._theme$.asObservable();
 
   constructor(
@@ -14,10 +14,10 @@ export class ThemeService {
     @Inject(PLATFORM_ID) private readonly platformId: object,
   ) {
     if (isPlatformBrowser(this.platformId)) {
-      const saved = (window.localStorage.getItem('theme') as Theme | null) ?? 'light';
+      const saved = (window.localStorage.getItem('theme') as Theme | null) ?? 'dark';
       this.setTheme(saved);
     } else {
-      this.applyTheme('light');
+      this.applyTheme('dark');
     }
   }
 

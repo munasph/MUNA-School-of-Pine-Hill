@@ -1,7 +1,7 @@
 /* ============================================================
  * Academic page (view-encapsulated)
  * ============================================================ */
-:host { background: #FFFFFF; display: block; }
+:host { background: var(--bg-base); display: block; }
 
 /* ---------- Hero ---------- */
 .academic-hero {
@@ -50,27 +50,27 @@
 }
 
 /* ---------- Section commons ---------- */
-.academic-section          { background: #FFFFFF; }
-.academic-section--tint    { background: #F0FDF4; }
+.academic-section          { background: var(--bg-base); }
+.academic-section--tint    { background: var(--bg-forest); }
 .academic-section__header  { text-align: center; margin-bottom: 56px; }
 
 .tag-pill {
   display: inline-block;
-  background: #F0FDF4; color: #00864B;
-  border: 1.5px solid #BBF7D0;
+  background: var(--accent-dim); color: #00864B;
+  border: 1.5px solid var(--glass-border);
   border-radius: 999px;
   font-size: 12px; font-weight: 700; letter-spacing: .06em;
   padding: 4px 14px;
   margin-bottom: 16px;
 }
 .section-title {
-  color: #0F172A;
+  color: var(--text-primary);
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   line-height: 1.2;
   margin-bottom: 12px;
 }
 .section-subtitle {
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 15px;
   max-width: 480px;
   margin: 0 auto;
@@ -78,47 +78,47 @@
 
 /* ---------- Programme cards ---------- */
 .course-card {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-radius: 20px;
   box-shadow: 0 6px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,134,75,0.10);
   padding: 32px;
 }
 .course-card__icon {
   width: 48px; height: 48px; border-radius: 14px;
-  background: #F0FDF4; color: #00864B;
+  background: var(--accent-dim); color: #00864B;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 20px;
 }
 .course-card__levels {
   display: inline-block;
-  background: #F0FDF4; color: #00864B;
-  border: 1.5px solid #BBF7D0;
+  background: var(--accent-dim); color: #00864B;
+  border: 1.5px solid var(--glass-border);
   border-radius: 999px;
   font-size: 10px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
   padding: 3px 10px;
   margin-bottom: 12px;
 }
-.course-card__title { color: #0F172A; font-size: 18px; margin-bottom: 10px; }
-.course-card__desc  { color: #475569; font-size: 14px; line-height: 1.65; }
+.course-card__title { color: var(--text-primary); font-size: 18px; margin-bottom: 10px; }
+.course-card__desc  { color: var(--text-secondary); font-size: 14px; line-height: 1.65; }
 
 /* ---------- Higher-secondary streams ---------- */
 .stream-intro__title {
-  color: #0F172A;
+  color: var(--text-primary);
   font-size: clamp(1.75rem, 4vw, 2.75rem);
   line-height: 1.2;
   margin-bottom: 20px;
 }
 .stream-intro__paragraph {
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.75;
 }
 
 .stream-card {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-left: 4px solid #00864B;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0,134,75,0.07);
@@ -127,17 +127,17 @@
 }
 .stream-card__icon {
   width: 42px; height: 42px; border-radius: 12px;
-  background: #F0FDF4; color: #00864B;
+  background: var(--accent-dim); color: #00864B;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.stream-card__title { color: #0F172A; font-weight: 700; font-size: 15px; margin-bottom: 5px; }
-.stream-card__desc  { color: #475569; font-size: 13px; line-height: 1.6; }
+.stream-card__title { color: var(--text-primary); font-weight: 700; font-size: 15px; margin-bottom: 5px; }
+.stream-card__desc  { color: var(--text-secondary); font-size: 13px; line-height: 1.6; }
 
 /* ---------- Achievements ---------- */
 .achievement-card {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-radius: 20px;
   box-shadow: 0 6px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,134,75,0.10);
   padding: 28px;
@@ -151,8 +151,8 @@
 }
 .achievement-card__year {
   display: inline-block;
-  background: #F0FDF4; color: #00864B;
-  border: 1.5px solid #BBF7D0;
+  background: var(--accent-dim); color: #00864B;
+  border: 1.5px solid var(--glass-border);
   border-radius: 999px;
   font-size: 10px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
@@ -160,7 +160,7 @@
   margin-bottom: 16px;
 }
 .achievement-card__title {
-  color: #0F172A; font-weight: 700; font-size: 14px;
+  color: var(--text-primary); font-weight: 700; font-size: 14px;
   line-height: 1.4; margin-bottom: 10px;
 }
-.achievement-card__desc { color: #475569; font-size: 13px; line-height: 1.65; }
+.achievement-card__desc { color: var(--text-secondary); font-size: 13px; line-height: 1.65; }

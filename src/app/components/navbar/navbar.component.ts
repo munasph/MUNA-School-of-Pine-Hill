@@ -6,7 +6,6 @@ import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
 import { AuthService } from '../../services/auth.service';
 import { PortalAuthService } from '../../services/portal-auth.service';
 
-const LIGHT_SURFACE_ROUTES = ['/admission', '/admission/policy', '/tuition', '/login', '/staff-signup', '/set-password', '/forgot-password', '/reset-password', '/portal', '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq'];
 const ADMIN_HOME = '/admin';
 
 @Component({
@@ -78,10 +77,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.scrolled = window.scrollY > 20;
   }
 
-  get lightSurface(): boolean {
-    return LIGHT_SURFACE_ROUTES.includes(this.currentPath);
-  }
-
   isActive(path: string): boolean {
     return path === '/'
       ? this.currentPath === '/'
@@ -102,13 +97,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   pillBackground(): string {
-    if (this.scrolled)      return 'rgba(255,255,255,0.72)';
-    if (this.lightSurface)  return 'rgba(255,255,255,0.85)';
+    if (this.scrolled) return 'rgba(255,255,255,0.72)';
     return 'rgba(255,255,255,0.12)';
   }
   pillBorder(): string {
-    if (this.scrolled)      return '1px solid rgba(0,134,75,0.18)';
-    if (this.lightSurface)  return '1px solid rgba(148,163,184,0.18)';
+    if (this.scrolled) return '1px solid rgba(0,134,75,0.18)';
     return '1px solid rgba(255,255,255,0.30)';
   }
   pillShadow(): string {
@@ -120,27 +113,27 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   linkColor(active: boolean): string {
     if (active) {
-      return this.scrolled || this.lightSurface ? '#00864B' : 'white';
+      return this.scrolled ? '#00864B' : 'white';
     }
-    return this.scrolled || this.lightSurface ? '#334155' : 'rgba(255,255,255,0.88)';
+    return this.scrolled ? '#334155' : 'rgba(255,255,255,0.88)';
   }
   linkBackground(active: boolean): string {
     if (!active) return 'transparent';
-    return this.scrolled || this.lightSurface
+    return this.scrolled
       ? 'rgba(0,134,75,0.12)'
       : 'rgba(255,255,255,0.18)';
   }
 
   burgerColor(): string {
-    return this.scrolled || this.lightSurface
+    return this.scrolled
       ? 'var(--text-secondary)'
       : 'rgba(255,255,255,0.88)';
   }
 
   brandTitleColor(): string {
-    return this.lightSurface ? '#0F172A' : '#ffffff';
+    return '#ffffff';
   }
   brandSubtitleColor(): string {
-    return this.lightSurface ? 'rgba(15,23,42,0.68)' : 'rgba(255,255,255,0.85)';
+    return 'rgba(255,255,255,0.85)';
   }
 }

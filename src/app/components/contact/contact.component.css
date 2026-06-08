@@ -55,7 +55,7 @@
 }
 
 .contact-main {
-  background: #fff;
+  background: var(--bg-base);
   padding: 48px 0;
 }
 
@@ -68,7 +68,7 @@
 .contact-main__heading {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #0F172A;
+  color: var(--text-primary);
   margin-bottom: 32px;
 }
 
@@ -79,8 +79,8 @@
 }
 
 .contact-info-card {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-radius: 16px;
   padding: 20px 24px;
   display: flex;
@@ -95,7 +95,7 @@
   height: 44px;
   min-width: 44px;
   border-radius: 10px;
-  background: #F0FDF4;
+  background: var(--accent-dim);
   color: #00864B;
   display: flex;
   align-items: center;
@@ -104,20 +104,20 @@
 
 .contact-info-card__title {
   font-weight: 700;
-  color: #0F172A;
+  color: var(--text-primary);
   margin-bottom: 4px;
   font-size: 15px;
 }
 
 .contact-info-card__detail {
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.6;
 }
 
 .contact-form-panel {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-radius: 24px;
   padding: 24px 20px;
 }
@@ -137,9 +137,9 @@
   gap: 10px;
   font-size: 14px;
   font-weight: 700;
-  background: #F0FDF4;
+  background: var(--accent-dim);
   color: #00864B;
-  border: 1.5px solid #BBF7D0;
+  border: 1.5px solid var(--glass-border);
 }
 
 .contact-success lucide-icon {
@@ -168,7 +168,7 @@
   margin-bottom: 6px;
   font-size: 13px;
   font-weight: 600;
-  color: #0F172A;
+  color: var(--text-primary);
 }
 
 .contact-field__input {
@@ -176,9 +176,9 @@
   padding: 12px 16px;
   border-radius: 12px;
   font-size: 14px;
-  color: #0F172A;
-  background: #FAFFFE;
-  border: 1.5px solid #BBF7D0;
+  color: var(--text-primary);
+  background: var(--surface-input);
+  border: 1.5px solid var(--glass-border);
   outline: none;
   box-sizing: border-box;
 }

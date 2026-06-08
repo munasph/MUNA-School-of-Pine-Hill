@@ -56,6 +56,12 @@
   --footer-border:   rgba(255, 255, 255, 0.10);
 
   --shadow-glass: rgba(0, 0, 0, 0.40);
+
+  --surface-card:        rgba(255, 255, 255, 0.06);
+  --surface-card-hover:  rgba(255, 255, 255, 0.10);
+  --surface-input:       rgba(255, 255, 255, 0.08);
+  --surface-divider:     rgba(255, 255, 255, 0.10);
+  --brand-primary:       #00864B;
 }
 
 /* ─── Theme: Light (Professional Modern Design) ───────────────────────────── */
@@ -92,6 +98,12 @@
   --footer-border:   rgba(0, 217, 126, 0.10);
 
   --shadow-glass: rgba(0, 217, 126, 0.08);
+
+  --surface-card:        #FFFFFF;
+  --surface-card-hover:  #FAFFFE;
+  --surface-input:       #FAFFFE;
+  --surface-divider:     #E2E8F0;
+  --brand-primary:       #00864B;
 }
 
 /* ─── Keyframes ───────────────────────────────────────────────────────────── */
@@ -212,9 +224,9 @@ app-root {
 
 /* ─── Claymorphism (Professional 3D) ──────────────────────────────────────── */
 .clay-card {
-  background: white;
+  background: var(--surface-card);
   border-radius: 20px;
-  border: 1px solid rgba(79, 70, 229, 0.08);
+  border: 1px solid var(--glass-border);
   box-shadow:
     0 4px 12px rgba(79, 70, 229, 0.06),
     0 12px 24px rgba(79, 70, 229, 0.08),
@@ -263,9 +275,9 @@ app-root {
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 .clay-button-secondary {
-  background: white;
-  color: #1E293B;
-  border: 2px solid rgba(79, 70, 229, 0.15);
+  background: var(--surface-card);
+  color: var(--text-primary);
+  border: 2px solid var(--glass-border);
 }
 .clay-button-secondary:hover {
   border-color: #4F46E5;

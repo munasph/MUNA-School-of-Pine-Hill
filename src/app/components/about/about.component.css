@@ -1,7 +1,7 @@
 /* ============================================================
  * About page (view-encapsulated)
  * ============================================================ */
-:host { font-family: Inter, system-ui, sans-serif; }
+:host { font-family: Inter, system-ui, sans-serif; background: var(--bg-base); display: block; }
 
 /* ---------- Hero ---------- */
 .about-hero {
@@ -21,14 +21,14 @@
 }
 .about-hero__year-badge {
   position: absolute; bottom: -20px; right: -20px;
-  background: #fff;
+  background: var(--glass-bg-strong);
   border-radius: 16px; padding: 20px 28px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.15);
   text-align: center;
 }
 .about-hero__year-num   { font-size: 2.5rem; font-weight: 800; color: #00864B; line-height: 1; }
 .about-hero__year-label {
-  font-size: 10px; font-weight: 700; color: #475569;
+  font-size: 10px; font-weight: 700; color: var(--text-secondary);
   text-transform: uppercase; letter-spacing: .12em;
   margin-top: 4px;
 }
@@ -68,12 +68,12 @@
 }
 
 /* ---------- Section commons ---------- */
-.section-light { background: #fff; padding: 96px 0; }
-.section-tint  { background: #F0FDF4; padding: 96px 0; }
+.section-light { background: var(--bg-base); padding: 96px 0; }
+.section-tint  { background: var(--bg-forest); padding: 96px 0; }
 
 .section-pill {
   display: inline-block;
-  background: #A7F3D0; color: #00864B;
+  background: var(--accent-dim); color: #00864B;
   font-size: 12px; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
   padding: 6px 16px; border-radius: 100px;
@@ -81,13 +81,13 @@
 }
 .section-title {
   font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 800; color: #0F172A;
+  font-weight: 800; color: var(--text-primary);
 }
 
 /* ---------- Vision cards ---------- */
 .vision-card {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-radius: 20px;
   box-shadow: 0 6px 0 rgba(0,0,0,0.08), 0 12px 32px rgba(0,134,75,0.10);
   padding: 36px 28px;
@@ -95,17 +95,17 @@
 }
 .vision-card__icon {
   width: 48px; height: 48px; border-radius: 12px;
-  background: #F0FDF4; color: #00864B;
+  background: var(--accent-dim); color: #00864B;
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 20px;
 }
-.vision-card__title { font-weight: 700; font-size: 18px; color: #0F172A; margin-bottom: 12px; }
-.vision-card__desc  { font-size: 14px; color: #475569; line-height: 1.7; }
+.vision-card__title { font-weight: 700; font-size: 18px; color: var(--text-primary); margin-bottom: 12px; }
+.vision-card__desc  { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
 /* ---------- Key faculty ---------- */
 .faculty-card {
-  background: #fff;
-  border: 1.5px solid #BBF7D0;
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
   border-radius: 16px;
   border-top: 3px solid #00864B;
   box-shadow: 0 4px 24px rgba(0,134,75,0.08);
@@ -113,12 +113,12 @@
 }
 .faculty-card__photo { aspect-ratio: 1 / 1; overflow: hidden; }
 .faculty-card__body  { padding: 20px; }
-.faculty-card__name  { font-weight: 700; font-size: 15px; color: #0F172A; margin-bottom: 4px; }
+.faculty-card__name  { font-weight: 700; font-size: 15px; color: var(--text-primary); margin-bottom: 4px; }
 .faculty-card__role  {
   font-size: 10px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .1em; color: #00864B; margin-bottom: 8px;
 }
-.faculty-card__expertise { font-size: 12px; color: #475569; }
+.faculty-card__expertise { font-size: 12px; color: var(--text-secondary); }
 
 /* ---------- Teaching faculty carousel ---------- */
 .carousel-shell { position: relative; }
@@ -130,14 +130,14 @@
 .carousel-item   { flex-shrink: 0; width: 112px; text-align: center; }
 .carousel-avatar {
   width: 112px; height: 112px; border-radius: 50%;
-  overflow: hidden; border: 3px solid #BBF7D0;
+  overflow: hidden; border: 3px solid var(--glass-border);
   box-shadow: 0 4px 16px rgba(0,134,75,0.10);
 }
 
 .carousel-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 40px; height: 40px; border-radius: 50%;
-  background: #fff; border: 1.5px solid #BBF7D0; color: #00864B;
+  background: var(--surface-card); border: 1.5px solid var(--glass-border); color: var(--accent);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
   box-shadow: 0 2px 12px rgba(0,134,75,0.12);
@@ -157,10 +157,10 @@
 }
 .about-contact__item {
   font-size: 1.05rem;
-  color: #334155;
+  color: var(--text-secondary);
 }
 a.about-contact__item {
-  color: #00864B;
+  color: var(--accent);
   text-decoration: none;
   transition: color .2s;
 }

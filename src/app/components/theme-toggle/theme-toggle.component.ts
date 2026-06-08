@@ -12,7 +12,7 @@ export class ThemeToggleComponent implements OnInit, OnDestroy {
   readonly sun:  LucideIconData = Sun;
   readonly moon: LucideIconData = Moon;
 
-  theme: Theme = 'light';
+  theme: Theme = 'dark';
   private sub?: Subscription;
 
   constructor(private readonly themeService: ThemeService) {}
