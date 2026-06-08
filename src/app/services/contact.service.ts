@@ -1,31 +1,35 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import type {
   ContactInfo, ContactMessage, ContactSubmitResponse,
 } from '../models/contact.model';
-import { SCHOOL_INFO } from '../components/footer/site.data';
+import { SchoolInfoService } from './school-info.service';
 import { apiUrl } from '../utils/api-url';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
   private readonly endpoint = apiUrl('/api/contact');
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly schoolInfo: SchoolInfoService,
+  ) {}
 
-  /** Static contact card data sourced from `SCHOOL_INFO`. */
   getInfo(): Observable<ContactInfo> {
-    const i = SCHOOL_INFO;
-    return of<ContactInfo>({
-      address:     i.address,
-      phone:       i.phone,
-      phoneHref:   i.phoneHref,
-      email:       i.email,
-      emailHref:   i.emailHref,
-      officeHours: i.officeHours,
-      mapQuery:    i.mapQuery,
-    });
+    return this.schoolInfo.schoolInfo$.pipe(
+      map((i) => ({
+        address:     i.address,
+        phone:       i.phone,
+        phoneHref:   i.phoneHref,
+        email:       i.email,
+        emailHref:   i.emailHref,
+        officeHours: i.officeHours,
+        mapQuery:    i.mapQuery,
+      })),
+    );
   }
 
   sendMessage(payload: ContactMessage): Observable<ContactSubmitResponse> {

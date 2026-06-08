@@ -10,7 +10,7 @@ import {
 
 import type { Stat, Feature, PrincipalMessage } from '../../models/home.model';
 import { HomeService } from '../../services/home.service';
-import { SCHOOL_INFO } from '../footer/site.data';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 import { HOME_COPY } from './home.data';
 import { SeoService } from '../../services/seo.service';
 
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   stats:            Stat[]            = [];
   features:         Feature[]         = [];
   principalMessage!: PrincipalMessage;
-  readonly schoolInfo = SCHOOL_INFO;
+  schoolInfo!: SchoolInfo;
 
   readonly arrowRight:   LucideIconData = ArrowRight;
   readonly clipboard:    LucideIconData = ClipboardList;
@@ -75,9 +75,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private readonly homeService: HomeService,
     private readonly seo: SeoService,
+    private readonly schoolInfoService: SchoolInfoService,
   ) {}
 
   ngOnInit(): void {
+    this.schoolInfo = this.schoolInfoService.snapshot;
+    this.subs.add(this.schoolInfoService.schoolInfo$.subscribe((info) => (this.schoolInfo = info)));
+
     this.subs.add(
       this.homeService.getContent().subscribe((c) => {
         this.stats             = c.stats;
@@ -87,7 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     );
 
     this.seo.update({
-      title:       SCHOOL_INFO.name,
+      title:       this.schoolInfoService.snapshot.name,
       description: 'A faith-centered K–12 Islamic school in South Jersey offering quality education rooted in Islamic values and academic excellence.',
       path:        '/',
     });

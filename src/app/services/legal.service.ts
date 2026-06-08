@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import type { LegalDocument, LegalKind } from '../models/legal.model';
-import { SCHOOL_INFO } from '../components/footer/site.data';
+import { SchoolInfoService } from './school-info.service';
 
 /**
  * Privacy + Terms content provider.
@@ -16,17 +16,21 @@ import { SCHOOL_INFO } from '../components/footer/site.data';
 export class LegalService {
   private readonly endpoint = '/api/legal';
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly schoolInfo: SchoolInfoService,
+  ) {}
 
   getDocument(kind: LegalKind): Observable<LegalDocument> {
     const today = new Date().toLocaleDateString('en-US', {
       year: 'numeric', month: 'long', day: 'numeric',
     });
+    const name = this.schoolInfo.snapshot.name;
 
     if (kind === 'privacy') {
       return of<LegalDocument>({
         kind:        'privacy',
-        title:       `${SCHOOL_INFO.name} Privacy Policy`,
+        title:       `${name} Privacy Policy`,
         lastUpdated: today,
         sections:    [],
       });
@@ -34,7 +38,7 @@ export class LegalService {
 
     return of<LegalDocument>({
       kind:        'terms',
-      title:       `${SCHOOL_INFO.name} Terms of Service`,
+      title:       `${name} Terms of Service`,
       lastUpdated: today,
       sections:    [],
     });

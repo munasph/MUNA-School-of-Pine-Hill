@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SeoService } from '../../services/seo.service';
-import { SCHOOL_INFO } from '../footer/site.data';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 
 interface FaqEntry {
   question: string;
@@ -12,8 +13,8 @@ interface FaqEntry {
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.css'],
 })
-export class FaqComponent implements OnInit {
-  readonly schoolInfo = SCHOOL_INFO;
+export class FaqComponent implements OnInit, OnDestroy {
+  schoolInfo!: SchoolInfo;
 
   readonly faqs: FaqEntry[] = [
     {
@@ -38,13 +39,25 @@ export class FaqComponent implements OnInit {
     },
   ];
 
-  constructor(private readonly seo: SeoService) {}
+  private subs = new Subscription();
+
+  constructor(
+    private readonly seo: SeoService,
+    private readonly schoolInfoService: SchoolInfoService,
+  ) {}
 
   ngOnInit(): void {
+    this.schoolInfo = this.schoolInfoService.snapshot;
+    this.subs.add(this.schoolInfoService.schoolInfo$.subscribe((info) => (this.schoolInfo = info)));
+
     this.seo.update({
       title:       'FAQ',
-      description: `Frequently asked questions about ${SCHOOL_INFO.name} — admissions, programs, hours and more.`,
+      description: `Frequently asked questions about ${this.schoolInfo.name} — admissions, programs, hours and more.`,
       path:        '/faq',
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

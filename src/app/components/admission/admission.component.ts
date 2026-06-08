@@ -8,7 +8,7 @@ import type {
   ClassOption, AdmissionApplication, AdmissionSuccessMessage,
 } from '../../models/admission.model';
 import { AdmissionService } from '../../services/admission.service';
-import { SiteSettingsService } from '../../services/site-settings.service';
+import { SchoolInfoService } from '../../services/school-info.service';
 import { ADMISSION_COPY } from './admission.data';
 import {
   ADMISSION_DOCUMENT_ACCEPT,
@@ -56,7 +56,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   constructor(
     private readonly fb: FormBuilder,
     private readonly admissionService: AdmissionService,
-    private readonly siteSettingsService: SiteSettingsService,
+    private readonly schoolInfoService: SchoolInfoService,
     private readonly seo: SeoService,
   ) {}
 
@@ -68,21 +68,15 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       this.admissionService.getSuccessMessage().subscribe((m) => (this.admissionSuccess = m)),
     );
     this.subs.add(
-      this.siteSettingsService.getSettings().subscribe({
-        next: (settings) => {
-          this.admissionsOpen = settings.admissionsOpen;
-          this.settingsLoading = false;
-        },
-        error: () => {
-          this.admissionsOpen = true;
-          this.settingsLoading = false;
-        },
+      this.schoolInfoService.schoolInfo$.subscribe((info) => {
+        this.admissionsOpen = info.admissionsOpen;
+        this.settingsLoading = false;
       }),
     );
 
     this.seo.update({
       title:       'Registration',
-      description: 'Register for enrollment at MUNA School of Pine Hill.',
+      description: `Register for enrollment at ${this.schoolInfoService.snapshot.name}.`,
       path:        '/admission',
     });
 

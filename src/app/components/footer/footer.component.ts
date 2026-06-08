@@ -8,8 +8,9 @@ import {
   LucideIconData,
 } from 'lucide-angular';
 import {
-  SCHOOL_INFO, QUICK_LINKS, PROGRAMS_LIST, SOCIAL_LINKS, FOOTER_COPY,
+  QUICK_LINKS, PROGRAMS_LIST, SOCIAL_LINKS, FOOTER_COPY,
 } from './site.data';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +18,7 @@ import {
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit, OnDestroy {
-  readonly schoolInfo = SCHOOL_INFO;
+  schoolInfo: SchoolInfo;
   readonly quickLinks = QUICK_LINKS;
   readonly programs   = PROGRAMS_LIST;
   readonly t          = FOOTER_COPY;
@@ -30,9 +31,13 @@ export class FooterComponent implements OnInit, OnDestroy {
   constructor(
     private readonly auth: AuthService,
     private readonly portalAuth: PortalAuthService,
-  ) {}
+    private readonly schoolInfoService: SchoolInfoService,
+  ) {
+    this.schoolInfo = schoolInfoService.snapshot;
+  }
 
   ngOnInit(): void {
+    this.subs.add(this.schoolInfoService.schoolInfo$.subscribe((info) => (this.schoolInfo = info)));
     this.updateAuthLinks();
     this.subs.add(this.auth.session$.subscribe(() => this.updateAuthLinks()));
     this.subs.add(this.portalAuth.session$.subscribe(() => this.updateAuthLinks()));

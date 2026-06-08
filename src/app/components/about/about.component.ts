@@ -6,7 +6,7 @@ import type {
   AboutHero, VisionItem, FacultyMember, TeachingFacultyPhoto,
 } from '../../models/about.model';
 import { AboutService } from '../../services/about.service';
-import { SCHOOL_INFO } from '../footer/site.data';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 import { ABOUT_COPY } from './about.data';
 import { SeoService } from '../../services/seo.service';
 
@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
   visionItems:             VisionItem[]            = [];
   keyFaculty:              FacultyMember[]         = [];
   teachingFacultyPhotos:   TeachingFacultyPhoto[]  = [];
-  readonly schoolInfo = SCHOOL_INFO;
+  schoolInfo!: SchoolInfo;
 
   readonly check:        LucideIconData = CheckCircle;
   readonly chevronLeft:  LucideIconData = ChevronLeft;
@@ -34,9 +34,13 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private readonly aboutService: AboutService,
     private readonly seo: SeoService,
+    private readonly schoolInfoService: SchoolInfoService,
   ) {}
 
   ngOnInit(): void {
+    this.schoolInfo = this.schoolInfoService.snapshot;
+    this.subs.add(this.schoolInfoService.schoolInfo$.subscribe((info) => (this.schoolInfo = info)));
+
     this.subs.add(
       this.aboutService.getContent().subscribe((c) => {
         this.heroData              = c.hero;

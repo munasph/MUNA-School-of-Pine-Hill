@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SeoService } from '../../services/seo.service';
 import { LegalService } from '../../services/legal.service';
-import { SCHOOL_INFO } from '../footer/site.data';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 
 @Component({
   selector: 'app-terms-page',
@@ -10,29 +10,33 @@ import { SCHOOL_INFO } from '../footer/site.data';
   styleUrls: ['./terms.component.css'],
 })
 export class TermsComponent implements OnInit, OnDestroy {
-  readonly schoolInfo = SCHOOL_INFO;
+  schoolInfo!: SchoolInfo;
   today = '';
 
-  private sub?: Subscription;
+  private subs = new Subscription();
 
   constructor(
     private readonly legalService: LegalService,
     private readonly seo: SeoService,
+    private readonly schoolInfoService: SchoolInfoService,
   ) {}
 
   ngOnInit(): void {
-    this.sub = this.legalService.getDocument('terms').subscribe((doc) => {
+    this.schoolInfo = this.schoolInfoService.snapshot;
+    this.subs.add(this.schoolInfoService.schoolInfo$.subscribe((info) => (this.schoolInfo = info)));
+
+    this.subs.add(this.legalService.getDocument('terms').subscribe((doc) => {
       this.today = doc.lastUpdated;
-    });
+    }));
 
     this.seo.update({
       title:       'Terms of Service',
-      description: `Terms of service for using the ${SCHOOL_INFO.name} website. Read our terms and conditions.`,
+      description: `Terms of service for using the ${this.schoolInfo.name} website. Read our terms and conditions.`,
       path:        '/terms',
     });
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.subs.unsubscribe();
   }
 }

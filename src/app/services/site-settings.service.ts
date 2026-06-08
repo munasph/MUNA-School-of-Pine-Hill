@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import type { SiteSettings } from '../models/site-settings.model';
-import { apiUrl } from '../utils/api-url';
+import { SchoolInfoService } from './school-info.service';
 
+/** @deprecated Prefer SchoolInfoService for UI; kept for admission toggle compatibility. */
 @Injectable({ providedIn: 'root' })
 export class SiteSettingsService {
-  private readonly endpoint = apiUrl('/api/site-settings');
-
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly schoolInfo: SchoolInfoService) {}
 
   getSettings(): Observable<SiteSettings> {
-    return this.http.get<SiteSettings>(this.endpoint);
+    return this.schoolInfo.getSettings();
   }
 }

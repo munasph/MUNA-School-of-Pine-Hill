@@ -9,7 +9,7 @@ import {
 
 import type { ContactInfo, ContactMessage } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
-import { SCHOOL_INFO } from '../footer/site.data';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 import { CONTACT_COPY, type ContactInfoKey } from './contact.data';
 import { SeoService } from '../../services/seo.service';
 
@@ -19,22 +19,17 @@ import { SeoService } from '../../services/seo.service';
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit, OnDestroy {
-  readonly schoolInfo = SCHOOL_INFO;
+  schoolInfo!: SchoolInfo;
 
   contactInfo!: ContactInfo;
 
   readonly t = CONTACT_COPY;
 
-  readonly contactItems: Array<{
+  contactItems: Array<{
     icon: LucideIconData;
     key:  ContactInfoKey;
     detail: string;
-  }> = [
-    { icon: MapPin,   key: 'address', detail: SCHOOL_INFO.address },
-    { icon: Phone,    key: 'phone',   detail: SCHOOL_INFO.phone },
-    { icon: Mail,     key: 'email',   detail: SCHOOL_INFO.email },
-    { icon: Calendar, key: 'hours',   detail: SCHOOL_INFO.officeHours },
-  ];
+  }> = [];
 
   readonly checkCircle: LucideIconData = CheckCircle;
 
@@ -51,9 +46,22 @@ export class ContactComponent implements OnInit, OnDestroy {
     private readonly contactService: ContactService,
     private readonly sanitizer: DomSanitizer,
     private readonly seo: SeoService,
+    private readonly schoolInfoService: SchoolInfoService,
   ) {}
 
   ngOnInit(): void {
+    this.subs.add(
+      this.schoolInfoService.schoolInfo$.subscribe((info) => {
+        this.schoolInfo = info;
+        this.contactItems = [
+          { icon: MapPin,   key: 'address', detail: info.address },
+          { icon: Phone,    key: 'phone',   detail: info.phone },
+          { icon: Mail,     key: 'email',   detail: info.email },
+          { icon: Calendar, key: 'hours',   detail: info.officeHours },
+        ];
+      }),
+    );
+
     this.subs.add(
       this.contactService.getInfo().subscribe((info) => {
         this.contactInfo = info;
@@ -64,7 +72,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Contact Us',
-      description: `Contact ${SCHOOL_INFO.name}. Reach our admissions team by phone, email, or visit us in Pine Hill, NJ.`,
+      description: `Contact ${this.schoolInfoService.snapshot.name}. Reach our admissions team by phone, email, or visit us in Pine Hill, NJ.`,
       path:        '/contact',
     });
 

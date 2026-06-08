@@ -2,9 +2,10 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { Menu, X, LucideIconData } from 'lucide-angular';
-import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
+import { NAV_COPY, NAV_LINKS } from '../footer/site.data';
 import { AuthService } from '../../services/auth.service';
 import { PortalAuthService } from '../../services/portal-auth.service';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 import { ThemeService, Theme } from '../../services/theme.service';
 
 const ADMIN_HOME = '/admin';
@@ -22,7 +23,7 @@ const LIGHT_SURFACE_ROUTES = [
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   readonly navLinks   = NAV_LINKS;
-  readonly schoolInfo = SCHOOL_INFO;
+  schoolInfo: SchoolInfo;
   authNavLinks: { path: string; label: string }[] = [];
   readonly t          = NAV_COPY;
   readonly menuIcon:  LucideIconData = Menu;
@@ -40,12 +41,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly auth: AuthService,
     private readonly portalAuth: PortalAuthService,
     private readonly themeService: ThemeService,
-  ) {}
+    private readonly schoolInfoService: SchoolInfoService,
+  ) {
+    this.schoolInfo = schoolInfoService.snapshot;
+  }
 
   ngOnInit(): void {
     this.currentPath = this.router.url.split('?')[0].split('#')[0] || '/';
     this.theme = this.themeService.theme;
     this.updateAuthNavLinks();
+    this.subs.add(this.schoolInfoService.schoolInfo$.subscribe((info) => (this.schoolInfo = info)));
     this.subs.add(this.themeService.theme$.subscribe((t) => (this.theme = t)));
     this.subs.add(this.auth.session$.subscribe(() => this.updateAuthNavLinks()));
     this.subs.add(this.portalAuth.session$.subscribe(() => this.updateAuthNavLinks()));

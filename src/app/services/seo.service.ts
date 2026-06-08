@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
-import { SCHOOL_INFO } from '../components/footer/site.data';
+import { SchoolInfoService } from './school-info.service';
 
 export interface SeoConfig {
   title: string;
@@ -14,13 +14,15 @@ export class SeoService {
   constructor(
     private readonly title: Title,
     private readonly meta: Meta,
+    private readonly schoolInfo: SchoolInfoService,
     @Inject(DOCUMENT) private readonly doc: Document,
   ) {}
 
   update({ title, description, path = '/' }: SeoConfig): void {
-    const fullTitle = `${title} | ${SCHOOL_INFO.name}`;
-    const url   = `${SCHOOL_INFO.baseUrl}${path}`;
-    const image = `${SCHOOL_INFO.baseUrl}/assets/logo-full.png`;
+    const info = this.schoolInfo.snapshot;
+    const fullTitle = `${title} | ${info.name}`;
+    const url   = `${info.baseUrl}${path}`;
+    const image = `${info.baseUrl}/assets/logo-full.png`;
 
     this.title.setTitle(fullTitle);
     this.meta.updateTag({ name: 'description', content: description });

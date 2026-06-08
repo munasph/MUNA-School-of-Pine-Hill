@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import type { SiteSettingsPayload } from '../../../models/site-settings.model';
 import { AdminSiteSettingsService } from '../../../services/admin-site-settings.service';
+import { SchoolInfoService } from '../../../services/school-info.service';
 
 @Component({
   selector: 'app-admin-settings',
@@ -24,6 +25,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
   constructor(
     private readonly fb: FormBuilder,
     private readonly settingsService: AdminSiteSettingsService,
+    private readonly schoolInfoService: SchoolInfoService,
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +81,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
       this.settingsService.updateSettings(payload).subscribe({
         next: (updated) => {
           this.form.patchValue(updated);
+          this.schoolInfoService.reload();
           this.saving = false;
           this.successMessage = 'Settings saved.';
         },
