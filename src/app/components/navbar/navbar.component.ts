@@ -125,14 +125,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   pillBorder(): string {
     if (this.lightNavChrome) {
-      return '1px solid rgba(148,163,184,0.22)';
+      return '1.5px solid rgba(0,134,75,0.35)';
     }
     if (this.scrolled) return '1px solid rgba(0,134,75,0.18)';
     return '1px solid rgba(255,255,255,0.30)';
   }
   pillShadow(): string {
     if (this.lightNavChrome) {
-      return '0 4px 24px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.90)';
+      return '0 2px 12px rgba(0,134,75,0.08), inset 0 1px 0 rgba(255,255,255,0.95)';
     }
     if (this.scrolled) {
       return '0 4px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.80)';
