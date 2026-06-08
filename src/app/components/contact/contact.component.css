@@ -55,7 +55,7 @@
 }
 
 .contact-main {
-  background: var(--bg-base);
+  background: var(--bg-deep);
   padding: 48px 0;
 }
 
@@ -87,7 +87,13 @@
   align-items: flex-start;
   gap: 16px;
   cursor: default;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--surface-card-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-info-card:hover {
+  border-color: var(--glass-border-strong);
+  box-shadow: 0 6px 28px rgba(0, 134, 75, 0.12), 0 0 0 1.5px rgba(0, 134, 75, 0.20);
 }
 
 .contact-info-card__icon {
@@ -120,6 +126,7 @@
   border: 1.5px solid var(--glass-border);
   border-radius: 24px;
   padding: 24px 20px;
+  box-shadow: var(--surface-card-shadow);
 }
 
 @media (min-width: 640px) {
@@ -166,9 +173,11 @@
 .contact-field__label {
   display: block;
   margin-bottom: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
 }
 
 .contact-field__input {
@@ -181,6 +190,13 @@
   border: 1.5px solid var(--glass-border);
   outline: none;
   box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-field__input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(0, 134, 75, 0.14);
+  background: var(--surface-card);
 }
 
 .contact-field__input--error {

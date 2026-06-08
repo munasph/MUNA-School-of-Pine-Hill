@@ -1,6 +1,6 @@
 <div appReveal
      class="glass-card rounded-2xl border backdrop-blur-xl relative"
      [class]="intensityClasses + ' ' + hoverClasses + ' ' + extraClass"
-     [style.box-shadow]="intensity === 'strong' ? '0 8px 32px var(--shadow-glass)' : null">
+     [style.box-shadow]="intensity === 'strong' ? 'var(--surface-card-shadow)' : null">
   <ng-content></ng-content>
 </div>

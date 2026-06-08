@@ -61,32 +61,33 @@
   --surface-card-hover:  rgba(255, 255, 255, 0.10);
   --surface-input:       rgba(255, 255, 255, 0.08);
   --surface-divider:     rgba(255, 255, 255, 0.10);
+  --surface-card-shadow: 0 8px 32px var(--shadow-glass);
   --brand-primary:       #00864B;
 }
 
 /* ─── Theme: Light (Professional Modern Design) ───────────────────────────── */
 [data-theme="light"] {
   --bg-base:       #FFFFFF;
-  --bg-deep:       #F8F9FC;
-  --bg-forest:     #F3F4F8;
+  --bg-deep:       #F4FAF7;
+  --bg-forest:     #ECFDF5;
 
-  --glass-bg:           rgba(255, 255, 255, 0.70);
-  --glass-bg-mid:       rgba(255, 255, 255, 0.80);
-  --glass-bg-strong:    rgba(255, 255, 255, 0.90);
-  --glass-border:        rgba(0, 217, 126, 0.15);
-  --glass-border-strong: rgba(0, 217, 126, 0.25);
+  --glass-bg:           #FFFFFF;
+  --glass-bg-mid:       #FFFFFF;
+  --glass-bg-strong:    #FFFFFF;
+  --glass-border:        rgba(0, 134, 75, 0.32);
+  --glass-border-strong: rgba(0, 134, 75, 0.50);
 
-  --accent:        #00D97E;
+  --accent:        #00A85F;
   --accent-light:  #33FF99;
-  --accent-dim:    rgba(0, 217, 126, 0.10);
+  --accent-dim:    rgba(0, 134, 75, 0.10);
 
   --gold-accent:        #00D97E;
   --gold-accent-light:  #33FF99;
   --gold-dim:           rgba(0, 217, 126, 0.08);
 
-  --text-primary:   #1E293B;
-  --text-secondary: rgba(30, 41, 59, 0.70);
-  --text-muted:     rgba(30, 41, 59, 0.50);
+  --text-primary:   #0F172A;
+  --text-secondary: #334155;
+  --text-muted:     #64748B;
 
   --orb-1-color: rgba(0, 217, 126, 0.06);
   --orb-2-color: rgba(0, 217, 126, 0.04);
@@ -95,14 +96,15 @@
   --nav-bg:          rgba(255, 255, 255, 0.0);
   --nav-bg-scrolled: rgba(255, 255, 255, 0.97);
   --footer-bg:       rgba(248, 249, 252, 0.95);
-  --footer-border:   rgba(0, 217, 126, 0.10);
+  --footer-border:   rgba(0, 134, 75, 0.15);
 
-  --shadow-glass: rgba(0, 217, 126, 0.08);
+  --shadow-glass: rgba(0, 134, 75, 0.12);
 
   --surface-card:        #FFFFFF;
   --surface-card-hover:  #FAFFFE;
-  --surface-input:       #FAFFFE;
-  --surface-divider:     #E2E8F0;
+  --surface-input:       #F8FAFC;
+  --surface-divider:     rgba(0, 134, 75, 0.22);
+  --surface-card-shadow: 0 4px 24px rgba(0, 134, 75, 0.10), 0 0 0 1.5px rgba(0, 134, 75, 0.16);
   --brand-primary:       #00864B;
 }
 
@@ -220,6 +222,16 @@ app-root {
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
   box-shadow: 0 8px 32px var(--shadow-glass);
+}
+
+/* Light-mode form surfaces — clearer cards & fields */
+[data-theme="light"] .glass-card {
+  box-shadow: var(--surface-card-shadow);
+}
+
+[data-theme="light"] .glass-mid,
+[data-theme="light"] .glass-strong {
+  box-shadow: var(--surface-card-shadow);
 }
 
 /* ─── Claymorphism (Professional 3D) ──────────────────────────────────────── */
