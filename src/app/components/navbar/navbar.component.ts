@@ -6,7 +6,7 @@ import { NAV_COPY, NAV_LINKS, SCHOOL_INFO } from '../footer/site.data';
 import { AuthService } from '../../services/auth.service';
 import { PortalAuthService } from '../../services/portal-auth.service';
 
-const LIGHT_SURFACE_ROUTES = ['/admission', '/admission/policy', '/tuition', '/login', '/signup', '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq'];
+const LIGHT_SURFACE_ROUTES = ['/admission', '/admission/policy', '/tuition', '/login', '/staff-signup', '/set-password', '/forgot-password', '/reset-password', '/portal', '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq'];
 const ADMIN_HOME = '/admin';
 
 @Component({
@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     if (this.portalAuth.isAuthenticated()) {
       links.push({ path: '/portal', label: 'My portal' });
     } else {
-      links.push({ path: '/portal/login', label: 'Family portal' });
+      links.push({ path: '/portal', label: 'Family portal' });
     }
 
     if (this.auth.isAuthenticated() && this.auth.isAdmin()) {

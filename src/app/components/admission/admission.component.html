@@ -20,7 +20,7 @@
 <ng-template #applicationForm>
   <div class="admission-page">
     <section class="admission-section">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="admission-container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8 sm:mb-12">
           <app-section-label>{{ t.admission.hero.tag }}</app-section-label>
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif form-title">{{ t.admission.hero.title }}</h1>
@@ -140,28 +140,30 @@
                   Accepted formats: PDF, DOC, DOCX, JPG, or PNG. Maximum {{ documentMaxMb }} MB per file.
                 </p>
 
-                <div *ngFor="let doc of documentsForGroup(group.id)" class="document-upload">
-                  <label class="document-upload__label" [for]="'doc-' + doc.type">
-                    {{ doc.label }}
-                    <span *ngIf="doc.required" class="document-upload__required">*</span>
-                  </label>
-                  <p *ngIf="doc.hint" class="document-upload__hint">{{ doc.hint }}</p>
+                <div class="document-uploads-grid">
+                  <div *ngFor="let doc of documentsForGroup(group.id)" class="document-upload">
+                    <label class="document-upload__label" [for]="'doc-' + doc.type">
+                      {{ doc.label }}
+                      <span *ngIf="doc.required" class="document-upload__required">*</span>
+                    </label>
+                    <p *ngIf="doc.hint" class="document-upload__hint">{{ doc.hint }}</p>
 
-                  <div class="document-upload__control"
-                       [class.document-upload__control--error]="!!documentErrorFor(doc.type)">
-                    <input [id]="'doc-' + doc.type"
-                           type="file"
-                           class="document-upload__input"
-                           [accept]="documentAccept"
-                           (change)="onDocumentSelected(doc.type, $event)" />
-                    <span class="document-upload__filename">
-                      {{ selectedDocumentName(doc.type) || 'Choose a file…' }}
+                    <div class="document-upload__control"
+                         [class.document-upload__control--error]="!!documentErrorFor(doc.type)">
+                      <input [id]="'doc-' + doc.type"
+                             type="file"
+                             class="document-upload__input"
+                             [accept]="documentAccept"
+                             (change)="onDocumentSelected(doc.type, $event)" />
+                      <span class="document-upload__filename">
+                        {{ selectedDocumentName(doc.type) || 'Choose a file…' }}
+                      </span>
+                    </div>
+
+                    <span *ngIf="documentErrorFor(doc.type)" class="field-error">
+                      {{ documentErrorFor(doc.type) }}
                     </span>
                   </div>
-
-                  <span *ngIf="documentErrorFor(doc.type)" class="field-error">
-                    {{ documentErrorFor(doc.type) }}
-                  </span>
                 </div>
               </fieldset>
             </ng-container>

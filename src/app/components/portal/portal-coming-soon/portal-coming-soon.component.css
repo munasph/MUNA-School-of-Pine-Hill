@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.portal-soon-page {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.portal-soon-section {
+  padding: 5.5rem 0 3rem;
+  min-height: min(80vh, 100%);
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .portal-soon-section {
+    padding: 6.5rem 0 4rem;
+  }
+}
+
+.portal-soon-title {
+  color: var(--text-primary);
+  font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.portal-soon-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.portal-soon-card__title {
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.portal-soon-card__text {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.portal-soon-link {
+  color: #00864B;
+  text-decoration: none;
+}
+
+.portal-soon-link:hover {
+  text-decoration: underline;
+}
+
+.portal-soon-home {
+  display: inline-block;
+  margin-top: 1.5rem;
+}

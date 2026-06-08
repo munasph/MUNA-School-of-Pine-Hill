@@ -8,6 +8,27 @@ export interface SignupPayload {
   email:           string;
   password:        string;
   confirmPassword: string;
+  role?:           'ADMIN' | 'EDITOR';
+}
+
+export interface StaffSignupPayload extends SignupPayload {
+  role: 'ADMIN' | 'EDITOR';
+}
+
+export interface SetPasswordPayload {
+  token:           string;
+  password:        string;
+  confirmPassword: string;
+}
+
+export interface PasswordResetPayload {
+  email: string;
+}
+
+export interface PasswordResetConfirmPayload {
+  token:           string;
+  password:        string;
+  confirmPassword: string;
 }
 
 export interface AuthResponse {

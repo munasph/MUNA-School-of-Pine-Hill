@@ -35,6 +35,12 @@
                              [required]="true" formControlName="email"
                              [error]="errorFor('email') ?? undefined"></app-glass-input>
 
+            <app-glass-select label="Requested Role"
+                              [options]="roleOptions"
+                              [required]="true"
+                              formControlName="role"
+                              [error]="errorFor('role') ?? undefined"></app-glass-select>
+
             <app-glass-input [label]="t.signup.form.password" type="password"
                              placeholder="At least 8 characters"
                              [required]="true" formControlName="password"
@@ -44,6 +50,8 @@
                              placeholder="Re-enter your password"
                              [required]="true" formControlName="confirmPassword"
                              [error]="errorFor('confirmPassword') ?? undefined"></app-glass-input>
+
+            <p *ngIf="submitError" class="field-error text-center">{{ submitError }}</p>
 
             <app-glass-button variant="accent" size="lg" type="submit"
                               extraClass="w-full" [disabled]="submitting">

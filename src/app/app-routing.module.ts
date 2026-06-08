@@ -12,6 +12,10 @@ import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
+import { SignupComponent }    from './components/signup/signup.component';
+import { SetPasswordComponent } from './components/set-password/set-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { NotFoundComponent }  from './components/not-found/not-found.component';
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { AdminAdmissionsComponent } from './components/admin/admin-admissions/admin-admissions.component';
@@ -24,12 +28,10 @@ import { AdminInquiryDetailComponent } from './components/admin/admin-inquiry-de
 import { AdminSettingsComponent } from './components/admin/admin-settings/admin-settings.component';
 import { AdminHubComponent } from './components/admin/admin-hub/admin-hub.component';
 import { AdminCmsResourceComponent } from './components/admin/admin-cms-resource/admin-cms-resource.component';
-import { PortalLayoutComponent } from './components/portal/portal-layout/portal-layout.component';
-import { PortalLoginComponent } from './components/portal/portal-login/portal-login.component';
-import { PortalSignupComponent } from './components/portal/portal-signup/portal-signup.component';
-import { PortalDashboardComponent } from './components/portal/portal-dashboard/portal-dashboard.component';
+import { AdminStaffComponent } from './components/admin/admin-staff/admin-staff.component';
+import { PortalComingSoonComponent } from './components/portal/portal-coming-soon/portal-coming-soon.component';
 import { authGuard } from './guards/auth.guard';
-import { portalAuthGuard } from './guards/portal-auth.guard';
+import { superAdminGuard } from './guards/super-admin.guard';
 
 const routes: Routes = [
   { path: '',          component: HomeComponent,      pathMatch: 'full' },
@@ -41,18 +43,15 @@ const routes: Routes = [
   { path: 'contact',   component: ContactComponent   },
   { path: 'gallery',   redirectTo: '/', pathMatch: 'full' },
   { path: 'faq',       component: FaqComponent       },
-  { path: 'login',     component: LoginComponent     },
-  { path: 'signup',    redirectTo: 'portal/signup', pathMatch: 'full' },
-  { path: 'portal/login',  component: PortalLoginComponent },
-  { path: 'portal/signup', component: PortalSignupComponent },
-  {
-    path: 'portal',
-    component: PortalLayoutComponent,
-    canActivate: [portalAuthGuard],
-    children: [
-      { path: '', component: PortalDashboardComponent },
-    ],
-  },
+  { path: 'login',           component: LoginComponent     },
+  { path: 'staff-signup',    component: SignupComponent    },
+  { path: 'set-password',    component: SetPasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password',  component: ResetPasswordComponent },
+  { path: 'signup',          redirectTo: 'staff-signup', pathMatch: 'full' },
+  { path: 'portal',           component: PortalComingSoonComponent },
+  { path: 'portal/login',     component: PortalComingSoonComponent },
+  { path: 'portal/signup',    component: PortalComingSoonComponent },
   { path: 'privacy',   component: PrivacyComponent   },
   { path: 'terms',     component: TermsComponent     },
   {
@@ -69,6 +68,7 @@ const routes: Routes = [
       { path: 'inquiries', component: AdminInquiriesComponent },
       { path: 'inquiries/:id', component: AdminInquiryDetailComponent },
       { path: 'settings', component: AdminSettingsComponent },
+      { path: 'staff', component: AdminStaffComponent, canActivate: [superAdminGuard] },
       { path: 'hub', component: AdminHubComponent },
       { path: 'modules/:resource', component: AdminCmsResourceComponent },
       { path: 'cms/:resource', redirectTo: 'modules/:resource', pathMatch: 'full' },

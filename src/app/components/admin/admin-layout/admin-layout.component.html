@@ -34,6 +34,13 @@
         <lucide-icon [img]="mail" size="18"></lucide-icon>
         Inquiries
       </a>
+      <a *ngIf="auth.isSuperAdmin()"
+         routerLink="/admin/staff"
+         routerLinkActive="admin-sidebar__link--active"
+         class="admin-sidebar__link">
+        <lucide-icon [img]="users" size="18"></lucide-icon>
+        Staff
+      </a>
       <a routerLink="/admin/settings"
          routerLinkActive="admin-sidebar__link--active"
          class="admin-sidebar__link">

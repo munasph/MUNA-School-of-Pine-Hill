@@ -19,6 +19,10 @@
                            [required]="true" formControlName="password"
                            [error]="errorFor('password') ?? undefined"></app-glass-input>
 
+          <p class="auth-forgot">
+            <a routerLink="/forgot-password" class="auth-switch__link">Forgot password?</a>
+          </p>
+
           <p *ngIf="submitError" class="field-error text-center">{{ submitError }}</p>
 
           <app-glass-button variant="accent" size="lg" type="submit"
@@ -29,7 +33,11 @@
 
         <p class="auth-switch auth-switch--staff">
           {{ t.login.form.familyPrompt }}
-          <a routerLink="/portal/login" class="auth-switch__link">{{ t.login.form.familyLink }}</a>
+          <a routerLink="/portal" class="auth-switch__link">{{ t.login.form.familyLink }}</a>
+        </p>
+        <p class="auth-switch">
+          Need staff access?
+          <a routerLink="/staff-signup" class="auth-switch__link">Request access</a>
         </p>
       </app-glass-card>
     </div>

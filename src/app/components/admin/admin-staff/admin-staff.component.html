@@ -1,0 +1,66 @@
+<div class="admin-page">
+  <header class="admin-page__header">
+    <h2 class="admin-page__title">Staff Management</h2>
+    <p class="admin-page__subtitle">Invite staff, review access requests, and manage active accounts.</p>
+  </header>
+
+  <div class="staff-tabs">
+    <button type="button" class="staff-tabs__btn" [class.staff-tabs__btn--active]="activeTab === 'active'" (click)="setTab('active')">
+      Active ({{ activeStaff.length }})
+    </button>
+    <button type="button" class="staff-tabs__btn" [class.staff-tabs__btn--active]="activeTab === 'pending'" (click)="setTab('pending')">
+      Pending ({{ pendingStaff.length }})
+    </button>
+    <button type="button" class="staff-tabs__btn" [class.staff-tabs__btn--active]="activeTab === 'invite'" (click)="setTab('invite')">
+      Send Invite
+    </button>
+  </div>
+
+  <p *ngIf="actionError" class="staff-error">{{ actionError }}</p>
+  <p *ngIf="inviteSuccess" class="staff-success">{{ inviteSuccess }}</p>
+
+  <section *ngIf="activeTab === 'active'" class="staff-panel">
+    <p *ngIf="loading" class="admin-page__subtitle">Loading…</p>
+    <div *ngIf="!loading && activeStaff.length === 0" class="admin-page__subtitle">No active staff yet.</div>
+    <div *ngFor="let member of activeStaff" class="staff-card">
+      <div>
+        <h3 class="staff-card__name">{{ member.displayName || member.email }}</h3>
+        <p class="staff-card__meta">{{ member.email }} · {{ member.role }}</p>
+      </div>
+      <span class="staff-badge staff-badge--approved">{{ member.approvalStatus }}</span>
+    </div>
+  </section>
+
+  <section *ngIf="activeTab === 'pending'" class="staff-panel">
+    <div *ngIf="pendingStaff.length === 0" class="admin-page__subtitle">No pending requests.</div>
+    <div *ngFor="let member of pendingStaff" class="staff-card">
+      <div>
+        <h3 class="staff-card__name">{{ member.displayName || member.email }}</h3>
+        <p class="staff-card__meta">{{ member.email }} · requested {{ member.role }}</p>
+      </div>
+      <div class="staff-card__actions">
+        <button type="button" class="staff-action staff-action--approve" (click)="approve(member)">Approve</button>
+        <button type="button" class="staff-action staff-action--reject" (click)="reject(member)">Reject</button>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="activeTab === 'invite'" class="staff-panel staff-panel--form">
+    <app-glass-card intensity="mid" extraClass="p-6 sm:p-8 max-w-xl">
+      <form [formGroup]="inviteForm" (ngSubmit)="submitInvite()" class="space-y-5" novalidate>
+        <app-glass-input label="Full Name" type="text" placeholder="Staff member name"
+                         [required]="true" formControlName="displayName"
+                         [error]="inviteErrorFor('displayName') ?? undefined"></app-glass-input>
+        <app-glass-input label="Email" type="email" placeholder="staff@example.com"
+                         [required]="true" formControlName="email"
+                         [error]="inviteErrorFor('email') ?? undefined"></app-glass-input>
+        <app-glass-select label="Role" [options]="roleOptions" [required]="true"
+                          formControlName="role"
+                          [error]="inviteErrorFor('role') ?? undefined"></app-glass-select>
+        <app-glass-button variant="accent" type="submit" [disabled]="inviting">
+          {{ inviting ? 'Sending…' : 'Send Invite' }}
+        </app-glass-button>
+      </form>
+    </app-glass-card>
+  </section>
+</div>

@@ -1,0 +1,31 @@
+<div class="portal-soon-page">
+  <section class="portal-soon-section">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+      <app-section-label>Family Portal</app-section-label>
+      <h1 class="portal-soon-title">Coming Soon</h1>
+      <p class="portal-soon-subtitle">
+        The family and student portal is under development. Soon you will be able to view grades,
+        attendance, messages, and school updates in one place.
+      </p>
+
+      <app-glass-card intensity="mid" extraClass="p-6 sm:p-8 mt-8 text-left">
+        <h2 class="portal-soon-card__title">Need help now?</h2>
+        <p class="portal-soon-card__text">
+          Contact the school office and we will be happy to assist you.
+        </p>
+        <p class="portal-soon-card__text">
+          Email:
+          <a [href]="schoolInfo.emailHref" class="portal-soon-link">{{ schoolInfo.email }}</a>
+        </p>
+        <p class="portal-soon-card__text">
+          Phone:
+          <a [href]="schoolInfo.phoneHref" class="portal-soon-link">{{ schoolInfo.phone }}</a>
+        </p>
+      </app-glass-card>
+
+      <a routerLink="/" class="portal-soon-home">
+        <app-glass-button variant="secondary">&larr; Return to Home</app-glass-button>
+      </a>
+    </div>
+  </section>
+</div>

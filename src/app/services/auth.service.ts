@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-import type { AuthResponse, AuthSession, LoginCredentials, SignupPayload } from '../models/auth.model';
+import type {
+  AuthResponse, AuthSession, LoginCredentials, SignupPayload,
+  StaffSignupPayload, SetPasswordPayload, PasswordResetPayload, PasswordResetConfirmPayload,
+} from '../models/auth.model';
 import { apiUrl } from '../utils/api-url';
 
 const STORAGE_KEY = 'school_admin_session';
@@ -34,6 +37,22 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.endpoint}/signup`, payload);
   }
 
+  staffSignup(payload: StaffSignupPayload): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.endpoint}/staff-signup`, payload);
+  }
+
+  setPassword(payload: SetPasswordPayload): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.endpoint}/set-password`, payload);
+  }
+
+  requestPasswordReset(payload: PasswordResetPayload): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.endpoint}/password-reset`, payload);
+  }
+
+  confirmPasswordReset(payload: PasswordResetConfirmPayload): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.endpoint}/password-reset/confirm`, payload);
+  }
+
   logout(): void {
     sessionStorage.removeItem(STORAGE_KEY);
     this.sessionSubject.next(null);
@@ -48,7 +67,12 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.getSession()?.roles.includes('ADMIN') ?? false;
+    const roles = this.getSession()?.roles ?? [];
+    return roles.some((role) => ['SUPER_ADMIN', 'ADMIN', 'EDITOR'].includes(role));
+  }
+
+  isSuperAdmin(): boolean {
+    return this.getSession()?.roles.includes('SUPER_ADMIN') ?? false;
   }
 
   getToken(): string | null {

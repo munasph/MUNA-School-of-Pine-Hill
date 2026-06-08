@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ClipboardList, ExternalLink, LayoutGrid, LogOut, Mail, Megaphone, Settings } from 'lucide-angular';
+import { ClipboardList, ExternalLink, LayoutGrid, LogOut, Mail, Megaphone, Settings, Users } from 'lucide-angular';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -14,12 +14,13 @@ export class AdminLayoutComponent {
   readonly megaphone = Megaphone;
   readonly mail = Mail;
   readonly settings = Settings;
+  readonly users = Users;
   readonly hub = LayoutGrid;
   readonly externalLink = ExternalLink;
   readonly logOut = LogOut;
 
   constructor(
-    private readonly auth: AuthService,
+    public readonly auth: AuthService,
     private readonly router: Router,
   ) {}
 

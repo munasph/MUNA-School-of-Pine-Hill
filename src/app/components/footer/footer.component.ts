@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   readonly programs   = PROGRAMS_LIST;
   readonly t          = FOOTER_COPY;
 
-  familyLink = { path: '/portal/login', label: 'Family portal' };
+  familyLink = { path: '/portal', label: 'Family portal' };
   staffLink = { path: '/login', label: 'Staff login' };
 
   private subs = new Subscription();
@@ -46,7 +46,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     if (this.portalAuth.isAuthenticated()) {
       this.familyLink = { path: '/portal', label: 'My portal' };
     } else {
-      this.familyLink = { path: '/portal/login', label: 'Family portal' };
+      this.familyLink = { path: '/portal', label: 'Family portal' };
     }
 
     if (this.auth.isAuthenticated() && this.auth.isAdmin()) {

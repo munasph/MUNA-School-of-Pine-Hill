@@ -23,7 +23,7 @@ export class AppComponent {
   private showPublicShellForUrl(url: string): boolean {
     const path = url.split('?')[0].split('#')[0];
     if (path.startsWith('/admin')) return false;
-    if (path.startsWith('/portal') && !path.startsWith('/portal/login') && !path.startsWith('/portal/signup')) {
+    if (path.startsWith('/portal') && path !== '/portal' && !path.startsWith('/portal/login') && !path.startsWith('/portal/signup')) {
       return false;
     }
     return true;

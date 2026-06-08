@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import {
   AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators,
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CheckCircle, LucideIconData } from 'lucide-angular';
 
-import type { SignupPayload } from '../../models/auth.model';
+import type { StaffSignupPayload } from '../../models/auth.model';
 import { AuthService } from '../../services/auth.service';
 import { SeoService } from '../../services/seo.service';
 import { EMAIL_PATTERN, fieldError } from '../../utils/form-validation';
@@ -29,7 +30,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   submitted = false;
   submitting = false;
+  submitError: string | null = null;
   successMessage = '';
+  readonly roleOptions = [
+    { value: 'EDITOR', label: 'Editor' },
+    { value: 'ADMIN', label: 'Admin' },
+  ];
 
   private subs = new Subscription();
 
@@ -41,14 +47,15 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.seo.update({
-      title:       'Sign Up',
-      description: 'Create a new account.',
-      path:        '/signup',
+      title:       'Request Staff Access',
+      description: 'Request access to the MUNA School admin portal.',
+      path:        '/staff-signup',
     });
 
     this.form = this.fb.group({
       fullName:        ['', [Validators.required]],
       email:           ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
+      role:            ['EDITOR', [Validators.required]],
       password:        ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required]],
     }, { validators: passwordsMatch });
@@ -58,11 +65,12 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  errorFor(field: 'fullName' | 'email' | 'password' | 'confirmPassword'): string | null {
+  errorFor(field: 'fullName' | 'email' | 'role' | 'password' | 'confirmPassword'): string | null {
     const control = this.form.get(field);
     const labels = {
       fullName:        'Full name',
       email:           'Email',
+      role:            'Role',
       password:        'Password',
       confirmPassword: 'Confirm password',
     };
@@ -82,17 +90,19 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
 
     this.submitting = true;
-    const payload = this.form.value as SignupPayload;
+    this.submitError = null;
+    const payload = this.form.value as StaffSignupPayload;
 
     this.subs.add(
-      this.authService.signup(payload).subscribe({
+      this.authService.staffSignup(payload).subscribe({
         next: (res) => {
           this.submitted = true;
           this.successMessage = res.message;
           this.submitting = false;
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
           this.submitting = false;
+          this.submitError = err.error?.message ?? 'Could not submit request.';
         },
       }),
     );

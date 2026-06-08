@@ -1,22 +1,23 @@
 export const SIGNUP_COPY = {
   signup: {
     hero: {
-      tag:      'Account',
-      title:    'Sign Up',
-      subtitle: 'Create an account to get started.',
+      tag:      'Staff Access',
+      title:    'Request Staff Access',
+      subtitle: 'Submit a request for admin portal access. A super admin will review your application.',
     },
     form: {
       fullName:        'Full Name',
       email:           'Email Address',
+      role:            'Requested Role',
       password:        'Password',
       confirmPassword: 'Confirm Password',
-      submit:          'Create Account',
+      submit:          'Submit Request',
       hasAccount:      'Already have an account?',
       login:           'Log in',
     },
     success: {
-      title:   'Account Created',
-      message: 'Your account has been created successfully.',
+      title:   'Request Submitted',
+      message: 'Your staff access request has been submitted. You will receive an email when it is approved.',
     },
   },
 };
