@@ -10,9 +10,10 @@
   flex-direction: column;
   gap: 1.25rem;
   padding: 2rem 1.25rem;
-  border-right: 1px solid var(--glass-border);
+  border-right: 1.5px solid var(--glass-border);
   background: var(--nav-bg-scrolled);
   backdrop-filter: blur(12px);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.04);
 }
 
 .admin-sidebar__brand {
@@ -62,13 +63,16 @@
 }
 
 .admin-sidebar__link:hover {
-  background: var(--glass-bg);
-  color: var(--text-primary);
+  background: var(--accent-dim);
+  color: var(--brand-primary);
+  box-shadow: inset 3px 0 0 var(--brand-primary);
 }
 
 .admin-sidebar__link--active {
   background: var(--accent-dim);
-  color: var(--accent);
+  color: var(--brand-primary);
+  box-shadow: inset 3px 0 0 var(--brand-primary);
+  border: 1px solid rgba(0, 134, 75, 0.2);
 }
 
 .admin-sidebar__website {
@@ -126,6 +130,9 @@
 .admin-main {
   min-width: 0;
   padding: 2rem;
+  background:
+    radial-gradient(circle at top right, rgba(0, 134, 75, 0.04), transparent 42%),
+    var(--bg-deep);
 }
 
 @media (max-width: 900px) {

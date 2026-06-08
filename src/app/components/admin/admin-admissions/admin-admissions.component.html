@@ -95,13 +95,13 @@
           <td>{{ formatDate(app.submittedAt) }}</td>
           <td (click)="$event.stopPropagation()">
             <button type="button"
-                    class="admin-icon-btn"
+                    class="admin-icon-btn admin-icon-btn--view"
                     title="Review application"
                     (click)="openApplication(app.id)">
               <lucide-icon [img]="eyeIcon" size="16"></lucide-icon>
             </button>
             <button type="button"
-                    class="admin-icon-btn"
+                    class="admin-icon-btn admin-icon-btn--danger"
                     title="Delete application"
                     (click)="deleteApplication(app, $event)">
               <lucide-icon [img]="trashIcon" size="16"></lucide-icon>

@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import type {
-  AdminAdmissionRecord, AdminDashboardStats, ApplicationStatus,
+  AdminAdmissionDocument, AdminAdmissionRecord, AdminDashboardStats, ApplicationStatus,
 } from '../models/admin.model';
 import { apiUrl } from '../utils/api-url';
 
@@ -27,6 +27,19 @@ export class AdminAdmissionService {
 
   getApplication(id: number): Observable<AdminAdmissionRecord> {
     return this.http.get<AdminAdmissionRecord>(`${this.endpoint}/${id}`);
+  }
+
+  listDocuments(applicationId: number): Observable<AdminAdmissionDocument[]> {
+    return this.http.get<AdminAdmissionDocument[]>(
+      apiUrl(`/api/admin/admissions/${applicationId}/documents`),
+    );
+  }
+
+  downloadDocument(documentId: number): Observable<Blob> {
+    return this.http.get(
+      apiUrl(`/api/admin/admission-documents/${documentId}/download`),
+      { responseType: 'blob' },
+    );
   }
 
   updateStatus(id: number, status: ApplicationStatus): Observable<AdminAdmissionRecord> {

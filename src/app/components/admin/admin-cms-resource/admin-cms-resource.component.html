@@ -68,13 +68,13 @@
         <tr *ngIf="items.length === 0">
           <td [attr.colspan]="config.statusField ? 4 : 3" class="admin-table__empty">No records yet.</td>
         </tr>
-        <tr *ngFor="let item of items">
+        <tr *ngFor="let item of items" class="admin-table__row--clickable">
           <td class="admin-table__mono">{{ item['id'] }}</td>
           <td>{{ displayTitle(item) }}</td>
           <td *ngIf="config.statusField">{{ item[config.statusField] }}</td>
           <td>
             <button *ngIf="config.route !== 'audit-logs'" type="button" class="admin-icon-btn" (click)="openEdit(item)">Edit</button>
-            <button *ngIf="config.route !== 'audit-logs'" type="button" class="admin-icon-btn" (click)="deleteItem(item)">
+            <button *ngIf="config.route !== 'audit-logs'" type="button" class="admin-icon-btn admin-icon-btn--danger" (click)="deleteItem(item)">
               <lucide-icon [img]="trashIcon" size="16"></lucide-icon>
             </button>
           </td>

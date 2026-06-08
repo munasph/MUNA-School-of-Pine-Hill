@@ -4,13 +4,32 @@ export interface AdminAdmissionRecord {
   id:              number;
   applicationId:   string;
   fullName:        string;
+  firstName?:      string;
+  lastName?:       string;
   dob:             string;
   classApplying:   string;
   gender:          string;
+  streetAddress?:  string;
+  city?:           string;
+  state?:          string;
+  zip?:            string;
   parentName:      string;
   parentPhone:     string;
+  parent1Email?:   string;
+  parent2Name?:    string;
+  parent2Phone?:   string;
+  parent2Email?:   string;
   status:          ApplicationStatus;
   submittedAt:     string;
+}
+
+export interface AdminAdmissionDocument {
+  id:            number;
+  applicationId: number;
+  docType:       string;
+  fileName:      string;
+  fileUrl:       string;
+  uploadedAt:    string;
 }
 
 export interface AdminDashboardStats {

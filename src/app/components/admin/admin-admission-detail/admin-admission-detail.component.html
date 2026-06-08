@@ -30,32 +30,80 @@
       <section class="admin-detail-card">
         <h3 class="admin-detail-card__title">Student information</h3>
         <div class="admin-detail-field">
-          <span class="admin-detail-field__label">Full name</span>
-          <span class="admin-detail-field__value">{{ application.fullName }}</span>
+          <span class="admin-detail-field__label">First name</span>
+          <span class="admin-detail-field__value">{{ display(application.firstName) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Last name</span>
+          <span class="admin-detail-field__value">{{ display(application.lastName) }}</span>
         </div>
         <div class="admin-detail-field">
           <span class="admin-detail-field__label">Date of birth</span>
-          <span class="admin-detail-field__value">{{ application.dob }}</span>
-        </div>
-        <div class="admin-detail-field">
-          <span class="admin-detail-field__label">Class applying for</span>
-          <span class="admin-detail-field__value">{{ application.classApplying }}</span>
+          <span class="admin-detail-field__value">{{ display(application.dob) }}</span>
         </div>
         <div class="admin-detail-field">
           <span class="admin-detail-field__label">Gender</span>
-          <span class="admin-detail-field__value">{{ application.gender }}</span>
+          <span class="admin-detail-field__value">{{ display(application.gender) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Grade applying for</span>
+          <span class="admin-detail-field__value">{{ display(application.classApplying) }}</span>
         </div>
       </section>
 
       <section class="admin-detail-card">
-        <h3 class="admin-detail-card__title">Parent / guardian</h3>
+        <h3 class="admin-detail-card__title">Home address</h3>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Street address</span>
+          <span class="admin-detail-field__value">{{ display(application.streetAddress) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">City</span>
+          <span class="admin-detail-field__value">{{ display(application.city) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">State</span>
+          <span class="admin-detail-field__value">{{ display(application.state) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">ZIP code</span>
+          <span class="admin-detail-field__value">{{ display(application.zip) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Full address</span>
+          <span class="admin-detail-field__value">{{ formatAddress(application) }}</span>
+        </div>
+      </section>
+
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Parent / guardian 1</h3>
         <div class="admin-detail-field">
           <span class="admin-detail-field__label">Name</span>
-          <span class="admin-detail-field__value">{{ application.parentName }}</span>
+          <span class="admin-detail-field__value">{{ display(application.parentName) }}</span>
         </div>
         <div class="admin-detail-field">
           <span class="admin-detail-field__label">Phone</span>
-          <span class="admin-detail-field__value">{{ application.parentPhone }}</span>
+          <span class="admin-detail-field__value">{{ display(application.parentPhone) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Email</span>
+          <span class="admin-detail-field__value">{{ display(application.parent1Email) }}</span>
+        </div>
+      </section>
+
+      <section class="admin-detail-card">
+        <h3 class="admin-detail-card__title">Parent / guardian 2</h3>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Name</span>
+          <span class="admin-detail-field__value">{{ display(application.parent2Name) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Phone</span>
+          <span class="admin-detail-field__value">{{ display(application.parent2Phone) }}</span>
+        </div>
+        <div class="admin-detail-field">
+          <span class="admin-detail-field__label">Email</span>
+          <span class="admin-detail-field__value">{{ display(application.parent2Email) }}</span>
         </div>
       </section>
 
@@ -64,7 +112,9 @@
         <div class="admin-detail-grid">
           <div class="admin-detail-field">
             <span class="admin-detail-field__label">Current status</span>
-            <span class="admin-detail-field__value">{{ statusLabels[application.status] }}</span>
+            <span class="admin-detail-field__value">
+              <span class="admin-badge admin-badge--active">{{ statusLabels[application.status] }}</span>
+            </span>
           </div>
           <div class="admin-detail-field">
             <span class="admin-detail-field__label">Submitted</span>
@@ -86,6 +136,42 @@
           </button>
         </form>
       </section>
+
+      <ng-container *ngFor="let group of documentGroups">
+        <section class="admin-detail-card admin-detail-card--full">
+          <h3 class="admin-detail-card__title">{{ group.title }}</h3>
+          <p *ngIf="group.note" class="admin-doc-group-note">{{ group.note }}</p>
+
+          <div class="admin-doc-list">
+            <div *ngFor="let field of documentsForGroup(group.id)"
+                 class="admin-doc-item"
+                 [class.admin-doc-item--missing]="field.required && !documentForType(field.type)">
+              <div class="admin-doc-item__info">
+                <span class="admin-doc-item__label">
+                  {{ field.label }}
+                  <span *ngIf="field.required" class="admin-doc-item__required">Required</span>
+                </span>
+                <span *ngIf="field.hint" class="admin-doc-item__hint">{{ field.hint }}</span>
+                <span *ngIf="documentForType(field.type) as doc" class="admin-doc-item__filename">
+                  {{ doc.fileName }}
+                </span>
+                <span *ngIf="!documentForType(field.type)" class="admin-doc-item__missing-text">
+                  Not uploaded
+                </span>
+              </div>
+
+              <button *ngIf="documentForType(field.type) as doc"
+                      type="button"
+                      class="admin-btn admin-btn--ghost admin-doc-item__download"
+                      [disabled]="downloadingId === doc.id"
+                      (click)="downloadDocument(doc)">
+                <lucide-icon [img]="downloadIcon" size="16"></lucide-icon>
+                {{ downloadingId === doc.id ? 'Downloading…' : 'Download' }}
+              </button>
+            </div>
+          </div>
+        </section>
+      </ng-container>
     </div>
   </ng-container>
 

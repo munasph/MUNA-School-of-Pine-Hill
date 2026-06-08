@@ -1,4 +1,24 @@
-/* admissions list-specific overrides */
+:host .admin-page {
+  gap: 1rem;
+}
+
+:host .admin-page__title {
+  font-size: 1.5rem;
+}
+
+:host .admin-page__subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+}
+
+:host .admin-page__header {
+  gap: 0.75rem;
+}
+
+:host .admin-table th,
+:host .admin-table td {
+  padding: 0.625rem 0.875rem;
+}
 
 .admin-table__hint {
   font-size: 0.75rem;

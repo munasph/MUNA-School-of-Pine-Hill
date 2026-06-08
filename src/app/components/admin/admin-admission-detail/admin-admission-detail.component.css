@@ -1,1 +1,79 @@
-/* detail-specific overrides if needed */
+.admin-doc-group-note {
+  margin: -0.5rem 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.admin-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-doc-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--glass-border);
+  border-radius: 0.75rem;
+  background: var(--surface-input, var(--glass-bg));
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.admin-doc-item:hover {
+  border-color: var(--glass-border-strong);
+  background: var(--accent-dim);
+  box-shadow: inset 3px 0 0 var(--brand-primary);
+}
+
+.admin-doc-item--missing {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.admin-doc-item--missing:hover {
+  box-shadow: inset 3px 0 0 #ef4444;
+}
+
+.admin-doc-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.admin-doc-item__label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+}
+
+.admin-doc-item__required {
+  margin-left: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+.admin-doc-item__hint,
+.admin-doc-item__filename {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.admin-doc-item__missing-text {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+.admin-doc-item__download {
+  flex-shrink: 0;
+}
