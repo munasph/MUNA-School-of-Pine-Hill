@@ -104,6 +104,28 @@
   gap: 0.5rem;
 }
 
+.admin-sidebar__theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  background: var(--glass-bg);
+}
+
+.admin-sidebar__theme-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .admin-sidebar__link:hover {
+  background: rgba(0, 217, 126, 0.2);
+  color: var(--accent-light);
+}
+
 .admin-sidebar__logout {
   display: inline-flex;
   align-items: center;

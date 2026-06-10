@@ -26,6 +26,7 @@
            [style.color]="linkColor(isActive(link.path))">
           <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
                       transition-all duration-300 relative cursor-pointer hover:scale-[1.05] active:scale-[0.98]"
+               [class.liquid-nav-link__inner--active]="isActive(link.path)"
                [style.background]="linkBackground(isActive(link.path))">
             {{ link.label }}
           </div>
@@ -45,6 +46,7 @@
             <div class="liquid-nav-link__inner px-4 py-2 rounded-3xl text-sm font-semibold
                         transition-all duration-300 relative cursor-pointer
                         hover:scale-[1.05] active:scale-[0.98]"
+                 [class.liquid-nav-link__inner--active]="isActive(link.path)"
                  [style.background]="linkBackground(isActive(link.path))">
               {{ link.label }}
             </div>

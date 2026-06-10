@@ -1,37 +1,56 @@
 <div class="announcement-page">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <section class="announcement-hero">
+    <div class="announcement-page__container">
+      <a routerLink="/" class="announcement-page__back">
+        <span aria-hidden="true">&larr;</span> Back to Home
+      </a>
 
-    <a routerLink="/" class="announcement-page__back">&larr; Back to Home</a>
+      <div *ngIf="loading" class="announcement-page__loading">Loading announcement…</div>
+      <p *ngIf="!loading && error" class="announcement-page__error">{{ error }}</p>
 
-    <div *ngIf="loading" class="announcement-page__loading">Loading announcement…</div>
+      <ng-container *ngIf="!loading && announcement as item">
+        <span class="announcement-page__eyebrow">School Announcement</span>
+        <p class="announcement-page__date">{{ formatDate(item.updatedAt) }}</p>
+        <h1 class="announcement-page__title">{{ item.title }}</h1>
+        <p *ngIf="item.subtitle" class="announcement-page__lead">{{ item.subtitle }}</p>
+      </ng-container>
+    </div>
+  </section>
 
-    <p *ngIf="!loading && error" class="announcement-page__error">{{ error }}</p>
+  <section *ngIf="!loading && announcement as item" class="announcement-main">
+    <div class="announcement-page__container">
+      <article class="announcement-card">
+        <div *ngIf="bodyParagraphs(item.body).length" class="announcement-page__body">
+          <p *ngFor="let paragraph of bodyParagraphs(item.body)" class="announcement-page__paragraph">
+            {{ paragraph }}
+          </p>
+        </div>
 
-    <article *ngIf="!loading && announcement as item" class="announcement-page__article">
-      <p class="announcement-page__date">{{ formatDate(item.updatedAt) }}</p>
-      <h1 class="announcement-page__title">{{ item.title }}</h1>
-      <p *ngIf="item.subtitle" class="announcement-page__subtitle">{{ item.subtitle }}</p>
-
-      <div *ngIf="bodyParagraphs(item.body).length" class="announcement-page__body">
-        <p *ngFor="let paragraph of bodyParagraphs(item.body)" class="announcement-page__paragraph">
-          {{ paragraph }}
+        <p *ngIf="!bodyParagraphs(item.body).length && !item.subtitle"
+           class="announcement-page__empty-body">
+          More details will be posted here soon.
         </p>
-      </div>
 
-      <div *ngIf="relatedLinkHref(item)" class="announcement-page__actions">
-        <a *ngIf="isInternalLink(relatedLinkHref(item))"
-           [routerLink]="relatedLinkHref(item)"
-           class="announcement-page__link-btn">
-          {{ relatedLinkLabel(item) }} →
-        </a>
-        <a *ngIf="!isInternalLink(relatedLinkHref(item))"
-           [href]="relatedLinkHref(item)"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="announcement-page__link-btn">
-          {{ relatedLinkLabel(item) }} →
-        </a>
-      </div>
-    </article>
-  </div>
+        <footer class="announcement-page__footer">
+          <div class="announcement-page__actions">
+            <a *ngIf="relatedLinkHref(item) && isInternalLink(relatedLinkHref(item))"
+               [routerLink]="relatedLinkHref(item)"
+               class="announcement-page__btn announcement-page__btn--primary">
+              {{ relatedLinkLabel(item) }} →
+            </a>
+            <a *ngIf="relatedLinkHref(item) && !isInternalLink(relatedLinkHref(item))"
+               [href]="relatedLinkHref(item)"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="announcement-page__btn announcement-page__btn--primary">
+              {{ relatedLinkLabel(item) }} →
+            </a>
+            <a routerLink="/admission" class="announcement-page__btn announcement-page__btn--secondary">
+              Register Now
+            </a>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </section>
 </div>

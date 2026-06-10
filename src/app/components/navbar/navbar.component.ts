@@ -156,10 +156,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   linkBackground(active: boolean): string {
     if (!active) return 'transparent';
-    if (this.lightNavChrome) return 'rgba(0,134,75,0.12)';
+    if (this.lightNavChrome) return 'rgba(0,134,75,0.18)';
     return this.scrolled
-      ? 'rgba(0,134,75,0.12)'
-      : 'rgba(255,255,255,0.18)';
+      ? 'rgba(0,134,75,0.18)'
+      : 'rgba(0,217,126,0.32)';
   }
 
   burgerColor(): string {

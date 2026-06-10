@@ -50,6 +50,11 @@
     </nav>
 
     <div class="admin-sidebar__footer">
+      <div class="admin-sidebar__theme">
+        <span class="admin-sidebar__theme-label">Appearance</span>
+        <app-theme-toggle></app-theme-toggle>
+      </div>
+
       <a routerLink="/" class="admin-sidebar__website">
         <lucide-icon [img]="externalLink" size="18"></lucide-icon>
         View website
