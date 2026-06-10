@@ -1,0 +1,37 @@
+<div class="announcement-page">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+    <a routerLink="/" class="announcement-page__back">&larr; Back to Home</a>
+
+    <div *ngIf="loading" class="announcement-page__loading">Loading announcement…</div>
+
+    <p *ngIf="!loading && error" class="announcement-page__error">{{ error }}</p>
+
+    <article *ngIf="!loading && announcement as item" class="announcement-page__article">
+      <p class="announcement-page__date">{{ formatDate(item.updatedAt) }}</p>
+      <h1 class="announcement-page__title">{{ item.title }}</h1>
+      <p *ngIf="item.subtitle" class="announcement-page__subtitle">{{ item.subtitle }}</p>
+
+      <div *ngIf="bodyParagraphs(item.body).length" class="announcement-page__body">
+        <p *ngFor="let paragraph of bodyParagraphs(item.body)" class="announcement-page__paragraph">
+          {{ paragraph }}
+        </p>
+      </div>
+
+      <div *ngIf="relatedLinkHref(item)" class="announcement-page__actions">
+        <a *ngIf="isInternalLink(relatedLinkHref(item))"
+           [routerLink]="relatedLinkHref(item)"
+           class="announcement-page__link-btn">
+          {{ relatedLinkLabel(item) }} →
+        </a>
+        <a *ngIf="!isInternalLink(relatedLinkHref(item))"
+           [href]="relatedLinkHref(item)"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="announcement-page__link-btn">
+          {{ relatedLinkLabel(item) }} →
+        </a>
+      </div>
+    </article>
+  </div>
+</div>

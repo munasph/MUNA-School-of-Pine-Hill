@@ -38,9 +38,9 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      emoji:    [''],
       title:    ['', Validators.required],
       subtitle: [''],
+      body:     [''],
       cta:      [''],
       href:     [''],
       active:   [true],
@@ -72,9 +72,9 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
         next: (record) => {
           this.announcement = record;
           this.form.patchValue({
-            emoji:    record.emoji ?? '',
             title:    record.title,
             subtitle: record.subtitle ?? '',
+            body:     record.body ?? '',
             cta:      record.cta ?? '',
             href:     record.href ?? '',
             active:   record.active,
@@ -99,9 +99,9 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
     if (!this.announcement) return;
     this.editing = false;
     this.form.patchValue({
-      emoji:    this.announcement.emoji ?? '',
       title:    this.announcement.title,
       subtitle: this.announcement.subtitle ?? '',
+      body:     this.announcement.body ?? '',
       cta:      this.announcement.cta ?? '',
       href:     this.announcement.href ?? '',
       active:   this.announcement.active,

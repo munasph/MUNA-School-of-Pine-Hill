@@ -8,6 +8,7 @@ import { AdmissionPolicyComponent } from './components/admission/admission-polic
 import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
 import { FaqComponent }       from './components/faq/faq.component';
+import { AnnouncementDetailComponent } from './components/announcement/announcement-detail.component';
 import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'contact',   component: ContactComponent   },
   { path: 'gallery',   redirectTo: '/', pathMatch: 'full' },
   { path: 'faq',       component: FaqComponent       },
+  { path: 'announcements/:id', component: AnnouncementDetailComponent },
   { path: 'login',           component: LoginComponent     },
   { path: 'staff-signup',    component: SignupComponent    },
   { path: 'set-password',    component: SetPasswordComponent },

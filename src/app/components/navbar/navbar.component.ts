@@ -13,7 +13,7 @@ const ADMIN_HOME = '/admin';
 const LIGHT_SURFACE_ROUTES = [
   '/admission', '/admission/policy', '/tuition', '/login', '/staff-signup',
   '/set-password', '/forgot-password', '/reset-password', '/portal',
-  '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq', '/admin',
+  '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq', '/announcements', '/admin',
 ];
 
 @Component({

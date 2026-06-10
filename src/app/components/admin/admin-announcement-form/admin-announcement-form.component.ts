@@ -30,11 +30,11 @@ export class AdminAnnouncementFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      emoji:    ['🎓'],
       title:    ['', Validators.required],
       subtitle: [''],
-      cta:      ['Learn More'],
-      href:     ['/admission'],
+      body:     [''],
+      cta:      [''],
+      href:     [''],
       active:   [true],
     });
   }

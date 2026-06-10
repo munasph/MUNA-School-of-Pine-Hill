@@ -10,16 +10,20 @@
     <header class="admin-page__header">
       <div>
         <p class="admin-page__eyebrow">Announcement review</p>
-        <h2 class="admin-page__title">
-          <span *ngIf="announcement.emoji" class="announcement-emoji">{{ announcement.emoji }}</span>
-          {{ announcement.title }}
-        </h2>
+        <h2 class="admin-page__title">{{ announcement.title }}</h2>
         <p class="admin-page__subtitle">
           <span class="admin-badge"
                 [class.admin-badge--active]="announcement.active"
                 [class.admin-badge--inactive]="!announcement.active">
             {{ announcement.active ? 'Active on site' : 'Hidden from site' }}
           </span>
+          <a *ngIf="announcement.active"
+             [routerLink]="['/announcements', announcement.id]"
+             class="admin-preview-link"
+             target="_blank"
+             rel="noopener">
+            View public page
+          </a>
         </p>
       </div>
 
@@ -47,15 +51,19 @@
             <span class="admin-detail-field__value">{{ announcement.title }}</span>
           </div>
           <div class="admin-detail-field">
-            <span class="admin-detail-field__label">Subtitle</span>
+            <span class="admin-detail-field__label">Summary</span>
             <span class="admin-detail-field__value">{{ announcement.subtitle || '—' }}</span>
           </div>
           <div class="admin-detail-field">
-            <span class="admin-detail-field__label">Button label</span>
+            <span class="admin-detail-field__label">Full details</span>
+            <span class="admin-detail-field__value admin-detail-field__value--pre">{{ announcement.body || '—' }}</span>
+          </div>
+          <div class="admin-detail-field">
+            <span class="admin-detail-field__label">Related link label</span>
             <span class="admin-detail-field__value">{{ announcement.cta || '—' }}</span>
           </div>
           <div class="admin-detail-field">
-            <span class="admin-detail-field__label">Link</span>
+            <span class="admin-detail-field__label">Related link URL</span>
             <span class="admin-detail-field__value">{{ announcement.href || '—' }}</span>
           </div>
         </section>
@@ -79,23 +87,23 @@
         <h3 class="admin-detail-card__title">Edit announcement</h3>
         <form [formGroup]="form" (ngSubmit)="saveChanges()" class="admin-form">
           <label class="admin-field">
-            <span class="admin-field__label">Emoji</span>
-            <input class="admin-field__input" type="text" formControlName="emoji" maxlength="4" />
-          </label>
-          <label class="admin-field">
             <span class="admin-field__label">Title *</span>
             <input class="admin-field__input" type="text" formControlName="title" />
           </label>
           <label class="admin-field">
-            <span class="admin-field__label">Subtitle</span>
+            <span class="admin-field__label">Summary</span>
             <input class="admin-field__input" type="text" formControlName="subtitle" />
           </label>
           <label class="admin-field">
-            <span class="admin-field__label">Button label (CTA)</span>
+            <span class="admin-field__label">Full details</span>
+            <textarea class="admin-field__textarea" rows="8" formControlName="body"></textarea>
+          </label>
+          <label class="admin-field">
+            <span class="admin-field__label">Related link label</span>
             <input class="admin-field__input" type="text" formControlName="cta" />
           </label>
           <label class="admin-field">
-            <span class="admin-field__label">Link (href)</span>
+            <span class="admin-field__label">Related link URL</span>
             <input class="admin-field__input" type="text" formControlName="href" />
           </label>
           <label class="admin-field admin-field--checkbox">

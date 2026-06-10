@@ -1,7 +1,19 @@
-.announcement-emoji {
-  margin-right: 0.375rem;
-}
-
 .admin-detail-card--full form {
   max-width: 640px;
+}
+
+.admin-preview-link {
+  margin-left: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.admin-preview-link:hover {
+  text-decoration: underline;
+}
+
+.admin-detail-field__value--pre {
+  white-space: pre-wrap;
 }

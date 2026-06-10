@@ -44,6 +44,7 @@ export interface AdminAnnouncementRecord {
   emoji?:     string;
   title:      string;
   subtitle?:  string;
+  body?:      string;
   cta?:       string;
   href?:      string;
   active:     boolean;
@@ -55,6 +56,7 @@ export interface AnnouncementPayload {
   emoji?:    string;
   title:     string;
   subtitle?: string;
+  body?:     string;
   cta?:      string;
   href?:     string;
   active:    boolean;

@@ -8,7 +8,7 @@
     <div>
       <p class="admin-page__eyebrow">Announcements</p>
       <h2 class="admin-page__title">Create announcement</h2>
-      <p class="admin-page__subtitle">This appears in the site announcement bar when active.</p>
+      <p class="admin-page__subtitle">Shown on the home page. Visitors can open the full announcement on its own page.</p>
     </div>
   </header>
 
@@ -17,30 +17,31 @@
   <section class="admin-detail-card admin-detail-card--full">
     <form [formGroup]="form" (ngSubmit)="submit()" class="admin-form">
       <label class="admin-field">
-        <span class="admin-field__label">Emoji</span>
-        <input class="admin-field__input" type="text" formControlName="emoji" maxlength="4" />
-        <span class="admin-field__hint">Optional — e.g. 🎓</span>
-      </label>
-
-      <label class="admin-field">
         <span class="admin-field__label">Title *</span>
         <input class="admin-field__input" type="text" formControlName="title" />
       </label>
 
       <label class="admin-field">
-        <span class="admin-field__label">Subtitle</span>
+        <span class="admin-field__label">Summary</span>
         <input class="admin-field__input" type="text" formControlName="subtitle" />
+        <span class="admin-field__hint">Short preview shown on the home page</span>
       </label>
 
       <label class="admin-field">
-        <span class="admin-field__label">Button label (CTA)</span>
+        <span class="admin-field__label">Full details</span>
+        <textarea class="admin-field__textarea" rows="8" formControlName="body"></textarea>
+        <span class="admin-field__hint">Shown on the announcement detail page</span>
+      </label>
+
+      <label class="admin-field">
+        <span class="admin-field__label">Related link label</span>
         <input class="admin-field__input" type="text" formControlName="cta" />
       </label>
 
       <label class="admin-field">
-        <span class="admin-field__label">Link (href)</span>
+        <span class="admin-field__label">Related link URL</span>
         <input class="admin-field__input" type="text" formControlName="href" />
-        <span class="admin-field__hint">Internal path like /admission or full URL</span>
+        <span class="admin-field__hint">Optional — e.g. /admission or an external URL</span>
       </label>
 
       <label class="admin-field admin-field--checkbox">
