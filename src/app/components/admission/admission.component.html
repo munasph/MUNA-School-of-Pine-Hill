@@ -131,7 +131,8 @@
                                [error]="errorFor('parent2Email') ?? undefined"></app-glass-input>
             </fieldset>
 
-            <!-- Optional document uploads -->
+            <!-- Optional document uploads (hidden during interest-only registration) -->
+            <ng-container *ngIf="showDocumentUploads">
             <ng-container *ngFor="let group of documentGroups">
               <fieldset class="space-y-5">
                 <legend class="fieldset-legend">{{ group.title }}</legend>
@@ -166,6 +167,7 @@
                   </div>
                 </div>
               </fieldset>
+            </ng-container>
             </ng-container>
 
             <p *ngIf="submitError" class="field-error text-center mb-4">{{ submitError }}</p>

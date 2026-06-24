@@ -9,7 +9,7 @@ import type {
 } from '../../models/admission.model';
 import { AdmissionService } from '../../services/admission.service';
 import { SchoolInfoService } from '../../services/school-info.service';
-import { ADMISSION_COPY } from './admission.data';
+import { ADMISSION_COPY, ADMISSION_SHOW_DOCUMENT_UPLOADS } from './admission.data';
 import {
   ADMISSION_DOCUMENT_ACCEPT,
   ADMISSION_DOCUMENT_FIELDS,
@@ -35,6 +35,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   admissionSuccess: AdmissionSuccessMessage = { title: '', message: '' };
   readonly checkCircle: LucideIconData = CheckCircle;
   readonly t = ADMISSION_COPY;
+  readonly showDocumentUploads = ADMISSION_SHOW_DOCUMENT_UPLOADS;
   readonly documentFields = ADMISSION_DOCUMENT_FIELDS;
   readonly documentGroups = ADMISSION_DOCUMENT_GROUPS;
   readonly documentAccept = ADMISSION_DOCUMENT_ACCEPT;
@@ -205,7 +206,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
     }
 
-    if (this.form.invalid || this.hasDocumentValidationErrors()) {
+    if (this.form.invalid || (this.showDocumentUploads && this.hasDocumentValidationErrors())) {
       return;
     }
 
@@ -230,7 +231,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       parent2Email:  raw.parent2Email || undefined,
     };
 
-    const documents = this.buildDocumentUploads();
+    const documents = this.showDocumentUploads ? this.buildDocumentUploads() : [];
     const request$ = documents.length
       ? this.admissionService.submitApplicationWithDocuments(payload, documents)
       : this.admissionService.submitApplication(payload);
