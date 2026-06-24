@@ -20,8 +20,9 @@ export interface SchoolInfo {
   officeHours:     string;
   copyrightYear:   string;
   mapQuery:        string;
-  baseUrl:         string;
-  admissionsOpen:  boolean;
+  baseUrl:                    string;
+  admissionsOpen:             boolean;
+  admissionDocumentsRequired: boolean;
 }
 
 const PLACEHOLDER_VALUES: Record<keyof Pick<
@@ -100,7 +101,8 @@ export class SchoolInfoService {
       copyrightYear:  base.copyrightYear,
       mapQuery:       address,
       baseUrl,
-      admissionsOpen: settings.admissionsOpen,
+      admissionsOpen:             settings.admissionsOpen,
+      admissionDocumentsRequired: settings.admissionDocumentsRequired ?? false,
     };
   }
 
@@ -115,7 +117,8 @@ export class SchoolInfoService {
   private fromDefaults(): SchoolInfo {
     return {
       ...SCHOOL_INFO,
-      admissionsOpen: true,
+      admissionsOpen:             true,
+      admissionDocumentsRequired: false,
     };
   }
 

@@ -7,7 +7,8 @@ export interface SiteSettings {
   email:           string;
   officeHours:     string;
   baseUrl:         string;
-  admissionsOpen:  boolean;
+  admissionsOpen:             boolean;
+  admissionDocumentsRequired: boolean;
 }
 
 export type SiteSettingsPayload = SiteSettings;

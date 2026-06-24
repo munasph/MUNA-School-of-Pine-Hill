@@ -38,7 +38,8 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
       email:          ['', [Validators.required, Validators.email]],
       officeHours:    [''],
       baseUrl:        [''],
-      admissionsOpen: [true],
+      admissionsOpen:             [true],
+      admissionDocumentsRequired: [false],
     });
 
     this.loadSettings();

@@ -9,7 +9,7 @@ import type {
 } from '../../models/admission.model';
 import { AdmissionService } from '../../services/admission.service';
 import { SchoolInfoService } from '../../services/school-info.service';
-import { ADMISSION_COPY, ADMISSION_SHOW_DOCUMENT_UPLOADS } from './admission.data';
+import { ADMISSION_COPY } from './admission.data';
 import {
   ADMISSION_DOCUMENT_ACCEPT,
   ADMISSION_DOCUMENT_FIELDS,
@@ -35,7 +35,6 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   admissionSuccess: AdmissionSuccessMessage = { title: '', message: '' };
   readonly checkCircle: LucideIconData = CheckCircle;
   readonly t = ADMISSION_COPY;
-  readonly showDocumentUploads = ADMISSION_SHOW_DOCUMENT_UPLOADS;
   readonly documentFields = ADMISSION_DOCUMENT_FIELDS;
   readonly documentGroups = ADMISSION_DOCUMENT_GROUPS;
   readonly documentAccept = ADMISSION_DOCUMENT_ACCEPT;
@@ -43,6 +42,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
   classOptions: ClassOption[] = [];
   admissionsOpen = true;
+  admissionDocumentsRequired = false;
   settingsLoading = true;
 
   form!: FormGroup;
@@ -71,6 +71,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.schoolInfoService.schoolInfo$.subscribe((info) => {
         this.admissionsOpen = info.admissionsOpen;
+        this.admissionDocumentsRequired = info.admissionDocumentsRequired;
         this.settingsLoading = false;
       }),
     );
@@ -190,6 +191,24 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     return Object.values(this.documentErrors).some((error) => !!error);
   }
 
+  private validateRequiredDocuments(): boolean {
+    if (!this.admissionDocumentsRequired) {
+      return true;
+    }
+
+    let valid = true;
+    for (const field of this.documentFields) {
+      if (!field.required) {
+        continue;
+      }
+      if (!this.documentFiles[field.type]) {
+        this.documentErrors[field.type] = `${field.label} is required.`;
+        valid = false;
+      }
+    }
+    return valid;
+  }
+
   private buildDocumentUploads() {
     return this.documentFields
       .filter((field) => this.documentFiles[field.type])
@@ -206,7 +225,12 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
     }
 
-    if (this.form.invalid || (this.showDocumentUploads && this.hasDocumentValidationErrors())) {
+    const documentsValid = this.validateRequiredDocuments();
+    if (!documentsValid && this.form.valid) {
+      document.getElementById('required-documents')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (this.form.invalid || !documentsValid || this.hasDocumentValidationErrors()) {
       return;
     }
 
@@ -231,8 +255,8 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       parent2Email:  raw.parent2Email || undefined,
     };
 
-    const documents = this.showDocumentUploads ? this.buildDocumentUploads() : [];
-    const request$ = documents.length
+    const documents = this.admissionDocumentsRequired ? this.buildDocumentUploads() : [];
+    const request$ = this.admissionDocumentsRequired
       ? this.admissionService.submitApplicationWithDocuments(payload, documents)
       : this.admissionService.submitApplication(payload);
 

@@ -11,25 +11,24 @@ export interface AdmissionDocumentField {
 export const ADMISSION_DOCUMENT_GROUPS: { id: AdmissionDocumentGroup; title: string; note?: string }[] = [
   {
     id:    'required',
-    title: 'Supporting Documents (optional)',
-    note:  'You may upload documents now or wait until our Admissions Team contacts you.',
+    title: 'Required Documents',
   },
   {
     id:    'school',
-    title: 'School Records (optional)',
-    note:  'Upload any records that apply to your child.',
+    title: 'School Records',
+    note:  'Upload all records that apply to your child.',
   },
 ];
 
 export const ADMISSION_DOCUMENT_FIELDS: AdmissionDocumentField[] = [
-  { type: 'BIRTH_CERTIFICATE',     label: 'Birth Certificate',              required: false, group: 'required' },
-  { type: 'SOCIAL_SECURITY_CARD',  label: 'Social Security Card',           required: false, group: 'required' },
-  { type: 'PARENT_GUARDIAN_ID',    label: 'Parent / Guardian Photo ID',   required: false, group: 'required' },
-  { type: 'EMERGENCY_CONTACT_ID',  label: 'Emergency Contact Photo ID',     required: false, group: 'required' },
-  { type: 'PHYSICAL_EXAM',         label: 'Physical Exam Form',             required: false, group: 'required', hint: 'PHYSICAL EXAM FORM.docx' },
-  { type: 'DENTAL_EXAM',           label: 'Dental Exam Form',               required: false, group: 'required', hint: 'DENTAL FORM.docx' },
-  { type: 'IMMUNIZATION',          label: 'Immunization Record',            required: false, group: 'required', hint: 'Required vaccines for attending school' },
-  { type: 'TAX_1040',              label: 'Form 1040 of Tax Return',        required: false, group: 'required', hint: 'Form 1040 of Tax Return.pdf' },
+  { type: 'BIRTH_CERTIFICATE',     label: 'Birth Certificate',              required: true,  group: 'required' },
+  { type: 'SOCIAL_SECURITY_CARD',  label: 'Social Security Card',           required: true,  group: 'required' },
+  { type: 'PARENT_GUARDIAN_ID',    label: 'Parent / Guardian Photo ID',   required: true,  group: 'required' },
+  { type: 'EMERGENCY_CONTACT_ID',  label: 'Emergency Contact Photo ID',     required: true,  group: 'required' },
+  { type: 'PHYSICAL_EXAM',         label: 'Physical Exam Form',             required: true,  group: 'required', hint: 'PHYSICAL EXAM FORM.docx' },
+  { type: 'DENTAL_EXAM',           label: 'Dental Exam Form',               required: true,  group: 'required', hint: 'DENTAL FORM.docx' },
+  { type: 'IMMUNIZATION',          label: 'Immunization Record',            required: true,  group: 'required', hint: 'Required vaccines for attending school' },
+  { type: 'TAX_1040',              label: 'Form 1040 of Tax Return',        required: true,  group: 'required', hint: 'Form 1040 of Tax Return.pdf' },
   { type: 'REPORT_CARD',           label: 'Most Recent Report Card',        required: false, group: 'school' },
   { type: 'TRANSCRIPTS',           label: 'Transcripts',                    required: false, group: 'school' },
   { type: 'MAP_SCORES',            label: 'MAP Growth or STAR Scores',      required: false, group: 'school' },

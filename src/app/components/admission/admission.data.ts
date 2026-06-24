@@ -1,6 +1,3 @@
-/** Set false while collecting interest only; re-enable when document uploads are needed again. */
-export const ADMISSION_SHOW_DOCUMENT_UPLOADS = false;
-
 export const classOptions = [
   { value: 'pre-k', label: 'Pre-K' },
   { value: 'kg',    label: 'Kindergarten (KG)' },

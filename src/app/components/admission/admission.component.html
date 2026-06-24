@@ -131,10 +131,10 @@
                                [error]="errorFor('parent2Email') ?? undefined"></app-glass-input>
             </fieldset>
 
-            <!-- Optional document uploads (hidden during interest-only registration) -->
-            <ng-container *ngIf="showDocumentUploads">
+            <!-- Document uploads (shown when enabled in admin site settings) -->
+            <ng-container *ngIf="admissionDocumentsRequired">
             <ng-container *ngFor="let group of documentGroups">
-              <fieldset class="space-y-5">
+              <fieldset class="space-y-5" [attr.id]="group.id === 'required' ? 'required-documents' : null">
                 <legend class="fieldset-legend">{{ group.title }}</legend>
                 <p *ngIf="group.note" class="document-group-note">{{ group.note }}</p>
                 <p *ngIf="group.id === 'required'" class="document-group-note">

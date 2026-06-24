@@ -73,6 +73,15 @@
         <p class="admin-settings-hint">
           When disabled, the public admission form is hidden and submissions are rejected by the API.
         </p>
+
+        <label class="admin-toggle">
+          <input type="checkbox" formControlName="admissionDocumentsRequired" />
+          <span>Require registration documents</span>
+        </label>
+        <p class="admin-settings-hint">
+          When disabled, families can submit the registration form without uploading documents (interest-only mode).
+          When enabled, the form shows document uploads and all required documents must be attached before submitting.
+        </p>
       </section>
 
       <button type="submit" class="admin-btn admin-btn--accent" [disabled]="saving">
