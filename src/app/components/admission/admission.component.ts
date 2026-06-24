@@ -185,20 +185,8 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     return this.documentFiles[docType]?.name ?? null;
   }
 
-  private validateDocuments(): boolean {
-    let valid = true;
-
-    for (const field of this.documentFields) {
-      if (!field.required) {
-        continue;
-      }
-      if (!this.documentFiles[field.type]) {
-        this.documentErrors[field.type] = `${field.label} is required.`;
-        valid = false;
-      }
-    }
-
-    return valid;
+  private hasDocumentValidationErrors(): boolean {
+    return Object.values(this.documentErrors).some((error) => !!error);
   }
 
   private buildDocumentUploads() {
@@ -217,12 +205,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       this.form.markAllAsTouched();
     }
 
-    const documentsValid = this.validateDocuments();
-    if (!documentsValid && this.form.valid) {
-      this.scrollToDocuments();
-    }
-
-    if (this.form.invalid || !documentsValid) {
+    if (this.form.invalid || this.hasDocumentValidationErrors()) {
       return;
     }
 
@@ -247,8 +230,13 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       parent2Email:  raw.parent2Email || undefined,
     };
 
+    const documents = this.buildDocumentUploads();
+    const request$ = documents.length
+      ? this.admissionService.submitApplicationWithDocuments(payload, documents)
+      : this.admissionService.submitApplication(payload);
+
     this.subs.add(
-      this.admissionService.submitApplicationWithDocuments(payload, this.buildDocumentUploads()).subscribe({
+      request$.subscribe({
         next: () => {
           this.submitted = true;
           this.submitting = false;
@@ -264,9 +252,5 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
   private scrollToTop(): void {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }
-
-  private scrollToDocuments(): void {
-    document.getElementById('required-documents')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

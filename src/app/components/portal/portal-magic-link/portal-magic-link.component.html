@@ -1,0 +1,19 @@
+<div>
+  <section class="py-24">
+    <div class="max-w-md mx-auto px-4">
+      <div class="text-center mb-12">
+        <app-section-label>{{ t.tag }}</app-section-label>
+        <h1 class="text-4xl lg:text-5xl font-serif form-title">{{ t.title }}</h1>
+      </div>
+
+      <app-glass-card intensity="mid" extraClass="p-8 lg:p-10 text-center">
+        <p *ngIf="state === 'verifying'" class="form-subtitle">{{ t.verifying }}</p>
+
+        <ng-container *ngIf="state === 'error'">
+          <p class="portal-alert portal-alert--error">{{ message }}</p>
+          <a routerLink="/portal/login" class="auth-switch__link">{{ t.retry }}</a>
+        </ng-container>
+      </app-glass-card>
+    </div>
+  </section>
+</div>

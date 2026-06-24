@@ -7,7 +7,7 @@ export const classOptions = [
 
 export const ADMISSION_SUCCESS = {
   title:   'Registration Received',
-  message: 'Thank you. Your registration and required documents have been received. Our Admissions Team will contact you when a spot becomes available.',
+  message: 'Thank you. Your registration has been received. Our Admissions Team will contact you when a spot becomes available.',
 };
 
 export const ADMISSION_COPY = {

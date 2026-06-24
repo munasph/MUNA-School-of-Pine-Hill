@@ -131,9 +131,9 @@
                                [error]="errorFor('parent2Email') ?? undefined"></app-glass-input>
             </fieldset>
 
-            <!-- Required Documents -->
+            <!-- Optional document uploads -->
             <ng-container *ngFor="let group of documentGroups">
-              <fieldset class="space-y-5" [attr.id]="group.id === 'required' ? 'required-documents' : null">
+              <fieldset class="space-y-5">
                 <legend class="fieldset-legend">{{ group.title }}</legend>
                 <p *ngIf="group.note" class="document-group-note">{{ group.note }}</p>
                 <p *ngIf="group.id === 'required'" class="document-group-note">
