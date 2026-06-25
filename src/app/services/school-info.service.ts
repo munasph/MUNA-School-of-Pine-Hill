@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { SCHOOL_INFO } from '../components/footer/site.data';
 import type { SiteSettings } from '../models/site-settings.model';
+import { ADMISSION_DOCUMENT_FIELDS } from '../components/admission/admission-documents.data';
 import { apiUrl } from '../utils/api-url';
 
 export interface SchoolInfo {
@@ -20,9 +21,10 @@ export interface SchoolInfo {
   officeHours:     string;
   copyrightYear:   string;
   mapQuery:        string;
-  baseUrl:                    string;
-  admissionsOpen:             boolean;
-  admissionDocumentsRequired: boolean;
+  baseUrl:                       string;
+  admissionsOpen:                boolean;
+  admissionDocumentsRequired:    boolean;
+  admissionRequiredDocumentTypes: string[];
 }
 
 const PLACEHOLDER_VALUES: Record<keyof Pick<
@@ -101,9 +103,22 @@ export class SchoolInfoService {
       copyrightYear:  base.copyrightYear,
       mapQuery:       address,
       baseUrl,
-      admissionsOpen:             settings.admissionsOpen,
-      admissionDocumentsRequired: settings.admissionDocumentsRequired ?? false,
+      admissionsOpen:                 settings.admissionsOpen,
+      admissionDocumentsRequired:     this.resolveRequiredDocumentTypes(settings).length > 0,
+      admissionRequiredDocumentTypes: this.resolveRequiredDocumentTypes(settings),
     };
+  }
+
+  private resolveRequiredDocumentTypes(settings: SiteSettings): string[] {
+    if (settings.admissionRequiredDocumentTypes?.length) {
+      return settings.admissionRequiredDocumentTypes;
+    }
+    if (settings.admissionDocumentsRequired) {
+      return ADMISSION_DOCUMENT_FIELDS
+        .filter((field) => field.group === 'required')
+        .map((field) => field.type);
+    }
+    return [];
   }
 
   private pick(value: string | null | undefined, fallback: string, field: keyof typeof PLACEHOLDER_VALUES): string {
@@ -117,8 +132,9 @@ export class SchoolInfoService {
   private fromDefaults(): SchoolInfo {
     return {
       ...SCHOOL_INFO,
-      admissionsOpen:             true,
-      admissionDocumentsRequired: false,
+      admissionsOpen:                 true,
+      admissionDocumentsRequired:     false,
+      admissionRequiredDocumentTypes: [],
     };
   }
 

@@ -42,7 +42,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
   classOptions: ClassOption[] = [];
   admissionsOpen = true;
-  admissionDocumentsRequired = false;
+  enabledDocumentTypes: string[] = [];
   settingsLoading = true;
 
   form!: FormGroup;
@@ -71,7 +71,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.schoolInfoService.schoolInfo$.subscribe((info) => {
         this.admissionsOpen = info.admissionsOpen;
-        this.admissionDocumentsRequired = info.admissionDocumentsRequired;
+        this.enabledDocumentTypes = info.admissionRequiredDocumentTypes;
         this.settingsLoading = false;
       }),
     );
@@ -146,7 +146,13 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   }
 
   documentsForGroup(group: AdmissionDocumentField['group']): AdmissionDocumentField[] {
-    return this.documentFields.filter((field) => field.group === group);
+    return this.documentFields.filter(
+      (field) => field.group === group && this.enabledDocumentTypes.includes(field.type),
+    );
+  }
+
+  get documentsEnabled(): boolean {
+    return this.enabledDocumentTypes.length > 0;
   }
 
   onDocumentSelected(docType: string, event: Event): void {
@@ -193,17 +199,15 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   }
 
   private validateRequiredDocuments(): boolean {
-    if (!this.admissionDocumentsRequired) {
+    if (!this.documentsEnabled) {
       return true;
     }
 
     let valid = true;
-    for (const field of this.documentFields) {
-      if (!field.required) {
-        continue;
-      }
-      if (!this.documentFiles[field.type]) {
-        this.documentErrors[field.type] = `${field.label} is required.`;
+    for (const docType of this.enabledDocumentTypes) {
+      if (!this.documentFiles[docType]) {
+        const field = this.documentFields.find((item) => item.type === docType);
+        this.documentErrors[docType] = `${field?.label ?? 'Document'} is required.`;
         valid = false;
       }
     }
@@ -211,11 +215,11 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   }
 
   private buildDocumentUploads() {
-    return this.documentFields
-      .filter((field) => this.documentFiles[field.type])
-      .map((field) => ({
-        docType: field.type,
-        file:    this.documentFiles[field.type] as File,
+    return this.enabledDocumentTypes
+      .filter((docType) => this.documentFiles[docType])
+      .map((docType) => ({
+        docType,
+        file: this.documentFiles[docType] as File,
       }));
   }
 
@@ -228,7 +232,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
     const documentsValid = this.validateRequiredDocuments();
     if (!documentsValid && this.form.valid) {
-      document.getElementById('required-documents')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('admission-documents')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     if (this.form.invalid || !documentsValid || this.hasDocumentValidationErrors()) {
@@ -256,8 +260,8 @@ export class AdmissionComponent implements OnInit, OnDestroy {
       parent2Email:  raw.parent2Email || undefined,
     };
 
-    const documents = this.admissionDocumentsRequired ? this.buildDocumentUploads() : [];
-    const request$ = this.admissionDocumentsRequired
+    const documents = this.documentsEnabled ? this.buildDocumentUploads() : [];
+    const request$ = this.documentsEnabled
       ? this.admissionService.submitApplicationWithDocuments(payload, documents)
       : this.admissionService.submitApplication(payload);
 

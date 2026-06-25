@@ -131,21 +131,23 @@
                                [error]="errorFor('parent2Email') ?? undefined"></app-glass-input>
             </fieldset>
 
-            <!-- Document uploads (shown when enabled in admin site settings) -->
-            <ng-container *ngIf="admissionDocumentsRequired">
+            <!-- Document uploads (shown for documents enabled in admin site settings) -->
+            <ng-container *ngIf="documentsEnabled">
+            <p class="document-group-note" id="admission-documents">
+              Accepted formats: PDF, DOC, DOCX, JPG, or PNG. Maximum {{ documentMaxMb }} MB per file.
+            </p>
             <ng-container *ngFor="let group of documentGroups">
-              <fieldset class="space-y-5" [attr.id]="group.id === 'required' ? 'required-documents' : null">
+              <fieldset *ngIf="documentsForGroup(group.id).length"
+                        class="space-y-5"
+                        [attr.id]="group.id === 'required' ? 'required-documents' : null">
                 <legend class="fieldset-legend">{{ group.title }}</legend>
                 <p *ngIf="group.note" class="document-group-note">{{ group.note }}</p>
-                <p *ngIf="group.id === 'required'" class="document-group-note">
-                  Accepted formats: PDF, DOC, DOCX, JPG, or PNG. Maximum {{ documentMaxMb }} MB per file.
-                </p>
 
                 <div class="document-uploads-grid">
                   <div *ngFor="let doc of documentsForGroup(group.id)" class="document-upload">
                     <label class="document-upload__label" [for]="'doc-' + doc.type">
                       {{ doc.label }}
-                      <span *ngIf="doc.required" class="document-upload__required">*</span>
+                      <span class="document-upload__required">*</span>
                     </label>
                     <p *ngIf="doc.hint" class="document-upload__hint">{{ doc.hint }}</p>
 

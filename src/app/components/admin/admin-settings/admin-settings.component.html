@@ -72,14 +72,51 @@
           When disabled, the public admission form is hidden and submissions are rejected by the API.
         </p>
 
-        <label class="admin-toggle">
-          <input type="checkbox" formControlName="admissionDocumentsRequired" />
-          <span>Require registration documents</span>
-        </label>
-        <p class="admin-settings-hint">
-          When disabled, families can submit the registration form without uploading documents (interest-only mode).
-          When enabled, the form shows document uploads and all required documents must be attached before submitting.
-        </p>
+        <div class="admin-document-settings">
+          <div class="admin-document-settings__header">
+            <h4 class="admin-document-settings__title">Registration documents</h4>
+            <p class="admin-settings-hint admin-document-settings__summary">
+              Choose which documents families must upload on the public registration form.
+              {{ enabledDocumentCount() }} selected.
+            </p>
+          </div>
+
+          <div formGroupName="documentRequirements" class="admin-document-settings__groups">
+            <section *ngFor="let group of documentGroups" class="admin-document-settings__group">
+              <div class="admin-document-settings__group-header">
+                <h5 class="admin-document-settings__group-title">{{ group.title }}</h5>
+                <div class="admin-document-settings__group-actions">
+                  <button type="button"
+                          class="admin-document-settings__link"
+                          (click)="setGroupEnabled(group.id, true)">
+                    Select all
+                  </button>
+                  <button type="button"
+                          class="admin-document-settings__link"
+                          (click)="setGroupEnabled(group.id, false)">
+                    Clear
+                  </button>
+                </div>
+              </div>
+              <p *ngIf="group.note" class="admin-settings-hint">{{ group.note }}</p>
+
+              <div class="admin-document-settings__list">
+                <label *ngFor="let doc of documentsForGroup(group.id)" class="admin-toggle admin-document-settings__item">
+                  <input type="checkbox" [formControlName]="doc.type" />
+                  <span>
+                    {{ doc.label }}
+                    <span *ngIf="doc.hint" class="admin-document-settings__hint">{{ doc.hint }}</span>
+                  </span>
+                </label>
+              </div>
+            </section>
+          </div>
+
+          <p class="admin-settings-hint">
+            When no documents are selected, families can submit the registration form without uploads (interest-only mode).
+            Each selected document is required before the form can be submitted.
+          </p>
+        </div>
       </section>
 
       <div class="admin-settings-savebar">
