@@ -7,6 +7,7 @@ import { ArrowLeft, LucideIconData, Pencil, Trash2 } from 'lucide-angular';
 
 import type { AdminAnnouncementRecord, AnnouncementPayload } from '../../../models/admin.model';
 import { AdminAnnouncementService } from '../../../services/admin-announcement.service';
+import { AdminFeedbackService } from '../../../services/admin-feedback.service';
 
 @Component({
   selector: 'app-admin-announcement-detail',
@@ -24,8 +25,6 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
   editing = false;
   saving = false;
   error: string | null = null;
-  actionError: string | null = null;
-  successMessage: string | null = null;
 
   private subs = new Subscription();
 
@@ -34,6 +33,7 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly adminService: AdminAnnouncementService,
+    private readonly feedback: AdminFeedbackService,
   ) {}
 
   ngOnInit(): void {
@@ -91,8 +91,6 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
 
   startEditing(): void {
     this.editing = true;
-    this.actionError = null;
-    this.successMessage = null;
   }
 
   cancelEditing(): void {
@@ -115,8 +113,6 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
     }
 
     this.saving = true;
-    this.actionError = null;
-    this.successMessage = null;
     const payload = this.form.value as AnnouncementPayload;
 
     this.subs.add(
@@ -125,11 +121,11 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
           this.announcement = updated;
           this.editing = false;
           this.saving = false;
-          this.successMessage = 'Announcement updated.';
+          this.feedback.showSuccess('The announcement is updated on the public site.', 'Announcement saved');
         },
         error: (err: HttpErrorResponse) => {
           this.saving = false;
-          this.actionError = err.error?.message ?? 'Could not save changes.';
+          this.feedback.showError(err.error?.message ?? 'Could not save changes.', 'Save failed');
         },
       }),
     );
@@ -145,7 +141,7 @@ export class AdminAnnouncementDetailComponent implements OnInit, OnDestroy {
       this.adminService.deleteAnnouncement(this.announcement.id).subscribe({
         next: () => this.router.navigate(['/admin/announcements']),
         error: (err: HttpErrorResponse) => {
-          this.actionError = err.error?.message ?? 'Could not delete announcement.';
+          this.feedback.showError(err.error?.message ?? 'Could not delete announcement.', 'Delete failed');
         },
       }),
     );

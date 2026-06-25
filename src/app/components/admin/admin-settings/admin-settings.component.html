@@ -1,4 +1,4 @@
-<div class="admin-page">
+<div class="admin-page admin-settings-page">
   <header class="admin-page__header">
     <div>
       <p class="admin-page__eyebrow">Configuration</p>
@@ -11,8 +11,6 @@
 
   <ng-container *ngIf="!loading">
     <p *ngIf="error" class="admin-alert admin-alert--error">{{ error }}</p>
-    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
-    <p *ngIf="successMessage" class="admin-alert admin-alert--success">{{ successMessage }}</p>
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="admin-form admin-settings-form">
       <section class="admin-detail-card">
@@ -84,9 +82,22 @@
         </p>
       </section>
 
-      <button type="submit" class="admin-btn admin-btn--accent" [disabled]="saving">
-        {{ saving ? 'Saving…' : 'Save settings' }}
-      </button>
+      <div class="admin-settings-savebar">
+        <p class="admin-settings-savebar__hint">
+          Changes apply to the public website immediately after saving.
+        </p>
+        <div class="admin-settings-savebar__actions">
+          <span *ngIf="saveSucceeded" class="admin-settings-savebar__saved" aria-live="polite">
+            Saved successfully
+          </span>
+          <button type="submit"
+                  class="admin-btn admin-btn--accent"
+                  [class.admin-btn--saved]="saveSucceeded"
+                  [disabled]="saving">
+            {{ saving ? 'Saving…' : saveSucceeded ? 'Saved!' : 'Save settings' }}
+          </button>
+        </div>
+      </div>
     </form>
   </ng-container>
 </div>

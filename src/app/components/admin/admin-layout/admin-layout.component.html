@@ -70,4 +70,22 @@
   <div class="admin-main">
     <router-outlet></router-outlet>
   </div>
+
+  <div *ngIf="feedback"
+       class="admin-feedback-toast"
+       [class.admin-feedback-toast--success]="feedback.type === 'success'"
+       [class.admin-feedback-toast--error]="feedback.type === 'error'"
+       role="status"
+       aria-live="polite">
+    <div class="admin-feedback-toast__icon" aria-hidden="true">
+      <lucide-icon [img]="feedback.type === 'success' ? checkCircle : circleAlert" size="22"></lucide-icon>
+    </div>
+    <div class="admin-feedback-toast__body">
+      <p class="admin-feedback-toast__title">{{ feedback.title }}</p>
+      <p class="admin-feedback-toast__message">{{ feedback.message }}</p>
+    </div>
+    <button type="button" class="admin-feedback-toast__close" (click)="dismissFeedback()" aria-label="Dismiss">
+      <lucide-icon [img]="closeIcon" size="16"></lucide-icon>
+    </button>
+  </div>
 </div>

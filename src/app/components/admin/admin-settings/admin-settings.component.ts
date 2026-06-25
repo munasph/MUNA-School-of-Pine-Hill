@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import type { SiteSettingsPayload } from '../../../models/site-settings.model';
 import { AdminSiteSettingsService } from '../../../services/admin-site-settings.service';
+import { AdminFeedbackService } from '../../../services/admin-feedback.service';
 import { SchoolInfoService } from '../../../services/school-info.service';
 
 @Component({
@@ -17,15 +18,16 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
   loading = true;
   saving = false;
   error: string | null = null;
-  actionError: string | null = null;
-  successMessage: string | null = null;
+  saveSucceeded = false;
 
   private subs = new Subscription();
+  private saveSuccessTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly settingsService: AdminSiteSettingsService,
     private readonly schoolInfoService: SchoolInfoService,
+    private readonly feedback: AdminFeedbackService,
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +48,9 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.saveSuccessTimer) {
+      clearTimeout(this.saveSuccessTimer);
+    }
     this.subs.unsubscribe();
   }
 
@@ -82,8 +87,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
     }
 
     this.saving = true;
-    this.actionError = null;
-    this.successMessage = null;
+    this.saveSucceeded = false;
     const payload = this.form.value as SiteSettingsPayload;
 
     this.subs.add(
@@ -92,11 +96,22 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
           this.form.patchValue(this.normalizeSettings(updated));
           this.schoolInfoService.reload();
           this.saving = false;
-          this.successMessage = 'Settings saved.';
+          this.saveSucceeded = true;
+          this.feedback.showSuccess(
+            'Your site settings are live on the public website.',
+            'Settings saved',
+          );
+          if (this.saveSuccessTimer) {
+            clearTimeout(this.saveSuccessTimer);
+          }
+          this.saveSuccessTimer = setTimeout(() => (this.saveSucceeded = false), 2500);
         },
         error: (err: HttpErrorResponse) => {
           this.saving = false;
-          this.actionError = err.error?.message ?? 'Could not save settings.';
+          this.feedback.showError(
+            err.error?.message ?? 'Could not save settings. Please try again.',
+            'Save failed',
+          );
         },
       }),
     );

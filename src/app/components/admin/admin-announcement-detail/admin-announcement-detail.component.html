@@ -39,8 +39,6 @@
       </div>
     </header>
 
-    <p *ngIf="actionError" class="admin-alert admin-alert--error">{{ actionError }}</p>
-    <p *ngIf="successMessage" class="admin-alert admin-alert--success">{{ successMessage }}</p>
 
     <ng-container *ngIf="!editing; else editForm">
       <div class="admin-detail-grid">

@@ -171,3 +171,111 @@
     margin-top: 1rem;
   }
 }
+
+.admin-feedback-toast {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1200;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  width: min(24rem, calc(100vw - 2rem));
+  padding: 1rem 1rem 1rem 1.125rem;
+  border-radius: 1rem;
+  border: 1.5px solid transparent;
+  background: var(--surface-card, var(--glass-bg));
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  animation: admin-feedback-enter 0.28s ease-out;
+}
+
+.admin-feedback-toast--success {
+  border-color: rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), var(--surface-card, var(--glass-bg)) 55%);
+}
+
+.admin-feedback-toast--error {
+  border-color: rgba(239, 68, 68, 0.45);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), var(--surface-card, var(--glass-bg)) 55%);
+}
+
+.admin-feedback-toast__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+}
+
+.admin-feedback-toast--success .admin-feedback-toast__icon {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.16);
+}
+
+.admin-feedback-toast--error .admin-feedback-toast__icon {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.14);
+}
+
+.admin-feedback-toast__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-feedback-toast__title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.admin-feedback-toast__message {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.admin-feedback-toast__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.admin-feedback-toast__close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+@keyframes admin-feedback-enter {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-feedback-toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    width: auto;
+  }
+}

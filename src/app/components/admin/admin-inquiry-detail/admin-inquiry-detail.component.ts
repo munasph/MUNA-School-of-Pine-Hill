@@ -10,6 +10,7 @@ import {
   CONTACT_INQUIRY_STATUSES, CONTACT_STATUS_LABELS,
 } from '../../../models/admin.model';
 import { AdminContactService } from '../../../services/admin-contact.service';
+import { AdminFeedbackService } from '../../../services/admin-feedback.service';
 
 @Component({
   selector: 'app-admin-inquiry-detail',
@@ -26,8 +27,6 @@ export class AdminInquiryDetailComponent implements OnInit, OnDestroy {
   loading = true;
   saving = false;
   error: string | null = null;
-  actionError: string | null = null;
-  successMessage: string | null = null;
 
   statusForm!: FormGroup;
   private subs = new Subscription();
@@ -37,6 +36,7 @@ export class AdminInquiryDetailComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly adminService: AdminContactService,
+    private readonly feedback: AdminFeedbackService,
   ) {}
 
   ngOnInit(): void {
@@ -99,8 +99,6 @@ export class AdminInquiryDetailComponent implements OnInit, OnDestroy {
     if (!this.inquiry || this.statusForm.invalid) return;
 
     this.saving = true;
-    this.actionError = null;
-    this.successMessage = null;
     const status = this.statusForm.value.status as ContactInquiryStatus;
 
     this.subs.add(
@@ -108,11 +106,11 @@ export class AdminInquiryDetailComponent implements OnInit, OnDestroy {
         next: (updated) => {
           this.inquiry = updated;
           this.saving = false;
-          this.successMessage = 'Status updated.';
+          this.feedback.showSuccess('Inquiry status has been updated.', 'Status saved');
         },
         error: (err: HttpErrorResponse) => {
           this.saving = false;
-          this.actionError = err.error?.message ?? 'Could not update status.';
+          this.feedback.showError(err.error?.message ?? 'Could not update status.', 'Update failed');
         },
       }),
     );
@@ -130,7 +128,7 @@ export class AdminInquiryDetailComponent implements OnInit, OnDestroy {
       this.adminService.deleteInquiry(this.inquiry.id).subscribe({
         next: () => this.router.navigate(['/admin/inquiries']),
         error: (err: HttpErrorResponse) => {
-          this.actionError = err.error?.message ?? 'Could not delete inquiry.';
+          this.feedback.showError(err.error?.message ?? 'Could not delete inquiry.', 'Delete failed');
         },
       }),
     );

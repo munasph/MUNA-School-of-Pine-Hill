@@ -16,6 +16,7 @@ import {
   type AdmissionDocumentField,
 } from '../../admission/admission-documents.data';
 import { AdminAdmissionService } from '../../../services/admin-admission.service';
+import { AdminFeedbackService } from '../../../services/admin-feedback.service';
 
 @Component({
   selector: 'app-admin-admission-detail',
@@ -37,7 +38,6 @@ export class AdminAdmissionDetailComponent implements OnInit, OnDestroy {
   downloadingId: number | null = null;
   error: string | null = null;
   actionError: string | null = null;
-  successMessage: string | null = null;
 
   statusForm!: FormGroup;
   private subs = new Subscription();
@@ -47,6 +47,7 @@ export class AdminAdmissionDetailComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly adminService: AdminAdmissionService,
+    private readonly feedback: AdminFeedbackService,
   ) {}
 
   ngOnInit(): void {
@@ -98,7 +99,6 @@ export class AdminAdmissionDetailComponent implements OnInit, OnDestroy {
 
     this.saving = true;
     this.actionError = null;
-    this.successMessage = null;
     const status = this.statusForm.value.status as ApplicationStatus;
 
     this.subs.add(
@@ -106,11 +106,11 @@ export class AdminAdmissionDetailComponent implements OnInit, OnDestroy {
         next: (updated) => {
           this.application = { ...this.application!, ...updated };
           this.saving = false;
-          this.successMessage = 'Status updated.';
+          this.feedback.showSuccess('Application status has been updated.', 'Status saved');
         },
         error: (err: HttpErrorResponse) => {
           this.saving = false;
-          this.actionError = err.error?.message ?? 'Could not update status.';
+          this.feedback.showError(err.error?.message ?? 'Could not update status.', 'Update failed');
         },
       }),
     );
@@ -128,7 +128,7 @@ export class AdminAdmissionDetailComponent implements OnInit, OnDestroy {
       this.adminService.deleteApplication(this.application.id).subscribe({
         next: () => this.router.navigate(['/admin/admissions']),
         error: (err: HttpErrorResponse) => {
-          this.actionError = err.error?.message ?? 'Could not delete application.';
+          this.feedback.showError(err.error?.message ?? 'Could not delete application.', 'Delete failed');
         },
       }),
     );

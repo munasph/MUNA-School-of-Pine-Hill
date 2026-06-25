@@ -2,6 +2,72 @@
   display: grid;
   gap: 1.25rem;
   max-width: 42rem;
+  padding-bottom: 6rem;
+}
+
+.admin-settings-savebar {
+  position: sticky;
+  bottom: 1rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  padding: 1rem 1.125rem;
+  border: 1.5px solid var(--glass-border);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface-card, var(--glass-bg)) 92%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.admin-settings-savebar__hint {
+  margin: 0;
+  max-width: 16rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.admin-settings-savebar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-left: auto;
+}
+
+.admin-settings-savebar__saved {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #10b981;
+  animation: admin-settings-saved-pulse 0.28s ease-out;
+}
+
+.admin-btn--saved {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+}
+
+@keyframes admin-settings-saved-pulse {
+  from { opacity: 0; transform: translateY(0.25rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .admin-settings-savebar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-settings-savebar__hint {
+    max-width: none;
+  }
+
+  .admin-settings-savebar__actions {
+    margin-left: 0;
+    justify-content: space-between;
+  }
 }
 
 .admin-toggle {

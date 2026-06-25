@@ -11,6 +11,7 @@ import {
 import type { CmsAdminModuleConfig, CmsPublishStatus } from '../../../config/cms-admin.config';
 import type { CmsRecord } from '../../../models/cms-features.model';
 import { AdminCmsApiService } from '../../../services/admin-cms-api.service';
+import { AdminFeedbackService } from '../../../services/admin-feedback.service';
 
 @Component({
   selector: 'app-admin-cms-resource',
@@ -44,6 +45,7 @@ export class AdminCmsResourceComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly cmsApi: AdminCmsApiService,
+    private readonly feedback: AdminFeedbackService,
   ) {}
 
   ngOnInit(): void {
@@ -141,7 +143,7 @@ export class AdminCmsResourceComponent implements OnInit, OnDestroy {
     try {
       payload = JSON.parse(this.editorJson) as CmsRecord;
     } catch {
-      this.actionError = 'Invalid JSON.';
+      this.feedback.showError('Fix the JSON syntax before saving.', 'Invalid JSON');
       return;
     }
 
@@ -158,10 +160,14 @@ export class AdminCmsResourceComponent implements OnInit, OnDestroy {
           this.saving = false;
           this.showEditor = false;
           this.loadList();
+          this.feedback.showSuccess(
+            this.editingId == null ? 'The new record is now saved.' : 'Your changes have been saved.',
+            'Record saved',
+          );
         },
         error: (err: HttpErrorResponse) => {
           this.saving = false;
-          this.actionError = err.error?.message ?? 'Could not save.';
+          this.feedback.showError(err.error?.message ?? 'Could not save.', 'Save failed');
         },
       }),
     );
