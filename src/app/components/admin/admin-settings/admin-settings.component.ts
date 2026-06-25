@@ -56,7 +56,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.settingsService.getSettings().subscribe({
         next: (settings) => {
-          this.form.patchValue(settings);
+          this.form.patchValue(this.normalizeSettings(settings));
           this.loading = false;
         },
         error: (err: HttpErrorResponse) => {
@@ -65,6 +65,14 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
         },
       }),
     );
+  }
+
+  private normalizeSettings(settings: SiteSettingsPayload): SiteSettingsPayload {
+    return {
+      ...settings,
+      admissionsOpen:             settings.admissionsOpen ?? true,
+      admissionDocumentsRequired: settings.admissionDocumentsRequired ?? false,
+    };
   }
 
   submit(): void {
@@ -81,7 +89,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.settingsService.updateSettings(payload).subscribe({
         next: (updated) => {
-          this.form.patchValue(updated);
+          this.form.patchValue(this.normalizeSettings(updated));
           this.schoolInfoService.reload();
           this.saving = false;
           this.successMessage = 'Settings saved.';

@@ -75,6 +75,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
         this.settingsLoading = false;
       }),
     );
+    this.schoolInfoService.reload();
 
     this.seo.update({
       title:       'Registration',
