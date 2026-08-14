@@ -3,7 +3,7 @@ import type { VisionItem } from '../../models/about.model';
 
 export const ABOUT_HERO = {
   sectionLabel: 'About',
-  headline:     'A faith-centered K–12 school in South Jersey',
+  headline:     'A faith-centered Islamic school in South Jersey',
   photo:        '/assets/images/webp/home-hero.webp',
   photoAlt:     'MUNA School of Pine Hill campus',
   paragraphs: [
@@ -12,6 +12,10 @@ export const ABOUT_HERO = {
   ],
   tags: ['Faith-Centered Education', 'Academic Excellence', 'Affordable for All'],
 };
+
+/** Combined Vision & Mission narrative for the About page. */
+export const ABOUT_VISION_NARRATIVE =
+  'At MUNA School of Pine Hill (MSPH), we are dedicated to building a community where Islamic values and academic excellence go hand in hand. Our mission is to shape students who don\u2019t just succeed in the classroom, but who live with integrity, lead with purpose, and inspire those around them. We are committed to providing every student with quality education, trusted mentorship, and guidance to become a lasting example for their community while at the same time making it affordable for all. By doing so, our ultimate goal is to preserve the beliefs and values of Islam in the generations to come in the United States of America.';
 
 export const visionItems: VisionItem[] = [
   {
@@ -27,15 +31,18 @@ export const visionItems: VisionItem[] = [
   {
     title: 'Values',
     icon:  Star,
-    desc:  'Islamic values and academic excellence, hand in hand — a quality, faith-centered education that remains affordable for all.',
+    desc:  'Islamic values and academic excellence go hand in hand — a quality, faith-centered education that remains affordable for all.',
   },
 ];
 
 export const ABOUT_COPY = {
   about: {
-    hero:   { tag: 'About',          title: 'About Us',           subtitle: 'Short about section subtitle.' },
-    vision: { tag: 'Vision & Mission', title: 'What We Stand For' },
-    team:   { tag: 'Team',           title: 'Our Team' },
+    hero:    { tag: 'About',             title: 'About Us' },
+    vision:  { tag: 'Vision & Mission',  title: 'Vision and Mission' },
+    history: { tag: 'History',           title: 'Our History' },
+    team:    { tag: 'Team',              title: 'Our Team' },
+    staff:   { tag: 'Staff',             title: 'Our Academic Programs & Teaching Structure' },
     faculty: { tag: 'Faculty', tagline: 'Faculty Section', title: 'Our Faculty' },
+    contact: { tag: 'Contact',           title: 'Contact Us' },
   },
 };

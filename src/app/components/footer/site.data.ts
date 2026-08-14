@@ -9,8 +9,8 @@ export const SCHOOL_INFO = {
   address:          '400 Erial Rd, Pine Hill, NJ 08021',
   phone:            '856-484-6949',
   phoneHref:        'tel:+18564846949',
-  email:            'info@munasph.org',
-  emailHref:        'mailto:info@munasph.org',
+  email:            'admin@munasph.org',
+  emailHref:        'mailto:admin@munasph.org',
   officeHours:      'Office Hours Placeholder',
   copyrightYear:    new Date().getFullYear().toString(),
   mapQuery:         '400 Erial Rd, Pine Hill, NJ 08021',
@@ -29,13 +29,6 @@ export const QUICK_LINKS = [
   { label: 'Admission', path: '/admission/policy' },
   { label: 'Tuition',   path: '/tuition'          },
   { label: 'Contact',   path: '/contact'          },
-];
-
-export const PROGRAMS_LIST = [
-  'Programme One',
-  'Programme Two',
-  'Programme Three',
-  'Programme Four',
 ];
 
 export const ANNOUNCEMENT = {
@@ -62,9 +55,8 @@ export const NAV_COPY = {
 
 export const FOOTER_COPY = {
   footer: {
-    tagline:    'Faith-centered K–12 education in South Jersey.',
+    tagline:    'Faith-centered Islamic education in South Jersey.',
     quickLinks: 'Quick Links',
-    programmes: 'Programmes',
     contact:    'Contact',
     rights:     'All rights reserved.',
     admission:  'Admission',

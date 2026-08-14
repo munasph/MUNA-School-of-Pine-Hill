@@ -27,10 +27,6 @@
 
           <h1 class="about-hero__headline">{{ heroData.headline }}</h1>
 
-          <p *ngFor="let p of heroData.paragraphs" class="about-hero__paragraph">
-            {{ p }}
-          </p>
-
           <div class="about-hero__tags">
             <div *ngFor="let tag of heroData.tags" class="about-hero__tag">
               <lucide-icon [img]="check" size="13"></lucide-icon>
@@ -42,15 +38,17 @@
     </div>
   </section>
 
-  <!-- Vision / Mission / Values -->
+  <!-- Vision / Mission -->
   <section class="section-light">
     <div class="max-w-7xl mx-auto px-4">
-      <div appReveal class="text-center" style="margin-bottom:56px;">
+      <div appReveal class="text-center" style="margin-bottom:40px;">
         <div class="section-pill">{{ t.about.vision.tag }}</div>
         <h2 class="section-title">{{ t.about.vision.title }}</h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
+      <p appReveal class="about-narrative">{{ visionNarrative }}</p>
+
+      <div class="grid md:grid-cols-3 gap-6" style="margin-top:40px;">
         <div *ngFor="let v of visionItems; let i = index"
              appReveal [revealDelay]="i * 100"
              class="vision-card hover:-translate-y-1 transition-transform duration-300">
@@ -64,15 +62,31 @@
     </div>
   </section>
 
-  <!-- Key Faculty -->
+  <!-- History -->
   <section class="section-tint">
+    <div class="max-w-7xl mx-auto px-4">
+      <div appReveal class="text-center" style="margin-bottom:40px;">
+        <div class="section-pill">{{ t.about.history.tag }}</div>
+        <h2 class="section-title">{{ t.about.history.title }}</h2>
+      </div>
+
+      <div appReveal class="about-history">
+        <p *ngFor="let p of heroData.paragraphs" class="about-history__paragraph">
+          {{ p }}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section-light">
     <div class="max-w-7xl mx-auto px-4">
       <div appReveal class="text-center" style="margin-bottom:56px;">
         <div class="section-pill">{{ t.about.team.tag }}</div>
         <h2 class="section-title">{{ t.about.team.title }}</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
         <div *ngFor="let f of keyFaculty; let i = index"
              appReveal [revealDelay]="i * 100"
              class="faculty-card hover:-translate-y-1 transition-transform duration-300">
@@ -83,7 +97,32 @@
           <div class="faculty-card__body">
             <h3 class="faculty-card__name">{{ f.name }}</h3>
             <p class="faculty-card__role">{{ f.role }}</p>
-            <p class="faculty-card__expertise">{{ f.expertise }}</p>
+            <p *ngIf="f.expertise" class="faculty-card__expertise">{{ f.expertise }}</p>
+            <a *ngIf="f.email" class="faculty-card__email" [href]="'mailto:' + f.email">{{ f.email }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="staffMembers.length" class="team-staff">
+        <div appReveal class="text-center" style="margin-bottom:40px;">
+          <div class="section-pill">{{ t.about.staff.tag }}</div>
+          <h3 class="team-staff__title">{{ t.about.staff.title }}</h3>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div *ngFor="let f of staffMembers; let i = index"
+               appReveal [revealDelay]="i * 100"
+               class="faculty-card hover:-translate-y-1 transition-transform duration-300">
+            <div class="faculty-card__photo">
+              <img [src]="f.photo" [alt]="f.name" referrerpolicy="no-referrer"
+                   class="w-full h-full object-cover" />
+            </div>
+            <div class="faculty-card__body">
+              <h3 class="faculty-card__name">{{ f.name }}</h3>
+              <p class="faculty-card__role">{{ f.role }}</p>
+              <p *ngIf="f.expertise" class="faculty-card__expertise">{{ f.expertise }}</p>
+              <a *ngIf="f.email" class="faculty-card__email" [href]="'mailto:' + f.email">{{ f.email }}</a>
+            </div>
           </div>
         </div>
       </div>
@@ -91,7 +130,7 @@
   </section>
 
   <!-- Faculty Carousel (hidden until teachingFacultyPhotos has entries) -->
-  <section *ngIf="teachingFacultyPhotos.length" class="section-light">
+  <section *ngIf="teachingFacultyPhotos.length" class="section-tint">
     <div class="max-w-7xl mx-auto px-4">
       <div appReveal class="text-center" style="margin-bottom:56px;">
         <div class="section-pill">{{ t.about.faculty.tagline }}</div>
@@ -124,8 +163,8 @@
   <section class="section-tint">
     <div class="max-w-7xl mx-auto px-4">
       <div appReveal class="text-center" style="margin-bottom:40px;">
-        <div class="section-pill">Contact</div>
-        <h2 class="section-title">Contact Us</h2>
+        <div class="section-pill">{{ t.about.contact.tag }}</div>
+        <h2 class="section-title">{{ t.about.contact.title }}</h2>
       </div>
 
       <div appReveal class="about-contact">

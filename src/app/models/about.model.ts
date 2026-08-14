@@ -20,6 +20,7 @@ export interface FacultyMember {
   role:      string;
   expertise: string;
   photo:     string;
+  email?:    string;
 }
 
 export interface TeachingFacultyPhoto {
@@ -33,5 +34,6 @@ export interface AboutContent {
   hero:             AboutHero;
   visionItems:      VisionItem[];
   keyFaculty:       FacultyMember[];
+  staffMembers:     FacultyMember[];
   teachingFaculty:  TeachingFacultyPhoto[];
 }

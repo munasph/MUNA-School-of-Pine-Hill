@@ -15,7 +15,7 @@ export class AcademicComponent implements OnInit {
   ngOnInit(): void {
     this.seo.update({
       title:       'Academics',
-      description: 'Core subjects and curriculum frameworks at MUNA School of Pine Hill, guided by Pennsylvania Department of Education and Common Core standards.',
+      description: 'Core subjects and curriculum frameworks at MUNA School of Pine Hill, guided by New Jersey Department of Education and Common Core standards for South Jersey schools.',
       path:        '/academic',
     });
   }

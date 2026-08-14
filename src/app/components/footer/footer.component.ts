@@ -8,7 +8,7 @@ import {
   LucideIconData,
 } from 'lucide-angular';
 import {
-  QUICK_LINKS, PROGRAMS_LIST, SOCIAL_LINKS, FOOTER_COPY,
+  QUICK_LINKS, SOCIAL_LINKS, FOOTER_COPY,
 } from './site.data';
 import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 
@@ -20,7 +20,6 @@ import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.s
 export class FooterComponent implements OnInit, OnDestroy {
   schoolInfo: SchoolInfo;
   readonly quickLinks = QUICK_LINKS;
-  readonly programs   = PROGRAMS_LIST;
   readonly t          = FOOTER_COPY;
 
   familyLink = { path: '/portal', label: 'Family portal' };

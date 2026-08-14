@@ -7,7 +7,7 @@ import type {
 } from '../../models/about.model';
 import { AboutService } from '../../services/about.service';
 import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
-import { ABOUT_COPY } from './about.data';
+import { ABOUT_COPY, ABOUT_VISION_NARRATIVE } from './about.data';
 import { SeoService } from '../../services/seo.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
   heroData!:               AboutHero;
   visionItems:             VisionItem[]            = [];
   keyFaculty:              FacultyMember[]         = [];
+  staffMembers:            FacultyMember[]         = [];
   teachingFacultyPhotos:   TeachingFacultyPhoto[]  = [];
   schoolInfo!: SchoolInfo;
 
@@ -29,6 +30,7 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('carousel') carousel?: ElementRef<HTMLDivElement>;
 
   readonly t = ABOUT_COPY;
+  readonly visionNarrative = ABOUT_VISION_NARRATIVE;
   private subs = new Subscription();
 
   constructor(
@@ -46,13 +48,14 @@ export class AboutComponent implements OnInit, OnDestroy, AfterViewInit {
         this.heroData              = c.hero;
         this.visionItems           = c.visionItems;
         this.keyFaculty            = c.keyFaculty;
+        this.staffMembers          = c.staffMembers;
         this.teachingFacultyPhotos = c.teachingFaculty;
       }),
     );
 
     this.seo.update({
       title:       'About Us',
-      description: 'Learn about MUNA School of Pine Hill — our history, mission, and commitment to faith-centered K–12 education in South Jersey.',
+      description: 'Learn about MUNA School of Pine Hill — our history, mission, and commitment to faith-centered Islamic education in South Jersey.',
       path:        '/about',
     });
   }

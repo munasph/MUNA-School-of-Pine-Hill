@@ -12,7 +12,7 @@ export const ACADEMIC_COPY = {
   },
   intro: {
     paragraphs: [
-      'The Academy implements the frameworks of the State of Pennsylvania Department of Education and the Common Core. These curriculum frameworks were developed recently by the most noted educators from the State of Pennsylvania in each of the seven basic subject areas. The frameworks are the first statewide guidelines for curriculum and instruction.',
+      'The Academy implements the frameworks of the New Jersey Department of Education and the Common Core. These curriculum frameworks were developed recently by noted educators serving South Jersey schools in each of the seven basic subject areas. The frameworks are the first statewide guidelines for curriculum and instruction.',
       'They are based on sound research and effective practice. They reflect a vision of how classrooms of the future can and should look like to assist all students to achieve high standards of excellence. These frameworks, or outlines of the basic subject’s curricula, are highly competitive.',
     ],
   },

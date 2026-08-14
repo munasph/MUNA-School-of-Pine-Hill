@@ -7,7 +7,7 @@ import type {
   FacultyMember, TeachingFacultyPhoto,
 } from '../models/about.model';
 import { ABOUT_HERO, visionItems } from '../components/about/about.data';
-import { keyFaculty, teachingFacultyPhotos } from '../components/about/faculty.data';
+import { keyFaculty, staffMembers, teachingFacultyPhotos } from '../components/about/faculty.data';
 
 @Injectable({ providedIn: 'root' })
 export class AboutService {
@@ -20,6 +20,7 @@ export class AboutService {
       hero:            ABOUT_HERO,
       visionItems,
       keyFaculty,
+      staffMembers,
       teachingFaculty: teachingFacultyPhotos,
     });
   }
@@ -27,5 +28,6 @@ export class AboutService {
   getHero():            Observable<AboutHero>             { return of(ABOUT_HERO); }
   getVisionItems():     Observable<VisionItem[]>          { return of(visionItems); }
   getKeyFaculty():      Observable<FacultyMember[]>       { return of(keyFaculty); }
+  getStaffMembers():    Observable<FacultyMember[]>       { return of(staffMembers); }
   getTeachingFaculty(): Observable<TeachingFacultyPhoto[]> { return of(teachingFacultyPhotos); }
 }
