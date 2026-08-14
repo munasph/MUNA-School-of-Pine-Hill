@@ -27,6 +27,26 @@
           <p class="form-subtitle">{{ t.admission.hero.subtitle }}</p>
         </div>
 
+        <aside class="admission-highlights" aria-labelledby="admission-highlights-title">
+          <h2 id="admission-highlights-title" class="admission-highlights__title">
+            {{ t.admission.highlights.title }}
+          </h2>
+          <ul class="admission-highlights__list">
+            <li *ngFor="let item of t.admission.highlights.items">{{ item }}</li>
+          </ul>
+          <div class="admission-highlights__links">
+            <a routerLink="/admission/policy" class="admission-highlights__link">
+              {{ t.admission.links.policyLabel }} →
+            </a>
+            <a routerLink="/tuition" class="admission-highlights__link">
+              {{ t.admission.links.tuitionLabel }} →
+            </a>
+            <a [href]="schoolInfo.emailHref" class="admission-highlights__link">
+              {{ t.admission.links.contactLabel }} {{ schoolInfo.email }}
+            </a>
+          </div>
+        </aside>
+
         <app-glass-card intensity="mid" extraClass="p-5 sm:p-8 lg:p-12">
           <div *ngIf="settingsLoading" class="text-center form-subtitle">Loading…</div>
 

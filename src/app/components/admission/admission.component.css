@@ -46,6 +46,47 @@
   }
 }
 
+.admission-highlights {
+  margin: 0 auto 1.5rem;
+  max-width: 100%;
+  padding: 1.25rem 1.35rem;
+  border-radius: 1rem;
+  background: rgba(0, 134, 75, 0.08);
+  border: 1.5px solid rgba(0, 134, 75, 0.28);
+  box-sizing: border-box;
+}
+.admission-highlights__title {
+  margin: 0 0 0.75rem;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.admission-highlights__list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+  line-height: 1.65;
+}
+.admission-highlights__list li + li {
+  margin-top: 0.35rem;
+}
+.admission-highlights__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1rem;
+}
+.admission-highlights__link {
+  color: #00864B;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.admission-highlights__link:hover {
+  text-decoration: underline;
+}
+
 .admission-success {
   display: flex;
   align-items: center;

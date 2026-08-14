@@ -27,17 +27,12 @@ export const ADMISSION_POLICY_COPY = {
     earlyChildhood: {
       title: 'Early Childhood, Grade PreK–KG',
       steps: [
-        'Registration – Complete the registration form to express interest in enrollment. Once submitted, your child will be placed on our waiting list.',
-        'Apply – If a spot opens up for your child, a member of our Admissions Team will be in touch with everything you need — including instructions for logging into our Online Admissions Portal to upload your required documents.',
+        'Registration – Complete the registration form to express interest in enrollment.',
+        'Interview – Once registration is completed, the registration team will reach out to schedule an interview. Please bring copies of the required documents listed below to the interview.',
         'Please note: to enter Kindergarten, your child must be five years of age by September 1, 2026.',
-        'Assessment – After all materials have been received, our Admissions Office will reach out to schedule a family interview. During this session with our Early Childhood Division Head, we look forward to meeting you and your child — and gaining a better understanding of their development and readiness to begin their academic journey.',
+        'Registration fee is $100/student. Please bring a check or money order on the day of the interview.',
       ],
     },
-  },
-  onlineRegistration: {
-    title:          'Online Registration',
-    description:    'Please click on the link to be directed to the Registration form.',
-    formLinkLabel:  'Registration Form',
     documentsTitle: 'To complete registration, you need the following:',
     documents: [
       'Parent/Guardian ID',
@@ -48,9 +43,14 @@ export const ADMISSION_POLICY_COPY = {
       'Form 1040 of Tax Return',
     ],
   },
+  onlineRegistration: {
+    title:         'Online Registration',
+    description:   'Please click on the link to be directed to the Registration form.',
+    formLinkLabel: 'Registration Form',
+  },
   tuition: {
     title:       'Tuition',
-    description: 'View current tuition rates and payment information.',
+    description: 'View current tuition rates, sibling discounts, and payment information.',
     linkLabel:   'Tuition Page',
   },
 };

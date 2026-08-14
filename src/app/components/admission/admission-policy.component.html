@@ -55,10 +55,15 @@
           <li *ngFor="let step of t.registration.earlyChildhood.steps">{{ step }}</li>
         </ol>
       </div>
+
+      <h3 class="policy-section__subtitle">{{ t.registration.documentsTitle }}</h3>
+      <ul class="policy-docs">
+        <li *ngFor="let doc of t.registration.documents">{{ doc }}</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Online Registration + Documents -->
+  <!-- Online Registration -->
   <section class="policy-section policy-section--tint">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       <h2 class="policy-section__title">{{ t.onlineRegistration.title }}</h2>
@@ -69,11 +74,6 @@
           <app-glass-button variant="accent">{{ t.onlineRegistration.formLinkLabel }}</app-glass-button>
         </a>
       </div>
-
-      <h3 class="policy-section__subtitle">{{ t.onlineRegistration.documentsTitle }}</h3>
-      <ul class="policy-docs">
-        <li *ngFor="let doc of t.onlineRegistration.documents">{{ doc }}</li>
-      </ul>
     </div>
   </section>
 

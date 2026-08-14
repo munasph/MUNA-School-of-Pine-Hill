@@ -8,7 +8,7 @@ import type {
   ClassOption, AdmissionApplication, AdmissionSuccessMessage,
 } from '../../models/admission.model';
 import { AdmissionService } from '../../services/admission.service';
-import { SchoolInfoService } from '../../services/school-info.service';
+import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
 import { ADMISSION_COPY } from './admission.data';
 import {
   ADMISSION_DOCUMENT_ACCEPT,
@@ -42,6 +42,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
   classOptions: ClassOption[] = [];
   admissionsOpen = true;
+  schoolInfo!: SchoolInfo;
   enabledDocumentTypes: string[] = [];
   settingsLoading = true;
 
@@ -62,6 +63,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.schoolInfo = this.schoolInfoService.snapshot;
     this.subs.add(
       this.admissionService.getClassOptions().subscribe((opts) => (this.classOptions = opts)),
     );
@@ -70,6 +72,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
     );
     this.subs.add(
       this.schoolInfoService.schoolInfo$.subscribe((info) => {
+        this.schoolInfo = info;
         this.admissionsOpen = info.admissionsOpen;
         this.enabledDocumentTypes = info.admissionRequiredDocumentTypes;
         this.settingsLoading = false;
@@ -79,7 +82,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Registration',
-      description: `Register for enrollment at ${this.schoolInfoService.snapshot.name}.`,
+      description: `Register for Pre-K or Kindergarten at ${this.schoolInfoService.snapshot.name}. Age requirements, potty-trained admission, tuition, and open house details.`,
       path:        '/admission',
     });
 
