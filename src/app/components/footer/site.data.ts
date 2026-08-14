@@ -48,7 +48,7 @@ export const ANNOUNCEMENT = {
 
 export const NAV_LINKS = [
   { path: '/',                  label: 'Home' },
-  { path: '/open-house',        label: 'Open House' },
+  { path: '/announcements',     label: 'Announcements' },
   { path: '/about',             label: 'About' },
   { path: '/academic',          label: 'Academics' },
   { path: '/admission/policy',  label: 'Admission' },

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent }      from './components/home/home.component';
 import { AboutComponent }     from './components/about/about.component';
-import { OpenHouseComponent } from './components/open-house/open-house.component';
 import { AcademicComponent }  from './components/academic/academic.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { AdmissionPolicyComponent } from './components/admission/admission-policy.component';
@@ -11,6 +10,7 @@ import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
 import { FaqComponent }       from './components/faq/faq.component';
 import { AnnouncementDetailComponent } from './components/announcement/announcement-detail.component';
+import { AnnouncementsListComponent } from './components/announcement/announcements-list.component';
 import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
@@ -38,7 +38,7 @@ import { superAdminGuard } from './guards/super-admin.guard';
 
 const routes: Routes = [
   { path: '',          component: HomeComponent,      pathMatch: 'full' },
-  { path: 'open-house', component: OpenHouseComponent },
+  { path: 'open-house', redirectTo: '/announcements', pathMatch: 'full' },
   { path: 'about',     component: AboutComponent     },
   { path: 'academic',  component: AcademicComponent },
   { path: 'academics', redirectTo: '/academic', pathMatch: 'full' },
@@ -48,6 +48,7 @@ const routes: Routes = [
   { path: 'contact',   component: ContactComponent   },
   { path: 'gallery',   redirectTo: '/', pathMatch: 'full' },
   { path: 'faq',       component: FaqComponent       },
+  { path: 'announcements',     component: AnnouncementsListComponent },
   { path: 'announcements/:id', component: AnnouncementDetailComponent },
   { path: 'login',           component: LoginComponent     },
   { path: 'staff-signup',    component: SignupComponent    },

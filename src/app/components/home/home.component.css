@@ -525,6 +525,18 @@
   border: 1.5px solid rgba(0, 217, 126, 0.35);
   backdrop-filter: blur(12px);
 }
+.campaign-chip--announcement {
+  max-width: none;
+  margin: 0 0 1.15rem;
+  background: rgba(0, 217, 126, 0.12);
+  border-color: rgba(0, 217, 126, 0.35);
+}
+.campaign-chip__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
 .campaign-chip__badge {
   display: inline-flex;
   align-items: center;
@@ -584,164 +596,4 @@
 }
 .campaign-chip__link:hover {
   background: rgba(0, 134, 75, 0.55);
-}
-
-/* ---------- Open house campaign modal ---------- */
-.campaign-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem;
-  box-sizing: border-box;
-}
-.campaign-modal__backdrop {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  background: rgba(6, 10, 20, 0.78);
-  cursor: pointer;
-}
-.campaign-modal__panel {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 72rem);
-  max-height: 94vh;
-  overflow: auto;
-  border-radius: 20px;
-  background: var(--surface-card, #fff);
-  border: 1.5px solid var(--glass-border, rgba(0, 134, 75, 0.25));
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-}
-.campaign-modal__close {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: 2;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.08);
-  color: var(--text-primary, #0f172a);
-  cursor: pointer;
-}
-.campaign-modal__close:hover {
-  background: rgba(0, 0, 0, 0.14);
-}
-.campaign-modal__content {
-  display: grid;
-  gap: 1rem;
-  padding: 1.25rem 1rem 1.15rem;
-}
-@media (min-width: 768px) {
-  .campaign-modal__content {
-    padding: 1.5rem 1.5rem 1.25rem;
-  }
-}
-.campaign-modal__badge {
-  display: inline-flex;
-  margin-bottom: 0.5rem;
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(0, 134, 75, 0.12);
-  color: #00864B;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.campaign-modal__title {
-  margin: 0 0 0.5rem;
-  color: var(--text-primary, #0f172a);
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  font-weight: 800;
-  line-height: 1.15;
-}
-.campaign-modal__subtitle {
-  margin: 0 0 0.4rem;
-  color: var(--text-secondary, #475569);
-  font-size: 0.925rem;
-  line-height: 1.6;
-}
-.campaign-modal__dates {
-  margin: 0 0 1rem;
-  color: #00864B;
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-.campaign-modal__copy {
-  text-align: center;
-}
-.campaign-modal__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
-}
-.campaign-modal__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 1.35rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #00864B 0%, #00C070 100%);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-.campaign-modal__page {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.2rem;
-  border-radius: 999px;
-  border: 1.5px solid rgba(0, 134, 75, 0.4);
-  color: #00864B;
-  font-weight: 700;
-  font-size: 0.875rem;
-  text-decoration: none;
-}
-.campaign-modal__page:hover {
-  background: rgba(0, 134, 75, 0.08);
-}
-.campaign-modal__secondary {
-  appearance: none;
-  border: 1.5px solid var(--glass-border, rgba(0, 134, 75, 0.3));
-  background: transparent;
-  color: var(--text-secondary, #475569);
-  border-radius: 999px;
-  padding: 0.75rem 1.2rem;
-  font-weight: 650;
-  font-size: 0.875rem;
-  cursor: pointer;
-}
-.campaign-modal__secondary:hover {
-  border-color: #00864B;
-  color: #00864B;
-}
-.campaign-modal__flyer-wrap {
-  display: flex;
-  justify-content: center;
-  order: -1;
-}
-.campaign-modal__flyer {
-  width: 100%;
-  max-width: none;
-  max-height: min(68vh, 40rem);
-  height: auto;
-  object-fit: contain;
-  display: block;
-  border-radius: 12px;
-  border: 1.5px solid var(--glass-border, rgba(0, 134, 75, 0.2));
-  box-shadow: 0 12px 32px rgba(0, 134, 75, 0.12);
-  background: #fff;
 }

@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent }      from './components/home/home.component';
 import { AboutComponent }     from './components/about/about.component';
-import { OpenHouseComponent } from './components/open-house/open-house.component';
 import { AcademicComponent }  from './components/academic/academic.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { AdmissionPolicyComponent } from './components/admission/admission-policy.component';
@@ -17,6 +16,8 @@ import { ContactComponent }   from './components/contact/contact.component';
 import { GalleryComponent }   from './components/gallery/gallery.component';
 import { FaqComponent }       from './components/faq/faq.component';
 import { AnnouncementDetailComponent } from './components/announcement/announcement-detail.component';
+import { AnnouncementsListComponent } from './components/announcement/announcements-list.component';
+import { CampaignFlyerModalComponent } from './components/campaign-flyer-modal/campaign-flyer-modal.component';
 import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
@@ -64,7 +65,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 
     HomeComponent,
     AboutComponent,
-    OpenHouseComponent,
     AcademicComponent,
     AdmissionComponent,
     AdmissionPolicyComponent,
@@ -72,6 +72,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     GalleryComponent,
     FaqComponent,
     AnnouncementDetailComponent,
+    AnnouncementsListComponent,
+    CampaignFlyerModalComponent,
     TuitionComponent,
     PrivacyComponent,
     TermsComponent,

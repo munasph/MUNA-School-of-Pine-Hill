@@ -1,0 +1,58 @@
+<div class="announcements-page">
+  <section class="announcements-section">
+    <div class="announcements-container">
+      <div class="announcements-header">
+        <app-section-label>Announcements</app-section-label>
+        <h1 class="announcements-title">Announcements</h1>
+        <p class="announcements-subtitle">
+          School updates, open house details, and enrollment news.
+        </p>
+      </div>
+
+      <ng-container *ngIf="campaign.enabled">
+        <div class="announcements-campaign">
+          <div class="announcements-campaign__copy">
+            <span class="announcements-campaign__badge">{{ campaign.badge }}</span>
+            <h2 class="announcements-campaign__title">{{ campaign.title }}</h2>
+            <p class="announcements-campaign__text">{{ campaign.subtitle }}</p>
+            <p class="announcements-campaign__dates">{{ campaign.openHouseDates }}</p>
+            <div class="announcements-campaign__actions">
+              <a [routerLink]="campaign.ctaPath" class="announcements-campaign__cta">
+                {{ campaign.ctaLabel }} →
+              </a>
+            </div>
+          </div>
+
+          <figure class="announcements-flyer-card">
+            <img [src]="campaign.flyerSrc"
+                 [alt]="campaign.flyerAlt"
+                 class="announcements-flyer"
+                 width="1024"
+                 height="576"
+                 loading="eager" />
+          </figure>
+        </div>
+      </ng-container>
+
+      <div class="announcements-list-wrap">
+        <h2 class="announcements-list-title">Latest updates</h2>
+
+        <div *ngIf="loading" class="announcements-empty">Loading announcements…</div>
+
+        <div *ngIf="!loading && announcements.length" class="announcements-list">
+          <article *ngFor="let item of announcements" class="announcement-card">
+            <h3 class="announcement-card__title">{{ item.title }}</h3>
+            <p *ngIf="item.subtitle" class="announcement-card__subtitle">{{ item.subtitle }}</p>
+            <a [routerLink]="['/announcements', item.id]" class="announcement-card__cta">
+              Learn more →
+            </a>
+          </article>
+        </div>
+
+        <p *ngIf="!loading && !announcements.length" class="announcements-empty">
+          No announcements yet. Check back soon for updates.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

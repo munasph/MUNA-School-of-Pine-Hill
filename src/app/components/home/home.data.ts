@@ -20,7 +20,7 @@ export const HOME_COPY = {
     openHouseDates: 'Open House: Aug 28–30 · 1:30 PM – 3:00 PM',
     ctaLabel:   'Secure Your Spot',
     ctaPath:    '/admission',
-    pagePath:   '/open-house',
+    pagePath:   '/announcements',
     flyerSrc:   'assets/images/prek-kg-flyer-landscape.png',
     flyerAlt:   'MUNA School of Pine Hill Pre-K and Kindergarten open house flyer',
     dismissLabel: 'Maybe later',
