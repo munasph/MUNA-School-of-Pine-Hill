@@ -11,7 +11,7 @@ import { ThemeService, Theme } from '../../services/theme.service';
 const ADMIN_HOME = '/admin';
 /** Routes with light page backgrounds in light theme — navbar uses dark text / light pills */
 const LIGHT_SURFACE_ROUTES = [
-  '/admission', '/admission/policy', '/tuition', '/login', '/staff-signup',
+  '/about', '/academic', '/open-house', '/admission', '/admission/policy', '/tuition', '/login', '/staff-signup',
   '/set-password', '/forgot-password', '/reset-password', '/portal',
   '/portal/login', '/portal/signup', '/privacy', '/terms', '/faq', '/announcements', '/admin',
 ];

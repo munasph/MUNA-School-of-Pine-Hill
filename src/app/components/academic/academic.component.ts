@@ -1,46 +1,22 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-
-import type { Course, HigherSecondaryStream, Achievement } from '../../models/academic.model';
-import { AcademicService } from '../../services/academic.service';
-import { ACADEMIC_COPY } from './academic.data';
+import { Component, OnInit } from '@angular/core';
 import { SeoService } from '../../services/seo.service';
+import { ACADEMIC_COPY } from './academic.data';
 
 @Component({
   selector: 'app-academic-page',
   templateUrl: './academic.component.html',
   styleUrls: ['./academic.component.css'],
 })
-export class AcademicComponent implements OnInit, OnDestroy {
-  courses:         Course[]                = [];
-  higherSecondary: HigherSecondaryStream[] = [];
-  achievements:    Achievement[]           = [];
-
+export class AcademicComponent implements OnInit {
   readonly t = ACADEMIC_COPY;
-  private subs = new Subscription();
 
-  constructor(
-    private readonly academicService: AcademicService,
-    private readonly seo: SeoService,
-  ) {}
+  constructor(private readonly seo: SeoService) {}
 
   ngOnInit(): void {
-    this.subs.add(
-      this.academicService.getContent().subscribe((c) => {
-        this.courses         = c.courses;
-        this.higherSecondary = c.higherSecondary;
-        this.achievements    = c.achievements;
-      }),
-    );
-
     this.seo.update({
-      title:       'Academic Programmes',
-      description: 'Academic programmes at MUNA School of Pine Hill — faith-centered K–12 education in South Jersey.',
+      title:       'Academics',
+      description: 'Core subjects and curriculum frameworks at MUNA School of Pine Hill, guided by Pennsylvania Department of Education and Common Core standards.',
       path:        '/academic',
     });
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
   }
 }

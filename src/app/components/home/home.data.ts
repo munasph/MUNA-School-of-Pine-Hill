@@ -8,8 +8,22 @@ export const HOME_COPY = {
   hero: {
     headline1:  'MUNA School',
     headline2:  'of Pine Hill',
-    subtext:    'A faith-centered K–12 Islamic school in South Jersey. We are just getting started — welcome to our community.',
+    subtext:    'A faith-centered Islamic school in South Jersey. Pre-K & Kindergarten coming soon — limited spots available.',
     ctaPrimary: 'Register Now',
+  },
+  campaign: {
+    enabled:    true,
+    storageKey: 'msph-open-house-flyer-v2',
+    badge:      'Coming Soon',
+    title:      'Pre-K & Kindergarten',
+    subtitle:   'Islamic School at MUNA School of Pine Hill. Limited spots — first come, first served.',
+    openHouseDates: 'Open House: Aug 28–30 · 1:30 PM – 3:00 PM',
+    ctaLabel:   'Secure Your Spot',
+    ctaPath:    '/admission',
+    pagePath:   '/open-house',
+    flyerSrc:   'assets/images/prek-kg-flyer-landscape.png',
+    flyerAlt:   'MUNA School of Pine Hill Pre-K and Kindergarten open house flyer',
+    dismissLabel: 'Maybe later',
   },
   quickLinks: {
     heading: 'Quick links',

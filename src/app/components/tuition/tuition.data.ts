@@ -1,57 +1,73 @@
-export interface TuitionCostRow {
-  label: string;
-  amount: string;
-  highlight?: boolean;
-  href?: string;
+export interface TuitionRateRow {
+  grade:   string;
+  tuition: string;
 }
 
-export interface TuitionScholarshipLink {
-  label: string;
-  href: string;
+export interface SiblingExampleRow {
+  child:    string;
+  base:     string;
+  discount: string;
+  owed:     string;
+  total?:   boolean;
 }
 
 export const TUITION_COPY = {
   hero: {
     tag:      'Tuition',
-    title:    'Tuition & Financial Assistance',
-    subtitle: 'A faith-centered education made accessible through community support.',
+    title:    'Tuition',
+    subtitle: 'Making Islamic education accessible without compromising quality.',
   },
   intro: {
     paragraphs: [
-      'At MUNA School of Pine Hill, it costs over $15,000 to educate a child in an Islamic environment with quality and excellence. Guided by Islamic values and the belief that seeking knowledge (\'ilm) is an act of worship, we are committed to nurturing both the academic and spiritual growth of every student. Through the generous support of our donors and dedicated stakeholders, we ensure that no family pays more than $6,000, making a faith-centered education accessible to our community.',
-      'This investment provides a comprehensive educational experience, including high-quality instruction, daily breakfast and lunch, a personal computer, textbooks and learning materials, enhanced online learning programs, and robust career and college readiness training. Beyond academics, it supports the development of strong character (akhlaq), leadership, and a sense of responsibility grounded in Islamic principles.',
-    ],
-    scholarships: {
-      lead: 'Families are also encouraged to apply for additional tuition assistance through external scholarship programs such as',
-      programs: [
-        {
-          label: 'Children\'s Scholarship Fund Philadelphia',
-          href:  'https://www.csfphiladelphia.org/apply/',
-        },
-        {
-          label: 'Ellis Trust for Girls',
-          href:  'https://ellistrust.org/eligibility/',
-        },
-      ] as TuitionScholarshipLink[],
-      tail: 'which can further reduce the financial burden. Through these partnerships and the continued generosity of our supporters, MUNA School of Pine Hill remains committed to preparing students to excel academically, live their faith with integrity, and contribute positively to society.',
-    },
-    includes: [
-      'High-quality instruction',
-      'Daily breakfast and lunch',
-      'Personal computer',
-      'Textbooks and learning materials',
-      'Enhanced online learning programs',
-      'Career and college readiness training',
+      'At MUNA School of Pine Hill (MSPH), we are committed to preserving the faith of the next generation and cultivating leaders who will help our community thrive for generations to come. With this mission in mind, we strive to provide an Islamic learning environment defined by exceptional quality and excellence.',
+      'One of the greatest challenges in operating a full-time school is affordability. We recognize the need for Islamic education within our community, but that need cannot be met if costs remain out of reach for the families who need it most. Our goal is to make Islamic education as accessible as possible without compromising the quality of the experience we provide. To that end, we have worked diligently to keep tuition costs as low as possible while remaining operationally sustainable, and we are continuing to refine our payment process to make it simple and convenient for families.',
     ],
   },
-  breakdown: {
-    title:    'How Will It Work?',
-    rows: [
-      { label: 'Normal Tuition Cost', amount: '$15,000' },
-      { label: 'School Provided Financial Assistance', amount: 'Up to $9,500' },
-      { label: 'Children\'s Scholarship Fund Philadelphia', amount: 'Up to $3,250', href: 'https://www.csfphiladelphia.org/apply/' },
-      { label: 'Final Tuition Cost After Deductions', amount: 'As low as $2,250', highlight: true },
-    ] as TuitionCostRow[],
-    multiChildNote: 'Multiple children enrolled? Get an extra $500 off for each additional child.',
+  rates: {
+    title: 'MSPH Tuition 2026/2027',
+    table: [
+      { grade: 'Pre-K',        tuition: '$5,000/child' },
+      { grade: 'Kindergarten', tuition: '$5,000/child' },
+    ] as TuitionRateRow[],
+  },
+  siblingDiscount: {
+    title: 'Sibling Discount Policy',
+    intro:
+      'Families enrolling more than one student are eligible for a multi-child discount. Each additional child receives a 20% discount off the tuition amount paid by the child before them:',
+    rules: [
+      '1st child: full tuition',
+      '2nd child: 20% off the 1st child’s tuition',
+      '3rd child: 20% off the 2nd child’s (discounted) tuition',
+      'And so on for each additional child',
+    ],
+    exampleTitle: 'Example: Family with 3 children enrolled',
+    exampleRows: [
+      { child: '1st child', base: '$5,000', discount: '—', owed: '$5,000' },
+      { child: '2nd child', base: '$5,000', discount: '20% off 1st child’s amount', owed: '$4,000' },
+      { child: '3rd child', base: '$5,000', discount: '20% off 2nd child’s amount', owed: '$3,200' },
+      { child: 'Total',     base: '',       discount: '',  owed: '$12,200', total: true },
+    ] as SiblingExampleRow[],
+  },
+  fees: {
+    title: 'Mandatory Enrollment Fees',
+    items: [
+      '$100 Registration Fee/Student',
+    ],
+    paymentNote:
+      'Fees and tuition must be paid by electronic bank transfer or other online form of payment.',
+  },
+  paymentPlan: {
+    title: 'Payment Plan',
+    paragraphs: [
+      'For one student, there are a total of 9 payments/installments.',
+      'First Installment: $560',
+      'Subsequent Payment: $555/per month',
+      'Payment is due the first of the month. If payment is not received by the 5th of the month, a late fee on any past due amount(s), will be assessed.',
+    ],
+    notes: [
+      'Fees and tuition must be paid by electronic bank transfer or other online form of payment.',
+      'Books/materials are free unless they are lost.',
+      'Payment will have to be given directly to Sister Alaa Madarati',
+    ],
   },
 };

@@ -1,28 +1,43 @@
-import type { IconRef } from './shared.model';
+export type AcademicSubjectTone = 'green' | 'orange';
 
-export interface Course {
-  title:  string;
-  levels: string;
-  desc:   string;
-  icon:   IconRef;
-}
-
-export interface HigherSecondaryStream {
+export interface AcademicSubject {
   title: string;
-  desc:  string;
-  icon:  IconRef;
+  body:  string;
+  tone:  AcademicSubjectTone;
 }
 
-export interface Achievement {
-  year:  string;
-  title: string;
-  desc:  string;
-  icon:  IconRef;
+export interface AcademicGradeStatus {
+  name:   string;
+  status: string;
 }
 
-/** Full Academic-page content bundle returned by `AcademicService.getContent()`. */
-export interface AcademicContent {
-  courses:         Course[];
-  higherSecondary: HigherSecondaryStream[];
-  achievements:    Achievement[];
+export interface AcademicPageContent {
+  hero: {
+    title: string;
+  };
+  intro: {
+    paragraphs: string[];
+  };
+  coreSubjects: {
+    banner: string;
+    items: AcademicSubject[];
+  };
+  syllabus: {
+    title:  string;
+    grades: AcademicGradeStatus[];
+  };
+  books: {
+    title:       string;
+    description: string;
+    imageSrc:    string;
+    imageAlt:    string;
+    linkLabel:   string;
+    linkHref:    string;
+  };
+  classSize: {
+    banner:    string;
+    before:    string;
+    highlight: string;
+    after:     string;
+  };
 }

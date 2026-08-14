@@ -1,8 +1,6 @@
 export const classOptions = [
   { value: 'pre-k', label: 'Pre-K' },
-  { value: 'kg',    label: 'Kindergarten (KG)' },
-  { value: '1st',   label: '1st Grade' },
-  { value: '2nd',   label: '2nd Grade' },
+  { value: 'kg',    label: 'Kindergarten' },
 ];
 
 export const ADMISSION_SUCCESS = {

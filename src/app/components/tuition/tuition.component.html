@@ -1,6 +1,5 @@
 <div class="tuition-page">
 
-  <!-- Hero + Intro -->
   <section class="tuition-section tuition-section--hero">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-10 sm:mb-12">
@@ -11,63 +10,115 @@
 
       <div class="tuition-prose">
         <p *ngFor="let p of t.intro.paragraphs" class="tuition-prose__p">{{ p }}</p>
-        <p class="tuition-prose__p">
-          {{ t.intro.scholarships.lead }}
-          <a [href]="t.intro.scholarships.programs[0].href"
-             class="tuition-link"
-             target="_blank"
-             rel="noopener noreferrer">{{ t.intro.scholarships.programs[0].label }}</a>
-          and the
-          <a [href]="t.intro.scholarships.programs[1].href"
-             class="tuition-link"
-             target="_blank"
-             rel="noopener noreferrer">{{ t.intro.scholarships.programs[1].label }}</a>,
-          {{ t.intro.scholarships.tail }}
+      </div>
+    </div>
+  </section>
+
+  <section class="tuition-section tuition-section--tint">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="section-header">
+        <app-section-label>{{ t.rates.title }}</app-section-label>
+        <h2 class="tuition-section__title">{{ t.rates.title }}</h2>
+      </div>
+
+      <div class="theme-card theme-card--flush">
+        <div class="tuition-table-wrap">
+          <table class="tuition-table">
+            <thead>
+              <tr>
+                <th>Grade</th>
+                <th>Tuition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of t.rates.table">
+                <td>{{ row.grade }}</td>
+                <td>{{ row.tuition }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tuition-section">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="section-header">
+        <app-section-label>{{ t.siblingDiscount.title }}</app-section-label>
+        <h2 class="tuition-section__title">{{ t.siblingDiscount.title }}</h2>
+      </div>
+
+      <div class="theme-card">
+        <p class="tuition-prose__p">{{ t.siblingDiscount.intro }}</p>
+        <ul class="tuition-list">
+          <li *ngFor="let rule of t.siblingDiscount.rules">{{ rule }}</li>
+        </ul>
+
+        <h3 class="tuition-subtitle-heading">{{ t.siblingDiscount.exampleTitle }}</h3>
+
+        <div class="tuition-table-wrap">
+          <table class="tuition-table">
+            <thead>
+              <tr>
+                <th>Child</th>
+                <th>Base Tuition</th>
+                <th>Discount</th>
+                <th>Amount Owed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of t.siblingDiscount.exampleRows"
+                  [class.tuition-table__row--total]="row.total">
+                <td>{{ row.child }}</td>
+                <td>{{ row.base }}</td>
+                <td>{{ row.discount }}</td>
+                <td>{{ row.owed }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tuition-section tuition-section--tint">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="section-header">
+        <app-section-label>{{ t.fees.title }}</app-section-label>
+        <h2 class="tuition-section__title">{{ t.fees.title }}</h2>
+      </div>
+
+      <div class="theme-card">
+        <ul class="tuition-list">
+          <li *ngFor="let item of t.fees.items">{{ item }}</li>
+        </ul>
+        <p class="tuition-prose__p tuition-prose__note tuition-section__note">
+          {{ t.fees.paymentNote }}
         </p>
       </div>
     </div>
   </section>
 
-  <!-- What's included -->
-  <section class="tuition-section tuition-section--tint">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <h2 class="tuition-section__title">What Your Investment Includes</h2>
-      <ul class="tuition-includes">
-        <li *ngFor="let item of t.intro.includes">{{ item }}</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Cost breakdown -->
   <section class="tuition-section">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <h2 class="tuition-section__title">{{ t.breakdown.title }}</h2>
-
-      <div class="tuition-breakdown">
-        <div *ngFor="let row of t.breakdown.rows"
-             class="tuition-breakdown__row"
-             [class.tuition-breakdown__row--highlight]="row.highlight">
-          <span class="tuition-breakdown__label">
-            <a *ngIf="row.href"
-               [href]="row.href"
-               class="tuition-link"
-               target="_blank"
-               rel="noopener noreferrer">{{ row.label }}</a>
-            <ng-container *ngIf="!row.href">{{ row.label }}</ng-container>
-          </span>
-          <span class="tuition-breakdown__amount">{{ row.amount }}</span>
-        </div>
+      <div class="section-header">
+        <app-section-label>{{ t.paymentPlan.title }}</app-section-label>
+        <h2 class="tuition-section__title">{{ t.paymentPlan.title }}</h2>
       </div>
 
-      <p class="tuition-prose__p tuition-prose__note tuition-breakdown__note">
-        {{ t.breakdown.multiChildNote }}
-      </p>
+      <div class="theme-card">
+        <p *ngFor="let p of t.paymentPlan.paragraphs" class="tuition-prose__p">{{ p }}</p>
+        <ul class="tuition-list tuition-list--notes">
+          <li *ngFor="let note of t.paymentPlan.notes">{{ note }}</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <div class="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
     <p class="tuition-prose__p">
-      Questions about tuition or financial assistance?
+      Questions about tuition?
       <a [href]="schoolInfo.emailHref" class="tuition-link">{{ schoolInfo.email }}</a>
       or call <a [href]="schoolInfo.phoneHref" class="tuition-link">{{ schoolInfo.phone }}</a>.
     </p>

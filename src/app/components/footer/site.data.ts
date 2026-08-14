@@ -25,6 +25,7 @@ export const SOCIAL_LINKS = [
 
 export const QUICK_LINKS = [
   { label: 'About',     path: '/about'            },
+  { label: 'Academics', path: '/academic'         },
   { label: 'Admission', path: '/admission/policy' },
   { label: 'Tuition',   path: '/tuition'          },
   { label: 'Contact',   path: '/contact'          },
@@ -47,10 +48,12 @@ export const ANNOUNCEMENT = {
 
 export const NAV_LINKS = [
   { path: '/',                  label: 'Home' },
+  { path: '/open-house',        label: 'Open House' },
   { path: '/about',             label: 'About' },
+  { path: '/academic',          label: 'Academics' },
   { path: '/admission/policy',  label: 'Admission' },
   { path: '/tuition',           label: 'Tuition' },
-  { path: '/contact',            label: 'Contact' },
+  { path: '/contact',           label: 'Contact' },
 ] as const;
 
 export const NAV_COPY = {

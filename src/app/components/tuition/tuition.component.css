@@ -33,6 +33,11 @@
   background: rgba(0, 134, 75, 0.04);
 }
 
+.section-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 .tuition-title {
   color: var(--text-primary);
   font-family: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
@@ -51,8 +56,15 @@
 .tuition-section__title {
   color: var(--text-primary);
   font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 800;
+  margin: 0.5rem 0 0;
+}
+
+.tuition-subtitle-heading {
+  color: var(--text-primary);
+  font-size: 1.05rem;
   font-weight: 700;
-  margin-bottom: 1.25rem;
+  margin: 1.5rem 0 0.85rem;
 }
 
 .tuition-prose__p {
@@ -67,88 +79,116 @@
   color: var(--text-muted);
 }
 
-.tuition-includes {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.75rem;
+.tuition-section__note {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.theme-card {
+  background: var(--surface-card);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 20px;
+  border-top: 3px solid #00864B;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 134, 75, 0.10);
+  padding: 1.5rem 1.35rem;
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
-  .tuition-includes {
-    grid-template-columns: 1fr 1fr;
+  .theme-card {
+    padding: 1.75rem 1.5rem;
   }
 }
 
-.tuition-includes li {
-  position: relative;
-  padding-left: 1.5rem;
-  color: var(--text-secondary);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-}
-
-.tuition-includes li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #00864B;
-  font-weight: 700;
-}
-
-.tuition-breakdown {
-  border-radius: 0.75rem;
-  border: 1px solid var(--glass-border);
-  background: var(--glass-bg);
+.theme-card--flush {
+  padding: 0;
   overflow: hidden;
 }
 
-.tuition-breakdown__row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--glass-border);
+.theme-card--flush .tuition-table-wrap {
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 
-.tuition-breakdown__row:last-child {
+.tuition-table-wrap {
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+}
+
+.tuition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tuition-table th,
+.tuition-table td {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+  vertical-align: top;
+}
+
+.tuition-table th {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: rgba(0, 134, 75, 0.08);
+}
+
+.tuition-table td {
+  color: var(--text-secondary);
+}
+
+.tuition-table tbody tr:last-child td {
   border-bottom: none;
 }
 
-.tuition-breakdown__row--highlight {
-  background: rgba(0, 134, 75, 0.1);
+.tuition-table__row--total td {
+  color: var(--text-primary);
+  font-weight: 700;
+  background: rgba(0, 134, 75, 0.08);
 }
 
-.tuition-breakdown__label {
+.tuition-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0 0 0.5rem;
   color: var(--text-secondary);
   font-size: 0.9375rem;
-  line-height: 1.5;
-  flex: 1 1 12rem;
+  line-height: 1.7;
 }
 
-.tuition-breakdown__row--highlight .tuition-breakdown__label {
-  color: var(--text-primary);
-  font-weight: 600;
+.tuition-list li {
+  margin-bottom: 0.5rem;
 }
 
-.tuition-breakdown__amount {
-  color: var(--text-primary);
-  font-size: 1.125rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.tuition-breakdown__row--highlight .tuition-breakdown__amount {
-  color: #00864B;
-  font-size: 1.25rem;
-}
-
-.tuition-breakdown__note {
-  margin-top: 1.25rem;
+.tuition-list li:last-child {
   margin-bottom: 0;
+}
+
+.tuition-list--notes {
+  margin-top: 1rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.tuition-list--notes li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.tuition-list--notes li::before {
+  content: '*';
+  position: absolute;
+  left: 0;
+  color: #00864B;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .tuition-link {

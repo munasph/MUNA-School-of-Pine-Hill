@@ -26,7 +26,7 @@ export class TuitionComponent implements OnInit, OnDestroy {
 
     this.seo.update({
       title:       'Tuition',
-      description: `Tuition and financial assistance at ${this.schoolInfo.name}. Learn how we make Islamic education accessible to our community.`,
+      description: `MSPH Tuition 2026/2027 at ${this.schoolInfo.name}. Pre-K and Kindergarten rates, enrollment fees, and payment plans.`,
       path:        '/tuition',
     });
   }

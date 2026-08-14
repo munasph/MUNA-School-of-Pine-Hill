@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent }      from './components/home/home.component';
 import { AboutComponent }     from './components/about/about.component';
+import { OpenHouseComponent } from './components/open-house/open-house.component';
+import { AcademicComponent }  from './components/academic/academic.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { AdmissionPolicyComponent } from './components/admission/admission-policy.component';
 import { ContactComponent }   from './components/contact/contact.component';
@@ -36,8 +38,10 @@ import { superAdminGuard } from './guards/super-admin.guard';
 
 const routes: Routes = [
   { path: '',          component: HomeComponent,      pathMatch: 'full' },
+  { path: 'open-house', component: OpenHouseComponent },
   { path: 'about',     component: AboutComponent     },
-  { path: 'academic',  redirectTo: '/admission', pathMatch: 'full' },
+  { path: 'academic',  component: AcademicComponent },
+  { path: 'academics', redirectTo: '/academic', pathMatch: 'full' },
   { path: 'admission',         component: AdmissionComponent       },
   { path: 'admission/policy',  component: AdmissionPolicyComponent },
   { path: 'tuition',           component: TuitionComponent       },
