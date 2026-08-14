@@ -57,7 +57,7 @@
                 <span>{{ t.announcement.heading }}</span>
               </div>
 
-              <div *ngIf="t.campaign.enabled" class="campaign-chip campaign-chip--announcement">
+              <div *ngIf="schoolInfo.campaignFlyerEnabled" class="campaign-chip campaign-chip--announcement">
                 <span class="campaign-chip__badge">{{ t.campaign.badge }}</span>
                 <div class="campaign-chip__copy">
                   <strong>{{ t.campaign.title }}</strong>

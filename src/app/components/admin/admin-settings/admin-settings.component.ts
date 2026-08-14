@@ -49,6 +49,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
       officeHours:    [''],
       baseUrl:        [''],
       admissionsOpen: [true],
+      campaignFlyerEnabled: [true],
       documentRequirements: this.fb.group(
         Object.fromEntries(
           ADMISSION_DOCUMENT_FIELDS.map((field) => [field.type, this.fb.control(false)]),
@@ -122,6 +123,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
       officeHours:    settings.officeHours,
       baseUrl:        settings.baseUrl,
       admissionsOpen: settings.admissionsOpen ?? true,
+      campaignFlyerEnabled: settings.campaignFlyerEnabled ?? true,
       documentRequirements,
     };
   }
@@ -155,6 +157,7 @@ export class AdminSettingsComponent implements OnInit, OnDestroy {
       officeHours:    raw['officeHours'] as string,
       baseUrl:        raw['baseUrl'] as string,
       admissionsOpen: raw['admissionsOpen'] as boolean,
+      campaignFlyerEnabled: raw['campaignFlyerEnabled'] as boolean,
       admissionDocumentsRequired: admissionRequiredDocumentTypes.length > 0,
       admissionRequiredDocumentTypes,
     };

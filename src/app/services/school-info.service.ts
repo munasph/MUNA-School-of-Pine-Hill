@@ -25,6 +25,7 @@ export interface SchoolInfo {
   admissionsOpen:                boolean;
   admissionDocumentsRequired:    boolean;
   admissionRequiredDocumentTypes: string[];
+  campaignFlyerEnabled:          boolean;
 }
 
 const PLACEHOLDER_VALUES: Record<keyof Pick<
@@ -106,6 +107,7 @@ export class SchoolInfoService {
       admissionsOpen:                 settings.admissionsOpen,
       admissionDocumentsRequired:     this.resolveRequiredDocumentTypes(settings).length > 0,
       admissionRequiredDocumentTypes: this.resolveRequiredDocumentTypes(settings),
+      campaignFlyerEnabled:           settings.campaignFlyerEnabled ?? true,
     };
   }
 
@@ -135,6 +137,7 @@ export class SchoolInfoService {
       admissionsOpen:                 true,
       admissionDocumentsRequired:     false,
       admissionRequiredDocumentTypes: [],
+      campaignFlyerEnabled:           true,
     };
   }
 

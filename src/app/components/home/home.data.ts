@@ -12,7 +12,7 @@ export const HOME_COPY = {
     ctaPrimary: 'Register Now',
   },
   campaign: {
-    enabled:    true,
+    enabled:    true, // kept for local fallback; live gate is Admin → Settings → campaignFlyerEnabled
     storageKey: 'msph-open-house-flyer-v2',
     badge:      'Coming Soon',
     title:      'Pre-K & Kindergarten',

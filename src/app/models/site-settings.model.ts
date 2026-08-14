@@ -10,6 +10,7 @@ export interface SiteSettings {
   admissionsOpen:              boolean;
   admissionDocumentsRequired:    boolean;
   admissionRequiredDocumentTypes: string[];
+  campaignFlyerEnabled:          boolean;
 }
 
 export type SiteSettingsPayload = SiteSettings;
