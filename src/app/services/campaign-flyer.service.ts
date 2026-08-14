@@ -12,8 +12,9 @@ export class CampaignFlyerService {
     return this.openSubject.value;
   }
 
+  /** Auto-open on every public page visit/reload while the campaign is enabled. */
   maybeAutoOpen(): void {
-    if (!this.campaign.enabled || this.isDismissed()) return;
+    if (!this.campaign.enabled) return;
     window.setTimeout(() => this.open(), 700);
   }
 
@@ -26,18 +27,5 @@ export class CampaignFlyerService {
   dismiss(): void {
     this.openSubject.next(false);
     document.body.style.overflow = '';
-    try {
-      sessionStorage.setItem(this.campaign.storageKey, '1');
-    } catch {
-      // Ignore storage failures in private browsing.
-    }
-  }
-
-  private isDismissed(): boolean {
-    try {
-      return sessionStorage.getItem(this.campaign.storageKey) === '1';
-    } catch {
-      return false;
-    }
   }
 }
