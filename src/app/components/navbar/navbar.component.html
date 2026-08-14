@@ -16,7 +16,7 @@
       </a>
 
       <!-- CENTER: Liquid Glass Pill -->
-      <div class="hidden md:flex items-center gap-1 navbar-pill"
+      <div class="hidden xl:flex items-center gap-1 navbar-pill"
            [style.background]="pillBackground()"
            [style.border]="pillBorder()"
            [style.boxShadow]="pillShadow()">
@@ -35,7 +35,7 @@
 
       <!-- RIGHT: Actions -->
       <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-        <div class="hidden md:flex items-center gap-1 navbar-pill"
+        <div class="hidden xl:flex items-center gap-1 navbar-pill"
              [style.background]="pillBackground()"
              [style.border]="pillBorder()"
              [style.boxShadow]="pillShadow()">
@@ -61,7 +61,7 @@
         <app-theme-toggle></app-theme-toggle>
 
         <button type="button"
-                class="p-2.5 md:hidden hover:opacity-70 transition-opacity cursor-pointer flex-shrink-0"
+                class="p-2.5 xl:hidden hover:opacity-70 transition-opacity cursor-pointer flex-shrink-0"
                 [style.color]="burgerColor()"
                 aria-label="Toggle menu"
                 [attr.aria-expanded]="isOpen"
@@ -75,7 +75,7 @@
 
   <!-- Mobile Menu Overlay -->
   <div *ngIf="isOpen"
-       class="md:hidden overflow-hidden navbar-mobile"
+       class="xl:hidden overflow-hidden navbar-mobile"
        [ngClass]="lightNavChrome ? 'navbar-mobile--light' : 'navbar-mobile--dark'">
     <div class="px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-2">
       <a *ngFor="let link of navLinks"
