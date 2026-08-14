@@ -21,7 +21,7 @@ export const HOME_COPY = {
     ctaLabel:   'Secure Your Spot',
     ctaPath:    '/admission',
     pagePath:   '/announcements',
-    flyerSrc:   'assets/images/prek-kg-flyer-landscape.png',
+    flyerSrc:   '/assets/images/prek-kg-flyer-landscape.png',
     flyerAlt:   'MUNA School of Pine Hill Pre-K and Kindergarten open house flyer',
     dismissLabel: 'Maybe later',
   },

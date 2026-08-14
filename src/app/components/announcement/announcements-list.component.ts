@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { X, LucideIconData } from 'lucide-angular';
 import { SeoService } from '../../services/seo.service';
 import { AnnouncementService } from '../../services/announcement.service';
 import { SchoolInfoService, type SchoolInfo } from '../../services/school-info.service';
@@ -13,9 +14,11 @@ import { HOME_COPY } from '../home/home.data';
 })
 export class AnnouncementsListComponent implements OnInit, OnDestroy {
   readonly campaign = HOME_COPY.campaign;
+  readonly closeIcon: LucideIconData = X;
   schoolInfo!: SchoolInfo;
   announcements: Announcement[] = [];
   loading = true;
+  flyerViewerOpen = false;
 
   private subs = new Subscription();
 
@@ -51,5 +54,22 @@ export class AnnouncementsListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.flyerViewerOpen) {
+      this.closeFlyerViewer();
+    }
+  }
+
+  openFlyerViewer(): void {
+    this.flyerViewerOpen = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeFlyerViewer(): void {
+    this.flyerViewerOpen = false;
+    document.body.style.overflow = '';
   }
 }

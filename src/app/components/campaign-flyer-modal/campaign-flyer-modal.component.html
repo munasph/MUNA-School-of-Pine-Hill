@@ -18,12 +18,17 @@
 
     <div class="campaign-modal__content">
       <div class="campaign-modal__flyer-wrap">
-        <img [src]="campaign.flyerSrc"
-             [alt]="campaign.flyerAlt"
-             class="campaign-modal__flyer"
-             width="1024"
-             height="576"
-             loading="eager" />
+        <button type="button"
+                class="campaign-modal__flyer-link"
+                aria-label="View flyer full size"
+                (click)="openImageViewer($event)">
+          <img [src]="campaign.flyerSrc"
+               [alt]="campaign.flyerAlt"
+               class="campaign-modal__flyer"
+               width="1024"
+               height="576"
+               loading="eager" />
+        </button>
       </div>
 
       <div class="campaign-modal__copy">
@@ -49,4 +54,27 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="imageViewerOpen"
+     class="flyer-viewer"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Full size flyer">
+  <button type="button"
+          class="flyer-viewer__backdrop"
+          aria-label="Close full size flyer"
+          (click)="closeImageViewer()"></button>
+
+  <button type="button"
+          class="flyer-viewer__close"
+          aria-label="Close"
+          (click)="closeImageViewer()">
+    <lucide-icon [img]="closeIcon" size="22"></lucide-icon>
+  </button>
+
+  <img [src]="campaign.flyerSrc"
+       [alt]="campaign.flyerAlt"
+       class="flyer-viewer__image"
+       (click)="$event.stopPropagation()" />
 </div>

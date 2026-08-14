@@ -24,15 +24,41 @@
           </div>
 
           <figure class="announcements-flyer-card">
-            <img [src]="campaign.flyerSrc"
-                 [alt]="campaign.flyerAlt"
-                 class="announcements-flyer"
-                 width="1024"
-                 height="576"
-                 loading="eager" />
+            <button type="button"
+                    class="announcements-flyer-link"
+                    aria-label="View flyer full size"
+                    (click)="openFlyerViewer()">
+              <img [src]="campaign.flyerSrc"
+                   [alt]="campaign.flyerAlt"
+                   class="announcements-flyer"
+                   width="1024"
+                   height="576"
+                   loading="eager" />
+            </button>
           </figure>
         </div>
       </ng-container>
+
+      <div *ngIf="flyerViewerOpen"
+           class="flyer-viewer"
+           role="dialog"
+           aria-modal="true"
+           aria-label="Full size flyer">
+        <button type="button"
+                class="flyer-viewer__backdrop"
+                aria-label="Close full size flyer"
+                (click)="closeFlyerViewer()"></button>
+        <button type="button"
+                class="flyer-viewer__close"
+                aria-label="Close"
+                (click)="closeFlyerViewer()">
+          <lucide-icon [img]="closeIcon" size="22"></lucide-icon>
+        </button>
+        <img [src]="campaign.flyerSrc"
+             [alt]="campaign.flyerAlt"
+             class="flyer-viewer__image"
+             (click)="$event.stopPropagation()" />
+      </div>
 
       <div class="announcements-list-wrap">
         <h2 class="announcements-list-title">Latest updates</h2>
