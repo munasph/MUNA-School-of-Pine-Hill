@@ -24,12 +24,22 @@
           <p class="form-subtitle">{{ t.admission.hero.subtitle }}</p>
         </div>
 
-        <aside class="admission-highlights" aria-labelledby="admission-highlights-title">
-          <h2 id="admission-highlights-title" class="admission-highlights__title">
-            {{ t.admission.highlights.title }}
+        <aside class="admission-highlights" aria-labelledby="admission-docs-title">
+          <h2 id="admission-docs-title" class="admission-highlights__title">
+            {{ t.admission.highlights.documentsTitle }}
           </h2>
-          <ul class="admission-highlights__list">
-            <li *ngFor="let item of t.admission.highlights.items">{{ item }}</li>
+          <ul class="admission-highlights__docs">
+            <li *ngFor="let doc of t.admission.highlights.documents">
+              <span>{{ doc.label }}</span>
+              <a *ngIf="doc.downloadHref"
+                 class="admission-highlights__download"
+                 [href]="doc.downloadHref"
+                 download
+                 target="_blank"
+                 rel="noopener noreferrer">
+                [ {{ doc.downloadLabel || 'Download' }} ]
+              </a>
+            </li>
           </ul>
           <div class="admission-highlights__links">
             <a routerLink="/admission/policy" class="admission-highlights__link">

@@ -16,16 +16,21 @@ export const ADMISSION_COPY = {
       subtitle: 'Express interest in Pre-K or Kindergarten enrollment for the 2026/2027 school year. Spots are limited — first come, first served.',
     },
     highlights: {
-      title: 'Before you register',
-      items: [
-        'Currently accepting Pre-K and Kindergarten only.',
-        'Pre-K: child must be 3 or 4 years old by September 1.',
-        'Kindergarten: child must be 5 years old by September 1, 2026.',
-        'Students must be potty-trained before admission.',
-        'After you submit this form, our team will contact you to schedule an interview.',
-        'Bring required document copies and a $100 registration fee (check or money order) to the interview.',
-        'Annual tuition is $5,000 per child. Sibling discounts are available.',
-        'Open House: August 28–30, 1:30 PM – 3:00 PM.',
+      documentsTitle: 'To complete registration, you need the following:',
+      documents: [
+        { label: 'Parent/Guardian ID' },
+        { label: 'Emergency Contact information and IDs' },
+        {
+          label: 'Physical Exam Form',
+          downloadHref: '/assets/forms/MUNA_Physical_Examination_Updated.pdf',
+          downloadLabel: 'Download',
+        },
+        {
+          label: 'Dental Exam Form',
+          downloadHref: '/assets/forms/MUNA_Dental_Examination_Updated.pdf',
+          downloadLabel: 'Download',
+        },
+        { label: 'Immunization Record' },
       ],
     },
     links: {
