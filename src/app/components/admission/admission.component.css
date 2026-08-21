@@ -71,32 +71,6 @@
 .admission-highlights__list li + li {
   margin-top: 0.35rem;
 }
-.admission-highlights__docs-title {
-  margin: 1.1rem 0 0.55rem;
-  color: var(--text-primary);
-  font-size: 0.95rem;
-  font-weight: 700;
-}
-.admission-highlights__docs {
-  margin: 0;
-  padding-left: 1.15rem;
-  color: var(--text-secondary);
-  font-size: 0.925rem;
-  line-height: 1.65;
-}
-.admission-highlights__docs li + li {
-  margin-top: 0.35rem;
-}
-.admission-highlights__download {
-  margin-left: 0.35rem;
-  color: #00864B;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.admission-highlights__download:hover {
-  text-decoration: underline;
-}
 .admission-highlights__links {
   display: flex;
   flex-wrap: wrap;

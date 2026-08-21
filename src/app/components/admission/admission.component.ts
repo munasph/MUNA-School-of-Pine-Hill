@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CheckCircle, LucideIconData } from 'lucide-angular';
 
@@ -25,6 +26,8 @@ type AdmissionField =
   | 'streetAddress' | 'city' | 'state' | 'zip' | 'classApplying'
   | 'parent1Name' | 'parent1Phone' | 'parent1Email'
   | 'parent2Name' | 'parent2Phone' | 'parent2Email';
+
+const SUCCESS_CLOSE_MS = 3500;
 
 @Component({
   selector: 'app-admission-page',
@@ -54,12 +57,14 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   submitError: string | null = null;
 
   private subs = new Subscription();
+  private successCloseTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly admissionService: AdmissionService,
     private readonly schoolInfoService: SchoolInfoService,
     private readonly seo: SeoService,
+    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -111,6 +116,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.clearSuccessCloseTimer();
     this.subs.unsubscribe();
   }
 
@@ -274,6 +280,7 @@ export class AdmissionComponent implements OnInit, OnDestroy {
           this.submitted = true;
           this.submitting = false;
           this.scrollToTop();
+          this.scheduleSuccessClose();
         },
         error: (err: HttpErrorResponse) => {
           this.submitting = false;
@@ -281,6 +288,23 @@ export class AdmissionComponent implements OnInit, OnDestroy {
         },
       }),
     );
+  }
+
+  private scheduleSuccessClose(): void {
+    this.clearSuccessCloseTimer();
+    this.successCloseTimer = setTimeout(() => {
+      this.successCloseTimer = null;
+      window.close();
+      // Browsers block window.close() for tabs the user opened directly.
+      void this.router.navigateByUrl('/');
+    }, SUCCESS_CLOSE_MS);
+  }
+
+  private clearSuccessCloseTimer(): void {
+    if (this.successCloseTimer !== null) {
+      clearTimeout(this.successCloseTimer);
+      this.successCloseTimer = null;
+    }
   }
 
   private scrollToTop(): void {

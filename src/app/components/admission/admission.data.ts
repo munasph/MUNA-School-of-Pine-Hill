@@ -5,7 +5,7 @@ export const classOptions = [
 
 export const ADMISSION_SUCCESS = {
   title:   'Registration Received',
-  message: 'Thank you. Your registration has been received. Our team will reach out to schedule an interview and share next steps.',
+  message: 'Our team will contact you soon.',
 };
 
 export const ADMISSION_COPY = {
@@ -26,23 +26,6 @@ export const ADMISSION_COPY = {
         'Bring required document copies and a $100 registration fee (check or money order) to the interview.',
         'Annual tuition is $5,000 per child. Sibling discounts are available.',
         'Open House: August 28–30, 1:30 PM – 3:00 PM.',
-      ],
-      documentsTitle: 'To complete registration, you need the following:',
-      documents: [
-        { label: 'Parent/Guardian ID' },
-        { label: 'Emergency Contact information and IDs' },
-        {
-          label: 'Physical Exam Form',
-          downloadHref: '/assets/forms/MUNA_Physical_Examination_Updated.pdf',
-          downloadLabel: 'Download',
-        },
-        {
-          label: 'Dental Exam Form',
-          downloadHref: '/assets/forms/MUNA_Dental_Examination_Updated.pdf',
-          downloadLabel: 'Download',
-        },
-        { label: 'Immunization Record' },
-        { label: 'Birth Certificate' },
       ],
     },
     links: {
