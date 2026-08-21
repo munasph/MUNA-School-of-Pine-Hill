@@ -27,6 +27,23 @@ export const ADMISSION_COPY = {
         'Annual tuition is $5,000 per child. Sibling discounts are available.',
         'Open House: August 28–30, 1:30 PM – 3:00 PM.',
       ],
+      documentsTitle: 'To complete registration, you need the following:',
+      documents: [
+        { label: 'Parent/Guardian ID' },
+        { label: 'Emergency Contact information and IDs' },
+        {
+          label: 'Physical Exam Form',
+          downloadHref: '/assets/forms/MUNA_Physical_Examination_Updated.pdf',
+          downloadLabel: 'Download',
+        },
+        {
+          label: 'Dental Exam Form',
+          downloadHref: '/assets/forms/MUNA_Dental_Examination_Updated.pdf',
+          downloadLabel: 'Download',
+        },
+        { label: 'Immunization Record' },
+        { label: 'Birth Certificate' },
+      ],
     },
     links: {
       policyLabel:  'Admission Policy',

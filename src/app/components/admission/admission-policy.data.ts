@@ -48,6 +48,7 @@ export const ADMISSION_POLICY_COPY = {
         downloadLabel: 'Download',
       },
       { label: 'Immunization Record' },
+      { label: 'Birth Certificate' },
     ],
   },
   onlineRegistration: {
