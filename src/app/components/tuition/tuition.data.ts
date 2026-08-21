@@ -54,7 +54,7 @@ export const TUITION_COPY = {
       '$100 Registration Fee/Student',
     ],
     paymentNote:
-      'Fees and tuition must be paid by electronic bank transfer or other online form of payment.',
+      'Fees and tuition must be paid by check or money order or cash. The check can be made to "MUNA School of Pine Hill".',
   },
   paymentPlan: {
     title: 'Payment Plan',
@@ -65,9 +65,9 @@ export const TUITION_COPY = {
       'Payment is due the first of the month. If payment is not received by the 5th of the month, a late fee on any past due amount(s), will be assessed.',
     ],
     notes: [
-      'Fees and tuition must be paid by electronic bank transfer or other online form of payment.',
+      'Fees and tuition must be paid by check or money order or cash. The check can be made to "MUNA School of Pine Hill".',
       'Books/materials are free unless they are lost.',
-      'Payment will have to be given directly to Sister Alaa Madarati',
+      'Payment will have to be given directly to Office Staff',
     ],
   },
 };
