@@ -58,7 +58,17 @@
 
       <h3 class="policy-section__subtitle">{{ t.registration.documentsTitle }}</h3>
       <ul class="policy-docs">
-        <li *ngFor="let doc of t.registration.documents">{{ doc }}</li>
+        <li *ngFor="let doc of t.registration.documents">
+          <span>{{ doc.label }}</span>
+          <a *ngIf="doc.downloadHref"
+             class="policy-docs__download"
+             [href]="doc.downloadHref"
+             download
+             target="_blank"
+             rel="noopener noreferrer">
+            [ {{ doc.downloadLabel || 'Download' }} ]
+          </a>
+        </li>
       </ul>
     </div>
   </section>

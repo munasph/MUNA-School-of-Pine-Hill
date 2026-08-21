@@ -170,6 +170,14 @@
                       <span class="document-upload__required">*</span>
                     </label>
                     <p *ngIf="doc.hint" class="document-upload__hint">{{ doc.hint }}</p>
+                    <a *ngIf="doc.downloadHref"
+                       class="document-upload__download"
+                       [href]="doc.downloadHref"
+                       download
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      [ {{ doc.downloadLabel || 'Download' }} ]
+                    </a>
 
                     <div class="document-upload__control"
                          [class.document-upload__control--error]="!!documentErrorFor(doc.type)">

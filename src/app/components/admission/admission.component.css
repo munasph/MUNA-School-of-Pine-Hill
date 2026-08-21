@@ -271,6 +271,18 @@
   line-height: 1.5;
 }
 
+.document-upload__download {
+  color: #00864B;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.document-upload__download:hover {
+  text-decoration: underline;
+}
+
 .document-upload__control {
   display: flex;
   align-items: center;

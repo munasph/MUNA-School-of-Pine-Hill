@@ -148,6 +148,18 @@
   margin-bottom: 0.5rem;
 }
 
+.policy-docs__download {
+  margin-left: 0.35rem;
+  color: #00864B;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.policy-docs__download:hover {
+  text-decoration: underline;
+}
+
 .policy-actions {
   margin: 1.5rem 0 2rem;
 }

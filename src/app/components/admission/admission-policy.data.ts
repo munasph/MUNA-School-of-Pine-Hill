@@ -35,12 +35,19 @@ export const ADMISSION_POLICY_COPY = {
     },
     documentsTitle: 'To complete registration, you need the following:',
     documents: [
-      'Parent/Guardian ID',
-      'Emergency Contact information and IDs',
-      'Physical Exam Form',
-      'Dental Exam Form',
-      'Immunization Record',
-      'Form 1040 of Tax Return',
+      { label: 'Parent/Guardian ID' },
+      { label: 'Emergency Contact information and IDs' },
+      {
+        label: 'Physical Exam Form',
+        downloadHref: '/assets/forms/MUNA_Physical_Examination_Updated.pdf',
+        downloadLabel: 'Download',
+      },
+      {
+        label: 'Dental Exam Form',
+        downloadHref: '/assets/forms/MUNA_Dental_Examination_Updated.pdf',
+        downloadLabel: 'Download',
+      },
+      { label: 'Immunization Record' },
     ],
   },
   onlineRegistration: {

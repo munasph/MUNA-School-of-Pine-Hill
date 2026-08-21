@@ -4,6 +4,8 @@ export interface AdmissionDocumentField {
   type:     string;
   label:    string;
   hint?:    string;
+  downloadHref?: string;
+  downloadLabel?: string;
   required: boolean;
   group:    AdmissionDocumentGroup;
 }
@@ -25,10 +27,9 @@ export const ADMISSION_DOCUMENT_FIELDS: AdmissionDocumentField[] = [
   { type: 'SOCIAL_SECURITY_CARD',  label: 'Social Security Card',           required: true,  group: 'required' },
   { type: 'PARENT_GUARDIAN_ID',    label: 'Parent / Guardian Photo ID',   required: true,  group: 'required' },
   { type: 'EMERGENCY_CONTACT_ID',  label: 'Emergency Contact Photo ID',     required: true,  group: 'required' },
-  { type: 'PHYSICAL_EXAM',         label: 'Physical Exam Form',             required: true,  group: 'required', hint: 'PHYSICAL EXAM FORM.docx' },
-  { type: 'DENTAL_EXAM',           label: 'Dental Exam Form',               required: true,  group: 'required', hint: 'DENTAL FORM.docx' },
+  { type: 'PHYSICAL_EXAM',         label: 'Physical Exam Form',             required: true,  group: 'required', downloadHref: '/assets/forms/MUNA_Physical_Examination_Updated.pdf', downloadLabel: 'Download' },
+  { type: 'DENTAL_EXAM',           label: 'Dental Exam Form',               required: true,  group: 'required', downloadHref: '/assets/forms/MUNA_Dental_Examination_Updated.pdf', downloadLabel: 'Download' },
   { type: 'IMMUNIZATION',          label: 'Immunization Record',            required: true,  group: 'required', hint: 'Required vaccines for attending school' },
-  { type: 'TAX_1040',              label: 'Form 1040 of Tax Return',        required: true,  group: 'required', hint: 'Form 1040 of Tax Return.pdf' },
   { type: 'REPORT_CARD',           label: 'Most Recent Report Card',        required: false, group: 'school' },
   { type: 'TRANSCRIPTS',           label: 'Transcripts',                    required: false, group: 'school' },
   { type: 'MAP_SCORES',            label: 'MAP Growth or STAR Scores',      required: false, group: 'school' },
