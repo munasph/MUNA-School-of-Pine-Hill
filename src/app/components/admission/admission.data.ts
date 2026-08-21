@@ -31,6 +31,7 @@ export const ADMISSION_COPY = {
           downloadLabel: 'Download',
         },
         { label: 'Immunization Record' },
+        { label: 'Birth Certificate' },
       ],
     },
     links: {
