@@ -26,6 +26,7 @@ export const SOCIAL_LINKS = [
 export const QUICK_LINKS = [
   { label: 'About',     path: '/about'            },
   { label: 'Academics', path: '/academic'         },
+  { label: 'Staff',     path: '/staff'            },
   { label: 'Admission', path: '/admission/policy' },
   { label: 'Tuition',   path: '/tuition'          },
   { label: 'Contact',   path: '/contact'          },
@@ -44,6 +45,7 @@ export const NAV_LINKS = [
   { path: '/announcements',     label: 'Announcements' },
   { path: '/about',             label: 'About' },
   { path: '/academic',          label: 'Academics' },
+  { path: '/staff',             label: 'Staff' },
   { path: '/admission/policy',  label: 'Admission' },
   { path: '/tuition',           label: 'Tuition' },
   { path: '/contact',           label: 'Contact' },

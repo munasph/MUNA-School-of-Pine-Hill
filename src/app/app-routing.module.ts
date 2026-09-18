@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent }      from './components/home/home.component';
 import { AboutComponent }     from './components/about/about.component';
 import { AcademicComponent }  from './components/academic/academic.component';
+import { StaffComponent }     from './components/staff/staff.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { AdmissionPolicyComponent } from './components/admission/admission-policy.component';
 import { ContactComponent }   from './components/contact/contact.component';
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'about',     component: AboutComponent     },
   { path: 'academic',  component: AcademicComponent },
   { path: 'academics', redirectTo: '/academic', pathMatch: 'full' },
+  { path: 'staff',     component: StaffComponent     },
   { path: 'admission',         component: AdmissionComponent       },
   { path: 'admission/policy',  component: AdmissionPolicyComponent },
   { path: 'tuition',           component: TuitionComponent       },

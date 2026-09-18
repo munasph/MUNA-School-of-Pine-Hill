@@ -1,0 +1,81 @@
+<div class="staff-page">
+  <section class="staff-section">
+    <div class="staff-container">
+      <div class="staff-hero">
+        <app-section-label>{{ t.hero.tag }}</app-section-label>
+        <h1 class="staff-title">{{ t.hero.title }}</h1>
+        <p class="staff-subtitle">{{ t.hero.subtitle }}</p>
+      </div>
+
+      <article *ngFor="let teacher of t.teachers" class="teacher-card theme-card">
+        <div class="teacher-card__grid">
+          <div class="teacher-card__content">
+            <p *ngIf="teacher.greeting" class="teacher-card__greeting">{{ teacher.greeting }}</p>
+            <h2 class="teacher-card__name">{{ teacher.name }}</h2>
+            <p class="teacher-card__role">{{ teacher.role }}</p>
+            <p class="teacher-card__intro">{{ teacher.intro }}</p>
+            <p *ngIf="teacher.highlight" class="teacher-card__highlight">{{ teacher.highlight }}</p>
+
+            <div *ngIf="teacher.credentials?.length" class="teacher-credentials">
+              <h3 class="teacher-card__section-title">Educator Profile</h3>
+              <ul class="teacher-list">
+                <li *ngFor="let item of teacher.credentials">{{ item }}</li>
+              </ul>
+            </div>
+
+            <h3 class="teacher-card__section-title">{{ teacher.curriculumTitle }}</h3>
+            <div class="teacher-curriculum">
+              <div *ngFor="let section of teacher.curriculum" class="teacher-curriculum__section">
+                <h4 class="teacher-curriculum__title">{{ section.title }}</h4>
+                <ul class="teacher-list">
+                  <li *ngFor="let item of section.items">{{ item }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div *ngIf="teacher.goals?.length" class="teacher-goals">
+              <h3 class="teacher-card__section-title">Classroom Goals</h3>
+              <ul class="teacher-list">
+                <li *ngFor="let goal of teacher.goals">{{ goal }}</li>
+              </ul>
+            </div>
+
+            <p *ngIf="teacher.parentNote" class="teacher-card__note">{{ teacher.parentNote }}</p>
+            <p *ngIf="teacher.closing" class="teacher-card__closing">{{ teacher.closing }}</p>
+          </div>
+
+          <aside class="teacher-card__flyer">
+            <button type="button"
+                    class="teacher-card__flyer-btn"
+                    (click)="openFlyerViewer(teacher)"
+                    [attr.aria-label]="'View full-size flyer for ' + teacher.name">
+              <img [src]="teacher.flyerSrc"
+                   [alt]="teacher.flyerAlt"
+                   class="teacher-card__flyer-image"
+                   loading="lazy" />
+            </button>
+            <p class="teacher-card__flyer-caption">Tap to view full flyer</p>
+          </aside>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div *ngIf="flyerViewerOpen && activeFlyer"
+       class="flyer-viewer"
+       role="dialog"
+       aria-modal="true"
+       [attr.aria-label]="activeFlyer.flyerAlt">
+    <button type="button"
+            class="flyer-viewer__backdrop"
+            aria-label="Close full size flyer"
+            (click)="closeFlyerViewer()"></button>
+    <button type="button"
+            class="flyer-viewer__close"
+            aria-label="Close"
+            (click)="closeFlyerViewer()">×</button>
+    <img [src]="activeFlyer.flyerSrc"
+         [alt]="activeFlyer.flyerAlt"
+         class="flyer-viewer__image" />
+  </div>
+</div>

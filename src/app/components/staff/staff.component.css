@@ -1,0 +1,248 @@
+:host {
+  display: block;
+  overflow-x: clip;
+  max-width: 100%;
+  background: var(--bg-base);
+}
+
+.staff-page {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.staff-section {
+  padding: 5.5rem 0 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .staff-section {
+    padding: 6.5rem 0 4.5rem;
+  }
+}
+
+.staff-container {
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .staff-container {
+    padding: 0 1.5rem;
+  }
+}
+
+.staff-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.staff-title {
+  color: var(--text-primary);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.staff-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.975rem;
+  line-height: 1.7;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.teacher-card {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .teacher-card {
+    padding: 2rem;
+  }
+}
+
+.teacher-card__grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .teacher-card__grid {
+    grid-template-columns: minmax(0, 1.35fr) minmax(14rem, 0.75fr);
+    align-items: start;
+  }
+}
+
+.teacher-card__greeting {
+  color: #00864B;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.teacher-card__name {
+  color: var(--text-primary);
+  font-size: clamp(1.5rem, 3vw, 1.85rem);
+  font-weight: 800;
+  margin: 0 0 0.35rem;
+}
+
+.teacher-card__role {
+  color: #00864B;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.teacher-card__intro,
+.teacher-card__note,
+.teacher-card__closing {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.teacher-card__highlight {
+  color: var(--text-primary);
+  background: rgba(0, 134, 75, 0.1);
+  border: 1px solid rgba(0, 134, 75, 0.25);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.925rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.teacher-card__section-title {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 1.25rem 0 0.65rem;
+}
+
+.teacher-curriculum {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 700px) {
+  .teacher-curriculum {
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  }
+}
+
+.teacher-curriculum__section {
+  background: rgba(0, 134, 75, 0.05);
+  border: 1px solid rgba(0, 134, 75, 0.16);
+  border-radius: 0.85rem;
+  padding: 0.9rem 1rem;
+}
+
+.teacher-curriculum__title {
+  color: #00864B;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0 0 0.55rem;
+}
+
+.teacher-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.teacher-list li + li {
+  margin-top: 0.3rem;
+}
+
+.teacher-card__flyer {
+  text-align: center;
+}
+
+.teacher-card__flyer-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1.5px solid rgba(0, 134, 75, 0.25);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-card__flyer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.teacher-card__flyer-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 32rem;
+  object-fit: contain;
+  background: #fff;
+}
+
+.teacher-card__flyer-caption {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin: 0.6rem 0 0;
+}
+
+.flyer-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 260;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.flyer-viewer__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.78);
+  cursor: pointer;
+}
+
+.flyer-viewer__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.flyer-viewer__image {
+  position: relative;
+  z-index: 1;
+  max-width: min(92vw, 42rem);
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}

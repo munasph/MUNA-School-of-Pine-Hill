@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent }      from './components/home/home.component';
 import { AboutComponent }     from './components/about/about.component';
 import { AcademicComponent }  from './components/academic/academic.component';
+import { StaffComponent }     from './components/staff/staff.component';
 import { AdmissionComponent } from './components/admission/admission.component';
 import { AdmissionPolicyComponent } from './components/admission/admission-policy.component';
 import { ContactComponent }   from './components/contact/contact.component';
@@ -66,6 +67,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HomeComponent,
     AboutComponent,
     AcademicComponent,
+    StaffComponent,
     AdmissionComponent,
     AdmissionPolicyComponent,
     ContactComponent,
