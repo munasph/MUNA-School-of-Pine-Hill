@@ -2,7 +2,7 @@
      class="campaign-modal"
      role="dialog"
      aria-modal="true"
-     aria-labelledby="campaign-modal-title">
+     aria-label="Enrollment flyer">
   <button type="button"
           class="campaign-modal__backdrop"
           aria-label="Close flyer"
@@ -25,32 +25,21 @@
           <img [src]="campaign.flyerSrc"
                [alt]="campaign.flyerAlt"
                class="campaign-modal__flyer"
-               width="1024"
-               height="579"
+               width="790"
+               height="1024"
                loading="eager" />
         </button>
       </div>
 
-      <div class="campaign-modal__copy">
-        <span class="campaign-modal__badge">{{ campaign.badge }}</span>
-        <h2 id="campaign-modal-title" class="campaign-modal__title">{{ campaign.title }}</h2>
-        <p class="campaign-modal__subtitle">{{ campaign.subtitle }}</p>
-        <p class="campaign-modal__dates">{{ campaign.openHouseDates }}</p>
-        <div class="campaign-modal__actions">
-          <a [routerLink]="campaign.ctaPath"
-             class="campaign-modal__cta"
-             (click)="dismiss()">
-            {{ campaign.ctaLabel }} →
-          </a>
-          <a [routerLink]="campaign.pagePath"
-             class="campaign-modal__page"
-             (click)="dismiss()">
-            View announcements
-          </a>
-          <button type="button" class="campaign-modal__secondary" (click)="dismiss()">
-            {{ campaign.dismissLabel }}
-          </button>
-        </div>
+      <div class="campaign-modal__actions">
+        <a [routerLink]="campaign.pagePath"
+           class="campaign-modal__page"
+           (click)="dismiss()">
+          View announcements
+        </a>
+        <button type="button" class="campaign-modal__secondary" (click)="dismiss()">
+          {{ campaign.dismissLabel }}
+        </button>
       </div>
     </div>
   </div>
