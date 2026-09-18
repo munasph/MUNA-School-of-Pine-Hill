@@ -94,7 +94,8 @@
           <li *ngFor="let item of t.fees.items">{{ item }}</li>
         </ul>
         <p class="tuition-prose__p tuition-prose__note tuition-section__note">
-          {{ t.fees.paymentNote }}
+          {{ t.paymentInstruction.before }}<a class="tuition-zelle-email"
+             [href]="'mailto:' + t.paymentInstruction.zelleEmail">{{ t.paymentInstruction.zelleEmail }}</a>{{ t.paymentInstruction.after }}
         </p>
       </div>
     </div>
@@ -110,6 +111,10 @@
       <div class="theme-card">
         <p *ngFor="let p of t.paymentPlan.paragraphs" class="tuition-prose__p">{{ p }}</p>
         <ul class="tuition-list tuition-list--notes">
+          <li>
+            {{ t.paymentInstruction.before }}<a class="tuition-zelle-email"
+               [href]="'mailto:' + t.paymentInstruction.zelleEmail">{{ t.paymentInstruction.zelleEmail }}</a>{{ t.paymentInstruction.after }}
+          </li>
           <li *ngFor="let note of t.paymentPlan.notes">{{ note }}</li>
         </ul>
       </div>

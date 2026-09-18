@@ -199,3 +199,19 @@
 .tuition-link:hover {
   text-decoration: underline;
 }
+
+.tuition-zelle-email {
+  color: #00864B;
+  font-weight: 700;
+  font-style: normal;
+  text-decoration: none;
+  background: rgba(0, 134, 75, 0.14);
+  padding: 0.12em 0.4em;
+  border-radius: 0.3rem;
+  white-space: nowrap;
+}
+
+.tuition-zelle-email:hover {
+  text-decoration: underline;
+  background: rgba(0, 134, 75, 0.22);
+}

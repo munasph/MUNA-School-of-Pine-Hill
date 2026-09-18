@@ -11,6 +11,14 @@ export interface SiblingExampleRow {
   total?:   boolean;
 }
 
+export const ZELLE_PAYMENT_EMAIL = 'munaschoolofpinehill@gmail.com';
+
+export const TUITION_PAYMENT_INSTRUCTION = {
+  before: 'Tuition and fees may be paid via Zelle to ',
+  zelleEmail: ZELLE_PAYMENT_EMAIL,
+  after: ', or by check, money order, or cash. Checks should be made payable to "MUNA School of Pine Hill."',
+};
+
 export const TUITION_COPY = {
   hero: {
     tag:      'Tuition',
@@ -53,9 +61,8 @@ export const TUITION_COPY = {
     items: [
       '$100 Registration Fee/Student',
     ],
-    paymentNote:
-      'Tuition and fees may be paid via Zelle to munaschoolofpinehill@gmail.com, or by check, money order, or cash. Checks should be made payable to "MUNA School of Pine Hill."',
   },
+  paymentInstruction: TUITION_PAYMENT_INSTRUCTION,
   paymentPlan: {
     title: 'Payment Plan',
     paragraphs: [
@@ -65,7 +72,6 @@ export const TUITION_COPY = {
       'Payment is due the first of the month. If payment is not received by the 5th of the month, a late fee on any past due amount(s), will be assessed.',
     ],
     notes: [
-      'Tuition and fees may be paid via Zelle to munaschoolofpinehill@gmail.com, or by check, money order, or cash. Checks should be made payable to "MUNA School of Pine Hill."',
       'Books/materials are free unless they are lost.',
       'Payment will have to be given directly to Office Staff',
     ],
