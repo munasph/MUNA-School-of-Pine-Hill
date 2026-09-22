@@ -177,6 +177,14 @@
   font-size: 1.05rem;
   color: var(--text-secondary);
 }
+.about-contact__note {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-style: italic;
+}
 a.about-contact__item {
   color: var(--accent);
   text-decoration: none;

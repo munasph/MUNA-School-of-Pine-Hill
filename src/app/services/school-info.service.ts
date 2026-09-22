@@ -14,6 +14,7 @@ export interface SchoolInfo {
   foundedYear:     string;
   foundedDate:     string;
   address:         string;
+  addressNote:     string;
   phone:           string;
   phoneHref:       string;
   email:           string;
@@ -84,7 +85,8 @@ export class SchoolInfoService {
     const name        = this.pick(settings.name, base.name, 'name');
     const shortName   = this.pick(settings.shortName, base.shortName, 'shortName');
     const foundedYear = this.pick(settings.foundedYear, base.foundedYear, 'foundedYear');
-    const address     = this.pick(settings.address, base.address, 'address');
+    const addressRaw  = this.pick(settings.address, base.address, 'address');
+    const address     = this.normalizeAddress(addressRaw, base.address);
     const phone       = this.pick(settings.phone, base.phone, 'phone');
     const email       = this.pick(settings.email, base.email, 'email');
     const officeHours = this.pick(settings.officeHours, base.officeHours, 'officeHours');
@@ -96,13 +98,14 @@ export class SchoolInfoService {
       foundedYear,
       foundedDate:    foundedYear,
       address,
+      addressNote:    base.addressNote,
       phone,
       phoneHref:      this.toPhoneHref(phone),
       email,
       emailHref:      email ? `mailto:${email}` : base.emailHref,
       officeHours,
       copyrightYear:  base.copyrightYear,
-      mapQuery:       address,
+      mapQuery:       base.mapQuery,
       baseUrl,
       admissionsOpen:                 settings.admissionsOpen,
       admissionDocumentsRequired:     this.resolveRequiredDocumentTypes(settings).length > 0,
@@ -129,6 +132,14 @@ export class SchoolInfoService {
       return fallback;
     }
     return trimmed;
+  }
+
+  private normalizeAddress(address: string, fallback: string): string {
+    const trimmed = address.trim();
+    if (trimmed === '400 Erial Rd, Pine Hill, NJ 08021') {
+      return fallback;
+    }
+    return trimmed || fallback;
   }
 
   private fromDefaults(): SchoolInfo {

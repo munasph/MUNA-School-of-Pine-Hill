@@ -48,7 +48,10 @@
         <ul class="space-y-4 text-sm">
           <li class="flex gap-3 items-start footer__text">
             <lucide-icon [img]="mapPin" size="16" class="shrink-0 mt-0.5 footer__accent-muted"></lucide-icon>
-            <span>{{ schoolInfo.address }}</span>
+            <span>
+              {{ schoolInfo.address }}
+              <span *ngIf="schoolInfo.addressNote" class="footer__address-note">{{ schoolInfo.addressNote }}</span>
+            </span>
           </li>
           <li class="flex gap-3 items-center footer__text">
             <lucide-icon [img]="phone" size="16" class="shrink-0 footer__accent-muted"></lucide-icon>

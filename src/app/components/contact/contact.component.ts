@@ -29,6 +29,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     icon: LucideIconData;
     key:  ContactInfoKey;
     detail: string;
+    note?: string;
   }> = [];
 
   readonly checkCircle: LucideIconData = CheckCircle;
@@ -54,7 +55,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       this.schoolInfoService.schoolInfo$.subscribe((info) => {
         this.schoolInfo = info;
         this.contactItems = [
-          { icon: MapPin,   key: 'address', detail: info.address },
+          { icon: MapPin,   key: 'address', detail: info.address, note: info.addressNote },
           { icon: Phone,    key: 'phone',   detail: info.phone },
           { icon: Mail,     key: 'email',   detail: info.email },
           { icon: Calendar, key: 'hours',   detail: info.officeHours },

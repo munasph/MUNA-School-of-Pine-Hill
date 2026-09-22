@@ -21,6 +21,15 @@
   color: var(--text-secondary);
 }
 
+.footer__address-note {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  font-style: italic;
+}
+
 .footer__muted {
   color: var(--text-muted);
 }

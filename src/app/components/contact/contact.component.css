@@ -121,6 +121,14 @@
   line-height: 1.6;
 }
 
+.contact-info-card__note {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0.35rem 0 0;
+  font-style: italic;
+}
+
 .contact-form-panel {
   background: var(--surface-card);
   border: 1.5px solid var(--glass-border);

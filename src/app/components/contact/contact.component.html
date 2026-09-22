@@ -42,6 +42,7 @@
             <div>
               <h4 class="contact-info-card__title">{{ t.contact.info[item.key] }}</h4>
               <p class="contact-info-card__detail">{{ item.detail }}</p>
+              <p *ngIf="item.note" class="contact-info-card__note">{{ item.note }}</p>
             </div>
           </div>
         </div>
