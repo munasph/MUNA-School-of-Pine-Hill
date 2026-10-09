@@ -9,10 +9,10 @@
 
       <app-glass-card intensity="mid" extraClass="p-8 lg:p-10">
         <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-6" novalidate>
-          <app-glass-input [label]="t.login.form.email" type="email"
-                           placeholder="you@example.com"
-                           [required]="true" formControlName="email"
-                           [error]="errorFor('email') ?? undefined"></app-glass-input>
+          <app-glass-input [label]="t.login.form.username" type="text"
+                           placeholder="your.username"
+                           [required]="true" formControlName="username"
+                           [error]="errorFor('username') ?? undefined"></app-glass-input>
 
           <app-glass-input [label]="t.login.form.password" type="password"
                            placeholder="Enter your password"
@@ -36,8 +36,7 @@
           <a routerLink="/portal" class="auth-switch__link">{{ t.login.form.familyLink }}</a>
         </p>
         <p class="auth-switch">
-          Need staff access?
-          <a routerLink="/staff-signup" class="auth-switch__link">Request access</a>
+          Staff accounts are invite-only. Contact a school administrator if you need access.
         </p>
       </app-glass-card>
     </div>

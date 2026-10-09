@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import type { StaffInvitePayload, StaffMember } from '../../../models/staff.model';
 import { AuthService } from '../../../services/auth.service';
 import { StaffService } from '../../../services/staff.service';
-import { EMAIL_PATTERN, fieldError } from '../../../utils/form-validation';
+import { EMAIL_PATTERN, USERNAME_PATTERN, fieldError } from '../../../utils/form-validation';
 
 type StaffTab = 'active' | 'pending' | 'invite';
 
@@ -41,6 +41,7 @@ export class AdminStaffComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.inviteForm = this.fb.group({
       displayName: ['', [Validators.required]],
+      username:    ['', [Validators.required, Validators.pattern(USERNAME_PATTERN)]],
       email:       ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
       role:        ['EDITOR', [Validators.required]],
     });
@@ -75,28 +76,23 @@ export class AdminStaffComponent implements OnInit, OnDestroy {
     );
   }
 
-  approve(member: StaffMember): void {
-    this.actionError = null;
-    this.subs.add(
-      this.staffService.approve(member.id).subscribe({
-        next: () => this.loadStaff(),
-        error: (err: HttpErrorResponse) => { this.actionError = err.error?.message ?? 'Could not approve staff member.'; },
-      }),
-    );
-  }
-
   reject(member: StaffMember): void {
     this.actionError = null;
     this.subs.add(
       this.staffService.reject(member.id).subscribe({
         next: () => this.loadStaff(),
-        error: (err: HttpErrorResponse) => { this.actionError = err.error?.message ?? 'Could not reject staff member.'; },
+        error: (err: HttpErrorResponse) => { this.actionError = err.error?.message ?? 'Could not cancel invite.'; },
       }),
     );
   }
 
-  inviteErrorFor(field: 'displayName' | 'email' | 'role'): string | null {
-    const labels = { displayName: 'Name', email: 'Email', role: 'Role' };
+  inviteErrorFor(field: 'displayName' | 'username' | 'email' | 'role'): string | null {
+    const labels = { displayName: 'Name', username: 'Username', email: 'Email', role: 'Role' };
+    if (field === 'username') {
+      return fieldError(this.inviteForm.get(field), labels[field], {
+        pattern: 'Use 3–50 letters, numbers, dots, underscores, or hyphens',
+      });
+    }
     return fieldError(this.inviteForm.get(field), labels[field]);
   }
 

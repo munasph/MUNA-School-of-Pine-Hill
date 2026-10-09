@@ -1,7 +1,7 @@
 <div class="admin-page">
   <header class="admin-page__header">
     <h2 class="admin-page__title">Staff Management</h2>
-    <p class="admin-page__subtitle">Invite staff, review access requests, and manage active accounts.</p>
+    <p class="admin-page__subtitle">Invite staff by email. New accounts are invite-only.</p>
   </header>
 
   <div class="staff-tabs">
@@ -9,7 +9,7 @@
       Active ({{ activeStaff.length }})
     </button>
     <button type="button" class="staff-tabs__btn" [class.staff-tabs__btn--active]="activeTab === 'pending'" (click)="setTab('pending')">
-      Pending ({{ pendingStaff.length }})
+      Pending invites ({{ pendingStaff.length }})
     </button>
     <button type="button" class="staff-tabs__btn" [class.staff-tabs__btn--active]="activeTab === 'invite'" (click)="setTab('invite')">
       Send Invite
@@ -25,22 +25,21 @@
     <div *ngFor="let member of activeStaff" class="staff-card">
       <div>
         <h3 class="staff-card__name">{{ member.displayName || member.email }}</h3>
-        <p class="staff-card__meta">{{ member.email }} · {{ member.role }}</p>
+        <p class="staff-card__meta">{{ member.username }} · {{ member.email }} · {{ member.role }}</p>
       </div>
       <span class="staff-badge staff-badge--approved">{{ member.approvalStatus }}</span>
     </div>
   </section>
 
   <section *ngIf="activeTab === 'pending'" class="staff-panel">
-    <div *ngIf="pendingStaff.length === 0" class="admin-page__subtitle">No pending requests.</div>
+    <div *ngIf="pendingStaff.length === 0" class="admin-page__subtitle">No pending invites.</div>
     <div *ngFor="let member of pendingStaff" class="staff-card">
       <div>
         <h3 class="staff-card__name">{{ member.displayName || member.email }}</h3>
-        <p class="staff-card__meta">{{ member.email }} · requested {{ member.role }}</p>
+        <p class="staff-card__meta">{{ member.username }} · {{ member.email }} · invited as {{ member.role }}</p>
       </div>
       <div class="staff-card__actions">
-        <button type="button" class="staff-action staff-action--approve" (click)="approve(member)">Approve</button>
-        <button type="button" class="staff-action staff-action--reject" (click)="reject(member)">Reject</button>
+        <button type="button" class="staff-action staff-action--reject" (click)="reject(member)">Cancel invite</button>
       </div>
     </div>
   </section>
@@ -51,6 +50,9 @@
         <app-glass-input label="Full Name" type="text" placeholder="Staff member name"
                          [required]="true" formControlName="displayName"
                          [error]="inviteErrorFor('displayName') ?? undefined"></app-glass-input>
+        <app-glass-input label="Username" type="text" placeholder="staff.username"
+                         [required]="true" formControlName="username"
+                         [error]="inviteErrorFor('username') ?? undefined"></app-glass-input>
         <app-glass-input label="Email" type="email" placeholder="staff@example.com"
                          [required]="true" formControlName="email"
                          [error]="inviteErrorFor('email') ?? undefined"></app-glass-input>

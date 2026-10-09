@@ -16,7 +16,6 @@ import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
-import { SignupComponent }    from './components/signup/signup.component';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -53,11 +52,11 @@ const routes: Routes = [
   { path: 'announcements',     component: AnnouncementsListComponent },
   { path: 'announcements/:id', component: AnnouncementDetailComponent },
   { path: 'login',           component: LoginComponent     },
-  { path: 'staff-signup',    component: SignupComponent    },
+  { path: 'staff-signup',    redirectTo: 'login', pathMatch: 'full' },
+  { path: 'signup',          redirectTo: 'login', pathMatch: 'full' },
   { path: 'set-password',    component: SetPasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password',  component: ResetPasswordComponent },
-  { path: 'signup',          redirectTo: 'staff-signup', pathMatch: 'full' },
   { path: 'portal',           component: PortalComingSoonComponent },
   { path: 'portal/login',     component: PortalComingSoonComponent },
   { path: 'portal/signup',    component: PortalComingSoonComponent },
