@@ -9,7 +9,7 @@ import { CheckCircle, LucideIconData } from 'lucide-angular';
 import type { StaffSignupPayload } from '../../models/auth.model';
 import { AuthService } from '../../services/auth.service';
 import { SeoService } from '../../services/seo.service';
-import { EMAIL_PATTERN, fieldError } from '../../utils/form-validation';
+import { EMAIL_PATTERN, USERNAME_PATTERN, fieldError } from '../../utils/form-validation';
 import { SIGNUP_COPY } from './signup.data';
 
 function passwordsMatch(group: AbstractControl): ValidationErrors | null {
@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
     this.form = this.fb.group({
       fullName:        ['', [Validators.required]],
+      username:        ['', [Validators.required, Validators.pattern(USERNAME_PATTERN)]],
       email:           ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
       role:            ['EDITOR', [Validators.required]],
       password:        ['', [Validators.required, Validators.minLength(8)]],
@@ -65,10 +66,11 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  errorFor(field: 'fullName' | 'email' | 'role' | 'password' | 'confirmPassword'): string | null {
+  errorFor(field: 'fullName' | 'username' | 'email' | 'role' | 'password' | 'confirmPassword'): string | null {
     const control = this.form.get(field);
     const labels = {
       fullName:        'Full name',
+      username:        'Username',
       email:           'Email',
       role:            'Role',
       password:        'Password',
@@ -78,6 +80,12 @@ export class SignupComponent implements OnInit, OnDestroy {
     if (field === 'confirmPassword' && control?.touched) {
       if (control.errors?.['required']) return 'Confirm password is required';
       if (this.form.errors?.['passwordMismatch']) return 'Passwords do not match';
+    }
+
+    if (field === 'username') {
+      return fieldError(control, labels[field], {
+        pattern: 'Use 3–50 letters, numbers, dots, underscores, or hyphens',
+      });
     }
 
     return fieldError(control, labels[field]);

@@ -1,6 +1,7 @@
 export interface StaffMember {
   id:              number;
   email:           string;
+  username:        string;
   displayName:     string;
   role:            'SUPER_ADMIN' | 'ADMIN' | 'EDITOR';
   approvalStatus:  'PENDING' | 'APPROVED' | 'REJECTED';
@@ -11,6 +12,7 @@ export interface StaffMember {
 
 export interface StaffInvitePayload {
   email:       string;
+  username:    string;
   displayName: string;
   role:        'ADMIN' | 'EDITOR';
 }

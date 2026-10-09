@@ -9,6 +9,7 @@ import type {
 import { apiUrl } from '../utils/api-url';
 
 const STORAGE_KEY = 'school_admin_session';
+const LAST_USERNAME_KEY = 'school_admin_last_username';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -23,9 +24,12 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.endpoint}/login`, credentials).pipe(
       tap((res) => {
         if (res.success && res.token && res.email) {
+          const username = res.username ?? credentials.username.trim().toLowerCase();
+          this.rememberUsername(username);
           this.setSession({
             token: res.token,
             email: res.email,
+            username,
             roles: res.roles ?? ['ADMIN'],
           });
         }
@@ -77,6 +81,17 @@ export class AuthService {
 
   getToken(): string | null {
     return this.getSession()?.token ?? null;
+  }
+
+  getLastUsername(): string {
+    return localStorage.getItem(LAST_USERNAME_KEY) ?? '';
+  }
+
+  rememberUsername(username: string): void {
+    const value = username.trim().toLowerCase();
+    if (value) {
+      localStorage.setItem(LAST_USERNAME_KEY, value);
+    }
   }
 
   private setSession(session: AuthSession): void {

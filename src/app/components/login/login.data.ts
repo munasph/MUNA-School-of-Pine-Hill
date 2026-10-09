@@ -6,7 +6,7 @@ export const LOGIN_COPY = {
       subtitle: 'School employees only — manage the website and applications.',
     },
     form: {
-      email:    'Email Address',
+      username: 'Username or email',
       password: 'Password',
       submit:   'Sign in',
       familyPrompt: 'Parent or student?',

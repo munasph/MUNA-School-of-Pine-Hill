@@ -3,6 +3,9 @@ import { AbstractControl } from '@angular/forms';
 /** Same pattern used by the contact form. */
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Staff login username (letters, numbers, dots, underscores, hyphens). */
+export const USERNAME_PATTERN = /^[a-zA-Z0-9._-]{3,50}$/;
+
 /**
  * Returns a user-facing error string when a control is touched and invalid.
  * Returns null when the field is valid or has not been touched yet.

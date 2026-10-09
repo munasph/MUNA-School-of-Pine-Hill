@@ -7,6 +7,7 @@ export const SIGNUP_COPY = {
     },
     form: {
       fullName:        'Full Name',
+      username:        'Username',
       email:           'Email Address',
       role:            'Requested Role',
       password:        'Password',

@@ -30,6 +30,11 @@
                              [required]="true" formControlName="fullName"
                              [error]="errorFor('fullName') ?? undefined"></app-glass-input>
 
+            <app-glass-input [label]="t.signup.form.username" type="text"
+                             placeholder="your.username"
+                             [required]="true" formControlName="username"
+                             [error]="errorFor('username') ?? undefined"></app-glass-input>
+
             <app-glass-input [label]="t.signup.form.email" type="email"
                              placeholder="you@example.com"
                              [required]="true" formControlName="email"

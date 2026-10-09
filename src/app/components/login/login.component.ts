@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import type { LoginCredentials } from '../../models/auth.model';
 import { AuthService } from '../../services/auth.service';
 import { SeoService } from '../../services/seo.service';
-import { EMAIL_PATTERN, fieldError } from '../../utils/form-validation';
+import { fieldError } from '../../utils/form-validation';
 import { LOGIN_COPY } from './login.data';
 
 @Component({
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
 
     this.form = this.fb.group({
-      email:    ['', [Validators.required, Validators.pattern(EMAIL_PATTERN)]],
+      username: [this.authService.getLastUsername(), [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
@@ -54,9 +54,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  errorFor(field: 'email' | 'password'): string | null {
-    const labels = { email: 'Email', password: 'Password' };
-    return fieldError(this.form.get(field), labels[field]);
+  errorFor(field: 'username' | 'password'): string | null {
+    const labels = { username: 'Username', password: 'Password' };
+    return fieldError(this.form.get(field), labels[field], {
+      minlength: field === 'username' ? 'Username must be at least 3 characters' : undefined,
+    });
   }
 
   submit(): void {
@@ -78,7 +80,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         },
         error: (err: HttpErrorResponse) => {
           this.submitting = false;
-          this.submitError = err.error?.message ?? 'Invalid email or password.';
+          this.submitError = err.error?.message ?? 'Invalid username or password.';
         },
       }),
     );

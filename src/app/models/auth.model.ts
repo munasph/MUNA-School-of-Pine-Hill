@@ -1,10 +1,11 @@
 export interface LoginCredentials {
-  email:    string;
+  username: string;
   password: string;
 }
 
 export interface SignupPayload {
   fullName:        string;
+  username:        string;
   email:           string;
   password:        string;
   confirmPassword: string;
@@ -36,11 +37,13 @@ export interface AuthResponse {
   message: string;
   token?:  string;
   email?:  string;
+  username?: string;
   roles?:  string[];
 }
 
 export interface AuthSession {
   token: string;
   email: string;
+  username?: string;
   roles: string[];
 }
