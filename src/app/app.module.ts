@@ -22,7 +22,6 @@ import { TuitionComponent }   from './components/tuition/tuition.component';
 import { PrivacyComponent }   from './components/privacy/privacy.component';
 import { TermsComponent }     from './components/terms/terms.component';
 import { LoginComponent }     from './components/login/login.component';
-import { SignupComponent }    from './components/signup/signup.component';
 import { SetPasswordComponent } from './components/set-password/set-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
@@ -78,7 +77,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     PrivacyComponent,
     TermsComponent,
     LoginComponent,
-    SignupComponent,
     SetPasswordComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,

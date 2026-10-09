@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import type {
-  AuthResponse, AuthSession, LoginCredentials, SignupPayload,
-  StaffSignupPayload, SetPasswordPayload, PasswordResetPayload, PasswordResetConfirmPayload,
+  AuthResponse, AuthSession, LoginCredentials,
+  SetPasswordPayload, PasswordResetPayload, PasswordResetConfirmPayload,
 } from '../models/auth.model';
 import { apiUrl } from '../utils/api-url';
 
@@ -35,14 +35,6 @@ export class AuthService {
         }
       }),
     );
-  }
-
-  signup(payload: SignupPayload): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.endpoint}/signup`, payload);
-  }
-
-  staffSignup(payload: StaffSignupPayload): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.endpoint}/staff-signup`, payload);
   }
 
   setPassword(payload: SetPasswordPayload): Observable<AuthResponse> {

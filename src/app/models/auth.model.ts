@@ -3,19 +3,6 @@ export interface LoginCredentials {
   password: string;
 }
 
-export interface SignupPayload {
-  fullName:        string;
-  username:        string;
-  email:           string;
-  password:        string;
-  confirmPassword: string;
-  role?:           'ADMIN' | 'EDITOR';
-}
-
-export interface StaffSignupPayload extends SignupPayload {
-  role: 'ADMIN' | 'EDITOR';
-}
-
 export interface SetPasswordPayload {
   token:           string;
   password:        string;

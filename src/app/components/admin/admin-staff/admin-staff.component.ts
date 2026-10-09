@@ -76,22 +76,12 @@ export class AdminStaffComponent implements OnInit, OnDestroy {
     );
   }
 
-  approve(member: StaffMember): void {
-    this.actionError = null;
-    this.subs.add(
-      this.staffService.approve(member.id).subscribe({
-        next: () => this.loadStaff(),
-        error: (err: HttpErrorResponse) => { this.actionError = err.error?.message ?? 'Could not approve staff member.'; },
-      }),
-    );
-  }
-
   reject(member: StaffMember): void {
     this.actionError = null;
     this.subs.add(
       this.staffService.reject(member.id).subscribe({
         next: () => this.loadStaff(),
-        error: (err: HttpErrorResponse) => { this.actionError = err.error?.message ?? 'Could not reject staff member.'; },
+        error: (err: HttpErrorResponse) => { this.actionError = err.error?.message ?? 'Could not cancel invite.'; },
       }),
     );
   }
